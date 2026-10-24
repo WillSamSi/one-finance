@@ -222,17 +222,22 @@ def chase_and_bofa() -> tuple[list, list, list, list]:
             spend.append((x, money(rng.uniform(18, 27)), "SHAKE SHACK NEW HAVEN"))
         for x in pick_days(m, 3):
             spend.append((x, money(rng.uniform(4.5, 7.25)), "SQ *BLUE STATE COFFEE"))
-        if sep:  # dinner out pushes Dining over budget in September
+        if sep:  # dinners out push Food over budget in September
             spend.append((d("2026-09-26"), 86.40, "UNION LEAGUE CAFE NEW HAVEN"))
             spend.append((d("2026-09-12"), 42.75, "MECHA NOODLE BAR NEW HAVEN"))
+            spend.append((d("2026-09-19"), 64.20, "ZINC RESTAURANT NEW HAVEN"))
         for x in pick_days(m, 3):
             spend.append((x, money(rng.uniform(11, 28)), "UBER   *TRIP HELP.UBER.COM"))
-        for day_no, amount, desc in [(8, 15.49, "NETFLIX.COM"), (12, 11.99, "SPOTIFY USA"), (21, 2.99, "APPLE.COM/BILL")]:
+        # Sports and Education: gym membership and an online course every month.
+        for day_no, amount, desc in [(8, 24.99, "PLANET FITNESS CLUB FEES"), (15, 49.00, "COURSERA PLUS SUBSCRIPTION")]:
             x = m.replace(day=day_no)
             if x <= LAST:
                 spend.append((x, amount, desc))
+        if key == "2026-08":
+            spend.append((d("2026-08-27"), 112.35, "YALE BOOKSTORE NEW HAVEN"))      # textbooks for the term
+            spend.append((d("2026-08-16"), 39.99, "DICK'S SPORTING GOODS #1182"))   # running shoes on sale
         if sep:
-            spend.append((d("2026-09-12"), 11.99, "SPOTIFY USA"))  # planted: charged twice
+            spend.append((d("2026-09-08"), 24.99, "PLANET FITNESS CLUB FEES"))  # planted: charged twice
             for r in RECEIPTS:
                 if r["card"] == CHASE_CARD:
                     spend.append((d(r["date"]), r["charge"], {
@@ -398,26 +403,37 @@ INVESTMENTS["accounts"][0]["balance"]["total"]["amount"] = money(
     sum(p["units"] * p["price"] for p in INVESTMENTS["positions"]) + INVESTMENTS["balances"][0]["cash"]
 )
 
-# Spending pockets use the Home render's categories (plus Groceries, where receipts land).
+# The owner's pocket list (2026-10-24). Pockets are guidance only: labels on the money,
+# not tied to any account. First iteration: the top 8 expense pockets are active; the rest
+# are in the catalog (active: false) and can be added or renamed in Budget setup.
+# monthly_budget: spending budget, or the monthly amount set aside for savings/investing.
+# starting_amount: what a savings/investing pocket held when budgeting started (Sep 1, 2026).
 POCKETS = [
+    {"name": "Home Rent", "kind": "spending", "monthly_budget": 1450, "description": "Monthly rent"},
     {"name": "Utilities", "kind": "spending", "monthly_budget": 250, "description": "Electricity, phone, internet"},
-    {"name": "Rent / mortgage", "kind": "spending", "monthly_budget": 1450, "description": "Monthly rent"},
-    {"name": "Groceries", "kind": "spending", "monthly_budget": 450, "description": "Supermarkets and food at home"},
-    {"name": "Supplies", "kind": "spending", "monthly_budget": 200, "description": "Household goods, Amazon, general shopping"},
+    {"name": "Food", "kind": "spending", "monthly_budget": 700, "description": "Groceries, restaurants, coffee"},
+    {"name": "Supplies", "kind": "spending", "monthly_budget": 200, "description": "Household goods and everyday items"},
     {"name": "Transportation", "kind": "spending", "monthly_budget": 150, "description": "Rides, gas, transit"},
-    {"name": "Entertainment", "kind": "spending", "monthly_budget": 60, "description": "Streaming, music, cloud storage, events"},
-    {"name": "Dining", "kind": "spending", "monthly_budget": 250, "description": "Restaurants, cafes, coffee"},
     {"name": "Healthcare", "kind": "spending", "monthly_budget": 60, "description": "Pharmacy, doctor, insurance"},
-    {"name": "Other", "kind": "spending", "monthly_budget": 100, "description": "Anything that fits nowhere else"},
-    {"name": "Emergency Fund", "kind": "saving", "goal_amount": 15000, "description": "Six months of essentials"},
-    {"name": "Indonesia Savings", "kind": "saving", "goal_amount": 50_000_000, "currency": "IDR", "description": "Money kept in Indonesia"},
-    {"name": "Investing", "kind": "investing", "monthly_budget": 500, "description": "Monthly contribution to the brokerage"},
+    {"name": "Sports", "kind": "spending", "monthly_budget": 60, "description": "Gym, sports gear, events"},
+    {"name": "Education", "kind": "spending", "monthly_budget": 120, "description": "Courses, books, school fees"},
+    {"name": "Shopping", "kind": "spending", "monthly_budget": 150, "active": False, "description": "Clothes and general shopping"},
+    {"name": "Electronics", "kind": "spending", "monthly_budget": 100, "active": False, "description": "Gadgets and accessories"},
+    {"name": "Misc", "kind": "spending", "monthly_budget": 50, "active": False, "description": "Small one-off things"},
+    {"name": "Entertainment", "kind": "spending", "monthly_budget": 60, "active": False, "description": "Streaming, music, events"},
+    {"name": "Travel", "kind": "spending", "monthly_budget": 200, "active": False, "description": "Flights, hotels, trips"},
+    {"name": "Gifts", "kind": "spending", "monthly_budget": 50, "active": False, "description": "Presents and donations"},
+    {"name": "Other expenses", "kind": "spending", "monthly_budget": 100, "active": False, "custom": True, "description": "Rename to anything"},
+    {"name": "Emergency Fund", "kind": "saving", "monthly_budget": 300, "goal_amount": 15000, "starting_amount": 8600, "description": "Six months of essentials"},
+    {"name": "General Savings", "kind": "saving", "monthly_budget": 200, "starting_amount": 2900, "description": "Savings with no set goal"},
+    {"name": "Investment", "kind": "investing", "monthly_budget": 500, "starting_amount": 1000, "description": "Ready to invest: set aside to move to the brokerage"},
+    {"name": "Other Savings", "kind": "saving", "monthly_budget": 100, "goal_amount": 1500, "starting_amount": 600, "custom": True, "description": "Rename to anything (e.g. Holiday)"},
 ]
 
 # Quick entries typed in by hand (e.g. from Back Tap), with no receipt or bank charge yet.
 MANUAL_ENTRIES = [
-    {"date": "2026-10-12", "description": "Cash at farmers market", "amount": 18.00, "pocket": "Groceries"},
-    {"date": "2026-10-19", "description": "Haircut", "amount": 42.00, "pocket": "Other"},
+    {"date": "2026-10-12", "description": "Cash at farmers market", "amount": 18.00, "pocket": "Food"},
+    {"date": "2026-10-19", "description": "Intramural soccer fee (cash)", "amount": 42.00, "pocket": "Sports"},
 ]
 
 
@@ -511,10 +527,10 @@ with each other except where a problem was planted on purpose.
 | # | What | Where |
 |---|---|---|
 | 1 | **Amount mismatch:** the Target receipt totals ${target_total:.2f}, but the card was charged ${target['charge']:.2f} | Sep 6, Chase card {CHASE_CARD}, `receipts/2026-09-06_target.png` |
-| 2 | **Duplicate charge:** Spotify charged twice ($11.99 each) | Sep 12, Chase card |
+| 2 | **Duplicate charge:** the gym (Planet Fitness) charged twice ($24.99 each) | Sep 8, Chase card |
 | 3 | **Charge with no order:** an Amazon charge of ${AMAZON_ORPHAN[2]:.2f} that matches no order in the Amazon CSV | {AMAZON_ORPHAN[0]}, Chase card |
 | 4 | **Split shipment (not a problem):** one Amazon order, two charges on different days ($41.98 + $22.99) | Order 113-7720518-9014466, Sep 11 and Sep 13 |
-| 5 | **Over budget:** Dining spending goes over its $250 budget | September, Chase card |
+| 5 | **Over budget:** Food (groceries + restaurants) goes over its $700 budget | September, Chase and BofA cards |
 
 ## Clean matches (should be recorded without asking)
 

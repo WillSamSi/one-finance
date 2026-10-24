@@ -32,3 +32,6 @@ xcuserdata/
 # Local machine / editor
 .DS_Store
 .claude/
+
+# Receipt photos added in the app (could be real receipts)
+data/uploads/

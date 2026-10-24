@@ -12,7 +12,7 @@ with each other except where a problem was planted on purpose.
 | Where | Account | Last 4 | Transactions |
 |---|---|---|---|
 | Chase (Plaid sandbox) | Chase Total Checking | 0918 | 38 |
-| Chase (Plaid sandbox) | Chase Freedom Unlimited (credit card) | 7313 | 122 |
+| Chase (Plaid sandbox) | Chase Freedom Unlimited (credit card) | 7313 | 121 |
 | Bank of America (Plaid sandbox) | BofA Advantage Savings | 5560 | 7 |
 | Bank of America (Plaid sandbox) | BofA Customized Cash Rewards (credit card) | 2290 | 25 |
 | BCA (statement) | BCA Tahapan (IDR) | 4471 | September statement, closing 20,432,512.00 |
@@ -25,10 +25,10 @@ with each other except where a problem was planted on purpose.
 | # | What | Where |
 |---|---|---|
 | 1 | **Amount mismatch:** the Target receipt totals $47.82, but the card was charged $52.82 | Sep 6, Chase card 7313, `receipts/2026-09-06_target.png` |
-| 2 | **Duplicate charge:** Spotify charged twice ($11.99 each) | Sep 12, Chase card |
+| 2 | **Duplicate charge:** the gym (Planet Fitness) charged twice ($24.99 each) | Sep 8, Chase card |
 | 3 | **Charge with no order:** an Amazon charge of $29.99 that matches no order in the Amazon CSV | 2026-09-27, Chase card |
 | 4 | **Split shipment (not a problem):** one Amazon order, two charges on different days ($41.98 + $22.99) | Order 113-7720518-9014466, Sep 11 and Sep 13 |
-| 5 | **Over budget:** Dining spending goes over its $250 budget | September, Chase card |
+| 5 | **Over budget:** Food (groceries + restaurants) goes over its $700 budget | September, Chase and BofA cards |
 
 ## Clean matches (should be recorded without asking)
 

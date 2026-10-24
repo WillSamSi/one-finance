@@ -13,6 +13,7 @@ class ReceiptItem(BaseModel):
     name: str
     quantity: float = 1
     price: float = Field(description="Line total for this item, as printed.")
+    suggested_pocket: str | None = Field(None, description="Best pocket for this item, from the list given (by what it is).")
 
 
 class ReceiptRead(BaseModel):
@@ -35,6 +36,7 @@ DiscrepancyKind = Literal[
     "no_matching_charge",    # a receipt, order or manual entry with no bank charge
     "over_budget",           # a pocket went over its monthly budget
     "statement_mismatch",    # statement lines don't add up to its totals
+    "cash_check",            # pockets promise more money than exists (Unassigned below zero)
     "unclear",               # needs a human look for another reason
 ]
 
@@ -49,13 +51,6 @@ class Discrepancy(BaseModel):
     amount: float | None = None
 
 
-class PocketLink(BaseModel):
-    pocket: str
-    account_id: str
-    confidence: float = Field(ge=0, le=1)
-    reason: str
-
-
 class MonthLedger(BaseModel):
     """The Accountant's month-end result."""
 
@@ -65,8 +60,19 @@ class MonthLedger(BaseModel):
     amazon_orders_matched: int
     statements_recorded: int
     discrepancies: list[Discrepancy]
-    pocket_links: list[PocketLink]
+    cash_check: str = Field(description="One sentence: do pockets + Unassigned equal all the money? With the numbers.")
     summary: str = Field(description="Three or four plain sentences for the owner.")
+
+
+class QuickEntry(BaseModel):
+    """An expense typed in one line ("lunch 12.50 Chipotle cash"), turned into form fields."""
+
+    amount: float | None = None
+    currency: str = "USD"
+    pocket: str | None = Field(None, description="One of the given pocket names, or null if unsure.")
+    paid_with: str | None = Field(None, description="'cash_usd', 'cash_idr', one of the given account ids, or null.")
+    note: str | None = Field(None, description="Where or what, e.g. 'Chipotle'.")
+    date: str | None = Field(None, description="YYYY-MM-DD if a day is mentioned (relative to today), else null.")
 
 
 # --- Investor --------------------------------------------------------------------------
@@ -104,6 +110,19 @@ class WeeklyDigest(BaseModel):
     investment_title: str
     investment_body: str = Field(description="Suggestions about the investment account, labeled as suggestions.")
     next_steps: list[NextStep]
+
+
+class PocketAmount(BaseModel):
+    pocket: str
+    monthly_amount: float = Field(ge=0)
+    reason: str = Field(description="One short sentence with the numbers it's based on.")
+
+
+class BudgetSuggestion(BaseModel):
+    """The Advisor's suggested monthly amounts (the owner decides whether to use them)."""
+
+    suggestions: list[PocketAmount]
+    note: str
 
 
 # --- Run state -------------------------------------------------------------------------

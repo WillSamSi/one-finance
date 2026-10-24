@@ -142,7 +142,7 @@
     {
      "date_transacted": "2026-08-25",
      "date_posted": "2026-08-25",
-     "amount": 534.36,
+     "amount": 577.88,
      "description": "CHASE CREDIT CRD AUTOPAY PPD",
      "currency": "USD"
     },
@@ -212,7 +212,7 @@
     {
      "date_transacted": "2026-09-25",
      "date_posted": "2026-09-25",
-     "amount": 618.36,
+     "amount": 814.22,
      "description": "CHASE CREDIT CRD AUTOPAY PPD",
      "currency": "USD"
     },
@@ -284,7 +284,7 @@
   {
    "type": "credit",
    "subtype": "credit card",
-   "starting_balance": 1314.5,
+   "starting_balance": 1478.74,
    "currency": "USD",
    "meta": {
     "name": "Chase Freedom Unlimited",
@@ -345,8 +345,8 @@
     {
      "date_transacted": "2026-07-08",
      "date_posted": "2026-07-09",
-     "amount": 15.49,
-     "description": "NETFLIX.COM",
+     "amount": 24.99,
+     "description": "PLANET FITNESS CLUB FEES",
      "currency": "USD"
     },
     {
@@ -361,13 +361,6 @@
      "date_posted": "2026-07-10",
      "amount": 5.01,
      "description": "SQ *BLUE STATE COFFEE",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-07-12",
-     "date_posted": "2026-07-13",
-     "amount": 11.99,
-     "description": "SPOTIFY USA",
      "currency": "USD"
     },
     {
@@ -399,6 +392,13 @@
      "currency": "USD"
     },
     {
+     "date_transacted": "2026-07-15",
+     "date_posted": "2026-07-16",
+     "amount": 49.0,
+     "description": "COURSERA PLUS SUBSCRIPTION",
+     "currency": "USD"
+    },
+    {
      "date_transacted": "2026-07-17",
      "date_posted": "2026-07-18",
      "amount": 5.92,
@@ -424,13 +424,6 @@
      "date_posted": "2026-07-21",
      "amount": 56.77,
      "description": "TRADER JOE S #523 ORANGE CT",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-07-21",
-     "date_posted": "2026-07-22",
-     "amount": 2.99,
-     "description": "APPLE.COM/BILL",
      "currency": "USD"
     },
     {
@@ -541,8 +534,8 @@
     {
      "date_transacted": "2026-08-08",
      "date_posted": "2026-08-09",
-     "amount": 15.49,
-     "description": "NETFLIX.COM",
+     "amount": 24.99,
+     "description": "PLANET FITNESS CLUB FEES",
      "currency": "USD"
     },
     {
@@ -597,13 +590,6 @@
     {
      "date_transacted": "2026-08-12",
      "date_posted": "2026-08-13",
-     "amount": 11.99,
-     "description": "SPOTIFY USA",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-08-12",
-     "date_posted": "2026-08-13",
      "amount": 5.63,
      "description": "SQ *BLUE STATE COFFEE",
      "currency": "USD"
@@ -613,6 +599,20 @@
      "date_posted": "2026-08-14",
      "amount": 16.99,
      "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-15",
+     "date_posted": "2026-08-16",
+     "amount": 49.0,
+     "description": "COURSERA PLUS SUBSCRIPTION",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-16",
+     "date_posted": "2026-08-17",
+     "amount": 39.99,
+     "description": "DICK'S SPORTING GOODS #1182",
      "currency": "USD"
     },
     {
@@ -637,13 +637,6 @@
      "currency": "USD"
     },
     {
-     "date_transacted": "2026-08-21",
-     "date_posted": "2026-08-22",
-     "amount": 2.99,
-     "description": "APPLE.COM/BILL",
-     "currency": "USD"
-    },
-    {
      "date_transacted": "2026-08-24",
      "date_posted": "2026-08-25",
      "amount": 38.31,
@@ -653,7 +646,7 @@
     {
      "date_transacted": "2026-08-25",
      "date_posted": "2026-08-25",
-     "amount": -534.36,
+     "amount": -577.88,
      "description": "AUTOMATIC PAYMENT - THANK YOU",
      "currency": "USD"
     },
@@ -669,6 +662,13 @@
      "date_posted": "2026-08-27",
      "amount": 8.87,
      "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-27",
+     "date_posted": "2026-08-28",
+     "amount": 112.35,
+     "description": "YALE BOOKSTORE NEW HAVEN",
      "currency": "USD"
     },
     {
@@ -716,8 +716,15 @@
     {
      "date_transacted": "2026-09-08",
      "date_posted": "2026-09-09",
-     "amount": 15.49,
-     "description": "NETFLIX.COM",
+     "amount": 24.99,
+     "description": "PLANET FITNESS CLUB FEES",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-08",
+     "date_posted": "2026-09-09",
+     "amount": 24.99,
+     "description": "PLANET FITNESS CLUB FEES",
      "currency": "USD"
     },
     {
@@ -777,20 +784,6 @@
      "currency": "USD"
     },
     {
-     "date_transacted": "2026-09-12",
-     "date_posted": "2026-09-13",
-     "amount": 11.99,
-     "description": "SPOTIFY USA",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-09-12",
-     "date_posted": "2026-09-13",
-     "amount": 11.99,
-     "description": "SPOTIFY USA",
-     "currency": "USD"
-    },
-    {
      "date_transacted": "2026-09-13",
      "date_posted": "2026-09-14",
      "amount": 22.99,
@@ -826,6 +819,13 @@
      "currency": "USD"
     },
     {
+     "date_transacted": "2026-09-15",
+     "date_posted": "2026-09-16",
+     "amount": 49.0,
+     "description": "COURSERA PLUS SUBSCRIPTION",
+     "currency": "USD"
+    },
+    {
      "date_transacted": "2026-09-18",
      "date_posted": "2026-09-19",
      "amount": 6.83,
@@ -840,17 +840,17 @@
      "currency": "USD"
     },
     {
+     "date_transacted": "2026-09-19",
+     "date_posted": "2026-09-20",
+     "amount": 64.2,
+     "description": "ZINC RESTAURANT NEW HAVEN",
+     "currency": "USD"
+    },
+    {
      "date_transacted": "2026-09-20",
      "date_posted": "2026-09-21",
      "amount": 8.4,
      "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-09-21",
-     "date_posted": "2026-09-22",
-     "amount": 2.99,
-     "description": "APPLE.COM/BILL",
      "currency": "USD"
     },
     {
@@ -905,7 +905,7 @@
     {
      "date_transacted": "2026-09-25",
      "date_posted": "2026-09-25",
-     "amount": -618.36,
+     "amount": -814.22,
      "description": "AUTOMATIC PAYMENT - THANK YOU",
      "currency": "USD"
     },
@@ -1024,8 +1024,8 @@
     {
      "date_transacted": "2026-10-08",
      "date_posted": "2026-10-09",
-     "amount": 15.49,
-     "description": "NETFLIX.COM",
+     "amount": 24.99,
+     "description": "PLANET FITNESS CLUB FEES",
      "currency": "USD"
     },
     {
@@ -1052,13 +1052,6 @@
     {
      "date_transacted": "2026-10-12",
      "date_posted": "2026-10-13",
-     "amount": 11.99,
-     "description": "SPOTIFY USA",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-10-12",
-     "date_posted": "2026-10-13",
      "amount": 51.36,
      "description": "TRADER JOE S #523 ORANGE CT",
      "currency": "USD"
@@ -1068,6 +1061,13 @@
      "date_posted": "2026-10-15",
      "amount": 14.62,
      "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-15",
+     "date_posted": "2026-10-16",
+     "amount": 49.0,
+     "description": "COURSERA PLUS SUBSCRIPTION",
      "currency": "USD"
     },
     {
@@ -1110,13 +1110,6 @@
      "date_posted": "2026-10-22",
      "amount": 27.95,
      "description": "AMAZON MKTPL*3W9LJ4",
-     "currency": "USD"
-    },
-    {
-     "date_transacted": "2026-10-21",
-     "date_posted": "2026-10-22",
-     "amount": 2.99,
-     "description": "APPLE.COM/BILL",
      "currency": "USD"
     },
     {

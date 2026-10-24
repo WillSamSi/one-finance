@@ -136,10 +136,13 @@ def load_receipts(conn: sqlite3.Connection) -> int:
 
 def load_pockets(conn: sqlite3.Connection) -> int:
     pockets = json.loads((SAMPLE / "pockets.json").read_text())
-    for p in pockets:
+    for i, p in enumerate(pockets):
         conn.execute(
-            "INSERT INTO pockets (name, kind, monthly_budget, goal_amount, currency, description) VALUES (?,?,?,?,?,?)",
-            (p["name"], p["kind"], p.get("monthly_budget"), p.get("goal_amount"), p.get("currency", "USD"), p.get("description")),
+            "INSERT INTO pockets (name, kind, monthly_budget, goal_amount, goal_date, starting_amount, currency, active,"
+            " custom, sort, description) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            (p["name"], p["kind"], p.get("monthly_budget"), p.get("goal_amount"), p.get("goal_date"),
+             p.get("starting_amount", 0), p.get("currency", "USD"), int(p.get("active", True)),
+             int(p.get("custom", False)), i, p.get("description")),
         )
     return len(pockets)
 
@@ -251,7 +254,8 @@ def main() -> None:
         ("app_date", APP_DATE.isoformat()),
         ("data_mode", "sample"),
         ("synthetic_history_before", "2026-07-01"),
-        ("max_sector_share", "0.5"),  # flag when one sector is over half the portfolio
+        ("max_sector_share", "0.5"),
+        ("budget_start", "2026-09"),  # budgeting started in September; Jul-Aug are history for "usual"  # flag when one sector is over half the portfolio
         ("built_at", now()),
     ])
     conn.executemany("INSERT INTO fx_rates VALUES (?,?,?)", [

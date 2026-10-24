@@ -10,6 +10,7 @@ struct HomeData: Decodable {
     let budget: BudgetStatus
     let cashflow: Cashflow
     let savings: [SavingsPocket]
+    let cashCheck: CashCheck
     let nextSteps: [NextStep]
     let nextStepsBy: String
     let openReviewItems: Int
@@ -21,6 +22,7 @@ struct BalanceInfo: Decodable {
     let change: Double
     let changePct: Double
     let accounts: Int
+    let institutions: Int
 }
 
 struct Summary: Decodable {
@@ -50,6 +52,9 @@ struct BudgetPocket: Decodable, Identifiable {
     var id: String { name }
     let name: String
     let budget: Double
+    let rollover: Double
+    let moved: Double
+    let available: Double
     let spent: Double
     let left: Double
     let pctUsed: Double?
@@ -78,17 +83,84 @@ struct Outflow: Decodable {
     let pct: Double
 }
 
+/// A savings or investing pocket: a label on the money, not tied to any account.
 struct SavingsPocket: Decodable, Identifiable {
     var id: String { name }
     let name: String
     let kind: String
-    let currency: String
-    let amount: Double
-    let amountUsd: Double
+    let custom: Bool
+    let total: Double
+    let monthlyAmount: Double?
+    let thisMonth: Double
     let goal: Double?
-    let monthlyBudget: Double?
+    let goalDate: String?
     let pctOfGoal: Double?
-    let contributedThisMonth: Double
+}
+
+struct CashCheck: Decodable {
+    let cashUs: Double
+    let cashIndonesia: Double
+    let owedOnCards: Double
+    let allMoney: Double
+    let spendingLeft: Double
+    let savingsAndInvesting: Double
+    let unassigned: Double
+    let pocketsPlusUnassigned: Double
+    let balanced: Bool
+}
+
+// MARK: - /wallet
+
+struct WalletData: Decodable {
+    let month: String
+    let balance: BalanceInfo
+    let institutions: [Institution]
+    let debts: [Debt]
+    let spending: BudgetStatus
+    let savings: [SavingsPocket]
+    let cashCheck: CashCheck
+    let moves: [PocketMove]
+    let openReviewItems: Int
+}
+
+struct Institution: Decodable, Identifiable {
+    var id: String { institution }
+    let institution: String
+    let kind: String
+    let country: String
+    let accounts: [InstitutionAccount]
+    let totalUsd: Double
+    let totalLocal: Double
+    let currency: String
+}
+
+struct InstitutionAccount: Decodable {
+    let name: String
+    let subtype: String?
+    let mask: String?
+}
+
+struct Debt: Decodable, Identifiable {
+    let id: String
+    let institution: String
+    let name: String
+    let officialName: String?
+    let mask: String?
+    let owed: Double
+    let limit: Double?
+    let pctOfLimit: Double?
+    let nextAutopay: String?
+}
+
+struct PocketMove: Decodable, Identifiable {
+    let id: Int
+    let date: String
+    let amount: Double
+    let note: String?
+    let createdBy: String
+    let undone: Int
+    let fromPocket: String?
+    let toPocket: String?
 }
 
 struct NextStep: Decodable, Identifiable {
@@ -264,11 +336,31 @@ struct Txn: Decodable, Identifiable {
 
 struct PocketList: Decodable {
     let pockets: [PocketInfo]
+    let catalog: [PocketInfo]
     struct PocketInfo: Decodable, Identifiable {
         var id: String { name }
         let name: String
         let kind: String
-        let currency: String
+        let monthlyBudget: Double?
+        let goalAmount: Double?
+        let goalDate: String?
+        let custom: Int
+        let description: String?
+    }
+}
+
+struct BudgetSuggestionResult: Decodable {
+    let runId: String
+    let suggestion: Suggestion?
+    struct Suggestion: Decodable {
+        let suggestions: [Item]
+        let note: String
+    }
+    struct Item: Decodable, Identifiable {
+        var id: String { pocket }
+        let pocket: String
+        let monthlyAmount: Double
+        let reason: String
     }
 }
 

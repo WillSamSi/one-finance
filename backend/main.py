@@ -62,7 +62,7 @@ def accounts() -> dict:
     return {"accounts": out, "total_assets_usd": round(total, 2)}
 
 
-LUMPY_POCKETS = {"Rent / mortgage", "Utilities", "Entertainment"}  # monthly bills and subscriptions
+LUMPY_POCKETS = {"Home Rent", "Utilities"}  # monthly bills
 
 
 def _insight(budget: dict) -> str | None:
@@ -80,40 +80,6 @@ def _insight(budget: dict) -> str | None:
                 if ratio > 0.1 and (best is None or ratio > best[1]):
                     best = (p["name"], ratio)
     return f"{best[0]} is {round(best[1] * 100)}% above your usual" if best else None
-
-
-def _savings(conn, month: str) -> list[dict]:
-    """One card per saving/investing pocket: money kept, goal, this month's contribution."""
-    first, last = (d.isoformat() for d in analytics.month_range(month))
-    rates = analytics.fx(conn)
-    out = []
-    for p in conn.execute("SELECT * FROM pockets WHERE kind IN ('saving', 'investing') ORDER BY id"):
-        linked = [r["account_id"] for r in conn.execute(
-            "SELECT account_id FROM pocket_accounts WHERE pocket_id = ? AND status = 'active'", (p["id"],))]
-        if not linked:  # until the Accountant links accounts, use the obvious ones
-            if p["kind"] == "investing":
-                where = "type = 'investment'"
-            elif p["currency"] == "IDR":
-                where = "currency = 'IDR'"
-            else:
-                where = "subtype = 'savings' AND currency = 'USD'"
-            linked = [r["id"] for r in conn.execute(f"SELECT id FROM accounts WHERE {where}")]
-        accts = [conn.execute("SELECT * FROM accounts WHERE id = ?", (a,)).fetchone() for a in linked]
-        if p["kind"] == "investing":
-            amount = sum(a["available_balance"] or 0 for a in accts)  # cash ready to invest
-        else:
-            amount = sum(a["current_balance"] or 0 for a in accts if a["currency"] == p["currency"])
-        contributed = conn.execute(
-            "SELECT COALESCE(SUM(ABS(amount)), 0) FROM ledger_entries WHERE pocket_id = ? AND direction = 'transfer'"
-            " AND date BETWEEN ? AND ?", (p["id"], first, last)).fetchone()[0]
-        out.append({
-            "name": p["name"], "kind": p["kind"], "currency": p["currency"], "amount": round(amount, 2),
-            "amount_usd": round(amount * rates.get(p["currency"], 1.0), 2),
-            "goal": p["goal_amount"], "monthly_budget": p["monthly_budget"],
-            "pct_of_goal": round(100 * amount / p["goal_amount"], 1) if p["goal_amount"] else None,
-            "contributed_this_month": round(contributed, 2), "accounts": linked,
-        })
-    return out
 
 
 def _default_next_steps(conn, budget: dict) -> list[dict]:
@@ -170,7 +136,8 @@ def home(month: str | None = None) -> dict:
             },
             "budget": budget,
             "cashflow": analytics.cashflow(conn, month),
-            "savings": _savings(conn, month),
+            "savings": analytics.savings_pockets(conn, month),
+            "cash_check": analytics.cash_check(conn, month),
             "next_steps": next_steps or _default_next_steps(conn, budget),
             "next_steps_by": "advisor" if next_steps else "rules",
             "open_review_items": conn.execute("SELECT COUNT(*) FROM review_items WHERE status = 'open'").fetchone()[0],
@@ -180,13 +147,82 @@ def home(month: str | None = None) -> dict:
 
 @app.get("/pockets")
 def pockets() -> dict:
+    """Active pockets (spending, then savings/investing) and the catalog of ones that can be added."""
     with db.connect() as conn:
-        rows = conn.execute("SELECT name, kind, currency FROM pockets ORDER BY id").fetchall()
-        links = conn.execute(
-            """SELECT p.name AS pocket, a.name AS account, a.mask, pa.confidence, pa.reason, pa.linked_by, pa.status
-               FROM pocket_accounts pa JOIN pockets p ON p.id = pa.pocket_id JOIN accounts a ON a.id = pa.account_id
-               ORDER BY p.id""").fetchall()
-    return {"pockets": [dict(r) for r in rows], "links": [dict(r) for r in links]}
+        rows = [dict(r) for r in conn.execute(
+            "SELECT name, kind, monthly_budget, goal_amount, goal_date, currency, active, custom, description"
+            " FROM pockets ORDER BY sort")]
+    return {"pockets": [r for r in rows if r["active"]], "catalog": [r for r in rows if not r["active"]]}
+
+
+class PocketUpdate(BaseModel):
+    monthly_budget: float | None = None
+    goal_amount: float | None = None
+    goal_date: str | None = None
+    new_name: str | None = None
+    active: bool | None = None
+
+
+@app.patch("/pockets/{name}")
+def update_pocket(name: str, body: PocketUpdate) -> dict:
+    """Budget setup: change a pocket's monthly amount or goal, rename a custom pocket, add or remove it."""
+    with db.connect() as conn:
+        p = conn.execute("SELECT * FROM pockets WHERE name = ?", (name,)).fetchone()
+        if not p:
+            raise HTTPException(404, "No such pocket.")
+        if body.monthly_budget is not None:
+            if not 0 <= body.monthly_budget <= 100_000:
+                raise HTTPException(400, "Monthly amount must be between 0 and 100,000.")
+            conn.execute("UPDATE pockets SET monthly_budget = ? WHERE id = ?", (round(body.monthly_budget, 2), p["id"]))
+        if body.goal_amount is not None:
+            conn.execute("UPDATE pockets SET goal_amount = ? WHERE id = ?", (body.goal_amount or None, p["id"]))
+        if body.goal_date is not None:
+            conn.execute("UPDATE pockets SET goal_date = ? WHERE id = ?", (body.goal_date or None, p["id"]))
+        if body.active is not None:
+            conn.execute("UPDATE pockets SET active = ? WHERE id = ?", (int(body.active), p["id"]))
+        if body.new_name:
+            if not p["custom"]:
+                raise HTTPException(400, "Only custom pockets can be renamed.")
+            new = body.new_name.strip()[:40]
+            if not new or conn.execute("SELECT 1 FROM pockets WHERE name = ? AND id != ?", (new, p["id"])).fetchone():
+                raise HTTPException(400, "Pick a new, unused name.")
+            conn.execute("UPDATE pockets SET name = ? WHERE id = ?", (new, p["id"]))
+        conn.commit()
+    return {"ok": True}
+
+
+@app.get("/wallet")
+def wallet() -> dict:
+    """Everything on the Wallet screen (see mockups/wallet-dark.html)."""
+    with db.connect() as conn:
+        month = analytics.today(conn).strftime("%Y-%m")
+    agents.rules_through(month)
+    with db.connect() as conn:
+        moves = [dict(r) for r in conn.execute(
+            """SELECT m.id, m.date, m.amount, m.note, m.created_by, m.undone, f.name AS from_pocket, t.name AS to_pocket
+               FROM pocket_moves m LEFT JOIN pockets f ON f.id = m.from_pocket_id LEFT JOIN pockets t ON t.id = m.to_pocket_id
+               ORDER BY m.id DESC LIMIT 10""")]
+        return {
+            "month": month,
+            "balance": analytics.balance_change_this_month(conn),
+            "institutions": analytics.institutions(conn),
+            "debts": analytics.debts(conn),
+            "spending": analytics.budget_status(conn, month),
+            "savings": analytics.savings_pockets(conn, month),
+            "cash_check": analytics.cash_check(conn, month),
+            "moves": moves,
+            "open_review_items": conn.execute("SELECT COUNT(*) FROM review_items WHERE status = 'open'").fetchone()[0],
+        }
+
+
+@app.post("/moves/{move_id}/undo")
+def undo_move(move_id: int) -> dict:
+    with db.connect() as conn:
+        cur = conn.execute("UPDATE pocket_moves SET undone = 1 WHERE id = ? AND undone = 0", (move_id,))
+        conn.commit()
+    if cur.rowcount == 0:
+        raise HTTPException(404, "No move to undo with that id.")
+    return {"ok": True}
 
 
 class ManualEntry(BaseModel):
@@ -204,9 +240,10 @@ def add_manual_entry(body: ManualEntry) -> dict:
     if not body.description.strip():
         raise HTTPException(400, "Add a short description.")
     with db.connect() as conn:
-        p = conn.execute("SELECT id FROM pockets WHERE name = ? AND kind = 'spending'", (body.pocket,)).fetchone()
+        p = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1 AND kind != 'investing'",
+                         (body.pocket,)).fetchone()
         if not p:
-            raise HTTPException(400, "Pick a spending pocket.")
+            raise HTTPException(400, "Pick an active spending or savings pocket.")
         cur = conn.execute(
             "INSERT INTO ledger_entries (date, description, amount, currency, direction, pocket_id, status, recorded_by,"
             " note, created_at) VALUES (?,?,?,?,?,?,?,?,?,datetime('now'))",
@@ -214,6 +251,202 @@ def add_manual_entry(body: ManualEntry) -> dict:
              "user", "Manual entry: no receipt or bank charge yet"))
         conn.commit()
     return {"ok": True, "id": cur.lastrowid}
+
+
+# --- The + button: add expense, add income, scan receipt, quick type ----------------------
+class ExpenseIn(BaseModel):
+    amount: float
+    currency: Literal["USD", "IDR"] = "USD"
+    pocket: str
+    paid_with: str  # 'cash_usd', 'cash_idr' or an account id
+    note: str | None = None
+    date: str
+    receipt_id: int | None = None
+
+
+@app.post("/entries/expense")
+def add_expense(body: ExpenseIn) -> dict:
+    from backend import entries
+
+    with db.connect() as conn:
+        try:
+            return entries.add_expense(conn, amount=body.amount, currency=body.currency, pocket=body.pocket,
+                                       paid_with=body.paid_with, note=body.note, on=body.date, receipt_id=body.receipt_id)
+        except entries.EntryError as exc:
+            raise HTTPException(400, str(exc))
+
+
+class Assign(BaseModel):
+    pocket: str
+    amount: float
+
+
+class IncomeIn(BaseModel):
+    amount: float
+    currency: Literal["USD", "IDR"] = "USD"
+    source: str
+    received_in: str
+    date: str
+    note: str | None = None
+    assign: list[Assign] = []
+
+
+@app.post("/entries/income")
+def add_income(body: IncomeIn) -> dict:
+    from backend import entries
+
+    with db.connect() as conn:
+        try:
+            return entries.add_income(conn, amount=body.amount, currency=body.currency, source=body.source,
+                                      received_in=body.received_in, on=body.date, note=body.note,
+                                      assign=[a.model_dump() for a in body.assign])
+        except entries.EntryError as exc:
+            raise HTTPException(400, str(exc))
+
+
+@app.get("/paid-with")
+def paid_with_options() -> dict:
+    """Cash plus every bank account and card, for the Paid with / Received in pickers."""
+    with db.connect() as conn:
+        accounts = [dict(r) for r in conn.execute(
+            "SELECT id, institution, name, type, mask, currency FROM accounts WHERE type != 'investment'")]
+    order = analytics.INSTITUTION_ORDER
+    accounts.sort(key=lambda a: (order.index(a["institution"]) if a["institution"] in order else 99, a["type"]))
+    return {"options": [{"id": "cash_usd", "label": "Cash (USD)", "currency": "USD"},
+                        {"id": "cash_idr", "label": "Cash (IDR)", "currency": "IDR"}]
+            + [{"id": a["id"], "label": f"{a['name']} ••{a['mask']}", "currency": a["currency"]} for a in accounts]}
+
+
+@app.get("/pockets/chips")
+def pocket_chips(note: str = "", amount: float = 0, currency: str = "USD") -> dict:
+    """Pocket chips for the + forms: the suggestion first, then the most used, each with what's
+    left this month and whether this amount would push it over. Plus every pocket for More…"""
+    from backend import rules
+
+    with db.connect() as conn:
+        month = analytics.today(conn).strftime("%Y-%m")
+        usd = amount * analytics.fx(conn).get(currency, 1.0)
+        spending = {p["name"]: p for p in analytics.spending_pockets(conn, month)}
+        saving = {p["name"]: p for p in analytics.savings_pockets(conn, month)}
+        suggested = None
+        if note.strip():
+            rule = rules.classify(note, note)
+            if rule and rule[0] in spending:
+                suggested = rule[0]
+            else:
+                row = conn.execute(
+                    """SELECT p.name, COUNT(*) n FROM ledger_entries e JOIN pockets p ON p.id = e.pocket_id
+                       WHERE e.direction = 'expense' AND p.active = 1 AND e.description LIKE ?
+                       GROUP BY p.name ORDER BY n DESC LIMIT 1""", (f"%{note.strip()[:40]}%",)).fetchone()
+                suggested = row["name"] if row else None
+        used = [r["name"] for r in conn.execute(
+            """SELECT p.name, COUNT(*) n FROM ledger_entries e JOIN pockets p ON p.id = e.pocket_id
+               WHERE e.direction = 'expense' AND p.active = 1 AND p.kind = 'spending' AND e.date >= date(?, '-90 day')
+               GROUP BY p.name ORDER BY n DESC""", (analytics.today(conn).isoformat(),))]
+
+    def chip(name: str) -> dict:
+        if name in spending:
+            left = spending[name]["left"]
+            return {"name": name, "kind": "spending", "left": left, "would_go_over": usd > 0 and usd > left}
+        s = saving.get(name, {})
+        return {"name": name, "kind": s.get("kind", "saving"), "left": s.get("total", 0),
+                "would_go_over": usd > 0 and usd > s.get("total", 0)}
+
+    order = ([suggested] if suggested else []) + [u for u in used if u != suggested]
+    order += [n for n in spending if n not in order]
+    return {
+        "suggested": suggested,
+        "chips": [chip(n) for n in order[:5]],
+        "all": [chip(n) for n in spending] + [chip(n) for n in saving if saving[n]["kind"] == "saving"],
+    }
+
+
+class QuickText(BaseModel):
+    text: str
+
+
+@app.post("/entries/parse")
+async def parse_entry(body: QuickText) -> dict:
+    """'Or type it': the AI turns one line into Add expense form fields (nothing is saved)."""
+    if not body.text.strip() or len(body.text) > 300:
+        raise HTTPException(400, "Type a short line, like 'lunch 12.50 Chipotle cash'.")
+    return await _run(agents.parse_quick_entry, body.text)
+
+
+class ImageIn(BaseModel):
+    image_base64: str
+    media_type: str = "image/jpeg"
+
+
+def _decode_image(body: ImageIn) -> bytes:
+    import base64
+
+    try:
+        data = base64.b64decode(body.image_base64, validate=True)
+    except Exception as exc:
+        raise HTTPException(400, "That isn't a valid image.") from exc
+    if len(data) > 8_000_000:
+        raise HTTPException(400, "The photo is too large (8 MB max).")
+    if not (data[:3] == b"\xff\xd8\xff" or data[:8] == b"\x89PNG\r\n\x1a\n" or data[4:12] in (b"ftypheic", b"ftypmif1")):
+        raise HTTPException(400, "Use a JPEG, PNG or HEIC photo.")
+    return data
+
+
+@app.post("/receipts/scan")
+async def scan_receipt(body: ImageIn) -> dict:
+    """Scan receipt: the Accountant reads the photo; nothing is recorded until Confirm."""
+    data = _decode_image(body)
+    return await _run(agents.scan_receipt, data, body.media_type)
+
+
+class ReceiptLine(BaseModel):
+    name: str
+    price: float
+    pocket: str
+
+
+class ReceiptConfirm(BaseModel):
+    items: list[ReceiptLine]
+    paid_with: str
+    transaction_id: str | None = None  # the bank charge it matches, if any
+
+
+@app.post("/receipts/{receipt_id}/confirm")
+def confirm_receipt(receipt_id: int, body: ReceiptConfirm) -> dict:
+    """Record a scanned receipt, split by pocket. If it matches a bank charge, it replaces that
+    charge's single entry (never counted twice); paid by card without a match yet, it waits."""
+    from backend import entries
+
+    with db.connect() as conn:
+        r = conn.execute("SELECT * FROM receipts WHERE id = ?", (receipt_id,)).fetchone()
+        if not r or r["total"] is None:
+            raise HTTPException(404, "Read the receipt first.")
+        if r["status"] == "matched" or conn.execute("SELECT 1 FROM ledger_entries WHERE receipt_id = ?", (receipt_id,)).fetchone():
+            raise HTTPException(409, "This receipt is already recorded.")
+        try:
+            pay_currency, account_id = entries.check_common(conn, r["total"], r["date"], body.paid_with)
+            for i in body.items:
+                entries.pocket_id(conn, i.pocket)
+        except entries.EntryError as exc:
+            raise HTTPException(400, str(exc))
+        split = entries.split_receipt(r["total"], r["tax"] or 0, [i.model_dump() for i in body.items])
+        status, tx = ("recorded", None) if account_id is None else ("waiting_charge", None)
+        if body.transaction_id:
+            t = conn.execute("SELECT * FROM transactions WHERE id = ?", (body.transaction_id,)).fetchone()
+            if not t or abs(t["amount"] - r["total"]) > 0.01:
+                raise HTTPException(400, "That bank charge doesn't match the receipt total.")
+            conn.execute("DELETE FROM ledger_entries WHERE transaction_id = ? AND receipt_id IS NULL", (t["id"],))
+            status, tx, account_id = "recorded", t["id"], t["account_id"]
+        for pocket, amount in split.items():
+            conn.execute(
+                "INSERT INTO ledger_entries (transaction_id, date, description, amount, currency, direction, pocket_id,"
+                " account_id, receipt_id, status, recorded_by, note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,datetime('now'))",
+                (tx, r["date"], r["store"], amount, pay_currency, "expense", entries.pocket_id(conn, pocket), account_id,
+                 receipt_id, status, "user", "Scanned receipt" + (" (split)" if len(split) > 1 else "")))
+        conn.execute("UPDATE receipt_items SET name = name WHERE receipt_id = ?", (receipt_id,))
+        conn.execute("UPDATE receipts SET status = ? WHERE id = ?", ("matched" if tx else "read", receipt_id))
+        conn.commit()
+    return {"ok": True, "split": split, "status": status}
 
 
 @app.get("/portfolio")
@@ -255,13 +488,13 @@ def run_steps(run_id: str) -> dict:
 
 @app.get("/balance-history")
 def balance_history(days: int = 30) -> dict:
-    """Total assets per day (USD) for the area chart."""
+    """What I own per day (USD, cash + investments; debts are separate) for the area chart."""
     with db.connect() as conn:
         end = analytics.today(conn)
         rows = conn.execute(
-            """SELECT h.date, ROUND(SUM(CASE WHEN a.type = 'credit' THEN -h.balance ELSE h.balance END * f.usd_per_unit), 2) AS total
+            """SELECT h.date, ROUND(SUM(h.balance * f.usd_per_unit), 2) AS total
                FROM balance_history h JOIN accounts a ON a.id = h.account_id JOIN fx_rates f ON f.currency = a.currency
-               WHERE h.date > date(?, ?) AND h.date <= ? GROUP BY h.date ORDER BY h.date""",
+               WHERE a.type != 'credit' AND h.date > date(?, ?) AND h.date <= ? GROUP BY h.date ORDER BY h.date""",
             (end.isoformat(), f"-{max(1, min(days, 800))} day", end.isoformat())).fetchall()
         synthetic_before = _setting(conn, "synthetic_history_before")
     return {"points": [dict(r) for r in rows], "synthetic_before": synthetic_before}
@@ -376,6 +609,11 @@ async def run_portfolio_brief() -> dict:
 @app.post("/agents/weekly-digest")
 async def run_weekly_digest() -> dict:
     return await _run(agents.weekly_digest)
+
+
+@app.post("/agents/suggest-budget")
+async def run_suggest_budget() -> dict:
+    return await _run(agents.suggest_budget)
 
 
 @app.post("/agents/chat")

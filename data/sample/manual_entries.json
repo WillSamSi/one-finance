@@ -3,12 +3,12 @@
     "date": "2026-10-12",
     "description": "Cash at farmers market",
     "amount": 18.0,
-    "pocket": "Groceries"
+    "pocket": "Food"
   },
   {
     "date": "2026-10-19",
-    "description": "Haircut",
+    "description": "Intramural soccer fee (cash)",
     "amount": 42.0,
-    "pocket": "Other"
+    "pocket": "Sports"
   }
 ]

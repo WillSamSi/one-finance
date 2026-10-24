@@ -40,12 +40,16 @@ def main() -> None:
     }
     for key, user in USERS.items():
         user_config = json.loads(user["file"].read_text())
+        expected = sum(len(a["transactions"]) for a in user_config["override_accounts"])
         token = plaid_client.sandbox_item_for_custom_user(user_config)
         try:
             accounts = plaid_client.get_accounts(token)
-            transactions = plaid_client.sync_transactions(token)
+            transactions = plaid_client.sync_transactions(token, expected=expected)
         finally:
             plaid_client.remove_item(token)
+        if len(transactions) < expected:
+            raise SystemExit(f"{key}: Plaid returned {len(transactions)} of {expected} transactions; "
+                             "the snapshot was NOT written. Try again in a minute.")
         snapshot["users"][key] = {
             "institution": user["institution"],
             "accounts": [{k: a.get(k) for k in ACCOUNT_KEYS} for a in accounts],

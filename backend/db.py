@@ -115,25 +115,36 @@ CREATE TABLE IF NOT EXISTS amazon_order_items (
 );
 CREATE INDEX IF NOT EXISTS idx_amazon_order ON amazon_order_items(order_id);
 
--- Budget pockets. The Accountant decides which accounts back each pocket.
+-- Budget pockets: guidance only, labels on the money, NOT tied to any account.
+-- Spending: monthly budget, unspent money rolls over. Saving/investing: a running total
+-- (starting amount + the monthly amount set aside on the 1st + moves − spending/transfers out).
 CREATE TABLE IF NOT EXISTS pockets (
-    id             INTEGER PRIMARY KEY,
-    name           TEXT NOT NULL UNIQUE,
-    kind           TEXT NOT NULL,         -- 'spending', 'saving' or 'investing'
-    monthly_budget REAL,                  -- spending and investing pockets
-    goal_amount    REAL,                  -- saving pockets
-    currency       TEXT NOT NULL DEFAULT 'USD',
-    description    TEXT
+    id              INTEGER PRIMARY KEY,
+    name            TEXT NOT NULL UNIQUE,
+    kind            TEXT NOT NULL,        -- 'spending', 'saving' or 'investing'
+    monthly_budget  REAL,                 -- spending budget, or the amount set aside each month
+    goal_amount     REAL,                 -- optional, saving pockets
+    goal_date       TEXT,                 -- optional 'YYYY-MM'
+    starting_amount REAL NOT NULL DEFAULT 0,  -- saving/investing: what it held when the data starts
+    currency        TEXT NOT NULL DEFAULT 'USD',
+    active          INTEGER NOT NULL DEFAULT 1,  -- 0 = in the catalog, can be added in Budget setup
+    custom          INTEGER NOT NULL DEFAULT 0,  -- 1 = the owner can rename it
+    sort            INTEGER NOT NULL DEFAULT 0,
+    description     TEXT
 );
-CREATE TABLE IF NOT EXISTS pocket_accounts (
-    pocket_id  INTEGER NOT NULL REFERENCES pockets(id),
-    account_id TEXT NOT NULL REFERENCES accounts(id),
-    confidence REAL,                      -- 0..1 when linked by the AI
-    reason     TEXT,
-    linked_by  TEXT NOT NULL,             -- 'ai' or 'user'
-    status     TEXT NOT NULL,             -- 'active' or 'review'
-    created_at TEXT NOT NULL,
-    PRIMARY KEY (pocket_id, account_id)
+
+-- Money moved between pockets inside the app (a relabel, never a bank transfer).
+-- from/to NULL means Unassigned. Undo sets undone = 1.
+CREATE TABLE IF NOT EXISTS pocket_moves (
+    id             INTEGER PRIMARY KEY,
+    date           TEXT NOT NULL,
+    from_pocket_id INTEGER REFERENCES pockets(id),
+    to_pocket_id   INTEGER REFERENCES pockets(id),
+    amount         REAL NOT NULL,
+    note           TEXT,
+    created_by     TEXT NOT NULL,         -- 'user' or 'advisor'
+    undone         INTEGER NOT NULL DEFAULT 0,
+    created_at     TEXT NOT NULL
 );
 
 -- The Accountant's records: each expense, income or transfer, in a pocket.

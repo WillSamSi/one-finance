@@ -1,27 +1,27 @@
 [
   {
+    "name": "Home Rent",
+    "kind": "spending",
+    "monthly_budget": 1450,
+    "description": "Monthly rent"
+  },
+  {
     "name": "Utilities",
     "kind": "spending",
     "monthly_budget": 250,
     "description": "Electricity, phone, internet"
   },
   {
-    "name": "Rent / mortgage",
+    "name": "Food",
     "kind": "spending",
-    "monthly_budget": 1450,
-    "description": "Monthly rent"
-  },
-  {
-    "name": "Groceries",
-    "kind": "spending",
-    "monthly_budget": 450,
-    "description": "Supermarkets and food at home"
+    "monthly_budget": 700,
+    "description": "Groceries, restaurants, coffee"
   },
   {
     "name": "Supplies",
     "kind": "spending",
     "monthly_budget": 200,
-    "description": "Household goods, Amazon, general shopping"
+    "description": "Household goods and everyday items"
   },
   {
     "name": "Transportation",
@@ -30,46 +30,102 @@
     "description": "Rides, gas, transit"
   },
   {
-    "name": "Entertainment",
-    "kind": "spending",
-    "monthly_budget": 60,
-    "description": "Streaming, music, cloud storage, events"
-  },
-  {
-    "name": "Dining",
-    "kind": "spending",
-    "monthly_budget": 250,
-    "description": "Restaurants, cafes, coffee"
-  },
-  {
     "name": "Healthcare",
     "kind": "spending",
     "monthly_budget": 60,
     "description": "Pharmacy, doctor, insurance"
   },
   {
-    "name": "Other",
+    "name": "Sports",
+    "kind": "spending",
+    "monthly_budget": 60,
+    "description": "Gym, sports gear, events"
+  },
+  {
+    "name": "Education",
+    "kind": "spending",
+    "monthly_budget": 120,
+    "description": "Courses, books, school fees"
+  },
+  {
+    "name": "Shopping",
+    "kind": "spending",
+    "monthly_budget": 150,
+    "active": false,
+    "description": "Clothes and general shopping"
+  },
+  {
+    "name": "Electronics",
     "kind": "spending",
     "monthly_budget": 100,
-    "description": "Anything that fits nowhere else"
+    "active": false,
+    "description": "Gadgets and accessories"
+  },
+  {
+    "name": "Misc",
+    "kind": "spending",
+    "monthly_budget": 50,
+    "active": false,
+    "description": "Small one-off things"
+  },
+  {
+    "name": "Entertainment",
+    "kind": "spending",
+    "monthly_budget": 60,
+    "active": false,
+    "description": "Streaming, music, events"
+  },
+  {
+    "name": "Travel",
+    "kind": "spending",
+    "monthly_budget": 200,
+    "active": false,
+    "description": "Flights, hotels, trips"
+  },
+  {
+    "name": "Gifts",
+    "kind": "spending",
+    "monthly_budget": 50,
+    "active": false,
+    "description": "Presents and donations"
+  },
+  {
+    "name": "Other expenses",
+    "kind": "spending",
+    "monthly_budget": 100,
+    "active": false,
+    "custom": true,
+    "description": "Rename to anything"
   },
   {
     "name": "Emergency Fund",
     "kind": "saving",
+    "monthly_budget": 300,
     "goal_amount": 15000,
+    "starting_amount": 8600,
     "description": "Six months of essentials"
   },
   {
-    "name": "Indonesia Savings",
+    "name": "General Savings",
     "kind": "saving",
-    "goal_amount": 50000000,
-    "currency": "IDR",
-    "description": "Money kept in Indonesia"
+    "monthly_budget": 200,
+    "starting_amount": 2900,
+    "description": "Savings with no set goal"
   },
   {
-    "name": "Investing",
+    "name": "Investment",
     "kind": "investing",
     "monthly_budget": 500,
-    "description": "Monthly contribution to the brokerage"
+    "starting_amount": 1000,
+    "description": "Ready to invest: set aside to move to the brokerage"
+  },
+  {
+    "name": "Other Savings",
+    "kind": "saving",
+    "monthly_budget": 100,
+    "goal_amount": 1500,
+    "starting_amount": 600,
+    "custom": true,
+    "description": "Rename to anything (e.g. Holiday)"
   }
 ]

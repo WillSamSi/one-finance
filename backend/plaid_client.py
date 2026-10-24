@@ -50,8 +50,9 @@ def get_accounts(access_token: str) -> list[dict]:
     return call("/accounts/get", {"access_token": access_token})["accounts"]
 
 
-def sync_transactions(access_token: str, wait_seconds: int = 90) -> list[dict]:
-    """All transactions for an Item via /transactions/sync, waiting for the first pull to finish."""
+def sync_transactions(access_token: str, wait_seconds: int = 180, expected: int | None = None) -> list[dict]:
+    """All transactions for an Item via /transactions/sync, waiting until Plaid says the
+    historical pull is complete (and, if given, until the expected number has arrived)."""
     deadline = time.monotonic() + wait_seconds
     while True:
         added: list[dict] = []
@@ -68,9 +69,10 @@ def sync_transactions(access_token: str, wait_seconds: int = 90) -> list[dict]:
             status = page.get("transactions_update_status")
             if not page["has_more"]:
                 break
-        if status in ("HISTORICAL_UPDATE_COMPLETE", None) or time.monotonic() > deadline:
+        complete = status == "HISTORICAL_UPDATE_COMPLETE" and (expected is None or len(added) >= expected)
+        if complete or time.monotonic() > deadline:
             return added
-        time.sleep(3)
+        time.sleep(5)
 
 
 def remove_item(access_token: str) -> None:

@@ -7,6 +7,7 @@ Read the receipt in the image and return it exactly as printed:
 - `items`: every line item with its printed price (the line total). Include quantity if printed, otherwise 1.
 - `subtotal`, `tax`, `total`: as printed.
 - `card_last4`: the last 4 digits of the card, if printed.
+- For each item, `suggested_pocket`: the best pocket from the list in the request, by what the item is (food and groceries → Food, household goods → Supplies, medicine → Healthcare, and so on). Use only names from the list.
 - `problems`: anything unreadable, or anything printed that doesn't add up.
 
 Rules:

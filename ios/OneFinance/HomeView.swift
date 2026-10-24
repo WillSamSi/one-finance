@@ -170,16 +170,17 @@ struct HomeView: View {
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 3) {
                     Text("Savings").font(.system(size: 20, weight: .bold)).foregroundStyle(Theme.text)
-                    Text("\(pockets.count) pockets").font(.system(size: 12)).foregroundStyle(Theme.muted)
+                    Text("\(pockets.count) pockets · \(Money.whole(pockets.reduce(0) { $0 + $1.total })) set aside")
+                        .font(.system(size: 12)).monospacedDigit().foregroundStyle(Theme.muted)
                 }
                 Spacer()
                 Button("See all ›") { openTab(.wallet) }
                     .font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.vib300)
             }
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
-                ForEach(pockets.filter { $0.kind == "saving" }) { SavingsCard(pocket: $0) }
+                ForEach(pockets.filter { $0.kind == "saving" }) { SavingsCard(pocket: $0, month: month) }
             }
-            ForEach(pockets.filter { $0.kind == "investing" }) { SavingsCard(pocket: $0, wide: true) }
+            ForEach(pockets.filter { $0.kind == "investing" }) { SavingsCard(pocket: $0, month: month, wide: true) }
         }
         .padding(.top, 22)
     }
@@ -228,7 +229,7 @@ struct BudgetCard: View {
 
     var body: some View {
         let color = Theme.category(pocket.name)
-        let used = pocket.budget > 0 ? min(1, pocket.spent / pocket.budget) : 0
+        let used = pocket.available > 0 ? min(1, pocket.spent / pocket.available) : 1
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 7) {
                 GlowDot(color: color, size: 8)
@@ -245,7 +246,7 @@ struct BudgetCard: View {
             .font(.system(size: 22, weight: .bold))
             .monospacedDigit()
             .padding(.top, 10)
-            Text(pocket.over ? "over the \(Money.whole(pocket.budget)) budget" : "left of \(Money.whole(pocket.budget))")
+            Text(pocket.over ? "over the \(Money.whole(pocket.available)) budget" : "left of \(Money.whole(pocket.available))")
                 .font(.system(size: 11.5)).foregroundStyle(Theme.muted).padding(.top, 1)
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
@@ -262,19 +263,22 @@ struct BudgetCard: View {
     }
 }
 
+/// A savings or investing pocket: total saved (or ready to invest) and this month's set-aside.
 struct SavingsCard: View {
     let pocket: SavingsPocket
+    var month = ""
     var wide = false
 
     var body: some View {
         let color = Theme.category(pocket.name)
+        let monthShort = month.isEmpty ? "This month" : String(DateParse.monthLabel(month).prefix(3))
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 7) {
                 GlowDot(color: color, size: 8)
                 Text(pocket.name).lineLimit(1)
-                if wide, let budget = pocket.monthlyBudget {
+                if wide, let amount = pocket.monthlyAmount {
                     Spacer()
-                    Tag(text: "+\(Money.whole(pocket.contributedThisMonth)) of \(Money.whole(budget))\(pocket.contributedThisMonth >= budget ? " ✓" : "")")
+                    Tag(text: "\(monthShort) +\(Money.whole(pocket.thisMonth)) of \(Money.whole(amount))\(pocket.thisMonth >= amount ? " ✓" : "")")
                 }
             }
             .font(.system(size: 12.5, weight: .medium))
@@ -282,26 +286,26 @@ struct SavingsCard: View {
             if wide {
                 Text("READY TO INVEST").font(.system(size: 11)).tracking(0.4).foregroundStyle(Theme.muted).padding(.top, 8)
             }
-            Text(pocket.currency == "IDR" ? Money.shortIDR(pocket.amount) : Money.whole(pocket.amount))
+            Text(Money.whole(pocket.total))
                 .font(.system(size: 22, weight: .bold)).monospacedDigit().foregroundStyle(Theme.text)
                 .padding(.top, wide ? 2 : 10)
-            if let goal = pocket.goal, let pct = pocket.pctOfGoal {
-                Text("\(Int(pct.rounded()))% of \(pocket.currency == "IDR" ? Money.shortIDR(goal) : Money.whole(goal)) goal")
-                    .font(.system(size: 11.5)).foregroundStyle(Theme.muted).padding(.top, 1)
-                GeometryReader { geo in
-                    ZStack(alignment: .leading) {
-                        Capsule().fill(Color.white.opacity(0.08))
-                        Capsule().fill(color).frame(width: geo.size.width * min(1, pct / 100))
+            if !wide {
+                if let goal = pocket.goal, let pct = pocket.pctOfGoal {
+                    Text("\(Int(pct.rounded()))% of \(Money.whole(goal)) goal")
+                        .font(.system(size: 11.5)).foregroundStyle(Theme.muted).padding(.top, 1)
+                    GeometryReader { geo in
+                        ZStack(alignment: .leading) {
+                            Capsule().fill(Color.white.opacity(0.08))
+                            Capsule().fill(color).frame(width: geo.size.width * min(1, pct / 100))
+                        }
                     }
+                    .frame(height: 4)
+                    .padding(.top, 10)
+                } else {
+                    Text("No goal set").font(.system(size: 11.5)).foregroundStyle(Theme.muted).padding(.top, 1)
                 }
-                .frame(height: 4)
-                .padding(.top, 10)
                 HStack {
-                    if pocket.currency == "IDR" {
-                        Text("≈ \(Money.whole(pocket.amountUsd))").font(.system(size: 11.5)).foregroundStyle(Theme.muted)
-                    } else if pocket.contributedThisMonth > 0 {
-                        Tag(text: "This month +\(Money.whole(pocket.contributedThisMonth)) ✓")
-                    }
+                    if pocket.thisMonth > 0 { Tag(text: "\(monthShort) +\(Money.whole(pocket.thisMonth)) ✓") }
                 }
                 .frame(minHeight: 18)
                 .padding(.top, 9)

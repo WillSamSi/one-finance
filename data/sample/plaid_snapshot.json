@@ -1,12 +1,12 @@
 {
  "note": "Made-up data. Plaid sandbox output for the custom users in data/plaid_sandbox/.",
- "pulled_at": "2026-10-24T21:56:58+00:00",
+ "pulled_at": "2026-10-24T23:32:06+00:00",
  "users": {
   "chase": {
    "institution": "Chase",
    "accounts": [
     {
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "name": "Chase Total Checking",
      "official_name": "Chase Total Checking",
      "mask": "0918",
@@ -21,15 +21,15 @@
      }
     },
     {
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "name": "Chase Freedom Unlimited",
      "official_name": "Chase Freedom Unlimited Visa",
      "mask": "7313",
      "type": "credit",
      "subtype": "credit card",
      "balances": {
-      "available": 6685.5,
-      "current": 1314.5,
+      "available": 6521.26,
+      "current": 1478.74,
       "iso_currency_code": "USD",
       "limit": 8000,
       "unofficial_currency_code": null
@@ -38,8 +38,8 @@
    ],
    "transactions": [
     {
-     "transaction_id": "bnrgXoWmGdT8lloERpvmsqa8Dl6nrZCmxB6Q7",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "vwJmxAxD7AhWGjwWrl8aIVBrAqZK7eiqpz3vx",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-01",
      "authorized_date": "2026-07-01",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -56,8 +56,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrb5GR9vDCgmrQzQ",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "RaAkzozM4oIXnJLXeVMWTeL1avo6RgCa9lvPy",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-02",
      "authorized_date": "2026-07-01",
      "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
@@ -74,8 +74,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "8XAqmPE9dBTPvvVJpq3jUR7WlbVr4JCW1NJLq",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "j961GPG5KPcWQq5WNMXjIdxg5QvaAbu6EMXZ3",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-03",
      "authorized_date": "2026-07-02",
      "name": "BLUE STATE COFFEE",
@@ -92,8 +92,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4EQValDzT43g8eP",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "634xada61dTgM5GgRJKVT9rJM6dBgZt869o15",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-04",
      "authorized_date": "2026-07-03",
      "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
@@ -110,8 +110,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "EXbvKWDkpMT4bbgxl9RdSK3eVaAJ8Bs4R65k1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "7xNd4l4bWlUJKqZJRQrauVPb1jdqBpidZl9M9",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-04",
      "authorized_date": "2026-07-03",
      "name": "Starbucks",
@@ -128,8 +128,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrbwpzlEys4GK9ay",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "XeRq4B4GDBUoaBkoPQ1eUG7ljyExZpcbQ6W1r",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-05",
      "authorized_date": "2026-07-05",
      "name": "ZELLE PAYMENT FROM ALEX KIM",
@@ -146,8 +146,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "vQyADJn8wGh3mml159BaT6g1Dw5aZMCqzwZA6",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "DLGpgVgq9VIGoNnG7dQkh5qpxJRZGKh31wP4l",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-06",
      "authorized_date": "2026-07-05",
      "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
@@ -164,8 +164,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "WnVzMADP76TMBBzxgN9lTpx5DKjEkAt69BQ17",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "eGD7g1gX81SENWyEA3mxUQ1nLzxJ5airgdj7N",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-06",
      "authorized_date": "2026-07-05",
      "name": "Shake Shack",
@@ -182,8 +182,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "AX6pVWEBZ7TPyywrV9RLU1o64QPBvwS9jBxAE",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "QdAvrmrMamUVBWdVJQp1tRkAzZXgxncw1M831",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-06",
      "authorized_date": "2026-07-05",
      "name": "Walmart",
@@ -200,8 +200,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "GXAoz6DNgLTWXX69mqByINEmV36gbaF6BZ7PP",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "ZZArPePMGeSBlb1BXyq5fqDko8m6zAie3RKrE",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-07",
      "authorized_date": "2026-07-06",
      "name": "SWEETGREEN NEW HAVEN",
@@ -218,8 +218,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "ndewD9n8GLIJPP1yoZmNfa5yBPvmxjUAeJMWb",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "MzVbyoy4BoT8VL68ZJRytnvZkgM7pRcLKlMel",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-07",
      "authorized_date": "2026-07-06",
      "name": "Trader Joe's",
@@ -236,8 +236,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "bnrgXoWmGdT8lloERpvmsqa8Dl6nrZCmxB6Z7",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "1qBKzmzVDmHx5DdxvgAKSKy7MezNWGhpzKJZ7",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-08",
      "authorized_date": "2026-07-07",
      "name": "Starbucks",
@@ -254,26 +254,26 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrb5GR9vDCgmrQdQ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "LrwnmomazoT7x1D7wgo3UvJz4pqLKMfk7QrlM",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-09",
      "authorized_date": "2026-07-08",
-     "name": "Netflix",
-     "merchant_name": "Netflix",
-     "amount": 15.49,
+     "name": "Planet Fitness",
+     "merchant_name": "Planet Fitness",
+     "amount": 24.99,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
       "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
-      "primary": "ENTERTAINMENT",
+      "detailed": "PERSONAL_CARE_GYMS_AND_FITNESS_CENTERS",
+      "primary": "PERSONAL_CARE",
       "version": "v2"
      },
-     "payment_channel": "online"
+     "payment_channel": "in store"
     },
     {
-     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4EQValDzT43g8XP",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "pymEq9qDd9f5oxe54Jans7kNAdD4Vzhpwr1Ed",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-10",
      "authorized_date": "2026-07-09",
      "name": "AMAZON MKTPL*2Q4WT7",
@@ -290,8 +290,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrbwpzlEys4GK9Qy",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "oGo8l9lDk9SNp3oN45WdcDAnopwl6rcojMlkP",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-10",
      "authorized_date": "2026-07-09",
      "name": "BLUE STATE COFFEE",
@@ -308,26 +308,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "vQyADJn8wGh3mml159BaT6g1Dw5aZMCqzwZk6",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-07-13",
-     "authorized_date": "2026-07-12",
-     "name": "Spotify",
-     "merchant_name": "Spotify",
-     "amount": 11.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKyW4ZJojialZobV",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "gG6QEkEXLkSoj9aodqJlUrJkqdg1nbCEoVm4Z",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-14",
      "authorized_date": "2026-07-13",
      "name": "Starbucks",
@@ -344,8 +326,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1aAwq8d7t89zPXB",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "8dPaNqNm8qUD7XRDMVzjH1mDxG4EneUWn1lKv",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-14",
      "authorized_date": "2026-07-13",
      "name": "Target",
@@ -362,8 +344,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnRmNv3BEgCb6DvnR",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "EpWo8v8Kgvh6BPK6LgrdHGpdb98LWwc4yRK9j",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-14",
      "authorized_date": "2026-07-13",
      "name": "Trader Joe's",
@@ -380,8 +362,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkmBLANReC3wZLaP",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "W7AlazaMezUpZLGpbzwliora4gkyGdu6R9mwl",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-15",
      "authorized_date": "2026-07-14",
      "name": "BLUE STATE COFFEE",
@@ -398,8 +380,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKyW4ZJojialZo3V",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "VjmVdrdL7rhr3Xvr6alJtDyAd1v4l7c9am8qb",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-15",
      "authorized_date": "2026-07-15",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -416,8 +398,26 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx56bKZBvku9mDZP4",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "AZWMLpLVvpSBxd1BmwjLfjGzR5vLWEt98jX69",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-07-16",
+     "authorized_date": "2026-07-15",
+     "name": "COURSERA PLUS SUBSCRIPTION",
+     "merchant_name": "Courser Inc.",
+     "amount": 49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_SERVICES_EDUCATION",
+      "primary": "GENERAL_SERVICES",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "Gg68WoWzEoHAn7NA863yHe1jzZbQAqC6aBeAG",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-18",
      "authorized_date": "2026-07-17",
      "name": "Starbucks",
@@ -434,8 +434,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTed16prjAbtPNQ1oG",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "nG9gywyD3wSpLkxpQ1wNiRLN8MxZ6DcAoeyKK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-18",
      "authorized_date": "2026-07-17",
      "name": "Uber",
@@ -452,8 +452,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1aAwq8d7t89zPLB",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "wG1ydJdleJSqn7BqbRePswRWlBAQgXuPGN7Eg",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-19",
      "authorized_date": "2026-07-18",
      "name": "EVERSOURCE ENERGY BILL PAY",
@@ -470,8 +470,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLnamAlR4dC5w6Q7n",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "bGoNLgLX9gSqdPaqroDmsjkALgrP5Vtmlx4N3",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-20",
      "authorized_date": "2026-07-19",
      "name": "SWEETGREEN NEW HAVEN",
@@ -488,8 +488,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnRmNv3BEgCb6DvqR",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "5Ba3d6db16UGBLQGXVqoh3py574EGxH5vwPGZ",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-21",
      "authorized_date": "2026-07-20",
      "name": "T-Mobile",
@@ -506,8 +506,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnVB5bdEjsB4neg4",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "mGwombmDBbSW1zBW4LgmIAgnqBv3oVigEmvMP",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-21",
      "authorized_date": "2026-07-20",
      "name": "Trader Joe's",
@@ -524,26 +524,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XJb9oBvGFLQm1dE",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-07-22",
-     "authorized_date": "2026-07-21",
-     "name": "APPLE.COM/BILL",
-     "merchant_name": "Apple",
-     "amount": 2.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "HIGH",
-      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkmBLANReC3wZLxP",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "JqWAn9nxK9HJ7ZWJ16GvuvKN1gEepxfBA4rQB",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-22",
      "authorized_date": "2026-07-22",
      "name": "BANK OF AMERICA CREDIT CARD PMT",
@@ -560,8 +542,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMmdQ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "yXRv454KZ5UKbvgKD6oVhgmAn5D67Wc4G3qWo",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-23",
      "authorized_date": "2026-07-22",
      "name": "AMAZON MKTPL*5H0QX2",
@@ -578,8 +560,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQy73",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "9aj4PKP7gKIKxlWKG8B6hGMg17E9ndc4rGWVK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-25",
      "authorized_date": "2026-07-25",
      "name": "AUTOMATIC PAYMENT - THANK YOU",
@@ -596,8 +578,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx56bKZBvku9mDZe4",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "k6oLnknDrkHaVKRaLmy5UnRzVjvpExcL9QVJJ",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-07-25",
      "authorized_date": "2026-07-25",
      "name": "CHASE CREDIT CRD AUTOPAY PPD",
@@ -614,8 +596,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5DAj",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "vwJmxAxD7AhWGjwWrl8aIVBrAqZK7eiqpz3nJ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-26",
      "authorized_date": "2026-07-25",
      "name": "SWEETGREEN NEW HAVEN",
@@ -632,8 +614,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGk6W",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "RaAkzozM4oIXnJLXeVMWTeL1avo6RgCa9lvX5",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-28",
      "authorized_date": "2026-07-27",
      "name": "Trader Joe's",
@@ -650,8 +632,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXLD",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "634xada61dTgM5GgRJKVT9rJM6dBgZt869obA",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-29",
      "authorized_date": "2026-07-28",
      "name": "Uber",
@@ -668,8 +650,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7GwbZqkJs4Wkx87",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "XeRq4B4GDBUoaBkoPQ1eUG7ljyExZpcbQ6WPz",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-30",
      "authorized_date": "2026-07-29",
      "name": "Uber",
@@ -686,8 +668,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "35odbxA9rlubwwEdgeMlSMXPdJN794SZrWVnq",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "DLGpgVgq9VIGoNnG7dQkh5qpxJRZGKh31wPEA",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-07-31",
      "authorized_date": "2026-07-30",
      "name": "Starbucks",
@@ -704,8 +686,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9mQnrA83t67QKV6",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "VjmVdrdL7rhr3Xvr6alJtDyAd1v4l7c9am8p3",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-01",
      "authorized_date": "2026-07-31",
      "name": "Starbucks",
@@ -722,8 +704,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTed16prjAbtPNQ1jG",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "lGopbdbDzdS1Mvy1RqXLTQ9jnZyLMpip4wXaE",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-01",
      "authorized_date": "2026-08-01",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -740,8 +722,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLnamAlR4dC5w6QMn",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "qGoWK9KDa9Smgdymjb1LH8RZxag36yCgEmD6V",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-02",
      "authorized_date": "2026-08-01",
      "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
@@ -758,8 +740,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8yaGJXNMCJMXnQB",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "wG1ydJdleJSqn7BqbRePswRWlBAQgXuPGN7qn",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-02",
      "authorized_date": "2026-08-01",
      "name": "Starbucks",
@@ -776,8 +758,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsne8bdwVQ5CZaXKQ1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "5Ba3d6db16UGBLQGXVqoh3py574EGxH5vwP3B",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-02",
      "authorized_date": "2026-08-01",
      "name": "Uber",
@@ -794,8 +776,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z7nELq6RSJrmRA3",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "JqWAn9nxK9HJ7ZWJ16GvuvKN1gEepxfBA4r5R",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-03",
      "authorized_date": "2026-08-02",
      "name": "Target",
@@ -812,8 +794,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnVB5bdEjsB4neq4",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "KKWGbZbdrZUKrMmK7k48hRJ3BAVqkvcRyZBEn",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-04",
      "authorized_date": "2026-08-03",
      "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
@@ -830,8 +812,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8D6kRabZsyjVA5x",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "k6oLnknDrkHaVKRaLmy5UnRzVjvpExcL9QV8N",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-04",
      "authorized_date": "2026-08-03",
      "name": "Trader Joe's",
@@ -848,8 +830,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "PV6oWADBxnSQooEl4GkBHqAjVvQa4dCokKyW8",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "lGopbdbDzdS1Mvy1RqXLTQ9jnZyLMpip4wXrl",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-06",
      "authorized_date": "2026-08-05",
      "name": "AMAZON MKTPL*8C3NB1",
@@ -866,8 +848,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XJb9oBvGFLQm1KE",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "rGoAr9rD49Sg8a1gX9wpT4kno53dzLc7QP5dp",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-06",
      "authorized_date": "2026-08-05",
      "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
@@ -884,8 +866,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlP3GRevEF6MQRLQ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "qGoWK9KDa9Smgdymjb1LH8RZxag36yCgEmDVZ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-06",
      "authorized_date": "2026-08-05",
      "name": "Uber",
@@ -902,8 +884,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "7kmlbND9xzIyllQX3wjaTogRvaKAdrudlwBn3",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "KKWGbZbdrZUKrMmK7k48hRJ3BAVqkvcRyZBma",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-08",
      "authorized_date": "2026-08-07",
      "name": "Starbucks",
@@ -920,26 +902,26 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMmd6",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "rGoAr9rD49Sg8a1gX9wpT4kno53dzLc7QP5Dg",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-09",
      "authorized_date": "2026-08-08",
-     "name": "Netflix",
-     "merchant_name": "Netflix",
-     "amount": 15.49,
+     "name": "Planet Fitness",
+     "merchant_name": "Planet Fitness",
+     "amount": 24.99,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
       "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
-      "primary": "ENTERTAINMENT",
+      "detailed": "PERSONAL_CARE_GYMS_AND_FITNESS_CENTERS",
+      "primary": "PERSONAL_CARE",
       "version": "v2"
      },
-     "payment_channel": "online"
+     "payment_channel": "in store"
     },
     {
-     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQy7X",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "zG1RN9NrE9S6BZn6gDK1HvwxbWR6jNflV7vgL",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-09",
      "authorized_date": "2026-08-08",
      "name": "Shake Shack",
@@ -956,8 +938,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5DAW",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "BMW1p9pZg9cg9aKg1Z7kTzn3eVk5ErC4BWKLj",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-10",
      "authorized_date": "2026-08-09",
      "name": "BLUE STATE COFFEE",
@@ -974,8 +956,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXL4",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "xGm9a5aqZ5SDbejD5qE9HlaBRg8o6jC617GAK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-10",
      "authorized_date": "2026-08-09",
      "name": "SWEETGREEN NEW HAVEN",
@@ -992,8 +974,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGk6r",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "3rxz3d3bDdTV5xmVnEQltWZxvm9pVKHZAr18E",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-10",
      "authorized_date": "2026-08-09",
      "name": "Starbucks",
@@ -1010,8 +992,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7GwbZqkJs4Wkx8m",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "dk9jo8oXA8iB4r8Bb6RmfKVAb5NdoehJkMW6y",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-11",
      "authorized_date": "2026-08-10",
      "name": "Trader Joe's",
@@ -1028,8 +1010,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "35odbxA9rlubwwEdgeMlSMXPdJN794SZrWVno",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "a8G4191XL9hGxLeGoN7BhLXG6jQKDECZNaWeJ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-12",
      "authorized_date": "2026-08-11",
      "name": "SWEETGREEN NEW HAVEN",
@@ -1046,8 +1028,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9mQnrA83t67QKBD",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "4zdBxGxbgGTv1Pxv7WlBijNrwd6pv3tJor13b",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-12",
      "authorized_date": "2026-08-11",
      "name": "Uber",
@@ -1064,8 +1046,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsne8bdwVQ5CZaXK3r",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "NBymlglN3gUd9pKdVBqvFrAN1PbBpxCy3jD7J",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-13",
      "authorized_date": "2026-08-12",
      "name": "BLUE STATE COFFEE",
@@ -1082,26 +1064,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8yaGJXNMCJMXnav",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-08-13",
-     "authorized_date": "2026-08-12",
-     "name": "Spotify",
-     "merchant_name": "Spotify",
-     "amount": 11.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z7nELq6RSJrmRMZ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "PxA9KoKWdoUR6gJRXE7BTzomy746pwCo1kMNP",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-14",
      "authorized_date": "2026-08-13",
      "name": "SWEETGREEN NEW HAVEN",
@@ -1118,8 +1082,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMm8Q",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "zG1RN9NrE9S6BZn6gDK1HvwxbWR6jNflV7v3e",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-15",
      "authorized_date": "2026-08-15",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -1136,8 +1100,44 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8D6kRabZsyjVAKq",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "j961GPG5KPcWQq5WNMXjIdxg5QvaAbu6EMXG3",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-08-16",
+     "authorized_date": "2026-08-15",
+     "name": "COURSERA PLUS SUBSCRIPTION",
+     "merchant_name": "Courser Inc.",
+     "amount": 49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_SERVICES_EDUCATION",
+      "primary": "GENERAL_SERVICES",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "7xNd4l4bWlUJKqZJRQrauVPb1jdqBpidZl919",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-08-17",
+     "authorized_date": "2026-08-16",
+     "name": "DICK'S Sporting Goods",
+     "merchant_name": "Dick's Sporting Goods",
+     "amount": 39.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SPORTING_GOODS",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "eGD7g1gX81SENWyEA3mxUQ1nLzxJ5airgdjVN",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-18",
      "authorized_date": "2026-08-17",
      "name": "Trader Joe's",
@@ -1154,8 +1154,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQyk3",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "BMW1p9pZg9cg9aKg1Z7kTzn3eVk5ErC4BWKza",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-19",
      "authorized_date": "2026-08-18",
      "name": "EVERSOURCE ENERGY BILL PAY",
@@ -1172,8 +1172,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "PV6oWADBxnSQooEl4GkBHqAjVvQa4dCokKyvZ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "QdAvrmrMamUVBWdVJQp1tRkAzZXgxncw1M8a1",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-20",
      "authorized_date": "2026-08-19",
      "name": "Starbucks",
@@ -1190,8 +1190,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlP3GRevEF6MQRAL",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "ZZArPePMGeSBlb1BXyq5fqDko8m6zAie3RKbE",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-21",
      "authorized_date": "2026-08-20",
      "name": "AMAZON MKTPL*1V7KE9",
@@ -1208,8 +1208,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5Dbj",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "3rxz3d3bDdTV5xmVnEQltWZxvm9pVKHZAr1m5",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-21",
      "authorized_date": "2026-08-20",
      "name": "T-Mobile",
@@ -1226,26 +1226,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "7kmlbND9xzIyllQX3wjaTogRvaKAdrudlwBpp",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-08-22",
-     "authorized_date": "2026-08-21",
-     "name": "APPLE.COM/BILL",
-     "merchant_name": "Apple",
-     "amount": 2.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "HIGH",
-      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGkgW",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "xGm9a5aqZ5SDbejD5qE9HlaBRg8o6jC617GyW",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-22",
      "authorized_date": "2026-08-22",
      "name": "BANK OF AMERICA CREDIT CARD PMT",
@@ -1262,13 +1244,13 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "Qy6mMAD3dbfm77QqK3M1IKqdb3mlXoswMjlel",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "1qBKzmzVDmHx5DdxvgAKSKy7MezNWGhpzKJm7",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-25",
      "authorized_date": "2026-08-25",
      "name": "AUTOMATIC PAYMENT - THANK YOU",
      "merchant_name": null,
-     "amount": -534.36,
+     "amount": -577.88,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
@@ -1280,13 +1262,13 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXWD",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "dk9jo8oXA8iB4r8Bb6RmfKVAb5NdoehJkMWB5",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-08-25",
      "authorized_date": "2026-08-25",
      "name": "CHASE CREDIT CRD AUTOPAY PPD",
      "merchant_name": null,
-     "amount": 534.36,
+     "amount": 577.88,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
@@ -1298,8 +1280,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "en31XDWmGNTprr35e4gxcEyDjrMbx3crdx3km",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "MzVbyoy4BoT8VL68ZJRytnvZkgM7pRcLKlM7l",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-25",
      "authorized_date": "2026-08-24",
      "name": "Trader Joe's",
@@ -1316,8 +1298,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "ZR6eMAWmZlHGzzy48e75hN4bXdG5mLFeRx1la",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "LrwnmomazoT7x1D7wgo3UvJz4pqLKMfk7Qr9M",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-26",
      "authorized_date": "2026-08-25",
      "name": "Walmart",
@@ -1334,8 +1316,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "MX6o4VDKzWTG77JWEmlyh6PNDyGAMxCLlmRyp",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "pymEq9qDd9f5oxe54Jans7kNAdD4Vzhpwr1Kd",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-27",
      "authorized_date": "2026-08-26",
      "name": "Starbucks",
@@ -1352,8 +1334,26 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "185mVBE9qXTWrrgeG9ZKIDbB1AZ3zjCpKDPoj",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "oGo8l9lDk9SNp3oN45WdcDAnopwl6rcojMlKP",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-08-28",
+     "authorized_date": "2026-08-27",
+     "name": "YALE BOOKSTORE NEW HAVEN",
+     "merchant_name": "Yale University Bookstore",
+     "amount": 112.35,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "GENERAL_MERCHANDISE_BOOKSTORES_AND_NEWSSTANDS",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "gG6QEkEXLkSoj9aodqJlUrJkqdg1nbCEoVmMZ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-30",
      "authorized_date": "2026-08-29",
      "name": "BLUE STATE COFFEE",
@@ -1370,8 +1370,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "LX6oawDqrETjyygnJeQ3HDwP9ajrq8CkQ3Wan",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "8dPaNqNm8qUD7XRDMVzjH1mDxG4EneUWn1lrv",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-08-30",
      "authorized_date": "2026-08-29",
      "name": "Starbucks",
@@ -1388,8 +1388,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "p4Z9DmnWyoHLGGJV7jpnHQPm9yapDZuprXQnZ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "EpWo8v8Kgvh6BPK6LgrdHGpdb98LWwc4yRKEj",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-01",
      "authorized_date": "2026-08-31",
      "name": "Trader Joe's",
@@ -1406,8 +1406,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7GwbZqkJs4Wkxn7",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "a8G4191XL9hGxLeGoN7BhLXG6jQKDECZNaWkj",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-01",
      "authorized_date": "2026-09-01",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -1424,8 +1424,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "35odbxA9rlubwwEdgeMlSMXPdJN794SZrWV3q",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "4zdBxGxbgGTv1Pxv7WlBijNrwd6pv3tJor1lj",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-02",
      "authorized_date": "2026-09-01",
      "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
@@ -1442,8 +1442,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "oaQ9DonwGpHZjj5EzeXdH4R1JjxXwdtoMvVy3",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "W7AlazaMezUpZLGpbzwliora4gkyGdu6R9m4l",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-03",
      "authorized_date": "2026-09-02",
      "name": "Starbucks",
@@ -1460,8 +1460,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9mQnrA83t67QKv6",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "NBymlglN3gUd9pKdVBqvFrAN1PbBpxCy3jDXR",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-04",
      "authorized_date": "2026-09-03",
      "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
@@ -1478,8 +1478,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8yaGJXNMCJMXneB",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "PxA9KoKWdoUR6gJRXE7BTzomy746pwCo1kMX3",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-06",
      "authorized_date": "2026-09-05",
      "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
@@ -1496,8 +1496,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "gqdkX6WmGjC8BBqn3Zxlsla6EG7AgouEVy71m",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "AZWMLpLVvpSBxd1BmwjLfjGzR5vLWEt98jXo9",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-06",
      "authorized_date": "2026-09-05",
      "name": "Starbucks",
@@ -1514,8 +1514,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "8XAqmPE9dBTPvvVJpq3jUR7WlbVr4JCW1NJmA",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "Gg68WoWzEoHAn7NA863yHe1jzZbQAqC6aBenG",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-07",
      "authorized_date": "2026-09-06",
      "name": "Target",
@@ -1532,8 +1532,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsne8bdwVQ5CZaXKL1",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "j961GPG5KPcWQq5WNMXjIdxg5QvaAbu6EMXZJ",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-08",
      "authorized_date": "2026-09-08",
      "name": "ZELLE PAYMENT FROM ALEX KIM",
@@ -1550,26 +1550,44 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "EXbvKWDkpMT4bbgxl9RdSK3eVaAJ8Bs4R65ly",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "nG9gywyD3wSpLkxpQ1wNiRLN8MxZ6DcAoeyGK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-09",
      "authorized_date": "2026-09-08",
-     "name": "Netflix",
-     "merchant_name": "Netflix",
-     "amount": 15.49,
+     "name": "Planet Fitness",
+     "merchant_name": "Planet Fitness",
+     "amount": 24.99,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
       "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
-      "primary": "ENTERTAINMENT",
+      "detailed": "PERSONAL_CARE_GYMS_AND_FITNESS_CENTERS",
+      "primary": "PERSONAL_CARE",
       "version": "v2"
      },
-     "payment_channel": "online"
+     "payment_channel": "in store"
     },
     {
-     "transaction_id": "WnVzMADP76TMBBzxgN9lTpx5DKjEkAt69BQEb",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "bGoNLgLX9gSqdPaqroDmsjkALgrP5Vtmlx433",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-09-09",
+     "authorized_date": "2026-09-08",
+     "name": "Planet Fitness",
+     "merchant_name": "Planet Fitness",
+     "amount": 24.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "PERSONAL_CARE_GYMS_AND_FITNESS_CENTERS",
+      "primary": "PERSONAL_CARE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "mGwombmDBbSW1zBW4LgmIAgnqBv3oVigEmvAP",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-09",
      "authorized_date": "2026-09-08",
      "name": "Starbucks",
@@ -1586,8 +1604,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "AX6pVWEBZ7TPyywrV9RLU1o64QPBvwS9jBxPj",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "yXRv454KZ5UKbvgKD6oVhgmAn5D67Wc4G3qDo",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-10",
      "authorized_date": "2026-09-09",
      "name": "Trader Joe's",
@@ -1604,8 +1622,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "GXAoz6DNgLTWXX69mqByINEmV36gbaF6BZ739",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "9aj4PKP7gKIKxlWKG8B6hGMg17E9ndc4rGWEK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-11",
      "authorized_date": "2026-09-10",
      "name": "BLUE STATE COFFEE",
@@ -1622,8 +1640,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "bnrgXoWmGdT8lloERpvmsqa8Dl6nrZCmxB6qe",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "RaAkzozM4oIXnJLXeVMWTeL1avo6RgCa9lvG5",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-11",
      "authorized_date": "2026-09-10",
      "name": "SWEETGREEN NEW HAVEN",
@@ -1640,8 +1658,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "ndewD9n8GLIJPP1yoZmNfa5yBPvmxjUAeJMbR",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "vwJmxAxD7AhWGjwWrl8aIVBrAqZK7eiqpz3XJ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-11",
      "authorized_date": "2026-09-10",
      "name": "Starbucks",
@@ -1658,8 +1676,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrb5GR9vDCgmrQJl",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "634xada61dTgM5GgRJKVT9rJM6dBgZt869oxA",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-12",
      "authorized_date": "2026-09-11",
      "name": "AMAZON MKTPL*4K8RT2",
@@ -1676,8 +1694,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4EQValDzT43g8A1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "XeRq4B4GDBUoaBkoPQ1eUG7ljyExZpcbQ6Wxz",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-12",
      "authorized_date": "2026-09-11",
      "name": "SWEETGREEN NEW HAVEN",
@@ -1694,8 +1712,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrbwpzlEys4GK9Dz",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "DLGpgVgq9VIGoNnG7dQkh5qpxJRZGKh31wPXA",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-13",
      "authorized_date": "2026-09-12",
      "name": "MECHA NOODLE BAR NEW HAVEN",
@@ -1712,44 +1730,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "vQyADJn8wGh3mml159BaT6g1Dw5aZMCqzwZRo",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-09-13",
-     "authorized_date": "2026-09-12",
-     "name": "Spotify",
-     "merchant_name": "Spotify",
-     "amount": 11.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKyW4ZJojialZo4R",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-09-13",
-     "authorized_date": "2026-09-12",
-     "name": "Spotify",
-     "merchant_name": "Spotify",
-     "amount": 11.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1aAwq8d7t89zP38",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "VjmVdrdL7rhr3Xvr6alJtDyAd1v4l7c9am8n3",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-14",
      "authorized_date": "2026-09-13",
      "name": "AMAZON MKTPL*9B1ZA0",
@@ -1766,8 +1748,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnRmNv3BEgCb6DvE1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "wG1ydJdleJSqn7BqbRePswRWlBAQgXuPGN7ln",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-14",
      "authorized_date": "2026-09-13",
      "name": "Uber",
@@ -1784,8 +1766,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkmBLANReC3wZLQE",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "5Ba3d6db16UGBLQGXVqoh3py574EGxH5vwPpB",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-15",
      "authorized_date": "2026-09-14",
      "name": "Shake Shack",
@@ -1802,8 +1784,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx56bKZBvku9mDZdn",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "JqWAn9nxK9HJ7ZWJ16GvuvKN1gEepxfBA4rZR",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-15",
      "authorized_date": "2026-09-14",
      "name": "Trader Joe's",
@@ -1820,8 +1802,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTed16prjAbtPNQ1VL",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "k6oLnknDrkHaVKRaLmy5UnRzVjvpExcL9QVwN",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-15",
      "authorized_date": "2026-09-14",
      "name": "Walmart",
@@ -1838,8 +1820,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z7nELq6RSJrmR73",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "7xNd4l4bWlUJKqZJRQrauVPb1jdqBpidZl9MR",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-15",
      "authorized_date": "2026-09-15",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -1856,8 +1838,26 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLnamAlR4dC5w6Qdb",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "lGopbdbDzdS1Mvy1RqXLTQ9jnZyLMpip4wXJl",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-09-16",
+     "authorized_date": "2026-09-15",
+     "name": "COURSERA PLUS SUBSCRIPTION",
+     "merchant_name": "Courser Inc.",
+     "amount": 49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_SERVICES_EDUCATION",
+      "primary": "GENERAL_SERVICES",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "qGoWK9KDa9Smgdymjb1LH8RZxag36yCgEmDoZ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-19",
      "authorized_date": "2026-09-18",
      "name": "BLUE STATE COFFEE",
@@ -1874,8 +1874,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8D6kRabZsyjVAmx",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "eGD7g1gX81SENWyEA3mxUQ1nLzxJ5airgdj7p",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-19",
      "authorized_date": "2026-09-18",
      "name": "EVERSOURCE ENERGY BILL PAY",
@@ -1892,8 +1892,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnVB5bdEjsB4neJn",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "KKWGbZbdrZUKrMmK7k48hRJ3BAVqkvcRyZBna",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-20",
      "authorized_date": "2026-09-19",
      "name": "BLUE STATE COFFEE",
@@ -1910,8 +1910,26 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XJb9oBvGFLQm1pa",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "rGoAr9rD49Sg8a1gX9wpT4kno53dzLc7QP5og",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-09-20",
+     "authorized_date": "2026-09-19",
+     "name": "ZINC RESTAURANT NEW HAVEN",
+     "merchant_name": null,
+     "amount": 64.2,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "zG1RN9NrE9S6BZn6gDK1HvwxbWR6jNflV7vqL",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-21",
      "authorized_date": "2026-09-20",
      "name": "Starbucks",
@@ -1928,8 +1946,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "PV6oWADBxnSQooEl4GkBHqAjVvQa4dCokKyZ8",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "QdAvrmrMamUVBWdVJQp1tRkAzZXgxncw1M83J",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-21",
      "authorized_date": "2026-09-20",
      "name": "T-Mobile",
@@ -1946,26 +1964,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMm76",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-09-22",
-     "authorized_date": "2026-09-21",
-     "name": "APPLE.COM/BILL",
-     "merchant_name": "Apple",
-     "amount": 2.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "HIGH",
-      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlP3GRevEF6MQRqQ",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "ZZArPePMGeSBlb1BXyq5fqDko8m6zAie3RKrD",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-22",
      "authorized_date": "2026-09-22",
      "name": "BANK OF AMERICA CREDIT CARD PMT",
@@ -1982,8 +1982,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQyMX",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "BMW1p9pZg9cg9aKg1Z7kTzn3eVk5ErC4BWKZj",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-22",
      "authorized_date": "2026-09-21",
      "name": "Trader Joe's",
@@ -2000,8 +2000,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGkMr",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "xGm9a5aqZ5SDbejD5qE9HlaBRg8o6jC617GNK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-23",
      "authorized_date": "2026-09-22",
      "name": "SWEETGREEN NEW HAVEN",
@@ -2018,8 +2018,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5DNW",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "3rxz3d3bDdTV5xmVnEQltWZxvm9pVKHZAr1PE",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-23",
      "authorized_date": "2026-09-22",
      "name": "Starbucks",
@@ -2036,8 +2036,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXm4",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "dk9jo8oXA8iB4r8Bb6RmfKVAb5NdoehJkMWGy",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-23",
      "authorized_date": "2026-09-22",
      "name": "Uber",
@@ -2054,8 +2054,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4D3zj5VQH4e8pam",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "4zdBxGxbgGTv1Pxv7WlBijNBRQkBM3CJp1nkp",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-24",
      "authorized_date": "2026-09-23",
      "name": "AMAZON.COM*2M5HX1",
@@ -2072,8 +2072,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrEVyX7pwC4a9Mv6",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "NBymlglN3gUd9pKdVBqvFrAEZeoEyxiy8Dnxp",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-24",
      "authorized_date": "2026-09-23",
      "name": "Starbucks",
@@ -2090,13 +2090,13 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKoEjGv4WCa3o5qx",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "j961GPG5KPcWQq5WNMXjIdxZE6nZwbC6KXZwg",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-25",
      "authorized_date": "2026-09-25",
      "name": "AUTOMATIC PAYMENT - THANK YOU",
      "merchant_name": null,
-     "amount": -618.36,
+     "amount": -814.22,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
@@ -2108,13 +2108,13 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "oaQ9DonwGpHZjj5EzeXdH4RwMdVpjJCo8VGZq",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "lGopbdbDzdS1Mvy1RqXLTQ9E5gaEzpfpBXEJb",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-09-25",
      "authorized_date": "2026-09-25",
      "name": "CHASE CREDIT CRD AUTOPAY PPD",
      "merchant_name": null,
-     "amount": 618.36,
+     "amount": 814.22,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
@@ -2126,8 +2126,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "vQyADJn8wGh3mml159BaT6gZzM8qwDfqAZVKP",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "PxA9KoKWdoUR6gJRXE7BTzoRd1bRNwioLMQJ6",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-25",
      "authorized_date": "2026-09-24",
      "name": "Starbucks",
@@ -2144,8 +2144,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1dD7Q6wAu8LPnlj",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "7xNd4l4bWlUJKqZJRQrauVPmrMzm7pidb9Mjo",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-27",
      "authorized_date": "2026-09-26",
      "name": "SWEETGREEN NEW HAVEN",
@@ -2162,8 +2162,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnREPgKyvNfbqv8X5",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "eGD7g1gX81SENWyEA3mxUQ173Pv7Kafrvj7Ew",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-27",
      "authorized_date": "2026-09-26",
      "name": "UNION LEAGUE CAFE NEW HAVEN",
@@ -2180,8 +2180,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkRWedJLBf3xLGov",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "QdAvrmrMamUVBWdVJQp1tRkvo1BvPncwP83z8",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-28",
      "authorized_date": "2026-09-27",
      "name": "AMAZON MKTPL*7Q2LM8",
@@ -2198,8 +2198,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx5vGkN1KbC9eZNV9",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "ZZArPePMGeSBlb1BXyq5fqDrL3VrKACeaKrz5",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-28",
      "authorized_date": "2026-09-27",
      "name": "Shake Shack",
@@ -2216,8 +2216,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTedADboBp6fPj1KpE",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "MzVbyoy4BoT8VL68ZJRytnvKxL9KqRcLXMezK",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-28",
      "authorized_date": "2026-09-27",
      "name": "Starbucks",
@@ -2234,8 +2234,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLn4Kdr7AmC5MQjn3",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "1qBKzmzVDmHx5DdxvgAKSKydj85dpGhp9JZ3k",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-29",
      "authorized_date": "2026-09-28",
      "name": "SWEETGREEN NEW HAVEN",
@@ -2252,8 +2252,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnEZjRg5BCBqewy5",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "LrwnmomazoT7x1D7wgo3UvJy8XbyNMCk6rloQ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-29",
      "authorized_date": "2026-09-28",
      "name": "Trader Joe's",
@@ -2270,8 +2270,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XvwGkj9bfLK1Ajw",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "pymEq9qDd9f5oxe54Jans7kEZjbEKzUpl1Ekg",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-09-30",
      "authorized_date": "2026-09-29",
      "name": "Uber",
@@ -2288,8 +2288,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "gqdkX6WmGjC8BBqn3Zxlslag9oQdGEtEq7d6p",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "qGoWK9KDa9Smgdymjb1LH8RNzPXNvycglDNo9",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-01",
      "authorized_date": "2026-10-01",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -2306,8 +2306,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "8XAqmPE9dBTPvvVJpq3jUR74kJNGblfWjJeXb",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "KKWGbZbdrZUKrMmK7k48hRJM8p4MlvcRoBGnM",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-02",
      "authorized_date": "2026-10-01",
      "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
@@ -2324,8 +2324,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "l3jdDonyGMUr44qE6epLubWyw5JZ4rCp8m6qn",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "oGo8l9lDk9SNp3oN45WdcDAkdKLkBrcoQlkrD",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-02",
      "authorized_date": "2026-10-01",
      "name": "Starbucks",
@@ -2342,8 +2342,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "EXbvKWDkpMT4bbgxl9RdSK38mBQ9aVH4J53BL",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "rGoAr9rD49Sg8a1gX9wpT4kaeryaWLC7b5aon",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-04",
      "authorized_date": "2026-10-03",
      "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
@@ -2360,8 +2360,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9gVz7aEqhgkyBjQ",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "gG6QEkEXLkSoj9aodqJlUrJ4owy4ZbiENm4rJ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-05",
      "authorized_date": "2026-10-04",
      "name": "Starbucks",
@@ -2378,8 +2378,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgVa8nA6WfRbDr9J",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "8dPaNqNm8qUD7XRDMVzjH1mqJajqKeSW7lKzR",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-06",
      "authorized_date": "2026-10-05",
      "name": "BLUE STATE COFFEE",
@@ -2396,8 +2396,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "WnVzMADP76TMBBzxgN9lTpxkVAegKDu6KQqbm",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "zG1RN9NrE9S6BZn6gDK1Hvwa5QzaZNCldvwq1",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-06",
      "authorized_date": "2026-10-05",
      "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
@@ -2414,8 +2414,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K3PeD5Qqf7gkNAN",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "EpWo8v8Kgvh6BPK6LgrdHGpxBXZxgwu48K9VA",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-06",
      "authorized_date": "2026-10-05",
      "name": "SWEETGREEN NEW HAVEN",
@@ -2432,8 +2432,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4RP5yW9otlWX6y8",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "W7AlazaMezUpZLGpbzwliorMARWMwdh63mwvo",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-06",
      "authorized_date": "2026-10-05",
      "name": "Trader Joe's",
@@ -2450,8 +2450,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7kXJWVbwH4nxVp6",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "AZWMLpLVvpSBxd1BmwjLfjGNwMANaEC9LX6yW",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-07",
      "authorized_date": "2026-10-06",
      "name": "Starbucks",
@@ -2468,8 +2468,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "35odbxA9rlubwwEdgeMlSMX9l4ymJdUZ3V5j7",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "Gg68WoWzEoHAn7NA863yHe15a9K5yqC6KeA81",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-08",
      "authorized_date": "2026-10-07",
      "name": "AMAZON MKTPL*6T2PD5",
@@ -2486,8 +2486,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9873pgnQt6vKLzd",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "nG9gywyD3wSpLkxpQ1wNiRLKjVdK7DcA9yKEA",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-08",
      "authorized_date": "2026-10-07",
      "name": "Walmart",
@@ -2504,8 +2504,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsneQA5ajdbfZLKVEd",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "mGwombmDBbSW1zBW4LgmIAgMDpaMKVUgevMPM",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-09",
      "authorized_date": "2026-10-08",
      "name": "BLUE STATE COFFEE",
@@ -2522,26 +2522,26 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8NlMp5GafJenrbV",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "bGoNLgLX9gSqdPaqroDmsjkNZE1N9VCmn4Nzo",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-09",
      "authorized_date": "2026-10-08",
-     "name": "Netflix",
-     "merchant_name": "Netflix",
-     "amount": 15.49,
+     "name": "Planet Fitness",
+     "merchant_name": "Planet Fitness",
+     "amount": 24.99,
      "iso_currency_code": "USD",
      "pending": false,
      "personal_finance_category": {
       "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
-      "primary": "ENTERTAINMENT",
+      "detailed": "PERSONAL_CARE_GYMS_AND_FITNESS_CENTERS",
+      "primary": "PERSONAL_CARE",
       "version": "v2"
      },
-     "payment_channel": "online"
+     "payment_channel": "in store"
     },
     {
-     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z6bRydEnCJ7R4ra",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "yXRv454KZ5UKbvgKD6oVhgmbzNkbpWh4PqW5D",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-09",
      "authorized_date": "2026-10-08",
      "name": "Starbucks",
@@ -2558,8 +2558,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8bMZgPk6HymAkjE",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "9aj4PKP7gKIKxlWKG8B6hGM5yJ45Pdu4oWVnn",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-11",
      "authorized_date": "2026-10-10",
      "name": "Uber",
@@ -2576,26 +2576,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "PV6oWADBxnSQooEl4GkBHqA4Bdr7vVsoZyVkg",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-10-13",
-     "authorized_date": "2026-10-12",
-     "name": "Spotify",
-     "merchant_name": "Spotify",
-     "amount": 11.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "VERY_HIGH",
-      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlvME8QG3c6qRlMB",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "vwJmxAxD7AhWGjwWrl8aIVBnMRln4eiqb3nlg",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-13",
      "authorized_date": "2026-10-12",
      "name": "Trader Joe's",
@@ -2612,8 +2594,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "AX6pVWEBZ7TPyywrV9RLU1ovlwd5Q4C9Ex3p7",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "BMW1p9pZg9cg9aKg1Z7kTznDJyADari4vKAZn",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-14",
      "authorized_date": "2026-10-14",
      "name": "ZELLE PAYMENT FROM ALEX KIM",
@@ -2630,8 +2612,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "7kmlbND9xzIyllQX3wjaTogdwrkjavSdLBrlK",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "RaAkzozM4oIXnJLXeVMWTeLnj9QnkgCaNvXJZ",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-15",
      "authorized_date": "2026-10-14",
      "name": "SWEETGREEN NEW HAVEN",
@@ -2648,8 +2630,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "GXAoz6DNgLTWXX69mqByINEbMakZ3Vf6y7Rpa",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "3rxz3d3bDdTV5xmVnEQltWZz4rAznKSZg1MPn",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-15",
      "authorized_date": "2026-10-15",
      "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
@@ -2666,8 +2648,26 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "en31XDWmGNTprr35e4gxcEyxG36zrjFr13ed1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "634xada61dTgM5GgRJKVT9rv7VEvzZH8QobGk",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
+     "date": "2026-10-16",
+     "authorized_date": "2026-10-15",
+     "name": "COURSERA PLUS SUBSCRIPTION",
+     "merchant_name": "Courser Inc.",
+     "amount": 49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_SERVICES_EDUCATION",
+      "primary": "GENERAL_SERVICES",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "XeRq4B4GDBUoaBkoPQ1eUG7kgDrkApubkWPy8",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-17",
      "authorized_date": "2026-10-16",
      "name": "BLUE STATE COFFEE",
@@ -2684,8 +2684,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "Qy6mMAD3dbfm77QqK3M1IKqXao4Z3bHwElRM7",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "DLGpgVgq9VIGoNnG7dQkh5qQe4yQ1Kh3NPEnp",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-18",
      "authorized_date": "2026-10-17",
      "name": "SWEETGREEN NEW HAVEN",
@@ -2702,8 +2702,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "ndewD9n8GLIJPP1yoZmNfa5xejQMPBTAwMg55",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "xGm9a5aqZ5SDbejD5qE9HlaJ3LKJXjC6MGJNB",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-19",
      "authorized_date": "2026-10-18",
      "name": "EVERSOURCE ENERGY BILL PAY",
@@ -2720,8 +2720,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgVa8nA6WfRbDrZN",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "VjmVdrdL7rhr3Xvr6alJtDyjkp9jz7c9Q8pRL",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-20",
      "authorized_date": "2026-10-19",
      "name": "Trader Joe's",
@@ -2738,8 +2738,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K3PeD5Qqf7gkNP1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "wG1ydJdleJSqn7BqbRePswRqbkmqyXfPz7qL4",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-20",
      "authorized_date": "2026-10-19",
      "name": "Uber",
@@ -2756,8 +2756,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4RP5yW9otlWX67X",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "5Ba3d6db16UGBLQGXVqoh3pNd69NWxf5XP3gq",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-21",
      "authorized_date": "2026-10-20",
      "name": "Starbucks",
@@ -2774,8 +2774,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "bnrgXoWmGdT8lloERpvmsqareZMglDsmQ6rkx",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "dk9jo8oXA8iB4r8Bb6RmfKVDMWrDgehJyWDGR",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-21",
      "authorized_date": "2026-10-20",
      "name": "T-Mobile",
@@ -2792,8 +2792,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7kXJWVbwH4nxVWv",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "JqWAn9nxK9HJ7ZWJ16GvuvKMjl8MqxCBXroZz",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-22",
      "authorized_date": "2026-10-21",
      "name": "AMAZON MKTPL*3W9LJ4",
@@ -2810,26 +2810,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "35odbxA9rlubwwEdgeMlSMX9l4ymJdUZ3V5rb",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
-     "date": "2026-10-22",
-     "authorized_date": "2026-10-21",
-     "name": "APPLE.COM/BILL",
-     "merchant_name": "Apple",
-     "amount": 2.99,
-     "iso_currency_code": "USD",
-     "pending": false,
-     "personal_finance_category": {
-      "confidence_level": "HIGH",
-      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
-      "primary": "ENTERTAINMENT",
-      "version": "v2"
-     },
-     "payment_channel": "online"
-    },
-    {
-     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrvmDJBG5CgzQ8oj",
-     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "transaction_id": "a8G4191XL9hGxLeGoN7BhLX157l1NECZ6W1PK",
+     "account_id": "BMW1p9pZg9cg9aKg1Z7kTzn8NK5RZqt4KNMvx",
      "date": "2026-10-22",
      "authorized_date": "2026-10-22",
      "name": "BANK OF AMERICA CREDIT CARD PMT",
@@ -2846,8 +2828,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9873pgnQt6vKL74",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "k6oLnknDrkHaVKRaLmy5UnRyGDdyLxcL7VzwP",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-22",
      "authorized_date": "2026-10-21",
      "name": "Uber",
@@ -2864,8 +2846,8 @@
      "payment_channel": "online"
     },
     {
-     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8NlMp5GafJenrM1",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "lGopbdbDzdS1Mvy1RqXLTQ9E5gaEzpfpBXEnb",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-24",
      "authorized_date": "2026-10-23",
      "name": "Shake Shack",
@@ -2882,8 +2864,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsneQA5ajdbfZLKVaB",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "qGoWK9KDa9Smgdymjb1LH8RNzPXNvycglDNL9",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-24",
      "authorized_date": "2026-10-23",
      "name": "Starbucks",
@@ -2900,8 +2882,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z6bRydEnCJ7R4rx",
-     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "transaction_id": "KKWGbZbdrZUKrMmK7k48hRJM8p4MlvcRoBGKM",
+     "account_id": "3rxz3d3bDdTV5xmVnEQltWZ1wMpLN7TZ1elgg",
      "date": "2026-10-24",
      "authorized_date": "2026-10-23",
      "name": "Target",
@@ -2923,7 +2905,7 @@
    "institution": "Bank of America",
    "accounts": [
     {
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "name": "BofA Customized Cash Rewards",
      "official_name": "Bank of America Customized Cash Rewards Visa",
      "mask": "2290",
@@ -2938,7 +2920,7 @@
      }
     },
     {
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "name": "BofA Advantage Savings",
      "official_name": "Bank of America Advantage Savings",
      "mask": "5560",
@@ -2955,8 +2937,8 @@
    ],
    "transactions": [
     {
-     "transaction_id": "l8DDnRL6qDTnJeBg57BKsbWM7WzjNrCp8m6zP",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "Waplz9Z86yHJZ1bWRWaBfoLL7qedLnc65KD58",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-07-03",
      "authorized_date": "2026-07-02",
      "name": "CVS",
@@ -2973,8 +2955,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "XkGGW3lxzGIwNrx8KnxMhnRZ5RAl1Ntbqv8MD",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "vx3mAkL5GWfAGgrbNbpmhVXXEL8eXGcqPAEPD",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-07-04",
      "authorized_date": "2026-07-03",
      "name": "TRANSFER FROM CHASE CHK ...0918",
@@ -2991,8 +2973,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "qnDDy6EvNDSGKVZAq6ZxsA96L9vZ5qfgkyBvb",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "AL4MpmgQ7ktExzme6e3yhjJJepdEJrf9kEdkm",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-07-14",
      "authorized_date": "2026-07-13",
      "name": "Shell",
@@ -3009,8 +2991,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "KgddDLjJpdFd3lE6nWEyimgkXgl3EWuRbDrgz",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "GWR8omq3LxHanr8EZEPXhellopkql7u6LyQLL",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-07-20",
      "authorized_date": "2026-07-19",
      "name": "Aldi",
@@ -3027,8 +3009,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "rbDDn6lvjDT5rneDqmedU6KzBKWnXqt7gkNLj",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "nybgwjPpLQCWL5QqgqDPTRAAlnQDAbCAXwnX7",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-07-22",
      "authorized_date": "2026-07-22",
      "name": "PAYMENT - THANK YOU",
@@ -3045,8 +3027,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "z3rrX6dvnrFANwq7oLqxUk4jD4ZxKohlWX6Dp",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "bLwNgql3dztWd5rgngelTjBBXwMVB7fmJQdJg",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-07-30",
      "authorized_date": "2026-07-29",
      "name": "Shell",
@@ -3063,8 +3045,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "B7ZZbozJrZtRpNBdQwByiK7EQ7a3gwt4nxVqQ",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "mmaobPNL1XuV1r4ldlMNFA77kPJV7EFglzWl7",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-07-31",
      "authorized_date": "2026-07-30",
      "name": "Aldi",
@@ -3081,8 +3063,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "DQqqDE3Jxqh1ZjJVaBJKsnkG8k1poBt3xLGld",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "RzZko9PVmyF8n7eq3qzBTezzdrGgzpuaL3BLv",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-07-31",
      "authorized_date": "2026-07-31",
      "name": "INTEREST EARNED",
@@ -3099,8 +3081,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "3mbbAZeMQbc9LeBDZjB4TMXVRXnxkdCZ3V5Ge",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "y4Dv5pg3mWCWb8DmPmyGTgRRGLjWRZC4ZelZy",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-08-02",
      "authorized_date": "2026-08-01",
      "name": "CVS",
@@ -3117,8 +3099,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "VKLLDz8BlLtBGb8gNx8Dux5lR5zAqbu9eZN5N",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "6aLxd7PmrbHXMpRDLDkeS9xxn4QZxLs8qLyqW",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-08-04",
      "authorized_date": "2026-08-03",
      "name": "TRANSFER FROM CHASE CHK ...0918",
@@ -3135,8 +3117,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "xzqqn63vEqIgNRwGQywLTV96v9XBZQt6vKLmv",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "9P54KZeV3MFRxzGJVJyksGDDxKXdDjC43a534",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-08-13",
      "authorized_date": "2026-08-12",
      "name": "Shell",
@@ -3153,8 +3135,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "dQXX6RP1GXhM1JjKpejxSn8o78gABatJenroQ",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "vx3mAkL5GWfAGgrbNbpmhVXXEL8eXGcqPAEPv",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-08-16",
      "authorized_date": "2026-08-15",
      "name": "Aldi",
@@ -3171,8 +3153,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "ajXXbRaQoXhk18mpa4mzhneDgeNGkbtZLKVp3",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "RzZko9PVmyF8n7eq3qzBTezzdrGgzpuaL3BLX",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-08-22",
      "authorized_date": "2026-08-22",
      "name": "PAYMENT - THANK YOU",
@@ -3189,8 +3171,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZvoZMrXnFJ7R48L",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "6aLxd7PmrbHXMpRDLDkeS9xxn4QZxLs8qLyqx",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-08-29",
      "authorized_date": "2026-08-28",
      "name": "Aldi",
@@ -3207,8 +3189,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "wrllm6BvglIzLKAZ6mA5CedgLdyWa6TPj1Kyd",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "X4QqB9M1XVCVaLPxNx4jFG44QoKp4eCbrq3rQ",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-08-31",
      "authorized_date": "2026-08-31",
      "name": "INTEREST EARNED",
@@ -3225,8 +3207,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "NWNNDLQJANI3XrZEg6ZPTK8pW8yNX6tymAkLA",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "X4QqB9M1XVCVaLPxNx4jFG44QoKp4eCbrq3ry",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-08-31",
      "authorized_date": "2026-08-30",
      "name": "Shell",
@@ -3243,8 +3225,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "5qbbmXZkLbiye3pm1gpPILnGgnWyjmc5MQj4e",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "Dg4pVvWRZzcXol7JZJmDS566V7dK6bH3rxkro",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-09-04",
      "authorized_date": "2026-09-03",
      "name": "TRANSFER FROM CHASE CHK ...0918",
@@ -3261,8 +3243,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "PGWWDLMJmWhAzGvprVvMUqApMANmXVtoZyVEL",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "Dg4pVvWRZzcXol7JZJmDS566V7dK6bH3rxkr7",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-06",
      "authorized_date": "2026-09-05",
      "name": "CVS",
@@ -3279,8 +3261,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "jo55nRMvw5U6L8B13PBDUBlA1lwgj3c6qRlom",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "VdwVr9Q1Ryfw3M68G8dLsDnnLaN7nEC9vewvD",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-12",
      "authorized_date": "2026-09-11",
      "name": "Shell",
@@ -3297,8 +3279,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "7rbbDg1o8bIeVwmoNdm7TogBEg7bXvudLBr4J",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "wdxyJopAnXfxnlbALAEpiwxxZNoXx9UPaj5aM",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-13",
      "authorized_date": "2026-09-12",
      "name": "Aldi",
@@ -3315,8 +3297,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "eZXXWRjLbXsXz4klbakdiEy5eyKnljhr13eyZ",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "5dJ36jNxKMfJB8Xpepbwf3eeVwrxeMT5EMWEj",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-14",
      "authorized_date": "2026-09-13",
      "name": "Shell",
@@ -3333,8 +3315,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "QnMMDR1l9MSko38rGl8AhKqxLqPANbtwElRr5",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "JnQA9mzagNC8731qnqedTvrr9yRxr6FBGq9GN",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-20",
      "authorized_date": "2026-09-19",
      "name": "Aldi",
@@ -3351,8 +3333,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "Z3MMWkKadMFgmewpJPwATN4zQ4Kk9XieV19nj",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "knpLk4abZQCGVXLgJgQ9HnqqlZkxq1CL3KX3g",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-22",
      "authorized_date": "2026-09-22",
      "name": "PAYMENT - THANK YOU",
@@ -3369,8 +3351,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "nWDDn6ovBDIEgZqXBAqzUa5MXG4Ql7uAeBd3N",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "Bpv19m8leKiA9G1BpBxWhzvnwe8brPf4R8xrr",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-09-29",
      "authorized_date": "2026-09-28",
      "name": "Aldi",
@@ -3387,8 +3369,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "AjVVEorJqVhb69e5g4e7U1o5X8qdeaI9jv74z",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "rrKA9ZQR8Wty8KXereNQH41kqoRQLjt7W6kEZ",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-09-30",
      "authorized_date": "2026-09-30",
      "name": "INTEREST EARNED",
@@ -3405,8 +3387,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "b7XXWR4Z8XtznpgZMbgBCqagoxyMX9imxw5oQ",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "33LzdNaBlXUG5onBLBJwHWeZdv1JK5cZvnVzB",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-10-03",
      "authorized_date": "2026-10-02",
      "name": "CVS",
@@ -3423,8 +3405,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "G1zzDVaJjzTwZqEzkVEQhNEZG8xkoyC6B4lGQ",
-     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "transaction_id": "zNAR9b8MywizBEgqNqp8CvrwobG9NJflZLXpR",
+     "account_id": "knpLk4abZQCGVXLgJgQ9HnqxLVl7yEcLQRdgl",
      "date": "2026-10-04",
      "authorized_date": "2026-10-03",
      "name": "TRANSFER FROM CHASE CHK ...0918",
@@ -3441,8 +3423,8 @@
      "payment_channel": "other"
     },
     {
-     "transaction_id": "mEDDn6pvrDt7d8lZ5XlkUdrBl64JkKcgm5b4d",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "xaR95JoBbWHxb65wNwpoilPaQR4njwc6XVK8R",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-10-06",
      "authorized_date": "2026-10-05",
      "name": "Aldi",
@@ -3459,8 +3441,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "yBKKn6xwAKH5Pdm7Zqm3Uy45JP8jGpu43Q9KA",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "doNj8rKd43CE4ybj1jaGhKZVabQGeLHJdQn7e",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-10-10",
      "authorized_date": "2026-10-09",
      "name": "Shell",
@@ -3477,8 +3459,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "9B77EopJG7HDVLJeEwJoCWr7aAQXxPT4GmLqg",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "a1P49lAdxrUlxnom1m3QfL4Xb6MdEzfZbQKrQ",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-10-16",
      "authorized_date": "2026-10-15",
      "name": "Shell",
@@ -3495,8 +3477,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "vKDDn6zvpDtqN9byDkbPh6gqPbJ8E4tqzDjvZ",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "4xpBGP4vqkfG1L7j4jnrHjJNnw5E3efJqARBM",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-10-21",
      "authorized_date": "2026-10-20",
      "name": "Aldi",
@@ -3513,8 +3495,8 @@
      "payment_channel": "in store"
     },
     {
-     "transaction_id": "RbMMDlLqRMTD3xqpGaqACXKvP5MGdkualQKPN",
-     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "transaction_id": "NlMmg9dwkjun94VZXZleFrdA61jkx3tyb5A9Q",
+     "account_id": "lbJpdN4WMQixMWRBJBA4iQApznVBEMspwAdGv",
      "date": "2026-10-22",
      "authorized_date": "2026-10-22",
      "name": "PAYMENT - THANK YOU",

@@ -8,7 +8,7 @@ struct AddExpenseSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var amount = ""
     @State private var description = ""
-    @State private var pocket = "Groceries"
+    @State private var pocket = "Food"
     @State private var date = Date()
     @State private var pockets: [String] = []
     @State private var error: String?
@@ -43,7 +43,7 @@ struct AddExpenseSheet: View {
         .tint(Theme.vib400)
         .task {
             if let list: PocketList = try? await api.get("pockets") {
-                pockets = list.pockets.filter { $0.kind == "spending" }.map(\.name)
+                pockets = list.pockets.filter { $0.kind != "investing" }.map(\.name)  // spending + savings pockets
             }
         }
     }
