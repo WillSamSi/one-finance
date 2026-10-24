@@ -1,0 +1,34 @@
+# This repo will be public. Nothing personal goes in it.
+
+# Secrets: only .env.example is committed
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+teller.zip
+plaid_tokens*
+
+# Real (non-sample) data and the working database
+data/real/
+data/*_working.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Xcode
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# Local machine / editor
+.DS_Store
+.claude/

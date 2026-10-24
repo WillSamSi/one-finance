@@ -1,0 +1,8 @@
+# Agents (PydanticAI, gpt-6-luna via Portkey's OpenAI-compatible gateway)
+pydantic-ai-slim[openai]>=2.56,<3
+
+# Reads PORTKEY_API_KEY (and optional Plaid keys) from .env
+python-dotenv>=1.0
+
+# HTTP calls to Plaid and SEC EDGAR
+httpx>=0.27
