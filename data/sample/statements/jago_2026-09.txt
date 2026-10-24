@@ -1,0 +1,19 @@
+PT BANK JAGO Tbk
+KANTONG UTAMA
+NO. REKENING : 1050xxxx7763
+NAMA         : DEMO USER
+PERIODE      : SEPTEMBER 2026
+MATA UANG    : IDR
+
+TANGGAL  KETERANGAN                                               MUTASI              SALDO
+01/09    SALDO AWAL                                                            2,500,000.00
+08/09    PEMBAYARAN GOPAY                                  150,000.00 DB       2,350,000.00
+18/09    TRANSFER MASUK DARI DEMO FAMILY                   400,000.00 CR       2,750,000.00
+30/09    BUNGA                                               3,125.00 CR       2,753,125.00
+
+SALDO AWAL   : 2,500,000.00
+MUTASI CR    : 403,125.00
+MUTASI DB    : 150,000.00
+SALDO AKHIR  : 2,753,125.00
+
+-- JAGO --

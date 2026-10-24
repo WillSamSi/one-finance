@@ -1,0 +1,13 @@
+Website,Order ID,Order Date,Currency,Unit Price,Unit Price Tax,Shipping Charge,Total Discounts,Total Owed,Shipment Item Subtotal,Shipment Item Subtotal Tax,ASIN,Product Condition,Quantity,Payment Instrument Type,Order Status,Shipment Status,Ship Date,Product Name
+Amazon.com,113-4402871-5519420,2026-07-08T21:17:05Z,USD,23.97,1.52,0,0,25.49,23.97,1.52,B0DQ8V3K1M,New,1,Visa - 7313,Closed,Shipped,2026-07-09T09:00:00Z,Anker Portable Charger 10000mAh
+Amazon.com,113-9917345-2208163,2026-07-21T19:35:09Z,USD,13.53,0.86,0,0,14.39,13.53,0.86,0735211299,New,1,Visa - 7313,Closed,Shipped,2026-07-22T09:00:00Z,Atomic Habits (Paperback)
+Amazon.com,113-9917345-2208163,2026-07-21T19:35:09Z,USD,12.11,0.77,0,0,12.88,12.11,0.77,0857197681,New,1,Visa - 7313,Closed,Shipped,2026-07-22T09:00:00Z,The Psychology of Money (Paperback)
+Amazon.com,114-0283316-7741902,2026-08-04T21:21:48Z,USD,18.80,1.19,0,0,19.99,18.80,1.19,B0CW2N7Z4R,New,1,Visa - 7313,Closed,Shipped,2026-08-05T09:00:00Z,"Replacement Ear Tips for Wireless Earbuds, 3 Sizes"
+Amazon.com,114-6651209-3380127,2026-08-19T09:29:22Z,USD,13.44,0.85,0,0,14.29,13.44,0.85,B00MNV8E0C,New,1,Visa - 7313,Closed,Shipped,2026-08-20T09:00:00Z,"Amazon Basics AA Batteries, 20 Pack"
+Amazon.com,114-6651209-3380127,2026-08-19T09:29:22Z,USD,8.90,0.57,0,0,9.47,8.90,0.57,B073XR4X72,New,1,Visa - 7313,Closed,Shipped,2026-08-20T09:00:00Z,"Command Small Picture Hanging Strips, 12 Pairs"
+Amazon.com,113-7720518-9014466,2026-09-10T16:30:46Z,USD,39.47,2.51,0,0,41.98,39.47,2.51,B0C447BYQR,New,1,Visa - 7313,Closed,Shipped,2026-09-11T09:00:00Z,Logitech MX Anywhere 3S Wireless Mouse
+Amazon.com,113-7720518-9014466,2026-09-10T16:30:46Z,USD,21.62,1.37,0,0,22.99,21.62,1.37,8883701127,New,1,Visa - 7313,Closed,Shipped,2026-09-13T09:00:00Z,"Moleskine Classic Notebook, Large, Ruled"
+Amazon.com,112-3369040-6257731,2026-09-22T22:53:21Z,USD,17.39,1.10,0,0,18.49,17.39,1.10,B07KX4FG8P,New,1,Visa - 7313,Closed,Shipped,2026-09-23T09:00:00Z,"Ziploc Storage Bags Variety Pack, 347 Count"
+Amazon.com,113-5502167-8820354,2026-10-06T19:11:17Z,USD,15.98,1.01,0,0,16.99,15.98,1.01,B0BL8QXN2D,New,1,Visa - 7313,Closed,Shipped,2026-10-07T09:00:00Z,"Fabric Case for E-Reader, 6.8 inch, Charcoal"
+Amazon.com,114-8104473-1196628,2026-10-20T17:45:01Z,USD,26.28,1.67,0,0,27.95,26.28,1.67,B01LP0U5X0,New,1,Visa - 7313,Closed,Shipped,2026-10-21T09:00:00Z,"Non-Slip Yoga Mat, 6mm, Purple"
+Amazon.com,112-2290618-4473005,2026-10-22T09:09:35Z,USD,32.90,2.09,0,0,34.99,Not Available,Not Available,B08LYJ7Q1M,New,1,Visa - 7313,New,Not Yet Shipped,Not Available,LED Desk Lamp with USB Charging Port

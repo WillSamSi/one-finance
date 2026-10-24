@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Groceries",
+    "kind": "spending",
+    "monthly_budget": 450,
+    "description": "Supermarkets and food at home"
+  },
+  {
+    "name": "Dining",
+    "kind": "spending",
+    "monthly_budget": 250,
+    "description": "Restaurants, cafes, coffee"
+  },
+  {
+    "name": "Transport",
+    "kind": "spending",
+    "monthly_budget": 150,
+    "description": "Rides, gas, transit"
+  },
+  {
+    "name": "Shopping",
+    "kind": "spending",
+    "monthly_budget": 200,
+    "description": "Household goods, Amazon, general shopping"
+  },
+  {
+    "name": "Subscriptions",
+    "kind": "spending",
+    "monthly_budget": 40,
+    "description": "Streaming, music, cloud storage"
+  },
+  {
+    "name": "Housing & Utilities",
+    "kind": "spending",
+    "monthly_budget": 1650,
+    "description": "Rent, electricity, phone"
+  },
+  {
+    "name": "Health",
+    "kind": "spending",
+    "monthly_budget": 60,
+    "description": "Pharmacy and health"
+  },
+  {
+    "name": "Emergency Fund",
+    "kind": "saving",
+    "goal_amount": 15000,
+    "description": "Six months of essentials"
+  },
+  {
+    "name": "Indonesia Savings",
+    "kind": "saving",
+    "goal_amount": 50000000,
+    "currency": "IDR",
+    "description": "Money kept in Indonesia"
+  },
+  {
+    "name": "Investing",
+    "kind": "investing",
+    "monthly_budget": 500,
+    "description": "Monthly contribution to the brokerage"
+  }
+]

@@ -1,0 +1,21 @@
+PT BANK MANDIRI (PERSERO) Tbk
+TABUNGAN MANDIRI
+NO. REKENING : 137-00-xxxx-2290-8
+NAMA         : DEMO USER
+PERIODE      : 01/09/2026 - 30/09/2026
+MATA UANG    : IDR
+
+TANGGAL  KETERANGAN                                               MUTASI              SALDO
+01/09    SALDO AWAL                                                            5,300,000.00
+10/09    BI-FAST CR DARI BCA DEMO USER                   1,000,000.00 CR       6,300,000.00
+12/09    PEMBAYARAN TOKOPEDIA INV/20260912/MPL             289,000.00 DB       6,011,000.00
+25/09    PEMBELIAN TOKEN PLN 5412xxxx                      202,500.00 DB       5,808,500.00
+30/09    BIAYA ADMINISTRASI                                 12,500.00 DB       5,796,000.00
+30/09    BUNGA                                               2,100.00 CR       5,798,100.00
+
+SALDO AWAL   : 5,300,000.00
+MUTASI CR    : 1,002,100.00
+MUTASI DB    : 504,000.00
+SALDO AKHIR  : 5,798,100.00
+
+-- MANDIRI --

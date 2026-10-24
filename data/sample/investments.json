@@ -1,0 +1,113 @@
+{
+  "note": "Sample data, made up. Shaped like SnapTrade's /accounts, /positions and /balances responses.",
+  "as_of": "2026-10-23",
+  "accounts": [
+    {
+      "id": "snaptrade-fidelity-individual",
+      "institution_name": "Fidelity",
+      "name": "Fidelity Individual",
+      "number": "X94721",
+      "balance": {
+        "total": {
+          "amount": 19462.56,
+          "currency": "USD"
+        }
+      }
+    }
+  ],
+  "positions": [
+    {
+      "symbol": {
+        "symbol": {
+          "symbol": "AAPL",
+          "description": "Apple Inc."
+        }
+      },
+      "units": 12,
+      "price": 248.3,
+      "average_purchase_price": 189.4
+    },
+    {
+      "symbol": {
+        "symbol": {
+          "symbol": "MSFT",
+          "description": "Microsoft Corporation"
+        }
+      },
+      "units": 6.95,
+      "price": 512.75,
+      "average_purchase_price": 408.6
+    },
+    {
+      "symbol": {
+        "symbol": {
+          "symbol": "NVDA",
+          "description": "NVIDIA Corporation"
+        }
+      },
+      "units": 22.6,
+      "price": 186.4,
+      "average_purchase_price": 121.35
+    },
+    {
+      "symbol": {
+        "symbol": {
+          "symbol": "COST",
+          "description": "Costco Wholesale Corporation"
+        }
+      },
+      "units": 3,
+      "price": 968.2,
+      "average_purchase_price": 841.1
+    },
+    {
+      "symbol": {
+        "symbol": {
+          "symbol": "VOO",
+          "description": "Vanguard S&P 500 ETF"
+        }
+      },
+      "units": 8.8,
+      "price": 612.45,
+      "average_purchase_price": 528.9
+    }
+  ],
+  "balances": [
+    {
+      "currency": {
+        "code": "USD"
+      },
+      "cash": 412.55
+    }
+  ],
+  "activities": [
+    {
+      "trade_date": "2026-07-08",
+      "type": "BUY",
+      "symbol": "VOO",
+      "units": 0.8,
+      "price": 596.1
+    },
+    {
+      "trade_date": "2026-08-07",
+      "type": "BUY",
+      "symbol": "NVDA",
+      "units": 2.6,
+      "price": 181.2
+    },
+    {
+      "trade_date": "2026-09-08",
+      "type": "BUY",
+      "symbol": "AAPL",
+      "units": 2,
+      "price": 241.85
+    },
+    {
+      "trade_date": "2026-10-07",
+      "type": "BUY",
+      "symbol": "MSFT",
+      "units": 0.95,
+      "price": 508.4
+    }
+  ]
+}

@@ -1,8 +1,15 @@
 # Agents (PydanticAI, gpt-6-luna via Portkey's OpenAI-compatible gateway)
 pydantic-ai-slim[openai]>=2.56,<3
 
+# API for the iOS app
+fastapi>=0.115
+uvicorn[standard]>=0.30
+
 # Reads PORTKEY_API_KEY (and optional Plaid keys) from .env
 python-dotenv>=1.0
 
 # HTTP calls to Plaid and SEC EDGAR
 httpx>=0.27
+
+# Draws the sample receipt photos (scripts/make_sample_data.py)
+pillow>=10.1

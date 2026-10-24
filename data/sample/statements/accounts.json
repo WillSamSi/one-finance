@@ -1,0 +1,26 @@
+{
+  "bca": {
+    "institution": "BCA",
+    "name": "BCA Tahapan",
+    "mask": "4471",
+    "currency": "IDR",
+    "closing_balance": 20432512.0,
+    "period": "2026-09"
+  },
+  "mandiri": {
+    "institution": "Mandiri",
+    "name": "Mandiri Tabungan",
+    "mask": "2908",
+    "currency": "IDR",
+    "closing_balance": 5798100.0,
+    "period": "2026-09"
+  },
+  "jago": {
+    "institution": "Jago",
+    "name": "Jago Kantong Utama",
+    "mask": "7763",
+    "currency": "IDR",
+    "closing_balance": 2753125.0,
+    "period": "2026-09"
+  }
+}

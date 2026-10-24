@@ -1,0 +1,1153 @@
+{
+ "seed": "one-finance-chase",
+ "roll_dates_forward": false,
+ "override_accounts": [
+  {
+   "type": "depository",
+   "subtype": "checking",
+   "starting_balance": 4382.17,
+   "currency": "USD",
+   "meta": {
+    "name": "Chase Total Checking",
+    "official_name": "Chase Total Checking",
+    "mask": "0918"
+   },
+   "transactions": [
+    {
+     "date_transacted": "2026-07-01",
+     "date_posted": "2026-07-02",
+     "amount": 1450.0,
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-01",
+     "date_posted": "2026-07-01",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-03",
+     "date_posted": "2026-07-04",
+     "amount": 800.0,
+     "description": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-05",
+     "date_posted": "2026-07-06",
+     "amount": 500.0,
+     "description": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-05",
+     "date_posted": "2026-07-05",
+     "amount": -48.5,
+     "description": "ZELLE PAYMENT FROM ALEX KIM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-15",
+     "date_posted": "2026-07-15",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-18",
+     "date_posted": "2026-07-19",
+     "amount": 89.38,
+     "description": "EVERSOURCE ENERGY BILL PAY",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-20",
+     "date_posted": "2026-07-21",
+     "amount": 45.0,
+     "description": "T-MOBILE AUTOPAY WEB",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-22",
+     "date_posted": "2026-07-22",
+     "amount": 236.15,
+     "description": "BANK OF AMERICA CREDIT CARD PMT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-25",
+     "date_posted": "2026-07-25",
+     "amount": 812.4,
+     "description": "CHASE CREDIT CRD AUTOPAY PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-01",
+     "date_posted": "2026-08-02",
+     "amount": 1450.0,
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-01",
+     "date_posted": "2026-08-01",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-03",
+     "date_posted": "2026-08-04",
+     "amount": 800.0,
+     "description": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-05",
+     "date_posted": "2026-08-06",
+     "amount": 500.0,
+     "description": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-15",
+     "date_posted": "2026-08-15",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-18",
+     "date_posted": "2026-08-19",
+     "amount": 90.22,
+     "description": "EVERSOURCE ENERGY BILL PAY",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-20",
+     "date_posted": "2026-08-21",
+     "amount": 45.0,
+     "description": "T-MOBILE AUTOPAY WEB",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-22",
+     "date_posted": "2026-08-22",
+     "amount": 169.57,
+     "description": "BANK OF AMERICA CREDIT CARD PMT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-25",
+     "date_posted": "2026-08-25",
+     "amount": 534.36,
+     "description": "CHASE CREDIT CRD AUTOPAY PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-01",
+     "date_posted": "2026-09-02",
+     "amount": 1450.0,
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-01",
+     "date_posted": "2026-09-01",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-03",
+     "date_posted": "2026-09-04",
+     "amount": 800.0,
+     "description": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-05",
+     "date_posted": "2026-09-06",
+     "amount": 500.0,
+     "description": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-08",
+     "date_posted": "2026-09-08",
+     "amount": -35.0,
+     "description": "ZELLE PAYMENT FROM ALEX KIM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-15",
+     "date_posted": "2026-09-15",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-18",
+     "date_posted": "2026-09-19",
+     "amount": 65.25,
+     "description": "EVERSOURCE ENERGY BILL PAY",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-20",
+     "date_posted": "2026-09-21",
+     "amount": 45.0,
+     "description": "T-MOBILE AUTOPAY WEB",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-22",
+     "date_posted": "2026-09-22",
+     "amount": 165.55,
+     "description": "BANK OF AMERICA CREDIT CARD PMT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-25",
+     "date_posted": "2026-09-25",
+     "amount": 618.36,
+     "description": "CHASE CREDIT CRD AUTOPAY PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-01",
+     "date_posted": "2026-10-02",
+     "amount": 1450.0,
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-01",
+     "date_posted": "2026-10-01",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-03",
+     "date_posted": "2026-10-04",
+     "amount": 800.0,
+     "description": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-05",
+     "date_posted": "2026-10-06",
+     "amount": 500.0,
+     "description": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-14",
+     "date_posted": "2026-10-14",
+     "amount": -48.5,
+     "description": "ZELLE PAYMENT FROM ALEX KIM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-15",
+     "date_posted": "2026-10-15",
+     "amount": -2150.0,
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-18",
+     "date_posted": "2026-10-19",
+     "amount": 58.28,
+     "description": "EVERSOURCE ENERGY BILL PAY",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-20",
+     "date_posted": "2026-10-21",
+     "amount": 45.0,
+     "description": "T-MOBILE AUTOPAY WEB",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-22",
+     "date_posted": "2026-10-22",
+     "amount": 203.19,
+     "description": "BANK OF AMERICA CREDIT CARD PMT",
+     "currency": "USD"
+    }
+   ]
+  },
+  {
+   "type": "credit",
+   "subtype": "credit card",
+   "starting_balance": 1314.5,
+   "currency": "USD",
+   "meta": {
+    "name": "Chase Freedom Unlimited",
+    "official_name": "Chase Freedom Unlimited Visa",
+    "mask": "7313",
+    "limit": 8000
+   },
+   "transactions": [
+    {
+     "date_transacted": "2026-07-02",
+     "date_posted": "2026-07-03",
+     "amount": 4.93,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-03",
+     "date_posted": "2026-07-04",
+     "amount": 6.07,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-05",
+     "date_posted": "2026-07-06",
+     "amount": 21.18,
+     "description": "SHAKE SHACK NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-05",
+     "date_posted": "2026-07-06",
+     "amount": 41.64,
+     "description": "WAL-MART #2397 WEST HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-06",
+     "date_posted": "2026-07-07",
+     "amount": 16.12,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-06",
+     "date_posted": "2026-07-07",
+     "amount": 46.29,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-07",
+     "date_posted": "2026-07-08",
+     "amount": 5.8,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-08",
+     "date_posted": "2026-07-09",
+     "amount": 15.49,
+     "description": "NETFLIX.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-09",
+     "date_posted": "2026-07-10",
+     "amount": 25.49,
+     "description": "AMAZON MKTPL*2Q4WT7",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-09",
+     "date_posted": "2026-07-10",
+     "amount": 5.01,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-12",
+     "date_posted": "2026-07-13",
+     "amount": 11.99,
+     "description": "SPOTIFY USA",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-13",
+     "date_posted": "2026-07-14",
+     "amount": 7.4,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-13",
+     "date_posted": "2026-07-14",
+     "amount": 33.22,
+     "description": "TARGET        T-1931 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-13",
+     "date_posted": "2026-07-14",
+     "amount": 39.86,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-14",
+     "date_posted": "2026-07-15",
+     "amount": 5.97,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-17",
+     "date_posted": "2026-07-18",
+     "amount": 5.92,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-17",
+     "date_posted": "2026-07-18",
+     "amount": 14.91,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-19",
+     "date_posted": "2026-07-20",
+     "amount": 13.52,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-20",
+     "date_posted": "2026-07-21",
+     "amount": 56.77,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-21",
+     "date_posted": "2026-07-22",
+     "amount": 2.99,
+     "description": "APPLE.COM/BILL",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-22",
+     "date_posted": "2026-07-23",
+     "amount": 27.27,
+     "description": "AMAZON MKTPL*5H0QX2",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-25",
+     "date_posted": "2026-07-25",
+     "amount": -812.4,
+     "description": "AUTOMATIC PAYMENT - THANK YOU",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-25",
+     "date_posted": "2026-07-26",
+     "amount": 14.35,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-27",
+     "date_posted": "2026-07-28",
+     "amount": 51.46,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-28",
+     "date_posted": "2026-07-29",
+     "amount": 26.3,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-29",
+     "date_posted": "2026-07-30",
+     "amount": 18.65,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-30",
+     "date_posted": "2026-07-31",
+     "amount": 8.77,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-31",
+     "date_posted": "2026-08-01",
+     "amount": 6.99,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-01",
+     "date_posted": "2026-08-02",
+     "amount": 8.68,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-01",
+     "date_posted": "2026-08-02",
+     "amount": 23.75,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-02",
+     "date_posted": "2026-08-03",
+     "amount": 67.61,
+     "description": "TARGET        T-1931 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-03",
+     "date_posted": "2026-08-04",
+     "amount": 41.37,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-05",
+     "date_posted": "2026-08-06",
+     "amount": 19.99,
+     "description": "AMAZON MKTPL*8C3NB1",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-05",
+     "date_posted": "2026-08-06",
+     "amount": 16.4,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-07",
+     "date_posted": "2026-08-08",
+     "amount": 7.67,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-08",
+     "date_posted": "2026-08-09",
+     "amount": 15.49,
+     "description": "NETFLIX.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-08",
+     "date_posted": "2026-08-09",
+     "amount": 23.13,
+     "description": "SHAKE SHACK NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-09",
+     "date_posted": "2026-08-10",
+     "amount": 4.8,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-09",
+     "date_posted": "2026-08-10",
+     "amount": 8.67,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-09",
+     "date_posted": "2026-08-10",
+     "amount": 15.05,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-10",
+     "date_posted": "2026-08-11",
+     "amount": 57.92,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-11",
+     "date_posted": "2026-08-12",
+     "amount": 16.33,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-11",
+     "date_posted": "2026-08-12",
+     "amount": 23.78,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-12",
+     "date_posted": "2026-08-13",
+     "amount": 11.99,
+     "description": "SPOTIFY USA",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-12",
+     "date_posted": "2026-08-13",
+     "amount": 5.63,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-13",
+     "date_posted": "2026-08-14",
+     "amount": 16.99,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-17",
+     "date_posted": "2026-08-18",
+     "amount": 41.39,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-19",
+     "date_posted": "2026-08-20",
+     "amount": 6.44,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-20",
+     "date_posted": "2026-08-21",
+     "amount": 23.76,
+     "description": "AMAZON MKTPL*1V7KE9",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-21",
+     "date_posted": "2026-08-22",
+     "amount": 2.99,
+     "description": "APPLE.COM/BILL",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-24",
+     "date_posted": "2026-08-25",
+     "amount": 38.31,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-25",
+     "date_posted": "2026-08-25",
+     "amount": -534.36,
+     "description": "AUTOMATIC PAYMENT - THANK YOU",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-25",
+     "date_posted": "2026-08-26",
+     "amount": 65.18,
+     "description": "WAL-MART #2397 WEST HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-26",
+     "date_posted": "2026-08-27",
+     "amount": 8.87,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-29",
+     "date_posted": "2026-08-30",
+     "amount": 6.08,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-29",
+     "date_posted": "2026-08-30",
+     "amount": 7.35,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-31",
+     "date_posted": "2026-09-01",
+     "amount": 32.74,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-02",
+     "date_posted": "2026-09-03",
+     "amount": 7.48,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-05",
+     "date_posted": "2026-09-06",
+     "amount": 7.83,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-06",
+     "date_posted": "2026-09-07",
+     "amount": 52.82,
+     "description": "TARGET        T-1931 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-08",
+     "date_posted": "2026-09-09",
+     "amount": 15.49,
+     "description": "NETFLIX.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-08",
+     "date_posted": "2026-09-09",
+     "amount": 7.11,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-09",
+     "date_posted": "2026-09-10",
+     "amount": 38.17,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-10",
+     "date_posted": "2026-09-11",
+     "amount": 4.8,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-10",
+     "date_posted": "2026-09-11",
+     "amount": 7.93,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-10",
+     "date_posted": "2026-09-11",
+     "amount": 14.46,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-11",
+     "date_posted": "2026-09-12",
+     "amount": 41.98,
+     "description": "AMAZON MKTPL*4K8RT2",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-11",
+     "date_posted": "2026-09-12",
+     "amount": 13.82,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-12",
+     "date_posted": "2026-09-13",
+     "amount": 42.75,
+     "description": "MECHA NOODLE BAR NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-12",
+     "date_posted": "2026-09-13",
+     "amount": 11.99,
+     "description": "SPOTIFY USA",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-12",
+     "date_posted": "2026-09-13",
+     "amount": 11.99,
+     "description": "SPOTIFY USA",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-13",
+     "date_posted": "2026-09-14",
+     "amount": 22.99,
+     "description": "AMAZON MKTPL*9B1ZA0",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-13",
+     "date_posted": "2026-09-14",
+     "amount": 12.93,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-14",
+     "date_posted": "2026-09-15",
+     "amount": 18.83,
+     "description": "SHAKE SHACK NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-14",
+     "date_posted": "2026-09-15",
+     "amount": 31.35,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-14",
+     "date_posted": "2026-09-15",
+     "amount": 63.4,
+     "description": "WAL-MART #2397 WEST HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-18",
+     "date_posted": "2026-09-19",
+     "amount": 6.83,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-19",
+     "date_posted": "2026-09-20",
+     "amount": 6.03,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-20",
+     "date_posted": "2026-09-21",
+     "amount": 8.4,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-21",
+     "date_posted": "2026-09-22",
+     "amount": 2.99,
+     "description": "APPLE.COM/BILL",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-21",
+     "date_posted": "2026-09-22",
+     "amount": 56.46,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-22",
+     "date_posted": "2026-09-23",
+     "amount": 8.3,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-22",
+     "date_posted": "2026-09-23",
+     "amount": 14.92,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-22",
+     "date_posted": "2026-09-23",
+     "amount": 15.22,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-23",
+     "date_posted": "2026-09-24",
+     "amount": 18.49,
+     "description": "AMAZON.COM*2M5HX1",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-23",
+     "date_posted": "2026-09-24",
+     "amount": 8.43,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-24",
+     "date_posted": "2026-09-25",
+     "amount": 8.6,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-25",
+     "date_posted": "2026-09-25",
+     "amount": -618.36,
+     "description": "AUTOMATIC PAYMENT - THANK YOU",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-26",
+     "date_posted": "2026-09-27",
+     "amount": 15.02,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-26",
+     "date_posted": "2026-09-27",
+     "amount": 86.4,
+     "description": "UNION LEAGUE CAFE NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-27",
+     "date_posted": "2026-09-28",
+     "amount": 29.99,
+     "description": "AMAZON MKTPL*7Q2LM8",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-27",
+     "date_posted": "2026-09-28",
+     "amount": 20.7,
+     "description": "SHAKE SHACK NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-27",
+     "date_posted": "2026-09-28",
+     "amount": 8.86,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-28",
+     "date_posted": "2026-09-29",
+     "amount": 17.52,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-28",
+     "date_posted": "2026-09-29",
+     "amount": 51.24,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-29",
+     "date_posted": "2026-09-30",
+     "amount": 20.38,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-01",
+     "date_posted": "2026-10-02",
+     "amount": 8.79,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-04",
+     "date_posted": "2026-10-05",
+     "amount": 7.8,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-05",
+     "date_posted": "2026-10-06",
+     "amount": 4.88,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-05",
+     "date_posted": "2026-10-06",
+     "amount": 14.36,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-05",
+     "date_posted": "2026-10-06",
+     "amount": 28.29,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-06",
+     "date_posted": "2026-10-07",
+     "amount": 8.86,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-07",
+     "date_posted": "2026-10-08",
+     "amount": 16.99,
+     "description": "AMAZON MKTPL*6T2PD5",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-07",
+     "date_posted": "2026-10-08",
+     "amount": 56.12,
+     "description": "WAL-MART #2397 WEST HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-08",
+     "date_posted": "2026-10-09",
+     "amount": 15.49,
+     "description": "NETFLIX.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-08",
+     "date_posted": "2026-10-09",
+     "amount": 4.57,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-08",
+     "date_posted": "2026-10-09",
+     "amount": 8.58,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-10",
+     "date_posted": "2026-10-11",
+     "amount": 27.4,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-12",
+     "date_posted": "2026-10-13",
+     "amount": 11.99,
+     "description": "SPOTIFY USA",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-12",
+     "date_posted": "2026-10-13",
+     "amount": 51.36,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-14",
+     "date_posted": "2026-10-15",
+     "amount": 14.62,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-16",
+     "date_posted": "2026-10-17",
+     "amount": 4.97,
+     "description": "SQ *BLUE STATE COFFEE",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-17",
+     "date_posted": "2026-10-18",
+     "amount": 14.95,
+     "description": "SWEETGREEN NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-19",
+     "date_posted": "2026-10-20",
+     "amount": 57.13,
+     "description": "TRADER JOE S #523 ORANGE CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-19",
+     "date_posted": "2026-10-20",
+     "amount": 19.29,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-20",
+     "date_posted": "2026-10-21",
+     "amount": 7.87,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-21",
+     "date_posted": "2026-10-22",
+     "amount": 27.95,
+     "description": "AMAZON MKTPL*3W9LJ4",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-21",
+     "date_posted": "2026-10-22",
+     "amount": 2.99,
+     "description": "APPLE.COM/BILL",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-21",
+     "date_posted": "2026-10-22",
+     "amount": 11.29,
+     "description": "UBER   *TRIP HELP.UBER.COM",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-23",
+     "date_posted": "2026-10-24",
+     "amount": 20.56,
+     "description": "SHAKE SHACK NEW HAVEN",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-23",
+     "date_posted": "2026-10-24",
+     "amount": 5.25,
+     "description": "STARBUCKS STORE 08812 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-23",
+     "date_posted": "2026-10-24",
+     "amount": 29.25,
+     "description": "TARGET        T-1931 NEW HAVEN CT",
+     "currency": "USD"
+    }
+   ]
+  }
+ ]
+}

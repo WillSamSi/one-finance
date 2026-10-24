@@ -1,0 +1,23 @@
+PT BANK CENTRAL ASIA Tbk
+REKENING TAHAPAN
+NO. REKENING : 0281-xx-4471
+NAMA         : DEMO USER
+PERIODE      : SEPTEMBER 2026
+MATA UANG    : IDR
+
+TANGGAL  KETERANGAN                                               MUTASI              SALDO
+01/09    SALDO AWAL                                                           17,250,000.00
+02/09    TRSF E-BANKING CR 0209/FTSCY/WS95051 DEMO FAMILY    5,000,000.00 CR      22,250,000.00
+05/09    TRSF E-BANKING DB TOP UP GOPAY 0812xxxx           500,000.00 DB      21,750,000.00
+10/09    BI-FAST DB KE MANDIRI DEMO USER                 1,000,000.00 DB      20,750,000.00
+15/09    KARTU DEBIT INDOMARET MEDAN                       156,800.00 DB      20,593,200.00
+20/09    TRSF E-BANKING DB BPJS KESEHATAN                  150,000.00 DB      20,443,200.00
+28/09    BIAYA ADM                                          15,000.00 DB      20,428,200.00
+30/09    BUNGA                                               4,312.00 CR      20,432,512.00
+
+SALDO AWAL   : 17,250,000.00
+MUTASI CR    : 5,004,312.00
+MUTASI DB    : 1,821,800.00
+SALDO AKHIR  : 20,432,512.00
+
+-- BCA --

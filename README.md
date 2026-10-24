@@ -28,3 +28,40 @@ Check that the keys are found (shows set/missing, never the values):
 ```bash
 .venv/bin/python -m backend.config
 ```
+
+## Run
+
+1. Start the backend (from this folder):
+
+```bash
+.venv/bin/uvicorn backend.main:app --port 8000
+```
+
+2. Open `ios/OneFinance.xcodeproj` in Xcode, pick an iPhone simulator, and press **Run** (⌘R). The app talks to the backend at `http://localhost:8000`.
+
+## Sample data
+
+**All data in this repo is made up.** No real accounts, people or purchases. It's one consistent story (see [`data/sample/STORY.md`](data/sample/STORY.md)), with a few problems planted in September 2026 for the AI to find.
+
+- Without Plaid keys (as on a grader's machine), the app uses `data/sample.db`, built from the saved Plaid sandbox output. The AI agents still run for real on it.
+- The app works on `data/one_finance_working.db`, a copy of the sample. Start over by deleting it, or with `.venv/bin/python -c "from backend import db; db.reset_working_db()"`.
+
+To rebuild the sample data from scratch:
+
+```bash
+.venv/bin/python -m scripts.make_sample_data
+```
+
+```bash
+.venv/bin/python -m scripts.pull_plaid
+```
+
+```bash
+.venv/bin/python -m scripts.fetch_sec
+```
+
+```bash
+.venv/bin/python -m scripts.build_sample_db
+```
+
+`pull_plaid` needs Plaid sandbox keys and `fetch_sec` needs `SEC_USER_AGENT`; both are optional, since their output is already saved in `data/sample/`.

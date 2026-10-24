@@ -1,0 +1,257 @@
+{
+ "seed": "one-finance-bofa",
+ "roll_dates_forward": false,
+ "override_accounts": [
+  {
+   "type": "depository",
+   "subtype": "savings",
+   "starting_balance": 11840.62,
+   "currency": "USD",
+   "meta": {
+    "name": "BofA Advantage Savings",
+    "official_name": "Bank of America Advantage Savings",
+    "mask": "5560"
+   },
+   "transactions": [
+    {
+     "date_transacted": "2026-07-03",
+     "date_posted": "2026-07-04",
+     "amount": -800.0,
+     "description": "TRANSFER FROM CHASE CHK ...0918",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-31",
+     "date_posted": "2026-07-31",
+     "amount": -0.43,
+     "description": "INTEREST EARNED",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-03",
+     "date_posted": "2026-08-04",
+     "amount": -800.0,
+     "description": "TRANSFER FROM CHASE CHK ...0918",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-31",
+     "date_posted": "2026-08-31",
+     "amount": -0.42,
+     "description": "INTEREST EARNED",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-03",
+     "date_posted": "2026-09-04",
+     "amount": -800.0,
+     "description": "TRANSFER FROM CHASE CHK ...0918",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-30",
+     "date_posted": "2026-09-30",
+     "amount": -0.4,
+     "description": "INTEREST EARNED",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-03",
+     "date_posted": "2026-10-04",
+     "amount": -800.0,
+     "description": "TRANSFER FROM CHASE CHK ...0918",
+     "currency": "USD"
+    }
+   ]
+  },
+  {
+   "type": "credit",
+   "subtype": "credit card",
+   "starting_balance": 139.0,
+   "currency": "USD",
+   "meta": {
+    "name": "BofA Customized Cash Rewards",
+    "official_name": "Bank of America Customized Cash Rewards Visa",
+    "mask": "2290",
+    "limit": 5000
+   },
+   "transactions": [
+    {
+     "date_transacted": "2026-07-02",
+     "date_posted": "2026-07-03",
+     "amount": 23.01,
+     "description": "CVS/PHARMACY #00851 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-13",
+     "date_posted": "2026-07-14",
+     "amount": 37.52,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-19",
+     "date_posted": "2026-07-20",
+     "amount": 20.52,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-22",
+     "date_posted": "2026-07-22",
+     "amount": -236.15,
+     "description": "PAYMENT - THANK YOU",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-29",
+     "date_posted": "2026-07-30",
+     "amount": 44.4,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-07-30",
+     "date_posted": "2026-07-31",
+     "amount": 44.12,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-01",
+     "date_posted": "2026-08-02",
+     "amount": 17.51,
+     "description": "CVS/PHARMACY #00851 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-12",
+     "date_posted": "2026-08-13",
+     "amount": 32.73,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-15",
+     "date_posted": "2026-08-16",
+     "amount": 30.3,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-22",
+     "date_posted": "2026-08-22",
+     "amount": -169.57,
+     "description": "PAYMENT - THANK YOU",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-28",
+     "date_posted": "2026-08-29",
+     "amount": 42.67,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-08-30",
+     "date_posted": "2026-08-31",
+     "amount": 42.34,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-05",
+     "date_posted": "2026-09-06",
+     "amount": 21.28,
+     "description": "CVS/PHARMACY #00851 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-11",
+     "date_posted": "2026-09-12",
+     "amount": 43.51,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-12",
+     "date_posted": "2026-09-13",
+     "amount": 42.44,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-13",
+     "date_posted": "2026-09-14",
+     "amount": 40.63,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-19",
+     "date_posted": "2026-09-20",
+     "amount": 27.64,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-22",
+     "date_posted": "2026-09-22",
+     "amount": -165.55,
+     "description": "PAYMENT - THANK YOU",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-09-28",
+     "date_posted": "2026-09-29",
+     "amount": 27.69,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-02",
+     "date_posted": "2026-10-03",
+     "amount": 14.82,
+     "description": "CVS/PHARMACY #00851 NEW HAVEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-05",
+     "date_posted": "2026-10-06",
+     "amount": 25.78,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-09",
+     "date_posted": "2026-10-10",
+     "amount": 38.47,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-15",
+     "date_posted": "2026-10-16",
+     "amount": 38.94,
+     "description": "SHELL OIL 57444219 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-20",
+     "date_posted": "2026-10-21",
+     "amount": 20.99,
+     "description": "ALDI 72046 HAMDEN CT",
+     "currency": "USD"
+    },
+    {
+     "date_transacted": "2026-10-22",
+     "date_posted": "2026-10-22",
+     "amount": -203.19,
+     "description": "PAYMENT - THANK YOU",
+     "currency": "USD"
+    }
+   ]
+  }
+ ]
+}

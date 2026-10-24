@@ -1,0 +1,3536 @@
+{
+ "note": "Made-up data. Plaid sandbox output for the custom users in data/plaid_sandbox/.",
+ "pulled_at": "2026-10-24T21:56:58+00:00",
+ "users": {
+  "chase": {
+   "institution": "Chase",
+   "accounts": [
+    {
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "name": "Chase Total Checking",
+     "official_name": "Chase Total Checking",
+     "mask": "0918",
+     "type": "depository",
+     "subtype": "checking",
+     "balances": {
+      "available": 4382.17,
+      "current": 4382.17,
+      "iso_currency_code": "USD",
+      "limit": null,
+      "unofficial_currency_code": null
+     }
+    },
+    {
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "name": "Chase Freedom Unlimited",
+     "official_name": "Chase Freedom Unlimited Visa",
+     "mask": "7313",
+     "type": "credit",
+     "subtype": "credit card",
+     "balances": {
+      "available": 6685.5,
+      "current": 1314.5,
+      "iso_currency_code": "USD",
+      "limit": 8000,
+      "unofficial_currency_code": null
+     }
+    }
+   ],
+   "transactions": [
+    {
+     "transaction_id": "bnrgXoWmGdT8lloERpvmsqa8Dl6nrZCmxB6Q7",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-01",
+     "authorized_date": "2026-07-01",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrb5GR9vDCgmrQzQ",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-02",
+     "authorized_date": "2026-07-01",
+     "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "merchant_name": null,
+     "amount": 1450,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_RENT",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "8XAqmPE9dBTPvvVJpq3jUR7WlbVr4JCW1NJLq",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-03",
+     "authorized_date": "2026-07-02",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 4.93,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4EQValDzT43g8eP",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-04",
+     "authorized_date": "2026-07-03",
+     "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "merchant_name": null,
+     "amount": 800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_SAVINGS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "EXbvKWDkpMT4bbgxl9RdSK3eVaAJ8Bs4R65k1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-04",
+     "authorized_date": "2026-07-03",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 6.07,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrbwpzlEys4GK9ay",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-05",
+     "authorized_date": "2026-07-05",
+     "name": "ZELLE PAYMENT FROM ALEX KIM",
+     "merchant_name": null,
+     "amount": -48.5,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_TRANSFER_IN_FROM_APPS",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "vQyADJn8wGh3mml159BaT6g1Dw5aZMCqzwZA6",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-06",
+     "authorized_date": "2026-07-05",
+     "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "merchant_name": "Fidelity",
+     "amount": 500,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_INVESTMENT_AND_RETIREMENT_FUNDS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "WnVzMADP76TMBBzxgN9lTpx5DKjEkAt69BQ17",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-06",
+     "authorized_date": "2026-07-05",
+     "name": "Shake Shack",
+     "merchant_name": "Shake Shack",
+     "amount": 21.18,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_FAST_FOOD",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "AX6pVWEBZ7TPyywrV9RLU1o64QPBvwS9jBxAE",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-06",
+     "authorized_date": "2026-07-05",
+     "name": "Walmart",
+     "merchant_name": "Walmart",
+     "amount": 41.64,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "GXAoz6DNgLTWXX69mqByINEmV36gbaF6BZ7PP",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-07",
+     "authorized_date": "2026-07-06",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 16.12,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "ndewD9n8GLIJPP1yoZmNfa5yBPvmxjUAeJMWb",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-07",
+     "authorized_date": "2026-07-06",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 46.29,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "bnrgXoWmGdT8lloERpvmsqa8Dl6nrZCmxB6Z7",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-08",
+     "authorized_date": "2026-07-07",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 5.8,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrb5GR9vDCgmrQdQ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-09",
+     "authorized_date": "2026-07-08",
+     "name": "Netflix",
+     "merchant_name": "Netflix",
+     "amount": 15.49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4EQValDzT43g8XP",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-10",
+     "authorized_date": "2026-07-09",
+     "name": "AMAZON MKTPL*2Q4WT7",
+     "merchant_name": "Amazon",
+     "amount": 25.49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrbwpzlEys4GK9Qy",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-10",
+     "authorized_date": "2026-07-09",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 5.01,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "vQyADJn8wGh3mml159BaT6g1Dw5aZMCqzwZk6",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-13",
+     "authorized_date": "2026-07-12",
+     "name": "Spotify",
+     "merchant_name": "Spotify",
+     "amount": 11.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKyW4ZJojialZobV",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-14",
+     "authorized_date": "2026-07-13",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1aAwq8d7t89zPXB",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-14",
+     "authorized_date": "2026-07-13",
+     "name": "Target",
+     "merchant_name": "Target",
+     "amount": 33.22,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnRmNv3BEgCb6DvnR",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-14",
+     "authorized_date": "2026-07-13",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 39.86,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkmBLANReC3wZLaP",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-15",
+     "authorized_date": "2026-07-14",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 5.97,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKyW4ZJojialZo3V",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-15",
+     "authorized_date": "2026-07-15",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx56bKZBvku9mDZP4",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-18",
+     "authorized_date": "2026-07-17",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 5.92,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTed16prjAbtPNQ1oG",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-18",
+     "authorized_date": "2026-07-17",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 14.91,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1aAwq8d7t89zPLB",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-19",
+     "authorized_date": "2026-07-18",
+     "name": "EVERSOURCE ENERGY BILL PAY",
+     "merchant_name": "Eversource Energy",
+     "amount": 89.38,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_GAS_AND_ELECTRICITY",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLnamAlR4dC5w6Q7n",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-20",
+     "authorized_date": "2026-07-19",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 13.52,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnRmNv3BEgCb6DvqR",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-21",
+     "authorized_date": "2026-07-20",
+     "name": "T-Mobile",
+     "merchant_name": "T-Mobile",
+     "amount": 45,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "RENT_AND_UTILITIES_TELEPHONE",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnVB5bdEjsB4neg4",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-21",
+     "authorized_date": "2026-07-20",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 56.77,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XJb9oBvGFLQm1dE",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-22",
+     "authorized_date": "2026-07-21",
+     "name": "APPLE.COM/BILL",
+     "merchant_name": "Apple",
+     "amount": 2.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkmBLANReC3wZLxP",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-22",
+     "authorized_date": "2026-07-22",
+     "name": "BANK OF AMERICA CREDIT CARD PMT",
+     "merchant_name": null,
+     "amount": 236.15,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMmdQ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-23",
+     "authorized_date": "2026-07-22",
+     "name": "AMAZON MKTPL*5H0QX2",
+     "merchant_name": "Amazon",
+     "amount": 27.27,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQy73",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-25",
+     "authorized_date": "2026-07-25",
+     "name": "AUTOMATIC PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -812.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx56bKZBvku9mDZe4",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-07-25",
+     "authorized_date": "2026-07-25",
+     "name": "CHASE CREDIT CRD AUTOPAY PPD",
+     "merchant_name": null,
+     "amount": 812.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5DAj",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-26",
+     "authorized_date": "2026-07-25",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 14.35,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGk6W",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-28",
+     "authorized_date": "2026-07-27",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 51.46,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXLD",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-29",
+     "authorized_date": "2026-07-28",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 26.3,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7GwbZqkJs4Wkx87",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-30",
+     "authorized_date": "2026-07-29",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 18.65,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "35odbxA9rlubwwEdgeMlSMXPdJN794SZrWVnq",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-07-31",
+     "authorized_date": "2026-07-30",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.77,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9mQnrA83t67QKV6",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-01",
+     "authorized_date": "2026-07-31",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 6.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTed16prjAbtPNQ1jG",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-01",
+     "authorized_date": "2026-08-01",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLnamAlR4dC5w6QMn",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-02",
+     "authorized_date": "2026-08-01",
+     "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "merchant_name": null,
+     "amount": 1450,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_RENT",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8yaGJXNMCJMXnQB",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-02",
+     "authorized_date": "2026-08-01",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.68,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsne8bdwVQ5CZaXKQ1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-02",
+     "authorized_date": "2026-08-01",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 23.75,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z7nELq6RSJrmRA3",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-03",
+     "authorized_date": "2026-08-02",
+     "name": "Target",
+     "merchant_name": "Target",
+     "amount": 67.61,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnVB5bdEjsB4neq4",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-04",
+     "authorized_date": "2026-08-03",
+     "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "merchant_name": null,
+     "amount": 800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_SAVINGS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8D6kRabZsyjVA5x",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-04",
+     "authorized_date": "2026-08-03",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 41.37,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "PV6oWADBxnSQooEl4GkBHqAjVvQa4dCokKyW8",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-06",
+     "authorized_date": "2026-08-05",
+     "name": "AMAZON MKTPL*8C3NB1",
+     "merchant_name": "Amazon",
+     "amount": 19.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XJb9oBvGFLQm1KE",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-06",
+     "authorized_date": "2026-08-05",
+     "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "merchant_name": "Fidelity",
+     "amount": 500,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_INVESTMENT_AND_RETIREMENT_FUNDS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlP3GRevEF6MQRLQ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-06",
+     "authorized_date": "2026-08-05",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 16.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "7kmlbND9xzIyllQX3wjaTogRvaKAdrudlwBn3",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-08",
+     "authorized_date": "2026-08-07",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.67,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMmd6",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-09",
+     "authorized_date": "2026-08-08",
+     "name": "Netflix",
+     "merchant_name": "Netflix",
+     "amount": 15.49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQy7X",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-09",
+     "authorized_date": "2026-08-08",
+     "name": "Shake Shack",
+     "merchant_name": "Shake Shack",
+     "amount": 23.13,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_FAST_FOOD",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5DAW",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-10",
+     "authorized_date": "2026-08-09",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 4.8,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXL4",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-10",
+     "authorized_date": "2026-08-09",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 15.05,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGk6r",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-10",
+     "authorized_date": "2026-08-09",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.67,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7GwbZqkJs4Wkx8m",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-11",
+     "authorized_date": "2026-08-10",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 57.92,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "35odbxA9rlubwwEdgeMlSMXPdJN794SZrWVno",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-12",
+     "authorized_date": "2026-08-11",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 16.33,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9mQnrA83t67QKBD",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-12",
+     "authorized_date": "2026-08-11",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 23.78,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsne8bdwVQ5CZaXK3r",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-13",
+     "authorized_date": "2026-08-12",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 5.63,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8yaGJXNMCJMXnav",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-13",
+     "authorized_date": "2026-08-12",
+     "name": "Spotify",
+     "merchant_name": "Spotify",
+     "amount": 11.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z7nELq6RSJrmRMZ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-14",
+     "authorized_date": "2026-08-13",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 16.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMm8Q",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-15",
+     "authorized_date": "2026-08-15",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8D6kRabZsyjVAKq",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-18",
+     "authorized_date": "2026-08-17",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 41.39,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQyk3",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-19",
+     "authorized_date": "2026-08-18",
+     "name": "EVERSOURCE ENERGY BILL PAY",
+     "merchant_name": "Eversource Energy",
+     "amount": 90.22,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_GAS_AND_ELECTRICITY",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "PV6oWADBxnSQooEl4GkBHqAjVvQa4dCokKyvZ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-20",
+     "authorized_date": "2026-08-19",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 6.44,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlP3GRevEF6MQRAL",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-21",
+     "authorized_date": "2026-08-20",
+     "name": "AMAZON MKTPL*1V7KE9",
+     "merchant_name": "Amazon",
+     "amount": 23.76,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5Dbj",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-21",
+     "authorized_date": "2026-08-20",
+     "name": "T-Mobile",
+     "merchant_name": "T-Mobile",
+     "amount": 45,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "RENT_AND_UTILITIES_TELEPHONE",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "7kmlbND9xzIyllQX3wjaTogRvaKAdrudlwBpp",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-22",
+     "authorized_date": "2026-08-21",
+     "name": "APPLE.COM/BILL",
+     "merchant_name": "Apple",
+     "amount": 2.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGkgW",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-22",
+     "authorized_date": "2026-08-22",
+     "name": "BANK OF AMERICA CREDIT CARD PMT",
+     "merchant_name": null,
+     "amount": 169.57,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "Qy6mMAD3dbfm77QqK3M1IKqdb3mlXoswMjlel",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-25",
+     "authorized_date": "2026-08-25",
+     "name": "AUTOMATIC PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -534.36,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXWD",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-08-25",
+     "authorized_date": "2026-08-25",
+     "name": "CHASE CREDIT CRD AUTOPAY PPD",
+     "merchant_name": null,
+     "amount": 534.36,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "en31XDWmGNTprr35e4gxcEyDjrMbx3crdx3km",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-25",
+     "authorized_date": "2026-08-24",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 38.31,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "ZR6eMAWmZlHGzzy48e75hN4bXdG5mLFeRx1la",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-26",
+     "authorized_date": "2026-08-25",
+     "name": "Walmart",
+     "merchant_name": "Walmart",
+     "amount": 65.18,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "MX6o4VDKzWTG77JWEmlyh6PNDyGAMxCLlmRyp",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-27",
+     "authorized_date": "2026-08-26",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.87,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "185mVBE9qXTWrrgeG9ZKIDbB1AZ3zjCpKDPoj",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-30",
+     "authorized_date": "2026-08-29",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 6.08,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "LX6oawDqrETjyygnJeQ3HDwP9ajrq8CkQ3Wan",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-08-30",
+     "authorized_date": "2026-08-29",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.35,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "p4Z9DmnWyoHLGGJV7jpnHQPm9yapDZuprXQnZ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-01",
+     "authorized_date": "2026-08-31",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 32.74,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7GwbZqkJs4Wkxn7",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-01",
+     "authorized_date": "2026-09-01",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "35odbxA9rlubwwEdgeMlSMXPdJN794SZrWV3q",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-02",
+     "authorized_date": "2026-09-01",
+     "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "merchant_name": null,
+     "amount": 1450,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_RENT",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "oaQ9DonwGpHZjj5EzeXdH4R1JjxXwdtoMvVy3",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-03",
+     "authorized_date": "2026-09-02",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.48,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9mQnrA83t67QKv6",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-04",
+     "authorized_date": "2026-09-03",
+     "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "merchant_name": null,
+     "amount": 800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_SAVINGS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8yaGJXNMCJMXneB",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-06",
+     "authorized_date": "2026-09-05",
+     "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "merchant_name": "Fidelity",
+     "amount": 500,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_INVESTMENT_AND_RETIREMENT_FUNDS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "gqdkX6WmGjC8BBqn3Zxlsla6EG7AgouEVy71m",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-06",
+     "authorized_date": "2026-09-05",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.83,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "8XAqmPE9dBTPvvVJpq3jUR7WlbVr4JCW1NJmA",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-07",
+     "authorized_date": "2026-09-06",
+     "name": "Target",
+     "merchant_name": "Target",
+     "amount": 52.82,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsne8bdwVQ5CZaXKL1",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-08",
+     "authorized_date": "2026-09-08",
+     "name": "ZELLE PAYMENT FROM ALEX KIM",
+     "merchant_name": null,
+     "amount": -35,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_TRANSFER_IN_FROM_APPS",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "EXbvKWDkpMT4bbgxl9RdSK3eVaAJ8Bs4R65ly",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-09",
+     "authorized_date": "2026-09-08",
+     "name": "Netflix",
+     "merchant_name": "Netflix",
+     "amount": 15.49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "WnVzMADP76TMBBzxgN9lTpx5DKjEkAt69BQEb",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-09",
+     "authorized_date": "2026-09-08",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.11,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "AX6pVWEBZ7TPyywrV9RLU1o64QPBvwS9jBxPj",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-10",
+     "authorized_date": "2026-09-09",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 38.17,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "GXAoz6DNgLTWXX69mqByINEmV36gbaF6BZ739",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-11",
+     "authorized_date": "2026-09-10",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 4.8,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "bnrgXoWmGdT8lloERpvmsqa8Dl6nrZCmxB6qe",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-11",
+     "authorized_date": "2026-09-10",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 14.46,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "ndewD9n8GLIJPP1yoZmNfa5yBPvmxjUAeJMbR",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-11",
+     "authorized_date": "2026-09-10",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.93,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrb5GR9vDCgmrQJl",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-12",
+     "authorized_date": "2026-09-11",
+     "name": "AMAZON MKTPL*4K8RT2",
+     "merchant_name": "Amazon",
+     "amount": 41.98,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4EQValDzT43g8A1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-12",
+     "authorized_date": "2026-09-11",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 13.82,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrbwpzlEys4GK9Dz",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-13",
+     "authorized_date": "2026-09-12",
+     "name": "MECHA NOODLE BAR NEW HAVEN",
+     "merchant_name": "Mecha Noodle Bar",
+     "amount": 42.75,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "vQyADJn8wGh3mml159BaT6g1Dw5aZMCqzwZRo",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-13",
+     "authorized_date": "2026-09-12",
+     "name": "Spotify",
+     "merchant_name": "Spotify",
+     "amount": 11.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKyW4ZJojialZo4R",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-13",
+     "authorized_date": "2026-09-12",
+     "name": "Spotify",
+     "merchant_name": "Spotify",
+     "amount": 11.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1aAwq8d7t89zP38",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-14",
+     "authorized_date": "2026-09-13",
+     "name": "AMAZON MKTPL*9B1ZA0",
+     "merchant_name": "Amazon",
+     "amount": 22.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnRmNv3BEgCb6DvE1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-14",
+     "authorized_date": "2026-09-13",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 12.93,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkmBLANReC3wZLQE",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-15",
+     "authorized_date": "2026-09-14",
+     "name": "Shake Shack",
+     "merchant_name": "Shake Shack",
+     "amount": 18.83,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_FAST_FOOD",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx56bKZBvku9mDZdn",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-15",
+     "authorized_date": "2026-09-14",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 31.35,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTed16prjAbtPNQ1VL",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-15",
+     "authorized_date": "2026-09-14",
+     "name": "Walmart",
+     "merchant_name": "Walmart",
+     "amount": 63.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z7nELq6RSJrmR73",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-15",
+     "authorized_date": "2026-09-15",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLnamAlR4dC5w6Qdb",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-19",
+     "authorized_date": "2026-09-18",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 6.83,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8D6kRabZsyjVAmx",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-19",
+     "authorized_date": "2026-09-18",
+     "name": "EVERSOURCE ENERGY BILL PAY",
+     "merchant_name": "Eversource Energy",
+     "amount": 65.25,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_GAS_AND_ELECTRICITY",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnVB5bdEjsB4neJn",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-20",
+     "authorized_date": "2026-09-19",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 6.03,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XJb9oBvGFLQm1pa",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-21",
+     "authorized_date": "2026-09-20",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "PV6oWADBxnSQooEl4GkBHqAjVvQa4dCokKyZ8",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-21",
+     "authorized_date": "2026-09-20",
+     "name": "T-Mobile",
+     "merchant_name": "T-Mobile",
+     "amount": 45,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "RENT_AND_UTILITIES_TELEPHONE",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "l3jdDonyGMUr44qE6epLubWxr4KXy5CpwMm76",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-22",
+     "authorized_date": "2026-09-21",
+     "name": "APPLE.COM/BILL",
+     "merchant_name": "Apple",
+     "amount": 2.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlP3GRevEF6MQRqQ",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-22",
+     "authorized_date": "2026-09-22",
+     "name": "BANK OF AMERICA CREDIT CARD PMT",
+     "merchant_name": null,
+     "amount": 165.55,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9JqEw4gzIgmQyMX",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-22",
+     "authorized_date": "2026-09-21",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 56.46,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K7qQNm3eC7PGkMr",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-23",
+     "authorized_date": "2026-09-22",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 14.92,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgPW6wKV8URZ5DNW",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-23",
+     "authorized_date": "2026-09-22",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.3,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4go93BR5Hl7eXm4",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-23",
+     "authorized_date": "2026-09-22",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 15.22,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "y1y5KRn8XmFrGG6EadkVuy4D3zj5VQH4e8pam",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-24",
+     "authorized_date": "2026-09-23",
+     "name": "AMAZON.COM*2M5HX1",
+     "merchant_name": "Amazon",
+     "amount": 18.49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "9XDK7jE9a3TZkk87vLQ6HWrEVyX7pwC4a9Mv6",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-24",
+     "authorized_date": "2026-09-23",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.43,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "Rn6oMADxamTZBBVKvxlWHXKoEjGv4WCa3o5qx",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-25",
+     "authorized_date": "2026-09-25",
+     "name": "AUTOMATIC PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -618.36,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "oaQ9DonwGpHZjj5EzeXdH4RwMdVpjJCo8VGZq",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-09-25",
+     "authorized_date": "2026-09-25",
+     "name": "CHASE CREDIT CRD AUTOPAY PPD",
+     "merchant_name": null,
+     "amount": 618.36,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "vQyADJn8wGh3mml159BaT6gZzM8qwDfqAZVKP",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-25",
+     "authorized_date": "2026-09-24",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.6,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "6D5d64E93rU1eeJbmxqVsp1dD7Q6wAu8LPnlj",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-27",
+     "authorized_date": "2026-09-26",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 15.02,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "XJ6BGRWjeXs3jjQAzrWeTnREPgKyvNfbqv8X5",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-27",
+     "authorized_date": "2026-09-26",
+     "name": "UNION LEAGUE CAFE NEW HAVEN",
+     "merchant_name": null,
+     "amount": 86.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "DX6VqGDdLZTADDdW9jwkSnkRWedJLBf3xLGov",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-28",
+     "authorized_date": "2026-09-27",
+     "name": "AMAZON MKTPL*7Q2LM8",
+     "merchant_name": "Amazon",
+     "amount": 29.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "VJ6rLmDNjRsZLLaA1bmJHx5vGkN1KbC9eZNV9",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-28",
+     "authorized_date": "2026-09-27",
+     "name": "Shake Shack",
+     "merchant_name": "Shake Shack",
+     "amount": 20.7,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_FAST_FOOD",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "wZwJl1m8GnS3ppRo9KXPTedADboBp6fPj1KpE",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-28",
+     "authorized_date": "2026-09-27",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.86,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "58R6bam9BKT9wwV7z3ZoTLn4Kdr7AmC5MQjn3",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-29",
+     "authorized_date": "2026-09-28",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 17.52,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "JX69xWD7qgTbdd6PLz4vSWnEZjRg5BCBqewy5",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-29",
+     "authorized_date": "2026-09-28",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 51.24,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "kBPkDoW86ZIn99mEB8Z5H8XvwGkj9bfLK1Ajw",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-09-30",
+     "authorized_date": "2026-09-29",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 20.38,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "gqdkX6WmGjC8BBqn3Zxlslag9oQdGEtEq7d6p",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-01",
+     "authorized_date": "2026-10-01",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "8XAqmPE9dBTPvvVJpq3jUR74kJNGblfWjJeXb",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-02",
+     "authorized_date": "2026-10-01",
+     "name": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "merchant_name": null,
+     "amount": 1450,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_RENT",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "l3jdDonyGMUr44qE6epLubWyw5JZ4rCp8m6qn",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-02",
+     "authorized_date": "2026-10-01",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.79,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "EXbvKWDkpMT4bbgxl9RdSK38mBQ9aVH4J53BL",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-04",
+     "authorized_date": "2026-10-03",
+     "name": "ONLINE TRANSFER TO BOFA ADV SAVINGS ...5560",
+     "merchant_name": null,
+     "amount": 800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_SAVINGS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "qkM9Doy8GgIpeebwBVRLcA9gVz7aEqhgkyBjQ",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-05",
+     "authorized_date": "2026-10-04",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.8,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgVa8nA6WfRbDr9J",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-06",
+     "authorized_date": "2026-10-05",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 4.88,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "WnVzMADP76TMBBzxgN9lTpxkVAegKDu6KQqbm",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-06",
+     "authorized_date": "2026-10-05",
+     "name": "FIDELITY INVESTMENTS MONEYLINE PPD",
+     "merchant_name": "Fidelity",
+     "amount": 500,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_OUT_INVESTMENT_AND_RETIREMENT_FUNDS",
+      "primary": "TRANSFER_OUT",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K3PeD5Qqf7gkNAN",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-06",
+     "authorized_date": "2026-10-05",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 14.36,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4RP5yW9otlWX6y8",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-06",
+     "authorized_date": "2026-10-05",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 28.29,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7kXJWVbwH4nxVp6",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-07",
+     "authorized_date": "2026-10-06",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.86,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "35odbxA9rlubwwEdgeMlSMX9l4ymJdUZ3V5j7",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-08",
+     "authorized_date": "2026-10-07",
+     "name": "AMAZON MKTPL*6T2PD5",
+     "merchant_name": "Amazon",
+     "amount": 16.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9873pgnQt6vKLzd",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-08",
+     "authorized_date": "2026-10-07",
+     "name": "Walmart",
+     "merchant_name": "Walmart",
+     "amount": 56.12,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsneQA5ajdbfZLKVEd",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-09",
+     "authorized_date": "2026-10-08",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 4.57,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8NlMp5GafJenrbV",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-09",
+     "authorized_date": "2026-10-08",
+     "name": "Netflix",
+     "merchant_name": "Netflix",
+     "amount": 15.49,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_TV_AND_MOVIES",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z6bRydEnCJ7R4ra",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-09",
+     "authorized_date": "2026-10-08",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 8.58,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "NX6gNyDrBkTReeBWQrjvIK8bMZgPk6HymAkjE",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-11",
+     "authorized_date": "2026-10-10",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 27.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "PV6oWADBxnSQooEl4GkBHqA4Bdr7vVsoZyVkg",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-13",
+     "authorized_date": "2026-10-12",
+     "name": "Spotify",
+     "merchant_name": "Spotify",
+     "amount": 11.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "ENTERTAINMENT_MUSIC_AND_AUDIO",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "jzNP56n89QhoGGMyE8ljHBlvME8QG3c6qRlMB",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-13",
+     "authorized_date": "2026-10-12",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 51.36,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "AX6pVWEBZ7TPyywrV9RLU1ovlwd5Q4C9Ex3p7",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-14",
+     "authorized_date": "2026-10-14",
+     "name": "ZELLE PAYMENT FROM ALEX KIM",
+     "merchant_name": null,
+     "amount": -48.5,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_TRANSFER_IN_FROM_APPS",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "7kmlbND9xzIyllQX3wjaTogdwrkjavSdLBrlK",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-15",
+     "authorized_date": "2026-10-14",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 14.62,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "GXAoz6DNgLTWXX69mqByINEbMakZ3Vf6y7Rpa",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-15",
+     "authorized_date": "2026-10-15",
+     "name": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "merchant_name": null,
+     "amount": -2150,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "INCOME_SALARY",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "en31XDWmGNTprr35e4gxcEyxG36zrjFr13ed1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-17",
+     "authorized_date": "2026-10-16",
+     "name": "BLUE STATE COFFEE",
+     "merchant_name": "Blue State Coffee",
+     "amount": 4.97,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "Qy6mMAD3dbfm77QqK3M1IKqXao4Z3bHwElRM7",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-18",
+     "authorized_date": "2026-10-17",
+     "name": "SWEETGREEN NEW HAVEN",
+     "merchant_name": "Sweetgreen",
+     "amount": 14.95,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_RESTAURANT",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "ndewD9n8GLIJPP1yoZmNfa5xejQMPBTAwMg55",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-19",
+     "authorized_date": "2026-10-18",
+     "name": "EVERSOURCE ENERGY BILL PAY",
+     "merchant_name": "Eversource Energy",
+     "amount": 58.28,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "RENT_AND_UTILITIES_GAS_AND_ELECTRICITY",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "KX6ZdWDlK8TwaakjXlZ8hmgVa8nA6WfRbDrZN",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-20",
+     "authorized_date": "2026-10-19",
+     "name": "Trader Joe's",
+     "merchant_name": "Trader Joe's",
+     "amount": 57.13,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "rP19DonmG8IJQQ9EknLpf6K3PeD5Qqf7gkNP1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-20",
+     "authorized_date": "2026-10-19",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 19.29,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "zLV9r1XDGyUl88Dbawr1ck4RP5yW9otlWX67X",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-21",
+     "authorized_date": "2026-10-20",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 7.87,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "bnrgXoWmGdT8lloERpvmsqareZMglDsmQ6rkx",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-21",
+     "authorized_date": "2026-10-20",
+     "name": "T-Mobile",
+     "merchant_name": "T-Mobile",
+     "amount": 45,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "RENT_AND_UTILITIES_TELEPHONE",
+      "primary": "RENT_AND_UTILITIES",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "BXA9ZWb3MeT8WWZzoNeksK7kXJWVbwH4nxVWv",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-22",
+     "authorized_date": "2026-10-21",
+     "name": "AMAZON MKTPL*3W9LJ4",
+     "merchant_name": "Amazon",
+     "amount": 27.95,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "GENERAL_MERCHANDISE_ONLINE_MARKETPLACES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "35odbxA9rlubwwEdgeMlSMX9l4ymJdUZ3V5rb",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-22",
+     "authorized_date": "2026-10-21",
+     "name": "APPLE.COM/BILL",
+     "merchant_name": "Apple",
+     "amount": 2.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "ENTERTAINMENT_OTHER_ENTERTAINMENT",
+      "primary": "ENTERTAINMENT",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "mx7bDwn8G1TjNNLoG89mHdrvmDJBG5CgzQ8oj",
+     "account_id": "gqdkX6WmGjC8BBqn3ZxlslaAxkx66EcE5QJXD",
+     "date": "2026-10-22",
+     "authorized_date": "2026-10-22",
+     "name": "BANK OF AMERICA CREDIT CARD PMT",
+     "merchant_name": null,
+     "amount": 203.19,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "LOAN_PAYMENTS_CREDIT_CARD_PAYMENT",
+      "primary": "LOAN_PAYMENTS",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "xMy5qmnQGbFWooqVrRK9IV9873pgnQt6vKL74",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-22",
+     "authorized_date": "2026-10-21",
+     "name": "Uber",
+     "merchant_name": "Uber",
+     "amount": 11.29,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSPORTATION_TAXIS_AND_RIDE_SHARES",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "online"
+    },
+    {
+     "transaction_id": "dbB8X96mk4TPGG6oAJQmUn8NlMp5GafJenrM1",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-24",
+     "authorized_date": "2026-10-23",
+     "name": "Shake Shack",
+     "merchant_name": "Shake Shack",
+     "amount": 20.56,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_FAST_FOOD",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "aDK9XGbm8xUDQQNAX8MBsneQA5ajdbfZLKVaB",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-24",
+     "authorized_date": "2026-10-23",
+     "name": "Starbucks",
+     "merchant_name": "Starbucks",
+     "amount": 5.25,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_COFFEE",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "4mDGbd5JzqhArrWpVazBS1Z6bRydEnCJ7R4rx",
+     "account_id": "8XAqmPE9dBTPvvVJpq3jUR7rLDLWWlFW8VBy6",
+     "date": "2026-10-24",
+     "authorized_date": "2026-10-23",
+     "name": "Target",
+     "merchant_name": "Target",
+     "amount": 29.25,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "GENERAL_MERCHANDISE_SUPERSTORES",
+      "primary": "GENERAL_MERCHANDISE",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    }
+   ]
+  },
+  "bofa": {
+   "institution": "Bank of America",
+   "accounts": [
+    {
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "name": "BofA Customized Cash Rewards",
+     "official_name": "Bank of America Customized Cash Rewards Visa",
+     "mask": "2290",
+     "type": "credit",
+     "subtype": "credit card",
+     "balances": {
+      "available": 4861,
+      "current": 139,
+      "iso_currency_code": "USD",
+      "limit": 5000,
+      "unofficial_currency_code": null
+     }
+    },
+    {
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "name": "BofA Advantage Savings",
+     "official_name": "Bank of America Advantage Savings",
+     "mask": "5560",
+     "type": "depository",
+     "subtype": "savings",
+     "balances": {
+      "available": 11840.62,
+      "current": 11840.62,
+      "iso_currency_code": "USD",
+      "limit": null,
+      "unofficial_currency_code": null
+     }
+    }
+   ],
+   "transactions": [
+    {
+     "transaction_id": "l8DDnRL6qDTnJeBg57BKsbWM7WzjNrCp8m6zP",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-07-03",
+     "authorized_date": "2026-07-02",
+     "name": "CVS",
+     "merchant_name": "CVS",
+     "amount": 23.01,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "MEDICAL_PHARMACIES_AND_SUPPLEMENTS",
+      "primary": "MEDICAL",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "XkGGW3lxzGIwNrx8KnxMhnRZ5RAl1Ntbqv8MD",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-07-04",
+     "authorized_date": "2026-07-03",
+     "name": "TRANSFER FROM CHASE CHK ...0918",
+     "merchant_name": null,
+     "amount": -800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_ACCOUNT_TRANSFER",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "qnDDy6EvNDSGKVZAq6ZxsA96L9vZ5qfgkyBvb",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-07-14",
+     "authorized_date": "2026-07-13",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 37.52,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "KgddDLjJpdFd3lE6nWEyimgkXgl3EWuRbDrgz",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-07-20",
+     "authorized_date": "2026-07-19",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 20.52,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "rbDDn6lvjDT5rneDqmedU6KzBKWnXqt7gkNLj",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-07-22",
+     "authorized_date": "2026-07-22",
+     "name": "PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -236.15,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "z3rrX6dvnrFANwq7oLqxUk4jD4ZxKohlWX6Dp",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-07-30",
+     "authorized_date": "2026-07-29",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 44.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "B7ZZbozJrZtRpNBdQwByiK7EQ7a3gwt4nxVqQ",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-07-31",
+     "authorized_date": "2026-07-30",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 44.12,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "DQqqDE3Jxqh1ZjJVaBJKsnkG8k1poBt3xLGld",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-07-31",
+     "authorized_date": "2026-07-31",
+     "name": "INTEREST EARNED",
+     "merchant_name": null,
+     "amount": -0.43,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "INCOME_INTEREST_EARNED",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "3mbbAZeMQbc9LeBDZjB4TMXVRXnxkdCZ3V5Ge",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-08-02",
+     "authorized_date": "2026-08-01",
+     "name": "CVS",
+     "merchant_name": "CVS",
+     "amount": 17.51,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "MEDICAL_PHARMACIES_AND_SUPPLEMENTS",
+      "primary": "MEDICAL",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "VKLLDz8BlLtBGb8gNx8Dux5lR5zAqbu9eZN5N",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-08-04",
+     "authorized_date": "2026-08-03",
+     "name": "TRANSFER FROM CHASE CHK ...0918",
+     "merchant_name": null,
+     "amount": -800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_ACCOUNT_TRANSFER",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "xzqqn63vEqIgNRwGQywLTV96v9XBZQt6vKLmv",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-08-13",
+     "authorized_date": "2026-08-12",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 32.73,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "dQXX6RP1GXhM1JjKpejxSn8o78gABatJenroQ",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-08-16",
+     "authorized_date": "2026-08-15",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 30.3,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "ajXXbRaQoXhk18mpa4mzhneDgeNGkbtZLKVp3",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-08-22",
+     "authorized_date": "2026-08-22",
+     "name": "PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -169.57,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZvoZMrXnFJ7R48L",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-08-29",
+     "authorized_date": "2026-08-28",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 42.67,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "wrllm6BvglIzLKAZ6mA5CedgLdyWa6TPj1Kyd",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-08-31",
+     "authorized_date": "2026-08-31",
+     "name": "INTEREST EARNED",
+     "merchant_name": null,
+     "amount": -0.42,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "INCOME_INTEREST_EARNED",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "NWNNDLQJANI3XrZEg6ZPTK8pW8yNX6tymAkLA",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-08-31",
+     "authorized_date": "2026-08-30",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 42.34,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "5qbbmXZkLbiye3pm1gpPILnGgnWyjmc5MQj4e",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-09-04",
+     "authorized_date": "2026-09-03",
+     "name": "TRANSFER FROM CHASE CHK ...0918",
+     "merchant_name": null,
+     "amount": -800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_ACCOUNT_TRANSFER",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "PGWWDLMJmWhAzGvprVvMUqApMANmXVtoZyVEL",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-06",
+     "authorized_date": "2026-09-05",
+     "name": "CVS",
+     "merchant_name": "CVS",
+     "amount": 21.28,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "MEDICAL_PHARMACIES_AND_SUPPLEMENTS",
+      "primary": "MEDICAL",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "jo55nRMvw5U6L8B13PBDUBlA1lwgj3c6qRlom",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-12",
+     "authorized_date": "2026-09-11",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 43.51,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "7rbbDg1o8bIeVwmoNdm7TogBEg7bXvudLBr4J",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-13",
+     "authorized_date": "2026-09-12",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 42.44,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "eZXXWRjLbXsXz4klbakdiEy5eyKnljhr13eyZ",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-14",
+     "authorized_date": "2026-09-13",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 40.63,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "QnMMDR1l9MSko38rGl8AhKqxLqPANbtwElRr5",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-20",
+     "authorized_date": "2026-09-19",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 27.64,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "Z3MMWkKadMFgmewpJPwATN4zQ4Kk9XieV19nj",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-22",
+     "authorized_date": "2026-09-22",
+     "name": "PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -165.55,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "nWDDn6ovBDIEgZqXBAqzUa5MXG4Ql7uAeBd3N",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-09-29",
+     "authorized_date": "2026-09-28",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 27.69,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "AjVVEorJqVhb69e5g4e7U1o5X8qdeaI9jv74z",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-09-30",
+     "authorized_date": "2026-09-30",
+     "name": "INTEREST EARNED",
+     "merchant_name": null,
+     "amount": -0.4,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "INCOME_INTEREST_EARNED",
+      "primary": "INCOME",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "b7XXWR4Z8XtznpgZMbgBCqagoxyMX9imxw5oQ",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-10-03",
+     "authorized_date": "2026-10-02",
+     "name": "CVS",
+     "merchant_name": "CVS",
+     "amount": 14.82,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "MEDICAL_PHARMACIES_AND_SUPPLEMENTS",
+      "primary": "MEDICAL",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "G1zzDVaJjzTwZqEzkVEQhNEZG8xkoyC6B4lGQ",
+     "account_id": "ajXXbRaQoXhk18mpa4mzhnepbdREZytZyWpxk",
+     "date": "2026-10-04",
+     "authorized_date": "2026-10-03",
+     "name": "TRANSFER FROM CHASE CHK ...0918",
+     "merchant_name": null,
+     "amount": -800,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "HIGH",
+      "detailed": "TRANSFER_IN_ACCOUNT_TRANSFER",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    },
+    {
+     "transaction_id": "mEDDn6pvrDt7d8lZ5XlkUdrBl64JkKcgm5b4d",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-10-06",
+     "authorized_date": "2026-10-05",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 25.78,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "yBKKn6xwAKH5Pdm7Zqm3Uy45JP8jGpu43Q9KA",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-10-10",
+     "authorized_date": "2026-10-09",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 38.47,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "9B77EopJG7HDVLJeEwJoCWr7aAQXxPT4GmLqg",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-10-16",
+     "authorized_date": "2026-10-15",
+     "name": "Shell",
+     "merchant_name": "Shell",
+     "amount": 38.94,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "TRANSPORTATION_GAS",
+      "primary": "TRANSPORTATION",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "vKDDn6zvpDtqN9byDkbPh6gqPbJ8E4tqzDjvZ",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-10-21",
+     "authorized_date": "2026-10-20",
+     "name": "Aldi",
+     "merchant_name": "Aldi",
+     "amount": 20.99,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "VERY_HIGH",
+      "detailed": "FOOD_AND_DRINK_GROCERIES",
+      "primary": "FOOD_AND_DRINK",
+      "version": "v2"
+     },
+     "payment_channel": "in store"
+    },
+    {
+     "transaction_id": "RbMMDlLqRMTD3xqpGaqACXKvP5MGdkualQKPN",
+     "account_id": "4lbb5AQ1MbUg4ajdJ9jNT1ZAnEV3DaIJG18wn",
+     "date": "2026-10-22",
+     "authorized_date": "2026-10-22",
+     "name": "PAYMENT - THANK YOU",
+     "merchant_name": null,
+     "amount": -203.19,
+     "iso_currency_code": "USD",
+     "pending": false,
+     "personal_finance_category": {
+      "confidence_level": "LOW",
+      "detailed": "TRANSFER_IN_OTHER_TRANSFER_IN",
+      "primary": "TRANSFER_IN",
+      "version": "v2"
+     },
+     "payment_channel": "other"
+    }
+   ]
+  }
+ }
+}

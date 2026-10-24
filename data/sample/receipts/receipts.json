@@ -1,0 +1,30 @@
+[
+  {
+    "file": "2026-09-06_target.png",
+    "store": "TARGET",
+    "date": "2026-09-06",
+    "card_last4": "7313",
+    "total": 47.82
+  },
+  {
+    "file": "2026-09-09_trader_joes.png",
+    "store": "TRADER JOE'S",
+    "date": "2026-09-09",
+    "card_last4": "7313",
+    "total": 38.17
+  },
+  {
+    "file": "2026-09-14_walmart.png",
+    "store": "WALMART",
+    "date": "2026-09-14",
+    "card_last4": "7313",
+    "total": 63.4
+  },
+  {
+    "file": "2026-09-19_aldi.png",
+    "store": "ALDI",
+    "date": "2026-09-19",
+    "card_last4": "2290",
+    "total": 27.64
+  }
+]
