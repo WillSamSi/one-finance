@@ -1,0 +1,271 @@
+{
+ "symbol": "COST",
+ "cik": "0000909832",
+ "name": "COSTCO WHOLESALE CORP /NEW",
+ "annual": {
+  "revenue": [
+   {
+    "end": "2026-08-30",
+    "value": 303154000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 275235000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 254453000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 242290000000,
+    "unit": "USD"
+   }
+  ],
+  "net_income": [
+   {
+    "end": "2026-08-30",
+    "value": 9226000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 8099000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 7367000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 6292000000,
+    "unit": "USD"
+   }
+  ],
+  "operating_income": [
+   {
+    "end": "2026-08-30",
+    "value": 11685000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 10383000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 9285000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 8114000000,
+    "unit": "USD"
+   }
+  ],
+  "eps_diluted": [
+   {
+    "end": "2026-08-30",
+    "value": 20.76,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 18.21,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 16.56,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 14.16,
+    "unit": "USD/shares"
+   }
+  ],
+  "operating_cash_flow": [
+   {
+    "end": "2026-08-30",
+    "value": 15817000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 13335000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 11339000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 11068000000,
+    "unit": "USD"
+   }
+  ],
+  "cash": [
+   {
+    "end": "2026-08-30",
+    "value": 20207000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 14161000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 9906000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 13700000000,
+    "unit": "USD"
+   }
+  ],
+  "total_assets": [
+   {
+    "end": "2026-08-30",
+    "value": 89045000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 77099000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 69831000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 68994000000,
+    "unit": "USD"
+   }
+  ],
+  "total_liabilities": [
+   {
+    "end": "2026-08-30",
+    "value": 53242000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 47935000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 46209000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 43936000000,
+    "unit": "USD"
+   }
+  ],
+  "shareholders_equity": [
+   {
+    "end": "2026-08-30",
+    "value": 35803000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-08-31",
+    "value": 29164000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-09-01",
+    "value": 23622000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-09-03",
+    "value": 25058000000,
+    "unit": "USD"
+   }
+  ]
+ },
+ "sector": "Consumer / Retail",
+ "industry": "Retail-Variety Stores",
+ "sic": "5331",
+ "fiscal_year_end": "0830",
+ "exchanges": [
+  "Nasdaq"
+ ],
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-13",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000100/cost-20261013.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000096/cost-20261014.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-10-07",
+   "period": "2026-08-30",
+   "description": "10-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000093/cost-20260830.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000084/cost-20260924.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-07",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000060/cost-20260707.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-03",
+   "period": "2026-05-10",
+   "description": "10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000051/cost-20260510.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000046/cost-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/909832/000090983226000041/cost-20260415.htm"
+  }
+ ],
+ "fetched_at": "2026-10-24T22:59:00+00:00"
+}

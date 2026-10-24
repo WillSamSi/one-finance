@@ -32,6 +32,38 @@ os.environ.setdefault("PYDANTIC_AI_NO_BANNER", "1")
 MODEL_NAME = "gpt-6-luna"
 PORTKEY_BASE_URL = os.environ.get("PORTKEY_BASE_URL", "https://api.portkey.ai/v1")
 
+# --- Cost limits (enforced in backend/team.py) ---------------------------------
+# Loop steps: model turns one agent may take in a single run before it is stopped.
+MAX_AGENT_STEPS = 12
+# Hand-offs: only the Advisor may delegate, one level deep, at most 2 times per run.
+MAX_DELEGATION_DEPTH = 1
+MAX_DELEGATIONS_PER_RUN = 2
+# Whole-run budget, shared by every agent working that run (including hand-offs).
+RUN_REQUEST_LIMIT = 30
+RUN_TOOL_CALLS_LIMIT = 60
+RUN_TOTAL_TOKENS_LIMIT = 250_000
+# Per-response cap so no single answer runs long (no temperature: reasoning model).
+MAX_OUTPUT_TOKENS = 4_000
+# Daily budget across all runs; a new run is refused once today's total passes it.
+DAILY_TOKEN_LIMIT = int(os.environ.get("DAILY_TOKEN_LIMIT", "1500000"))
+
+
+def run_usage_limits():
+    from pydantic_ai.usage import UsageLimits
+
+    return UsageLimits(
+        request_limit=RUN_REQUEST_LIMIT,
+        tool_calls_limit=RUN_TOOL_CALLS_LIMIT,
+        total_tokens_limit=RUN_TOTAL_TOKENS_LIMIT,
+    )
+
+
+def model_settings():
+    from pydantic_ai.settings import ModelSettings
+
+    return ModelSettings(max_tokens=MAX_OUTPUT_TOKENS)
+
+
 # --- Plaid (optional) ---------------------------------------------------------
 # Without Plaid keys (as on the teaching staff's machine) the app uses the saved
 # sample data instead; the AI agents still run for real on it.

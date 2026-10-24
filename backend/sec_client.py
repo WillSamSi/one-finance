@@ -66,13 +66,43 @@ def company_facts(symbol: str, years: int = 4) -> dict:
     out: dict[str, list[dict]] = {}
     instant = {"cash", "total_assets", "total_liabilities", "shareholders_equity"}
     for key, tags in CONCEPTS.items():
+        # Companies switch tags over the years, so merge every tag and keep the newest filing per year.
+        merged: dict[str, dict] = {}
         for tag in tags:
             if tag in gaap:
-                values = _annual_values(gaap[tag]["units"], duration=key not in instant)
-                if values:
-                    out[key] = [{k: v[k] for k in ("end", "value", "unit")} for v in values[:years]]
-                    break
+                for v in _annual_values(gaap[tag]["units"], duration=key not in instant):
+                    if v["end"] not in merged or v["filed"] > merged[v["end"]]["filed"]:
+                        merged[v["end"]] = v
+        if merged:
+            newest = sorted(merged.values(), key=lambda x: x["end"], reverse=True)[:years]
+            out[key] = [{k: v[k] for k in ("end", "value", "unit")} for v in newest]
     return {"symbol": symbol.upper(), "cik": cik, "name": name, "annual": out}
+
+
+# Broad sectors from SEC industry (SIC) codes, for "how much of the portfolio is in one sector".
+SECTOR_RANGES = [
+    ((3570, 3579), "Technology"), ((3600, 3699), "Technology"), ((7370, 7379), "Technology"),
+    ((3810, 3829), "Technology"), ((4800, 4899), "Communication"), ((2830, 2836), "Health Care"),
+    ((3840, 3851), "Health Care"), ((8000, 8099), "Health Care"), ((6000, 6799), "Financials"),
+    ((1300, 1399), "Energy"), ((2900, 2999), "Energy"), ((4900, 4949), "Utilities"),
+    ((5200, 5999), "Consumer / Retail"), ((2000, 2111), "Consumer Staples"),
+]
+
+
+def broad_sector(sic: str | int | None) -> str:
+    try:
+        code = int(sic)
+    except (TypeError, ValueError):
+        return "Other"
+    return next((name for (lo, hi), name in SECTOR_RANGES if lo <= code <= hi), "Other")
+
+
+def company_profile(symbol: str) -> dict:
+    """Industry (SEC's SIC description), fiscal year end and exchanges."""
+    cik, name = ticker_to_cik()[symbol.upper()]
+    sub = _get(f"https://data.sec.gov/submissions/CIK{cik}.json")
+    return {"sector": broad_sector(sub.get("sic")), "industry": sub.get("sicDescription"), "sic": sub.get("sic"),
+            "fiscal_year_end": sub.get("fiscalYearEnd"), "exchanges": sub.get("exchanges")}
 
 
 def recent_filings(symbol: str, limit: int = 8) -> list[dict]:

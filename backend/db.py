@@ -159,6 +159,7 @@ CREATE TABLE IF NOT EXISTS ledger_entries (
 CREATE TABLE IF NOT EXISTS review_items (
     id              INTEGER PRIMARY KEY,
     kind            TEXT NOT NULL,        -- e.g. 'amount_mismatch', 'duplicate_charge', 'no_matching_order'
+    month           TEXT,                 -- 'YYYY-MM' the problem belongs to
     transaction_id  TEXT REFERENCES transactions(id),
     receipt_id      INTEGER REFERENCES receipts(id),
     amazon_order_id TEXT,

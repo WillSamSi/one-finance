@@ -1,0 +1,271 @@
+{
+ "symbol": "NVDA",
+ "cik": "0001045810",
+ "name": "NVIDIA CORP",
+ "annual": {
+  "revenue": [
+   {
+    "end": "2026-01-25",
+    "value": 215938000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 130497000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 60922000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 26974000000,
+    "unit": "USD"
+   }
+  ],
+  "net_income": [
+   {
+    "end": "2026-01-25",
+    "value": 120067000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 72880000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 29760000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 4368000000,
+    "unit": "USD"
+   }
+  ],
+  "operating_income": [
+   {
+    "end": "2026-01-25",
+    "value": 130387000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 81453000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 32972000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 4224000000,
+    "unit": "USD"
+   }
+  ],
+  "eps_diluted": [
+   {
+    "end": "2026-01-25",
+    "value": 4.9,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 2.94,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 1.19,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 0.17,
+    "unit": "USD/shares"
+   }
+  ],
+  "operating_cash_flow": [
+   {
+    "end": "2026-01-25",
+    "value": 102718000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 64089000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 28090000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 5641000000,
+    "unit": "USD"
+   }
+  ],
+  "cash": [
+   {
+    "end": "2026-01-25",
+    "value": 10605000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 8589000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 7280000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 3389000000,
+    "unit": "USD"
+   }
+  ],
+  "total_assets": [
+   {
+    "end": "2026-01-25",
+    "value": 206803000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 111601000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 65728000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 41182000000,
+    "unit": "USD"
+   }
+  ],
+  "total_liabilities": [
+   {
+    "end": "2026-01-25",
+    "value": 49510000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 32274000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 22750000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 19081000000,
+    "unit": "USD"
+   }
+  ],
+  "shareholders_equity": [
+   {
+    "end": "2026-01-25",
+    "value": 157293000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-01-26",
+    "value": 79327000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-01-28",
+    "value": 42978000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-01-29",
+    "value": 22101000000,
+    "unit": "USD"
+   }
+  ]
+ },
+ "sector": "Technology",
+ "industry": "Semiconductors & Related Devices",
+ "sic": "3674",
+ "fiscal_year_end": "0131",
+ "exchanges": [
+  "Nasdaq"
+ ],
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-02",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-26",
+   "period": "2026-07-26",
+   "description": "10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-06-28",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000060/nvda-20260628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-24",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000056/nvda-20260624.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-15",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000119312526275783/d48176d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-20",
+   "period": "2026-04-26",
+   "description": "10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000052/nvda-20260426.htm"
+  }
+ ],
+ "fetched_at": "2026-10-24T22:58:58+00:00"
+}

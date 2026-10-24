@@ -1,9 +1,39 @@
 [
   {
+    "name": "Utilities",
+    "kind": "spending",
+    "monthly_budget": 250,
+    "description": "Electricity, phone, internet"
+  },
+  {
+    "name": "Rent / mortgage",
+    "kind": "spending",
+    "monthly_budget": 1450,
+    "description": "Monthly rent"
+  },
+  {
     "name": "Groceries",
     "kind": "spending",
     "monthly_budget": 450,
     "description": "Supermarkets and food at home"
+  },
+  {
+    "name": "Supplies",
+    "kind": "spending",
+    "monthly_budget": 200,
+    "description": "Household goods, Amazon, general shopping"
+  },
+  {
+    "name": "Transportation",
+    "kind": "spending",
+    "monthly_budget": 150,
+    "description": "Rides, gas, transit"
+  },
+  {
+    "name": "Entertainment",
+    "kind": "spending",
+    "monthly_budget": 60,
+    "description": "Streaming, music, cloud storage, events"
   },
   {
     "name": "Dining",
@@ -12,34 +42,16 @@
     "description": "Restaurants, cafes, coffee"
   },
   {
-    "name": "Transport",
-    "kind": "spending",
-    "monthly_budget": 150,
-    "description": "Rides, gas, transit"
-  },
-  {
-    "name": "Shopping",
-    "kind": "spending",
-    "monthly_budget": 200,
-    "description": "Household goods, Amazon, general shopping"
-  },
-  {
-    "name": "Subscriptions",
-    "kind": "spending",
-    "monthly_budget": 40,
-    "description": "Streaming, music, cloud storage"
-  },
-  {
-    "name": "Housing & Utilities",
-    "kind": "spending",
-    "monthly_budget": 1650,
-    "description": "Rent, electricity, phone"
-  },
-  {
-    "name": "Health",
+    "name": "Healthcare",
     "kind": "spending",
     "monthly_budget": 60,
-    "description": "Pharmacy and health"
+    "description": "Pharmacy, doctor, insurance"
+  },
+  {
+    "name": "Other",
+    "kind": "spending",
+    "monthly_budget": 100,
+    "description": "Anything that fits nowhere else"
   },
   {
     "name": "Emergency Fund",

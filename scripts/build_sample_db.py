@@ -144,13 +144,31 @@ def load_pockets(conn: sqlite3.Connection) -> int:
     return len(pockets)
 
 
+def load_manual_entries(conn: sqlite3.Connection) -> int:
+    """Expenses typed in by hand: already in the ledger, but with no receipt or bank charge yet."""
+    path = SAMPLE / "manual_entries.json"
+    rows = json.loads(path.read_text()) if path.exists() else []
+    for e in rows:
+        pocket_id = conn.execute("SELECT id FROM pockets WHERE name = ?", (e["pocket"],)).fetchone()[0]
+        conn.execute(
+            "INSERT INTO ledger_entries (date, description, amount, currency, direction, pocket_id, status,"
+            " recorded_by, note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (e["date"], e["description"], e["amount"], "USD", "expense", pocket_id, "recorded", "user",
+             "Manual entry: no receipt or bank charge yet", now()),
+        )
+    return len(rows)
+
+
 def load_sec(conn: sqlite3.Connection) -> int:
     n = 0
     for path in sorted((SAMPLE / "sec").glob("*.json")) if (SAMPLE / "sec").exists() else []:
         rec = json.loads(path.read_text())
         conn.execute(
             "INSERT INTO company_data VALUES (?,?,?,?,?,?)",
-            (rec["symbol"], rec["cik"], rec["name"], json.dumps(rec["annual"]), json.dumps(rec["filings"]), rec["fetched_at"]),
+            (rec["symbol"], rec["cik"], rec["name"],
+             json.dumps({"sector": rec.get("sector"), "industry": rec.get("industry"),
+                         "fiscal_year_end": rec.get("fiscal_year_end"), "annual": rec["annual"]}),
+             json.dumps(rec["filings"]), rec["fetched_at"]),
         )
         n += 1
     return n
@@ -233,6 +251,7 @@ def main() -> None:
         ("app_date", APP_DATE.isoformat()),
         ("data_mode", "sample"),
         ("synthetic_history_before", "2026-07-01"),
+        ("max_sector_share", "0.5"),  # flag when one sector is over half the portfolio
         ("built_at", now()),
     ])
     conn.executemany("INSERT INTO fx_rates VALUES (?,?,?)", [
@@ -246,6 +265,7 @@ def main() -> None:
         "amazon items": load_amazon(conn),
         "receipts": load_receipts(conn),
         "pockets": load_pockets(conn),
+        "manual entries": load_manual_entries(conn),
         "companies (SEC)": load_sec(conn),
     }
     build_history(conn, effects, investment_id)

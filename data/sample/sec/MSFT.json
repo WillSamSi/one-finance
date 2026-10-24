@@ -1,0 +1,271 @@
+{
+ "symbol": "MSFT",
+ "cik": "0000789019",
+ "name": "MICROSOFT CORP",
+ "annual": {
+  "revenue": [
+   {
+    "end": "2026-06-30",
+    "value": 331839000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 281724000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 245122000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 211915000000,
+    "unit": "USD"
+   }
+  ],
+  "net_income": [
+   {
+    "end": "2026-06-30",
+    "value": 133749000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 101832000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 88136000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 72361000000,
+    "unit": "USD"
+   }
+  ],
+  "operating_income": [
+   {
+    "end": "2026-06-30",
+    "value": 155237000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 128528000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 109433000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 88523000000,
+    "unit": "USD"
+   }
+  ],
+  "eps_diluted": [
+   {
+    "end": "2026-06-30",
+    "value": 17.95,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 13.64,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 11.8,
+    "unit": "USD/shares"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 9.68,
+    "unit": "USD/shares"
+   }
+  ],
+  "operating_cash_flow": [
+   {
+    "end": "2026-06-30",
+    "value": 182935000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 136162000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 118548000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 87582000000,
+    "unit": "USD"
+   }
+  ],
+  "cash": [
+   {
+    "end": "2026-06-30",
+    "value": 20935000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 30242000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 18315000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 34704000000,
+    "unit": "USD"
+   }
+  ],
+  "total_assets": [
+   {
+    "end": "2026-06-30",
+    "value": 758376000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 619003000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 512163000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 411976000000,
+    "unit": "USD"
+   }
+  ],
+  "total_liabilities": [
+   {
+    "end": "2026-06-30",
+    "value": 315989000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 275524000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 243686000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 205753000000,
+    "unit": "USD"
+   }
+  ],
+  "shareholders_equity": [
+   {
+    "end": "2026-06-30",
+    "value": 442387000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2025-06-30",
+    "value": 343479000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2024-06-30",
+    "value": 268477000000,
+    "unit": "USD"
+   },
+   {
+    "end": "2023-06-30",
+    "value": 206223000000,
+    "unit": "USD"
+   }
+  ]
+ },
+ "sector": "Technology",
+ "industry": "Services-Prepackaged Software",
+ "sic": "7372",
+ "fiscal_year_end": "0630",
+ "exchanges": [
+  "Nasdaq"
+ ],
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "description": "10-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-02",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-13",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526224155/d125909d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "description": "10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "description": "8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191457/msft-20260429.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-28",
+   "period": "2025-12-31",
+   "description": "10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm"
+  }
+ ],
+ "fetched_at": "2026-10-24T22:58:57+00:00"
+}

@@ -1,0 +1,185 @@
+"""The three agents and what the app can ask them to do.
+
+  Accountant: reads receipts (photo), records charges and statements, cross-checks,
+              flags problems, links accounts to pockets. The only agent that writes.
+  Investor:   reads the Investing pocket, positions and SEC company data. Read-only.
+  Advisor:    insights, weekly digests and chat; hands work to the other two. Read-only.
+
+Entry points (all async): read_receipt, month_end, portfolio_brief, weekly_digest, chat.
+Each one is a "run": every step and its tokens go to the run_log table.
+"""
+
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+
+from pydantic_ai import BinaryContent, ModelRetry, RunContext
+
+from backend import analytics, db, rules, tools
+from backend.models import AgentDeps, MonthLedger, PortfolioBrief, ReceiptRead, WeeklyDigest
+from backend.team import build_agent, check_daily_budget, delegate, log_step, new_run_id, run_agent
+
+# --- Accountant ------------------------------------------------------------------------
+ACCOUNTANT_READ = [tools.get_month_work, tools.read_statement, tools.get_pocket_account_stats, tools.get_month_summary]
+ACCOUNTANT_WRITE = [tools.record_entries, tools.attach_proof, tools.record_statement, tools.flag_discrepancies,
+                    tools.link_pocket_accounts]
+
+accountant = build_agent("accountant", ACCOUNTANT_READ + ACCOUNTANT_WRITE, MonthLedger)
+# When the Advisor hands work to the Accountant, it only gets the read tools and answers in text.
+accountant_helper = build_agent("accountant", ACCOUNTANT_READ, str)
+receipt_reader = build_agent("accountant", [], ReceiptRead, prompt_file="receipt_reader")
+
+
+@receipt_reader.output_validator
+def _receipt_adds_up(ctx: RunContext[AgentDeps], r: ReceiptRead) -> ReceiptRead:
+    """Code checks the AI's reading: items -> subtotal, subtotal + tax -> total."""
+    items_sum = round(sum(i.price for i in r.items), 2)
+    issues = []
+    if abs(items_sum - r.subtotal) > 0.02:
+        issues.append(f"the items add up to {items_sum:.2f}, not the subtotal {r.subtotal:.2f}")
+    if abs(r.subtotal + r.tax - r.total) > 0.01:
+        issues.append(f"subtotal {r.subtotal:.2f} + tax {r.tax:.2f} = {r.subtotal + r.tax:.2f}, not the total {r.total:.2f}")
+    if issues and not r.problems:
+        raise ModelRetry("Your numbers don't add up: " + "; ".join(issues) +
+                         ". Re-read the receipt. If the printed receipt itself doesn't add up, say so in problems.")
+    return r
+
+
+# --- Investor --------------------------------------------------------------------------
+investor = build_agent("investor", [tools.get_portfolio, tools.get_investment_pocket, tools.get_company_data], PortfolioBrief)
+
+# --- Advisor ---------------------------------------------------------------------------
+ADVISOR_TOOLS = [tools.get_month_summary, tools.get_cashflow, tools.get_open_review_items,
+                 tools.get_portfolio_overview, delegate]
+advisor_digest = build_agent("advisor", ADVISOR_TOOLS, WeeklyDigest)
+advisor_chat = build_agent("advisor", ADVISOR_TOOLS, str)
+
+
+def specialist(name: str):
+    """The agent the Advisor gets when it hands work off (read-only)."""
+    return {"accountant": accountant_helper, "investor": investor}[name]
+
+
+# --- Helpers ---------------------------------------------------------------------------
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _save_setting(key: str, value) -> None:
+    with db.connect() as conn:
+        conn.execute("INSERT OR REPLACE INTO settings VALUES (?, ?)", (key, json.dumps(value, default=str)))
+        conn.commit()
+
+
+def run_totals(run_id: str) -> dict:
+    with db.connect() as conn:
+        r = conn.execute(
+            """SELECT COUNT(*) AS steps, SUM(step_type = 'model_response') AS model_calls,
+                      SUM(step_type = 'tool_result') AS tool_calls,
+                      COALESCE(SUM(input_tokens), 0) AS input_tokens, COALESCE(SUM(cached_tokens), 0) AS cached_tokens,
+                      COALESCE(SUM(output_tokens), 0) AS output_tokens
+               FROM run_log WHERE run_id = ?""", (run_id,)).fetchone()
+    return dict(r)
+
+
+def _current_month() -> str:
+    with db.connect() as conn:
+        return analytics.today(conn).strftime("%Y-%m")
+
+
+def rules_through(month: str) -> dict:
+    """Run the free rules pre-pass on every month of data up to `month`."""
+    out = {}
+    with db.connect() as conn:
+        months = [r[0] for r in conn.execute("SELECT DISTINCT substr(date, 1, 7) FROM transactions ORDER BY 1")]
+        for m in months:
+            if m <= month:
+                out[m] = rules.auto_record(conn, m)
+    return out
+
+
+# --- Entry points ----------------------------------------------------------------------
+async def read_receipt(receipt_id: int, run_id: str | None = None) -> dict:
+    """The Accountant reads one receipt photo; code checks the math; the result is saved."""
+    check_daily_budget()
+    deps = AgentDeps(run_id=run_id or new_run_id(), chain=["accountant"])
+    with db.connect() as conn:
+        row = conn.execute("SELECT image_path FROM receipts WHERE id = ?", (receipt_id,)).fetchone()
+    if not row:
+        raise ValueError(f"No receipt {receipt_id}")
+    image = (db.ROOT / row["image_path"]).read_bytes()
+    media = "image/png" if row["image_path"].endswith(".png") else "image/jpeg"
+    prompt = [f"Read receipt #{receipt_id}.", BinaryContent(data=image, media_type=media)]
+    r: ReceiptRead = await run_agent(receipt_reader, prompt, deps)
+    with db.connect() as conn:
+        conn.execute("DELETE FROM receipt_items WHERE receipt_id = ?", (receipt_id,))
+        conn.execute(
+            "UPDATE receipts SET store = ?, date = ?, subtotal = ?, tax = ?, total = ?, card_last4 = ?, status = ?"
+            " WHERE id = ?",
+            (r.store, r.date, r.subtotal, r.tax, r.total, r.card_last4, "flagged" if r.problems else "read", receipt_id),
+        )
+        conn.executemany("INSERT INTO receipt_items (receipt_id, name, quantity, price) VALUES (?,?,?,?)",
+                         [(receipt_id, i.name, i.quantity, i.price) for i in r.items])
+        conn.commit()
+    return {"run_id": deps.run_id, "receipt_id": receipt_id, "receipt": r.model_dump(), **run_totals(deps.run_id)}
+
+
+async def month_end(month: str) -> dict:
+    """Read new receipts, run the free rules, then the Accountant does the rest of the month."""
+    check_daily_budget()
+    run_id = new_run_id()
+    deps = AgentDeps(run_id=run_id, chain=["accountant"], month=month)
+    with db.connect() as conn:
+        unread = [r["id"] for r in conn.execute("SELECT id FROM receipts WHERE status = 'unread' ORDER BY id")]
+        app_date = db.app_date(conn)
+    receipts = [await read_receipt(rid, run_id) for rid in unread]
+    pre = rules_through(month)
+    log_step(deps, "rules", text=f"Rules pre-pass recorded {pre.get(month, {}).get('recorded_by_rules', 0)} charges for {month}",
+             data=pre.get(month))
+    ledger: MonthLedger = await run_agent(
+        accountant, f"Do the month-end check for {month}. Today is {app_date}.", deps)
+    _save_setting(f"month_end:{month}", ledger.model_dump() if hasattr(ledger, "model_dump") else str(ledger))
+    return {"run_id": run_id, "month": month, "receipts_read": len(receipts), "rules": pre.get(month),
+            "ledger": ledger.model_dump() if hasattr(ledger, "model_dump") else str(ledger), **run_totals(run_id)}
+
+
+async def portfolio_brief() -> dict:
+    check_daily_budget()
+    month = _current_month()
+    deps = AgentDeps(run_id=new_run_id(), chain=["investor"], month=month)
+    brief = await run_agent(investor, f"Write the portfolio brief. This month is {month}.", deps)
+    data = brief.model_dump() if hasattr(brief, "model_dump") else str(brief)
+    _save_setting("latest_portfolio_brief", data)
+    return {"run_id": deps.run_id, "brief": data, **run_totals(deps.run_id)}
+
+
+async def weekly_digest() -> dict:
+    """The Advisor writes the two weekly notifications (spending, investments) and next steps."""
+    check_daily_budget()
+    month = _current_month()
+    rules_through(month)
+    deps = AgentDeps(run_id=new_run_id(), chain=["advisor"], month=month)
+    with db.connect() as conn:
+        app_date = db.app_date(conn)
+    digest = await run_agent(advisor_digest, f"Write this week's digest. Today is {app_date}; the month is {month}.", deps)
+    if isinstance(digest, WeeklyDigest):
+        with db.connect() as conn:
+            conn.executemany(
+                "INSERT INTO notifications (kind, title, body, created_at) VALUES (?,?,?,?)",
+                [("spending_digest", digest.spending_title, digest.spending_body, _now()),
+                 ("investment_digest", digest.investment_title, digest.investment_body, _now())])
+            conn.commit()
+        _save_setting("latest_next_steps", [s.model_dump() for s in digest.next_steps])
+    data = digest.model_dump() if hasattr(digest, "model_dump") else str(digest)
+    return {"run_id": deps.run_id, "digest": data, **run_totals(deps.run_id)}
+
+
+async def chat(question: str) -> dict:
+    check_daily_budget()
+    month = _current_month()
+    rules_through(month)
+    deps = AgentDeps(run_id=new_run_id(), chain=["advisor"], month=month)
+    with db.connect() as conn:
+        app_date = db.app_date(conn)
+    answer = await run_agent(advisor_chat, f"Today is {app_date}; the month is {month}.\n\nThe owner asks: {question}", deps)
+    return {"run_id": deps.run_id, "answer": str(answer), **run_totals(deps.run_id)}

@@ -39,6 +39,24 @@ Check that the keys are found (shows set/missing, never the values):
 
 2. Open `ios/OneFinance.xcodeproj` in Xcode, pick an iPhone simulator, and press **Run** (⌘R). The app talks to the backend at `http://localhost:8000`.
 
+## See the agents work (no Xcode needed)
+
+```bash
+.venv/bin/python -m backend.run month-end 2026-09
+```
+
+The Accountant reads the receipt photos, records September, cross-checks receipts and Amazon orders against the bank charges, records the Indonesian statements, flags problems and links accounts to pockets. Other runs:
+
+```bash
+.venv/bin/python -m backend.run digest
+```
+
+```bash
+.venv/bin/python -m backend.run chat "How is my dining budget this month?"
+```
+
+`digest` is the Advisor's weekly digest (it hands work to the Investor). Every step and its tokens are saved in the `run_log` table; `reset` starts over from the sample data.
+
 ## Sample data
 
 **All data in this repo is made up.** No real accounts, people or purchases. It's one consistent story (see [`data/sample/STORY.md`](data/sample/STORY.md)), with a few problems planted in September 2026 for the AI to find.

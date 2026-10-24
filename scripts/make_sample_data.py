@@ -398,17 +398,26 @@ INVESTMENTS["accounts"][0]["balance"]["total"]["amount"] = money(
     sum(p["units"] * p["price"] for p in INVESTMENTS["positions"]) + INVESTMENTS["balances"][0]["cash"]
 )
 
+# Spending pockets use the Home render's categories (plus Groceries, where receipts land).
 POCKETS = [
+    {"name": "Utilities", "kind": "spending", "monthly_budget": 250, "description": "Electricity, phone, internet"},
+    {"name": "Rent / mortgage", "kind": "spending", "monthly_budget": 1450, "description": "Monthly rent"},
     {"name": "Groceries", "kind": "spending", "monthly_budget": 450, "description": "Supermarkets and food at home"},
+    {"name": "Supplies", "kind": "spending", "monthly_budget": 200, "description": "Household goods, Amazon, general shopping"},
+    {"name": "Transportation", "kind": "spending", "monthly_budget": 150, "description": "Rides, gas, transit"},
+    {"name": "Entertainment", "kind": "spending", "monthly_budget": 60, "description": "Streaming, music, cloud storage, events"},
     {"name": "Dining", "kind": "spending", "monthly_budget": 250, "description": "Restaurants, cafes, coffee"},
-    {"name": "Transport", "kind": "spending", "monthly_budget": 150, "description": "Rides, gas, transit"},
-    {"name": "Shopping", "kind": "spending", "monthly_budget": 200, "description": "Household goods, Amazon, general shopping"},
-    {"name": "Subscriptions", "kind": "spending", "monthly_budget": 40, "description": "Streaming, music, cloud storage"},
-    {"name": "Housing & Utilities", "kind": "spending", "monthly_budget": 1650, "description": "Rent, electricity, phone"},
-    {"name": "Health", "kind": "spending", "monthly_budget": 60, "description": "Pharmacy and health"},
+    {"name": "Healthcare", "kind": "spending", "monthly_budget": 60, "description": "Pharmacy, doctor, insurance"},
+    {"name": "Other", "kind": "spending", "monthly_budget": 100, "description": "Anything that fits nowhere else"},
     {"name": "Emergency Fund", "kind": "saving", "goal_amount": 15000, "description": "Six months of essentials"},
     {"name": "Indonesia Savings", "kind": "saving", "goal_amount": 50_000_000, "currency": "IDR", "description": "Money kept in Indonesia"},
     {"name": "Investing", "kind": "investing", "monthly_budget": 500, "description": "Monthly contribution to the brokerage"},
+]
+
+# Quick entries typed in by hand (e.g. from Back Tap), with no receipt or bank charge yet.
+MANUAL_ENTRIES = [
+    {"date": "2026-10-12", "description": "Cash at farmers market", "amount": 18.00, "pocket": "Groceries"},
+    {"date": "2026-10-19", "description": "Haircut", "amount": 42.00, "pocket": "Other"},
 ]
 
 
@@ -576,6 +585,7 @@ def main() -> None:
     (SAMPLE / "statements" / "accounts.json").write_text(json.dumps(meta, indent=2) + "\n")
     (SAMPLE / "investments.json").write_text(json.dumps(INVESTMENTS, indent=2) + "\n")
     (SAMPLE / "pockets.json").write_text(json.dumps(POCKETS, indent=2) + "\n")
+    (SAMPLE / "manual_entries.json").write_text(json.dumps(MANUAL_ENTRIES, indent=2) + "\n")
     (SAMPLE / "receipts" / "receipts.json").write_text(json.dumps(
         [{"file": r["file"], "store": r["store"], "date": r["date"], "card_last4": r["card"],
           "total": receipt_totals(r)[2]} for r in RECEIPTS], indent=2) + "\n")

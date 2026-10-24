@@ -1,0 +1,14 @@
+[
+  {
+    "date": "2026-10-12",
+    "description": "Cash at farmers market",
+    "amount": 18.0,
+    "pocket": "Groceries"
+  },
+  {
+    "date": "2026-10-19",
+    "description": "Haircut",
+    "amount": 42.0,
+    "pocket": "Other"
+  }
+]

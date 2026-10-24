@@ -30,10 +30,14 @@ def main() -> None:
         time.sleep(0.2)
         filings = sec_client.recent_filings(symbol)
         time.sleep(0.2)
-        record = {**facts, "filings": filings, "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+        profile = sec_client.company_profile(symbol)
+        time.sleep(0.2)
+        record = {**facts, **profile, "filings": filings,
+                  "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
         (OUT_DIR / f"{symbol}.json").write_text(json.dumps(record, indent=1) + "\n")
         rev = facts["annual"].get("revenue", [{}])[0]
-        print(f"{symbol}: {facts['name']}, {len(facts['annual'])} metrics, latest revenue {rev.get('value'):,} (FY ending {rev.get('end')}), {len(filings)} filings")
+        print(f"{symbol}: {facts['name']} | {profile['sector']} ({profile['industry']}) | {len(facts['annual'])} metrics, "
+              f"latest revenue {rev.get('value'):,} (FY ending {rev.get('end')}) | {len(filings)} filings")
 
 
 if __name__ == "__main__":
