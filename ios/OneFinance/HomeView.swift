@@ -1,114 +1,221 @@
 import SwiftUI
 
-/// Home: total assets and every account, loaded from the backend.
-/// The area chart, Sankey and pockets come in Phase 3.
+/// Home, built from the render: total balance, AI Summary, Cash flow Sankey,
+/// Remaining Budget, Savings and AI next steps.
 struct HomeView: View {
-    @State private var accounts: AccountsResponse?
-    @State private var health: Health?
+    var reloadToken = 0
+    var openTab: (AppTab) -> Void = { _ in }
+
+    @State private var data: HomeData?
+    @State private var month = ""
     @State private var error: String?
 
     private let api = APIClient()
 
     var body: some View {
-        ZStack {
-            Theme.background.ignoresSafeArea()
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    header
-                    if let accounts {
-                        totalCard(accounts.totalAssetsUsd)
-                        accountsCard(accounts.accounts)
-                    } else if let error {
-                        errorCard(error)
-                    } else {
-                        ProgressView().tint(Theme.vib400).frame(maxWidth: .infinity).padding(.top, 40)
-                    }
-                }
-                .padding(20)
-            }
-            .refreshable { await load() }
-        }
-        .task { await load() }
-    }
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text("One Finance")
-                .font(.largeTitle.bold())
-                .foregroundStyle(
-                    LinearGradient(colors: [Theme.vib100, Theme.vib400], startPoint: .leading, endPoint: .trailing)
-                )
-            if let health {
-                Text("As of \(health.appDate) · \(health.dataMode == "sample" ? "Sample data" : "Live data")")
-                    .font(.footnote)
-                    .foregroundStyle(Theme.muted)
-            }
-        }
-    }
-
-    private func totalCard(_ total: Double) -> some View {
-        Card {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Total assets").font(.subheadline).foregroundStyle(Theme.muted)
-                Text(Money.usd(total))
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .foregroundStyle(Theme.text)
-                    .monospacedDigit()
-                Text("Banks, cards, investments and Indonesian accounts, in USD")
-                    .font(.caption)
-                    .foregroundStyle(Theme.muted)
-            }
-        }
-    }
-
-    private func accountsCard(_ accounts: [Account]) -> some View {
-        Card {
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Accounts").font(.headline).foregroundStyle(Theme.text)
-                ForEach(accounts) { account in
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(account.name).foregroundStyle(Theme.text)
-                            Text("\(account.institution) ····\(account.mask ?? "")")
-                                .font(.caption)
-                                .foregroundStyle(Theme.muted)
-                        }
-                        Spacer()
-                        VStack(alignment: .trailing, spacing: 2) {
-                            Text(Money.format(account.type == "credit" ? -account.currentBalance : account.currentBalance,
-                                              currency: account.currency))
-                                .foregroundStyle(account.type == "credit" ? Theme.negative : Theme.text)
-                                .monospacedDigit()
-                            if account.currency != "USD" {
-                                Text(Money.usd(account.balanceUsd)).font(.caption).foregroundStyle(Theme.muted)
-                            }
-                        }
-                    }
-                    if account.id != accounts.last?.id {
-                        Divider().overlay(Theme.hairline)
-                    }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0) {
+                if let data {
+                    balanceHeader(data.balance)
+                    aiSummary(data)
+                    cashflowCard(data)
+                    divider
+                    remainingBudget(data)
+                    savings(data.savings)
+                    nextSteps(data)
+                } else if let error {
+                    BackendErrorCard(message: error)
+                } else {
+                    ProgressView().tint(Theme.vib400).frame(maxWidth: .infinity).padding(.top, 80)
                 }
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 8)
+            .padding(.bottom, 180)
+        }
+        .scrollIndicators(.hidden)
+        .refreshable { await load() }
+        .task(id: "\(month)-\(reloadToken)") { await load() }
+    }
+
+    // MARK: Sections
+
+    private func balanceHeader(_ b: BalanceInfo) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Total Balance").font(.system(size: 15)).foregroundStyle(Theme.muted).padding(.bottom, 4)
+            let parts = Money.usd(b.total).split(separator: ".")
+            (Text(parts.first.map(String.init) ?? "")
+                + Text(parts.count > 1 ? "." + parts[1] : "").foregroundColor(Theme.muted).fontWeight(.semibold))
+                .font(.system(size: 40, weight: .bold))
+                .tracking(-0.8)
+                .monospacedDigit()
+                .foregroundStyle(Theme.text)
+            HStack(spacing: 10) {
+                Chip(text: "\(b.change >= 0 ? "▲" : "▼") \(Money.usd(abs(b.change))) · \(abs(b.changePct).formatted(.number.precision(.fractionLength(1))))%")
+                Text("this month · \(b.accounts) accounts").font(.system(size: 13)).foregroundStyle(Theme.muted)
+            }
+            .padding(.top, 10)
         }
     }
 
-    private func errorCard(_ message: String) -> some View {
+    private func aiSummary(_ d: HomeData) -> some View {
+        let s = d.summary
+        let range = "\(DateParse.shortDay(d.month + "-01"))–\(max(1, d.budget.daysElapsed))"  // e.g. "Oct 1–24"
+        return AICard {
+            VStack(alignment: .leading, spacing: 0) {
+                AILabel(title: "AI Summary", note: range)
+                VStack(alignment: .leading, spacing: 4) {
+                    insightRow(color: Theme.vib400) {
+                        Text("Spent ") + Text(Money.whole(s.spent)).bold().foregroundColor(.white)
+                            + Text(" of your ") + Text(Money.whole(s.budget)).bold().foregroundColor(.white)
+                            + Text(" budget, ") + Text(Money.whole(s.left)).bold().foregroundColor(.white) + Text(" left")
+                    }
+                    insightRow(color: Color(hex: 0x4F8DFF)) {
+                        Text("About ") + Text("\(Money.whole(s.spendPerDayLast7Days))/day").bold().foregroundColor(.white)
+                            + Text(" for the last 7 days")
+                    }
+                    if let insight = s.insight {
+                        insightRow(color: Color(hex: 0xFF8A4C)) {
+                            Text(insight).foregroundColor(Theme.warn).fontWeight(.semibold)
+                        }
+                    }
+                }
+                .font(.system(size: 13.5))
+                .foregroundStyle(Theme.cardText)
+                budgetBar(used: s.pctUsed, expected: s.pctExpected)
+                HStack {
+                    Text("\(Int(s.pctUsed.rounded()))% of budget used")
+                    Spacer()
+                    Text("Expected by today: \(Int(s.pctExpected.rounded()))%")
+                }
+                .font(.system(size: 11.5))
+                .foregroundStyle(Theme.muted)
+            }
+        }
+        .padding(.top, 16)
+    }
+
+    private func insightRow(color: Color, @ViewBuilder text: () -> Text) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 9) {
+            GlowDot(color: color).offset(y: -2)
+            text()
+        }
+    }
+
+    private func budgetBar(used: Double, expected: Double) -> some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                Capsule().fill(Color.white.opacity(0.08))
+                Capsule()
+                    .fill(LinearGradient(colors: [Theme.vib500, Theme.vib400, Color(hex: 0xFF8A4C)], startPoint: .leading, endPoint: .trailing))
+                    .frame(width: geo.size.width * min(1, used / 100))
+                RoundedRectangle(cornerRadius: 1).fill(.white.opacity(0.8))
+                    .frame(width: 2, height: 12)
+                    .offset(x: geo.size.width * min(1, expected / 100) - 1)
+            }
+        }
+        .frame(height: 6)
+        .padding(.top, 10)
+        .padding(.bottom, 6)
+    }
+
+    private func cashflowCard(_ d: HomeData) -> some View {
         Card {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Can't reach the backend").font(.headline).foregroundStyle(Theme.text)
-                Text("Start it with: .venv/bin/uvicorn backend.main:app --port 8000")
-                    .font(.caption.monospaced())
-                    .foregroundStyle(Theme.muted)
-                Text(message).font(.caption2).foregroundStyle(Theme.muted)
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("Cash flow").font(.system(size: 17, weight: .semibold)).foregroundStyle(Theme.text)
+                        Text("In \(Money.whole(d.cashflow.totalIn)) · Spent \(Money.whole(d.cashflow.spent))")
+                            .font(.system(size: 12)).monospacedDigit().foregroundStyle(Theme.muted)
+                    }
+                    Spacer()
+                    MonthMenu(months: d.months, selected: $month)
+                }
+                if d.cashflow.totalIn > 0 || d.cashflow.totalOut > 0 {
+                    SankeyView(cashflow: d.cashflow).frame(height: 340)
+                } else {
+                    Text("Nothing recorded for this month yet.").font(.footnote).foregroundStyle(Theme.muted).padding(.vertical, 30)
+                }
+            }
+        }
+        .padding(.top, 14)
+    }
+
+    private var divider: some View {
+        LinearGradient(colors: [.clear, Theme.vib400.opacity(0.5), .clear], startPoint: .leading, endPoint: .trailing)
+            .frame(height: 1)
+            .padding(.top, 24)
+            .padding(.bottom, 20)
+    }
+
+    private func remainingBudget(_ d: HomeData) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Remaining Budget").font(.system(size: 20, weight: .bold)).tracking(-0.2).foregroundStyle(Theme.text)
+                    Text("\(Money.whole(d.budget.totalLeft)) left of \(Money.whole(d.budget.totalBudget)) · \(d.budget.daysToGo) days to go")
+                        .font(.system(size: 12)).monospacedDigit().foregroundStyle(Theme.muted)
+                }
+                Spacer()
+                MonthMenu(months: d.months, selected: $month)
+            }
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
+                ForEach(d.budget.pockets) { BudgetCard(pocket: $0) }
             }
         }
     }
+
+    private func savings(_ pockets: [SavingsPocket]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Savings").font(.system(size: 20, weight: .bold)).foregroundStyle(Theme.text)
+                    Text("\(pockets.count) pockets").font(.system(size: 12)).foregroundStyle(Theme.muted)
+                }
+                Spacer()
+                Button("See all ›") { openTab(.wallet) }
+                    .font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.vib300)
+            }
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
+                ForEach(pockets.filter { $0.kind == "saving" }) { SavingsCard(pocket: $0) }
+            }
+            ForEach(pockets.filter { $0.kind == "investing" }) { SavingsCard(pocket: $0, wide: true) }
+        }
+        .padding(.top, 22)
+    }
+
+    private func nextSteps(_ d: HomeData) -> some View {
+        AICard {
+            VStack(alignment: .leading, spacing: 0) {
+                AILabel(title: "AI Summary", note: "\(d.nextSteps.count) next steps")
+                if d.nextSteps.isEmpty {
+                    Text("Nothing needs your attention.").font(.system(size: 13)).foregroundStyle(Theme.muted)
+                }
+                ForEach(Array(d.nextSteps.enumerated()), id: \.offset) { i, step in
+                    NextStepRow(step: step) {
+                        switch step.action {
+                        case "view": openTab(step.title.localizedCaseInsensitiveContains("portfolio") ? .invest : .wallet)
+                        default: openTab(.wallet)
+                        }
+                    }
+                    .padding(.top, i == 0 ? 2 : 10)
+                    .padding(.bottom, i == d.nextSteps.count - 1 ? 0 : 10)
+                    .overlay(alignment: .top) {
+                        if i > 0 { Rectangle().fill(Color.white.opacity(0.06)).frame(height: 1) }
+                    }
+                }
+            }
+        }
+        .padding(.top, 18)
+    }
+
+    // MARK: Data
 
     private func load() async {
         do {
-            async let h: Health = api.get("health")
-            async let a: AccountsResponse = api.get("accounts")
-            (health, accounts) = try await (h, a)
+            let d: HomeData = try await api.get("home", query: month.isEmpty ? [:] : ["month": month])
+            data = d
+            if month.isEmpty { month = d.month }
             error = nil
         } catch {
             self.error = error.localizedDescription
@@ -116,6 +223,143 @@ struct HomeView: View {
     }
 }
 
+struct BudgetCard: View {
+    let pocket: BudgetPocket
+
+    var body: some View {
+        let color = Theme.category(pocket.name)
+        let used = pocket.budget > 0 ? min(1, pocket.spent / pocket.budget) : 0
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 7) {
+                GlowDot(color: color, size: 8)
+                Text(pocket.name).lineLimit(1)
+            }
+            .font(.system(size: 12.5, weight: .medium))
+            .foregroundStyle(Color(hex: 0xD8CDEB))
+            HStack {
+                Text(pocket.over ? "−" + Money.whole(-pocket.left) : Money.whole(pocket.left))
+                    .foregroundStyle(pocket.over ? Theme.over : Theme.text)
+                Spacer()
+                if pocket.over { Tag(text: "Over", over: true) } else if pocket.paid { Tag(text: "Paid") }
+            }
+            .font(.system(size: 22, weight: .bold))
+            .monospacedDigit()
+            .padding(.top, 10)
+            Text(pocket.over ? "over the \(Money.whole(pocket.budget)) budget" : "left of \(Money.whole(pocket.budget))")
+                .font(.system(size: 11.5)).foregroundStyle(Theme.muted).padding(.top, 1)
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    Capsule().fill(Color.white.opacity(0.08))
+                    Capsule().fill(pocket.over ? Color(hex: 0xFF6B6B) : color).frame(width: geo.size.width * used)
+                }
+            }
+            .frame(height: 4)
+            .padding(.top, 10)
+        }
+        .padding(12)
+        .background(Theme.cardFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).stroke(Theme.hairline, lineWidth: 1))
+    }
+}
+
+struct SavingsCard: View {
+    let pocket: SavingsPocket
+    var wide = false
+
+    var body: some View {
+        let color = Theme.category(pocket.name)
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 7) {
+                GlowDot(color: color, size: 8)
+                Text(pocket.name).lineLimit(1)
+                if wide, let budget = pocket.monthlyBudget {
+                    Spacer()
+                    Tag(text: "+\(Money.whole(pocket.contributedThisMonth)) of \(Money.whole(budget))\(pocket.contributedThisMonth >= budget ? " ✓" : "")")
+                }
+            }
+            .font(.system(size: 12.5, weight: .medium))
+            .foregroundStyle(Color(hex: 0xD8CDEB))
+            if wide {
+                Text("READY TO INVEST").font(.system(size: 11)).tracking(0.4).foregroundStyle(Theme.muted).padding(.top, 8)
+            }
+            Text(pocket.currency == "IDR" ? Money.shortIDR(pocket.amount) : Money.whole(pocket.amount))
+                .font(.system(size: 22, weight: .bold)).monospacedDigit().foregroundStyle(Theme.text)
+                .padding(.top, wide ? 2 : 10)
+            if let goal = pocket.goal, let pct = pocket.pctOfGoal {
+                Text("\(Int(pct.rounded()))% of \(pocket.currency == "IDR" ? Money.shortIDR(goal) : Money.whole(goal)) goal")
+                    .font(.system(size: 11.5)).foregroundStyle(Theme.muted).padding(.top, 1)
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(Color.white.opacity(0.08))
+                        Capsule().fill(color).frame(width: geo.size.width * min(1, pct / 100))
+                    }
+                }
+                .frame(height: 4)
+                .padding(.top, 10)
+                HStack {
+                    if pocket.currency == "IDR" {
+                        Text("≈ \(Money.whole(pocket.amountUsd))").font(.system(size: 11.5)).foregroundStyle(Theme.muted)
+                    } else if pocket.contributedThisMonth > 0 {
+                        Tag(text: "This month +\(Money.whole(pocket.contributedThisMonth)) ✓")
+                    }
+                }
+                .frame(minHeight: 18)
+                .padding(.top, 9)
+            }
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.cardFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).stroke(Theme.hairline, lineWidth: 1))
+    }
+}
+
+struct NextStepRow: View {
+    let step: NextStep
+    let onTap: () -> Void
+
+    var body: some View {
+        let (icon, color): (String, Color) = {
+            switch step.action {
+            case "review": return ("doc.text", Color(hex: 0xFF8A4C))
+            case "fix": return ("exclamationmark.triangle", Color(hex: 0xFF6B6B))
+            default: return step.title.localizedCaseInsensitiveContains("portfolio")
+                ? ("chart.pie", Color(hex: 0x4F8DFF)) : ("chart.line.uptrend.xyaxis", Color(hex: 0x2FD39B))
+            }
+        }()
+        HStack(alignment: .top, spacing: 11) {
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(color)
+                .frame(width: 30, height: 30)
+                .background(color.opacity(0.16), in: RoundedRectangle(cornerRadius: 10))
+            VStack(alignment: .leading, spacing: 2) {
+                Text(step.title).font(.system(size: 13.5, weight: .semibold)).foregroundStyle(.white)
+                Text(step.detail).font(.system(size: 12)).foregroundStyle(Theme.muted).fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 0)
+            Button(action: onTap) { Chip(text: step.action.capitalized) }
+                .frame(maxHeight: .infinity)
+        }
+    }
+}
+
+struct BackendErrorCard: View {
+    let message: String
+
+    var body: some View {
+        Card {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Can't reach the backend").font(.headline).foregroundStyle(Theme.text)
+                Text("Start it with: .venv/bin/uvicorn backend.main:app --port 8000")
+                    .font(.caption.monospaced()).foregroundStyle(Theme.muted)
+                Text(message).font(.caption2).foregroundStyle(Theme.muted)
+            }
+        }
+        .padding(.top, 40)
+    }
+}
+
 #Preview {
-    HomeView().preferredColorScheme(.dark)
+    ZStack { Theme.background; HomeView() }.preferredColorScheme(.dark)
 }
