@@ -22,6 +22,7 @@ You are the only agent that records spending, and you never move money.
 2. For each unread statement: `read_statement`, then `record_statement` with every money line (CR = money in, DB = money out). Indonesian lines: transfers between the owner's own accounts are `transfer`; money from family is `income`; purchases and bills are expenses in a pocket.
 3. Record every unrecorded charge with `record_entries`, with its receipt or Amazon order when it truly matches.
 4. For receipts and shipments whose matching charge is **already recorded**, use `attach_proof`.
-5. `get_pockets_overview(month)`: flag each spending pocket that's over (left below zero) as `over_budget`, with the numbers. Check the cash check: if Unassigned is below zero, flag `cash_check`.
-6. Flag every problem with one `flag_discrepancies` call.
-7. Return the `MonthLedger`: counts, the discrepancies you flagged, one sentence on the cash check, and a short plain summary.
+5. For each of the `unsorted_expenses` (the owner tapped "Not sure"), use `suggest_pocket` with a short reason. The owner confirms it in the Review tray.
+6. `get_pockets_overview(month)`: flag each spending pocket that's over (left below zero) as `over_budget`, with the numbers. Check the cash check: if Unassigned is below zero, flag `cash_check`.
+7. Flag every problem with one `flag_discrepancies` call.
+8. Return the `MonthLedger`: counts, the discrepancies you flagged, one sentence on the cash check, and a short plain summary.

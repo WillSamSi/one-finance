@@ -7,15 +7,35 @@ API docs: http://localhost:8000/docs
 
 import asyncio
 import json
+import logging
+from contextlib import asynccontextmanager
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from backend import agents, analytics, config, db
+from backend import agents, analytics, config, db, snaptrade_client
 from backend.team import BudgetExceeded, tokens_used_today
 
-app = FastAPI(title="One Finance API")
+log = logging.getLogger("one_finance")
+
+
+async def _sync_investments() -> dict:
+    """Live SnapTrade sandbox data when keys are set; otherwise (or on any error) the sample stays."""
+    result = await asyncio.to_thread(snaptrade_client.sync)
+    log.warning("Investments: %s", result.get("message") or f"live SnapTrade sandbox, {result.get('holdings')} holdings")
+    return result
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    task = asyncio.create_task(_sync_investments()) if config.snaptrade_enabled() else None
+    yield
+    if task and not task.done():
+        task.cancel()
+
+
+app = FastAPI(title="One Finance API", lifespan=lifespan)
 _run_lock = asyncio.Lock()  # one agent run at a time
 
 
@@ -37,6 +57,9 @@ def health() -> dict:
             "app_date": db.app_date(conn),
             "data_mode": _setting(conn, "data_mode") or "unknown",
             "plaid_keys": config.plaid_enabled(),
+            "snaptrade_keys": config.snaptrade_enabled(),
+            "investments_source": _setting(conn, "investments_source") or "sample",
+            "investments_synced_at": _setting(conn, "investments_synced_at"),
             "tokens_today": tokens_used_today(),
             "daily_token_limit": config.DAILY_TOKEN_LIMIT,
         }
@@ -180,6 +203,9 @@ def update_pocket(name: str, body: PocketUpdate) -> dict:
             conn.execute("UPDATE pockets SET goal_date = ? WHERE id = ?", (body.goal_date or None, p["id"]))
         if body.active is not None:
             conn.execute("UPDATE pockets SET active = ? WHERE id = ?", (int(body.active), p["id"]))
+            if body.active and not p["active"]:  # switched on now: its budget starts this month
+                conn.execute("UPDATE pockets SET start_month = ? WHERE id = ?",
+                             (analytics.today(conn).strftime("%Y-%m"), p["id"]))
         if body.new_name:
             if not p["custom"]:
                 raise HTTPException(400, "Only custom pockets can be renamed.")
@@ -189,6 +215,27 @@ def update_pocket(name: str, body: PocketUpdate) -> dict:
             conn.execute("UPDATE pockets SET name = ? WHERE id = ?", (new, p["id"]))
         conn.commit()
     return {"ok": True}
+
+
+class NewPocket(BaseModel):
+    name: str
+    kind: Literal["spending", "saving", "investing"] = "spending"
+    monthly_budget: float = 0
+    goal_amount: float | None = None
+    goal_date: str | None = None
+
+
+@app.post("/pockets")
+def create_pocket(body: NewPocket) -> dict:
+    """+ New pocket from the More… sheet."""
+    from backend import entries
+
+    with db.connect() as conn:
+        try:
+            return entries.create_pocket(conn, name=body.name, kind=body.kind, monthly_budget=body.monthly_budget,
+                                         goal_amount=body.goal_amount, goal_date=body.goal_date)
+        except entries.EntryError as exc:
+            raise HTTPException(400, str(exc))
 
 
 @app.get("/wallet")
@@ -211,6 +258,9 @@ def wallet() -> dict:
             "savings": analytics.savings_pockets(conn, month),
             "cash_check": analytics.cash_check(conn, month),
             "moves": moves,
+            "unsorted": dict(conn.execute(
+                "SELECT COUNT(*) AS count, COALESCE(ROUND(SUM(amount), 2), 0) AS amount FROM ledger_entries"
+                " WHERE direction = 'expense' AND pocket_id IS NULL AND currency = 'USD'").fetchone()),
             "open_review_items": conn.execute("SELECT COUNT(*) FROM review_items WHERE status = 'open'").fetchone()[0],
         }
 
@@ -257,7 +307,7 @@ def add_manual_entry(body: ManualEntry) -> dict:
 class ExpenseIn(BaseModel):
     amount: float
     currency: Literal["USD", "IDR"] = "USD"
-    pocket: str
+    pocket: str | None = None  # None = "Not sure" (Unsorted, the Accountant suggests one)
     paid_with: str  # 'cash_usd', 'cash_idr' or an account id
     note: str | None = None
     date: str
@@ -512,17 +562,27 @@ def review(status: str = "open") -> dict:
 
 class Resolve(BaseModel):
     status: Literal["confirmed", "fixed", "dismissed"]
+    pocket: str | None = None  # for an Unsorted expense: the pocket chosen (defaults to the suggestion)
 
 
 @app.post("/review/{item_id}/resolve")
 def resolve_review(item_id: int, body: Resolve) -> dict:
     with db.connect() as conn:
-        cur = conn.execute(
-            "UPDATE review_items SET status = ?, resolved_at = datetime('now') WHERE id = ? AND status = 'open'",
-            (body.status, item_id))
+        item = conn.execute("SELECT * FROM review_items WHERE id = ? AND status = 'open'", (item_id,)).fetchone()
+        if not item:
+            raise HTTPException(404, "No open review item with that id.")
+        if item["kind"] == "unsorted" and item["entry_id"] and body.status != "dismissed":
+            pid = item["pocket_id"]
+            if body.pocket:
+                row = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1", (body.pocket,)).fetchone()
+                if not row:
+                    raise HTTPException(400, "Pick an active pocket.")
+                pid = row["id"]
+            if not pid:
+                raise HTTPException(400, "No pocket suggested yet; pick one.")
+            conn.execute("UPDATE ledger_entries SET pocket_id = ? WHERE id = ?", (pid, item["entry_id"]))
+        conn.execute("UPDATE review_items SET status = ?, resolved_at = datetime('now') WHERE id = ?", (body.status, item_id))
         conn.commit()
-    if cur.rowcount == 0:
-        raise HTTPException(404, "No open review item with that id.")
     return {"ok": True, "id": item_id, "status": body.status}
 
 
@@ -565,11 +625,18 @@ def latest_event_id() -> dict:
 
 
 @app.post("/reset")
-def reset() -> dict:
+async def reset() -> dict:
     if _run_lock.locked():
         raise HTTPException(409, "An agent run is in progress.")
     db.reset_working_db()
-    return {"ok": True}
+    investments = await _sync_investments() if config.snaptrade_enabled() else {"source": "sample"}
+    return {"ok": True, "investments": investments.get("source")}
+
+
+@app.post("/investments/sync")
+async def sync_investments() -> dict:
+    """Pull the SnapTrade sandbox again (accounts, balances, positions, activity, today's value)."""
+    return await _sync_investments()
 
 
 # --- Agent runs -------------------------------------------------------------------------

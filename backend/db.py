@@ -130,7 +130,8 @@ CREATE TABLE IF NOT EXISTS pockets (
     active          INTEGER NOT NULL DEFAULT 1,  -- 0 = in the catalog, can be added in Budget setup
     custom          INTEGER NOT NULL DEFAULT 0,  -- 1 = the owner can rename it
     sort            INTEGER NOT NULL DEFAULT 0,
-    description     TEXT
+    description     TEXT,
+    start_month     TEXT                  -- 'YYYY-MM' it was added; budgets count from here (NULL = budget start)
 );
 
 -- Money moved between pockets inside the app (a relabel, never a bank transfer).
@@ -171,6 +172,7 @@ CREATE TABLE IF NOT EXISTS review_items (
     id              INTEGER PRIMARY KEY,
     kind            TEXT NOT NULL,        -- e.g. 'amount_mismatch', 'duplicate_charge', 'no_matching_order'
     month           TEXT,                 -- 'YYYY-MM' the problem belongs to
+    entry_id        INTEGER REFERENCES ledger_entries(id),  -- e.g. an Unsorted expense
     transaction_id  TEXT REFERENCES transactions(id),
     receipt_id      INTEGER REFERENCES receipts(id),
     amazon_order_id TEXT,
@@ -193,7 +195,23 @@ CREATE TABLE IF NOT EXISTS holdings (
     average_cost  REAL,
     currency      TEXT NOT NULL,
     as_of         TEXT NOT NULL,
+    kind          TEXT,               -- 'stock', 'fund', ... (NULL in the saved sample)
     PRIMARY KEY (account_id, symbol)
+);
+
+-- Brokerage activity: buys, sells, dividends, deposits (SnapTrade, or the saved sample).
+CREATE TABLE IF NOT EXISTS investment_activities (
+    id          TEXT PRIMARY KEY,
+    account_id  TEXT NOT NULL REFERENCES accounts(id),
+    date        TEXT NOT NULL,
+    type        TEXT NOT NULL,        -- e.g. 'BUY', 'SELL', 'DIVIDEND', 'CONTRIBUTION'
+    symbol      TEXT,
+    description TEXT,
+    units       REAL,
+    price       REAL,
+    amount      REAL,                 -- as the brokerage reports it
+    fee         REAL,
+    currency    TEXT NOT NULL
 );
 
 -- Company data from SEC EDGAR (key numbers + recent filings), saved for offline runs.
@@ -251,7 +269,22 @@ def connect(path: Path | None = None) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    _migrate(conn)
     return conn
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    """Add columns that older copies of the database don't have yet."""
+    cols = {r["name"] for r in conn.execute("PRAGMA table_info(pockets)")}
+    if cols and not conn.execute(
+            "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'investment_activities'").fetchone():
+        conn.executescript(SCHEMA[SCHEMA.index("CREATE TABLE IF NOT EXISTS investment_activities"):].split(";")[0] + ";")
+    if cols and "kind" not in {r["name"] for r in conn.execute("PRAGMA table_info(holdings)")}:
+        conn.execute("ALTER TABLE holdings ADD COLUMN kind TEXT")
+        conn.commit()
+    if cols and "start_month" not in cols:
+        conn.execute("ALTER TABLE pockets ADD COLUMN start_month TEXT")
+        conn.commit()
 
 
 def create_schema(conn: sqlite3.Connection) -> None:

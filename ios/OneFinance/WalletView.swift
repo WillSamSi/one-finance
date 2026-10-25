@@ -387,8 +387,19 @@ struct WalletView: View {
                             if let m = item.month { Text(DateParse.monthLabel(m)).font(.system(size: 11)).foregroundStyle(Theme.muted) }
                         }
                         Text(item.detail).font(.system(size: 12)).foregroundStyle(Theme.cardText).fixedSize(horizontal: false, vertical: true)
+                        if item.kind == "unsorted", let d = data {
+                            Menu {
+                                ForEach(d.spending.pockets.map(\.name) + d.savings.filter { $0.kind == "saving" }.map(\.name), id: \.self) { name in
+                                    Button(name) { Task { await resolve(item, "confirmed", pocket: name) } }
+                                }
+                            } label: {
+                                Chip(text: item.pocket.map { "Use \($0)" } ?? "Pick a pocket…")
+                            }
+                        }
                         HStack(spacing: 8) {
-                            Button { Task { await resolve(item, "confirmed") } } label: { Chip(text: "Confirm") }
+                            if item.kind != "unsorted" || item.pocket != nil {
+                                Button { Task { await resolve(item, "confirmed") } } label: { Chip(text: "Confirm") }
+                            }
                             Button { Task { await resolve(item, "dismissed") } } label: { Chip(text: "Dismiss", color: Theme.muted) }
                         }
                     }
@@ -416,9 +427,12 @@ struct WalletView: View {
         history = try? await api.get("balance-history", query: ["days": "\(range.days)"])
     }
 
-    private func resolve(_ item: ReviewItem, _ status: String) async {
-        let _: OK? = try? await api.post("review/\(item.id)/resolve", body: ["status": status])
+    private func resolve(_ item: ReviewItem, _ status: String, pocket: String? = nil) async {
+        var body: [String: Any] = ["status": status]
+        if let pocket { body["pocket"] = pocket }
+        let _: OK? = try? await api.post("review/\(item.id)/resolve", body: body)
         review.removeAll { $0.id == item.id }
+        if pocket != nil { await load() }
     }
 
     private func undo(_ move: PocketMove) async {

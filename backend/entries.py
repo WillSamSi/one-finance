@@ -55,23 +55,62 @@ def pocket_id(conn: sqlite3.Connection, name: str, allow_investing: bool = False
     return row["id"]
 
 
-def add_expense(conn: sqlite3.Connection, *, amount: float, currency: str, pocket: str, paid_with: str,
+def add_expense(conn: sqlite3.Connection, *, amount: float, currency: str, pocket: str | None, paid_with: str,
                 note: str | None, on: str, receipt_id: int | None = None) -> dict:
+    """pocket=None means "Not sure": the expense goes to Unsorted, and the Accountant
+    suggests a pocket later in the Review tray."""
     pay_currency, account_id = check_common(conn, amount, on, paid_with)
     if currency not in ("USD", "IDR"):
         raise EntryError("Currency must be USD or IDR.")
     if pay_currency != currency:
         raise EntryError(f"That account is in {pay_currency}; enter the amount in {pay_currency}.")
-    pid = pocket_id(conn, pocket)
+    pid = pocket_id(conn, pocket) if pocket else None
     waiting = account_id is not None
+    label = (note or pocket or "Expense").strip()[:120]
     cur = conn.execute(
         "INSERT INTO ledger_entries (date, description, amount, currency, direction, pocket_id, account_id, receipt_id,"
         " status, recorded_by, note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
-        (on, (note or pocket).strip()[:120], round(amount, 2), currency, "expense", pid, account_id, receipt_id,
+        (on, label, round(amount, 2), currency, "expense", pid, account_id, receipt_id,
          "waiting_charge" if waiting else "recorded", "user",
          "Waiting for the bank charge" if waiting else "Paid with cash", _now()))
+    if pid is None:
+        conn.execute(
+            "INSERT INTO review_items (kind, month, entry_id, amount, detail, created_by, created_at)"
+            " VALUES (?,?,?,?,?,?,?)",
+            ("unsorted", on[:7], cur.lastrowid, round(amount, 2),
+             f"Not sure which pocket: {label}, {currency} {amount:,.2f} on {on}. The Accountant will suggest one.",
+             "user", _now()))
     conn.commit()
-    return {"ok": True, "id": cur.lastrowid, "status": "waiting_charge" if waiting else "recorded"}
+    return {"ok": True, "id": cur.lastrowid, "status": "waiting_charge" if waiting else "recorded",
+            "unsorted": pid is None}
+
+
+def create_pocket(conn: sqlite3.Connection, *, name: str, kind: str, monthly_budget: float,
+                  goal_amount: float | None, goal_date: str | None) -> dict:
+    """+ New pocket, made on the spot from the More… sheet."""
+    name = name.strip()[:40]
+    if not name:
+        raise EntryError("Give the pocket a name.")
+    if kind not in ("spending", "saving", "investing"):
+        raise EntryError("Kind must be spending, saving or investing.")
+    if not 0 <= monthly_budget <= 100_000:
+        raise EntryError("Monthly amount must be between 0 and 100,000.")
+    existing = conn.execute("SELECT id, active FROM pockets WHERE name = ? COLLATE NOCASE", (name,)).fetchone()
+    if existing and existing["active"]:
+        raise EntryError(f"There's already a pocket called {name}.")
+    start = analytics.today(conn).strftime("%Y-%m")  # its budget starts this month, not back at the budget start
+    if existing:  # it's in the catalog: switch it on with the new settings
+        conn.execute("UPDATE pockets SET active = 1, kind = ?, monthly_budget = ?, goal_amount = ?, goal_date = ?,"
+                     " start_month = ? WHERE id = ?",
+                     (kind, monthly_budget, goal_amount, goal_date, start, existing["id"]))
+    else:
+        sort = conn.execute("SELECT COALESCE(MAX(sort), 0) + 1 FROM pockets").fetchone()[0]
+        conn.execute(
+            "INSERT INTO pockets (name, kind, monthly_budget, goal_amount, goal_date, active, custom, sort, description,"
+            " start_month) VALUES (?,?,?,?,?,1,1,?,?,?)",
+            (name, kind, monthly_budget, goal_amount, goal_date, sort, "Added from the + button", start))
+    conn.commit()
+    return {"ok": True, "name": name}
 
 
 def add_income(conn: sqlite3.Connection, *, amount: float, currency: str, source: str, received_in: str, on: str,

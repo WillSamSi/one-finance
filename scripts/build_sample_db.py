@@ -101,8 +101,15 @@ def load_investments(conn: sqlite3.Connection) -> str:
     for p in inv["positions"]:
         s = p["symbol"]["symbol"]
         conn.execute(
-            "INSERT INTO holdings VALUES (?,?,?,?,?,?,?,?)",
+            "INSERT INTO holdings (account_id, symbol, name, quantity, price, average_cost, currency, as_of)"
+            " VALUES (?,?,?,?,?,?,?,?)",
             (acct["id"], s["symbol"], s["description"], p["units"], p["price"], p["average_purchase_price"], "USD", inv["as_of"]),
+        )
+    for i, a in enumerate(inv.get("activities", [])):
+        conn.execute(
+            "INSERT INTO investment_activities VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            (f"sample-{i}", acct["id"], a["trade_date"], a["type"], a["symbol"], f"{a['type']} {a['symbol']}",
+             a["units"], a["price"], round(a["units"] * a["price"], 2), 0.0, "USD"),
         )
     return acct["id"]
 

@@ -11,5 +11,8 @@ python-dotenv>=1.0
 # HTTP calls to Plaid and SEC EDGAR
 httpx>=0.27
 
+# Optional live investment data (SnapTrade sandbox); every request is signed by the SDK
+snaptrade-python-sdk==13.0.49
+
 # Draws the sample receipt photos (scripts/make_sample_data.py)
 pillow>=10.1

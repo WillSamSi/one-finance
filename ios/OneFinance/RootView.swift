@@ -21,6 +21,8 @@ struct RootView: View {
     @State private var showChat = false
     @State private var showAdd = false
     @State private var reloadToken = 0
+    @State private var focusQuickType = false
+    @ObservedObject private var router = QuickEntryRouter.shared
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -60,7 +62,17 @@ struct RootView: View {
                 .padding(.bottom, 6)
         }
         .sheet(isPresented: $showChat) { ChatSheet() }
-        .sheet(isPresented: $showAdd) { AddExpenseSheet { reloadToken += 1 } }
+        .sheet(isPresented: $showAdd, onDismiss: { focusQuickType = false }) {
+            AddMenuSheet(focusQuickType: focusQuickType) { reloadToken += 1; showAdd = false }
+        }
+        .onChange(of: router.openQuickType) {
+            // "Log expense" Shortcut (Back Tap): open the + menu with "Or type it" ready.
+            guard router.openQuickType else { return }
+            router.openQuickType = false
+            tab = .home
+            focusQuickType = true
+            showAdd = true
+        }
         .task { await LocalNotifications.requestPermission() }
     }
 }

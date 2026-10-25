@@ -375,6 +375,14 @@ enum DateParse {
 
     static func day(_ s: String) -> Date { formatter.date(from: String(s.prefix(10))) ?? .distantPast }
 
+    /// A calendar day in the phone's own time zone, for date pickers (UTC would show the day before).
+    static func localDay(_ s: String) -> Date {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd"
+        f.locale = Locale(identifier: "en_US_POSIX")
+        return f.date(from: String(s.prefix(10))) ?? Date()
+    }
+
     static func monthLabel(_ ym: String) -> String {
         let f = DateFormatter()
         f.dateFormat = "MMM yyyy"
@@ -387,5 +395,91 @@ enum DateParse {
         f.dateFormat = "MMM d"
         f.timeZone = TimeZone(identifier: "UTC")
         return f.string(from: day(s))
+    }
+}
+
+// MARK: - The + button
+
+struct PocketChip: Decodable, Identifiable, Hashable {
+    var id: String { name }
+    let name: String
+    let kind: String
+    let left: Double
+    let wouldGoOver: Bool
+}
+
+struct ChipsResponse: Decodable {
+    let suggested: String?
+    let chips: [PocketChip]
+    let all: [PocketChip]
+}
+
+struct PaidWithOption: Decodable, Identifiable, Hashable {
+    let id: String
+    let label: String
+    let currency: String
+}
+
+struct PaidWithResponse: Decodable { let options: [PaidWithOption] }
+
+struct EntryResult: Decodable {
+    let ok: Bool
+    let status: String?
+}
+
+struct QuickParseResult: Decodable {
+    let runId: String
+    let entry: QuickEntry
+    struct QuickEntry: Decodable {
+        let amount: Double?
+        let currency: String?
+        let pocket: String?
+        let paidWith: String?
+        let note: String?
+        let date: String?
+    }
+}
+
+struct ScanResult: Decodable {
+    let runId: String
+    let receiptId: Int
+    let receipt: ScannedReceipt
+    let checks: [ReceiptCheck]
+    let bankMatch: BankMatch?
+    let pockets: [String]
+    let inputTokens: Int
+    let outputTokens: Int
+
+    struct ScannedReceipt: Decodable {
+        let store: String
+        let date: String
+        let items: [Item]
+        let subtotal: Double
+        let tax: Double
+        let total: Double
+        let cardLast4: String?
+        let problems: [String]
+    }
+
+    struct Item: Decodable {
+        let name: String
+        let quantity: Double
+        let price: Double
+        let suggestedPocket: String?
+    }
+
+    struct ReceiptCheck: Decodable, Identifiable {
+        var id: String { name }
+        let name: String
+        let ok: Bool
+        let detail: String
+    }
+
+    struct BankMatch: Decodable {
+        let transactionId: String
+        let date: String
+        let description: String
+        let amount: Double
+        let accountLast4: String?
     }
 }

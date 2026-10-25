@@ -102,14 +102,18 @@ def pocket_spending(conn: sqlite3.Connection, month: str) -> dict[str, float]:
 def spending_pockets(conn: sqlite3.Connection, month: str) -> list[dict]:
     """Each active spending pocket for a month: budget, rollover, moves, spent, left."""
     pockets = conn.execute(
-        "SELECT id, name, monthly_budget FROM pockets WHERE kind = 'spending' AND active = 1 ORDER BY sort").fetchall()
+        "SELECT id, name, monthly_budget, start_month FROM pockets WHERE kind = 'spending' AND active = 1 ORDER BY sort"
+    ).fetchall()
     carry = {p["id"]: 0.0 for p in pockets}
-    result: dict[int, dict] = {}
+    result: dict[int, dict] = {p["id"]: {"budget": 0.0, "rollover": 0.0, "moved": 0.0,
+                                         "spent": 0.0, "left": 0.0} for p in pockets}
     for m in months_through(conn, month):
         first, last = (d.isoformat() for d in month_range(m))
         spent = _pocket_spent(conn, m)
         moves = _pocket_moves(conn, first, last)
         for p in pockets:
+            if p["start_month"] and m < p["start_month"]:
+                continue  # added later: no budget (or rollover) for the months before it existed
             budget = p["monthly_budget"] or 0.0
             s = spent.get(p["id"], 0.0)
             moved = moves.get(p["id"], 0.0)
@@ -172,7 +176,8 @@ def savings_pockets(conn: sqlite3.Connection, month: str | None = None) -> list[
     out = []
     for p in conn.execute(
             "SELECT * FROM pockets WHERE kind IN ('saving', 'investing') AND active = 1 ORDER BY sort"):
-        set_aside = (p["monthly_budget"] or 0.0) * len(months)
+        counted = [m for m in months if not p["start_month"] or m >= p["start_month"]]
+        set_aside = (p["monthly_budget"] or 0.0) * len(counted)
         used = 0.0
         for r in conn.execute(
                 "SELECT amount, currency, direction FROM ledger_entries WHERE pocket_id = ? AND date BETWEEN ? AND ?",

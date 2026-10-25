@@ -81,6 +81,19 @@ def plaid_enabled() -> bool:
     return bool(PLAID_CLIENT_ID and PLAID_SECRET)
 
 
+# --- SnapTrade (optional) -----------------------------------------------------
+# A Personal API key (client ID + consumer key) reads the brokerage connected to it,
+# here SnapTrade's fake "SANDBOX" brokerage. Without the keys the saved sample
+# portfolio (data/sample/investments.json) is used instead.
+SNAPTRADE_CLIENT_ID = os.environ.get("SNAPTRADE_CLIENT_ID", "").strip()
+SNAPTRADE_CONSUMER_KEY = os.environ.get("SNAPTRADE_CONSUMER_KEY", "").strip()
+
+
+def snaptrade_enabled() -> bool:
+    """True when SnapTrade keys are set; False means the sample portfolio."""
+    return bool(SNAPTRADE_CLIENT_ID and SNAPTRADE_CONSUMER_KEY)
+
+
 @lru_cache
 def get_model():
     """Build the Portkey-backed model. Fails clearly if PORTKEY_API_KEY is missing.
@@ -117,6 +130,9 @@ def describe() -> str:
     lines.append(f"PLAID_SECRET:    {state('PLAID_SECRET')}")
     lines.append(f"PLAID_ENV:       {PLAID_ENV}")
     lines.append(f"Bank data:       {'live Plaid ' + PLAID_ENV if plaid_enabled() else 'sample data (no Plaid keys)'}")
+    lines.append(f"SNAPTRADE_CLIENT_ID:    {state('SNAPTRADE_CLIENT_ID')}")
+    lines.append(f"SNAPTRADE_CONSUMER_KEY: {state('SNAPTRADE_CONSUMER_KEY')}")
+    lines.append(f"Investments:     {'live SnapTrade (sandbox)' if snaptrade_enabled() else 'sample data (no SnapTrade keys)'}")
     return "\n".join(lines)
 
 
