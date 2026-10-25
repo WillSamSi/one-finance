@@ -11,5 +11,16 @@
 	<!-- More → Privacy and security → Face ID lock. -->
 	<key>NSFaceIDUsageDescription</key>
 	<string>One Finance uses Face ID to lock your finances when the app opens.</string>
+	<!-- Static launch screen: the "One Finance" wordmark on Onyx. It's the same image pair the
+	     splash animation starts from (scripts/make_brand_assets.swift), so the hand-off is seamless. -->
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+		<key>UIImageName</key>
+		<string>LaunchWordmark</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<false/>
+	</dict>
 </dict>
 </plist>

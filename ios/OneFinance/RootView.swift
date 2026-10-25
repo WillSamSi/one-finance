@@ -25,6 +25,7 @@ struct RootView: View {
     @ObservedObject private var router = QuickEntryRouter.shared
     @AppStorage("faceIDLock") private var faceIDLock = false
     @State private var locked = UserDefaults.standard.bool(forKey: "faceIDLock")
+    @State private var showSplash = true  // cold launch only: RootView is created once per launch
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -77,7 +78,14 @@ struct RootView: View {
             showAdd = true
         }
         .overlay {
-            if locked && faceIDLock { LockScreen { locked = false } }
+            if locked && faceIDLock && !showSplash { LockScreen { locked = false } }
+        }
+        .overlay {
+            if showSplash {
+                SplashView(needsUnlock: locked && faceIDLock,
+                           onUnlocked: { locked = false },
+                           onFinished: { showSplash = false })
+            }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .background && faceIDLock { locked = true }  // ask again when the app comes back
