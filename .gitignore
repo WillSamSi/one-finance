@@ -35,3 +35,6 @@ xcuserdata/
 
 # Receipt photos added in the app (could be real receipts)
 data/uploads/
+
+# Test runs (copies of the sample database)
+output/scratch/
