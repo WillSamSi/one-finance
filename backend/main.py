@@ -139,13 +139,18 @@ def _default_next_steps(conn, budget: dict) -> list[dict]:
 def home(month: str | None = None) -> dict:
     """Everything the Home screen shows (see the render in PLAN.md)."""
     with db.connect() as conn:
-        month = month or analytics.today(conn).strftime("%Y-%m")
-    agents.rules_through(month)  # free pre-pass so the month is categorized
+        month = month or analytics.current_budget_month(conn)
+        calendar_now = analytics.today(conn).strftime("%Y-%m")
+    agents.rules_through(max(month, calendar_now))  # free pre-pass so the month is categorized
     with db.connect() as conn:
         budget = analytics.budget_status(conn, month)
         next_steps = _setting(conn, "latest_next_steps")
+        from backend import prefs
+
+        salary = prefs.salary_status(conn)
         return {
             "month": month,
+            "salary": salary,
             "today": analytics.today(conn).isoformat(),
             "balance": analytics.balance_change_this_month(conn),
             "summary": {
@@ -205,7 +210,7 @@ def update_pocket(name: str, body: PocketUpdate) -> dict:
             conn.execute("UPDATE pockets SET active = ? WHERE id = ?", (int(body.active), p["id"]))
             if body.active and not p["active"]:  # switched on now: its budget starts this month
                 conn.execute("UPDATE pockets SET start_month = ? WHERE id = ?",
-                             (analytics.today(conn).strftime("%Y-%m"), p["id"]))
+                             (analytics.current_budget_month(conn), p["id"]))
         if body.new_name:
             if not p["custom"]:
                 raise HTTPException(400, "Only custom pockets can be renamed.")
@@ -215,6 +220,172 @@ def update_pocket(name: str, body: PocketUpdate) -> dict:
             conn.execute("UPDATE pockets SET name = ? WHERE id = ?", (new, p["id"]))
         conn.commit()
     return {"ok": True}
+
+
+# --- More tab -------------------------------------------------------------------------------
+@app.get("/settings")
+def get_settings() -> dict:
+    """Profile, AI preferences, the exchange rate and which data the app is showing."""
+    from backend import prefs
+
+    with db.connect() as conn:
+        return prefs.all_settings(conn)
+
+
+@app.patch("/settings")
+def patch_settings(body: dict) -> dict:
+    from backend import prefs
+
+    with db.connect() as conn:
+        try:
+            return prefs.update(conn, body)
+        except ValueError as exc:
+            raise HTTPException(400, str(exc))
+
+
+@app.get("/connections")
+def get_connections() -> dict:
+    from backend import prefs
+
+    with db.connect() as conn:
+        return {"connections": prefs.connections(conn)}
+
+
+@app.post("/connections/snaptrade/refresh")
+async def refresh_snaptrade() -> dict:
+    return await _sync_investments()
+
+
+@app.get("/privacy/ai")
+def what_the_ai_sees() -> dict:
+    from backend import prefs
+
+    return prefs.WHAT_THE_AI_SEES
+
+
+@app.get("/export.csv")
+def export_csv():
+    from fastapi.responses import PlainTextResponse
+
+    from backend import prefs
+
+    with db.connect() as conn:
+        return PlainTextResponse(prefs.export_csv(conn), media_type="text/csv",
+                                 headers={"Content-Disposition": 'attachment; filename="one-finance-export.csv"'})
+
+
+@app.post("/delete-all")
+def delete_all() -> dict:
+    """Delete all my data (working copy): empty database, live connections off."""
+    from backend import prefs
+
+    if _run_lock.locked():
+        raise HTTPException(409, "An agent run is in progress.")
+    return prefs.delete_all()
+
+
+class ProblemReport(BaseModel):
+    text: str
+    app_version: str | None = None
+
+
+@app.post("/report-problem")
+def report_problem(body: ProblemReport) -> dict:
+    from backend import prefs
+
+    with db.connect() as conn:
+        try:
+            return prefs.save_problem(conn, body.text, body.app_version)
+        except ValueError as exc:
+            raise HTTPException(400, str(exc))
+
+
+# --- Budget setup (Wallet → Edit pockets) -------------------------------------------------
+@app.get("/budget")
+def budget_plan() -> dict:
+    """Everything Budget setup shows: income, the plan in $ and %, every pocket with this month's
+    numbers, the catalog, the IDR rate, and whether this is a first-time setup."""
+    from backend import budget
+
+    with db.connect() as conn:
+        return budget.plan(conn)
+
+
+class PlanPocket(BaseModel):
+    name: str
+    kind: Literal["income", "spending", "saving", "investing"] | None = None
+    monthly: float = 0
+    new_name: str | None = None
+    is_new: bool = False
+    goal_amount: float | None = None
+    goal_date: str | None = None
+    starting_amount: float | None = None
+    frequency: str | None = None
+    received_in: str | None = None
+
+
+class PlanSave(BaseModel):
+    apply: Literal["this_month", "next_month"] = "this_month"
+    pockets: list[PlanPocket]
+    cover_from: str | None = None
+
+
+@app.post("/budget/save")
+def budget_save(body: PlanSave):
+    """Save Budget setup in one go. Over income → 409 with how much and the pockets that could cover it."""
+    from fastapi.responses import JSONResponse
+
+    from backend import budget
+
+    with db.connect() as conn:
+        try:
+            return budget.save_plan(conn, apply=body.apply, pockets=[p.model_dump() for p in body.pockets],
+                                    cover_from=body.cover_from)
+        except budget.OverIncome as exc:
+            conn.rollback()
+            return JSONResponse(status_code=409, content={"detail": str(exc), "over": exc.over, "extra": exc.extra,
+                                                          "sources": exc.sources})
+        except budget.BudgetError as exc:
+            conn.rollback()
+            raise HTTPException(400, str(exc))
+
+
+class ArchiveBody(BaseModel):
+    move_to: str | None = None
+
+
+@app.post("/budget/pockets/{name}/archive")
+def budget_archive(name: str, body: ArchiveBody) -> dict:
+    """Archive a pocket; its money goes to `move_to` (or Unsorted / Unassigned)."""
+    from backend import budget
+
+    with db.connect() as conn:
+        try:
+            return budget.archive(conn, name, body.move_to)
+        except budget.BudgetError as exc:
+            conn.rollback()
+            raise HTTPException(400, str(exc))
+
+
+@app.get("/budget/hint")
+def budget_hint(name: str) -> dict:
+    """What the owner spent on something like `name` per month lately (for the Add spending pocket form)."""
+    from backend import budget
+
+    with db.connect() as conn:
+        return {"hint": budget.spending_hint(conn, name)}
+
+
+@app.post("/budget/start-over")
+def budget_start_over() -> dict:
+    """Testing / demo: switch every pocket off so Budget setup opens on the first-time choice.
+    Working copy only; Reset (Other tab) restores the sample."""
+    from backend import budget
+
+    if _run_lock.locked():
+        raise HTTPException(409, "An agent run is in progress.")
+    with db.connect() as conn:
+        return budget.start_over(conn)
 
 
 class NewPocket(BaseModel):
@@ -242,8 +413,9 @@ def create_pocket(body: NewPocket) -> dict:
 def wallet() -> dict:
     """Everything on the Wallet screen (see mockups/wallet-dark.html)."""
     with db.connect() as conn:
-        month = analytics.today(conn).strftime("%Y-%m")
-    agents.rules_through(month)
+        month = analytics.current_budget_month(conn)
+        calendar_now = analytics.today(conn).strftime("%Y-%m")
+    agents.rules_through(calendar_now)
     with db.connect() as conn:
         moves = [dict(r) for r in conn.execute(
             """SELECT m.id, m.date, m.amount, m.note, m.created_by, m.undone, f.name AS from_pocket, t.name AS to_pocket
@@ -290,7 +462,7 @@ def add_manual_entry(body: ManualEntry) -> dict:
     if not body.description.strip():
         raise HTTPException(400, "Add a short description.")
     with db.connect() as conn:
-        p = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1 AND kind != 'investing'",
+        p = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1 AND kind IN ('spending', 'saving')",
                          (body.pocket,)).fetchone()
         if not p:
             raise HTTPException(400, "Pick an active spending or savings pocket.")
@@ -374,7 +546,7 @@ def pocket_chips(note: str = "", amount: float = 0, currency: str = "USD") -> di
     from backend import rules
 
     with db.connect() as conn:
-        month = analytics.today(conn).strftime("%Y-%m")
+        month = analytics.current_budget_month(conn)
         usd = amount * analytics.fx(conn).get(currency, 1.0)
         spending = {p["name"]: p for p in analytics.spending_pockets(conn, month)}
         saving = {p["name"]: p for p in analytics.savings_pockets(conn, month)}
@@ -688,6 +860,11 @@ async def run_read_receipt(receipt_id: int) -> dict:
 
 @app.post("/agents/portfolio-brief")
 async def run_portfolio_brief() -> dict:
+    from backend import prefs
+
+    with db.connect() as conn:
+        if not prefs.is_on(conn, "ai_investment_suggestions"):
+            raise HTTPException(409, "Investment suggestions are off (More → AI preferences).")
     return await _run(agents.portfolio_brief)
 
 
@@ -699,6 +876,12 @@ async def run_weekly_digest() -> dict:
 @app.post("/agents/suggest-budget")
 async def run_suggest_budget() -> dict:
     return await _run(agents.suggest_budget)
+
+
+@app.post("/agents/draft-budget")
+async def run_draft_budget() -> dict:
+    """First-time setup: the Advisor drafts a budget from the bank history (nothing is saved)."""
+    return await _run(agents.draft_budget)
 
 
 @app.post("/agents/chat")

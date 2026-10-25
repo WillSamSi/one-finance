@@ -9,19 +9,29 @@ struct HomeView: View {
     @State private var data: HomeData?
     @State private var month = ""
     @State private var error: String?
+    @State private var revealed = false
+    @AppStorage("hideBalances") private var hideBalances = false
+    @Environment(\.scenePhase) private var scenePhase
 
     private let api = APIClient()
+    private var hidden: Bool { hideBalances && !revealed }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 if let data {
-                    balanceHeader(data.balance)
-                    aiSummary(data)
-                    cashflowCard(data)
+                    Group {
+                        balanceHeader(data.balance)
+                        aiSummary(data)
+                        cashflowCard(data)
+                    }
+                    .hiddenAmounts(hidden, reveal: { revealed = true })
                     divider
-                    remainingBudget(data)
-                    savings(data.savings)
+                    Group {
+                        remainingBudget(data)
+                        savings(data.savings)
+                    }
+                    .hiddenAmounts(hidden, reveal: { revealed = true })
                     nextSteps(data)
                 } else if let error {
                     BackendErrorCard(message: error)
@@ -36,6 +46,7 @@ struct HomeView: View {
         .scrollIndicators(.hidden)
         .refreshable { await load() }
         .task(id: "\(month)-\(reloadToken)") { await load() }
+        .onChange(of: scenePhase) { _, phase in if phase == .background { revealed = false } }  // hide again next time
     }
 
     // MARK: Sections
@@ -218,9 +229,34 @@ struct HomeView: View {
             data = d
             if month.isEmpty { month = d.month }
             error = nil
+            await checkAlerts(d)
         } catch {
             self.error = error.localizedDescription
         }
+    }
+}
+
+extension HomeView {
+    /// Over-budget and "salary not received" alerts (More → Notifications), for the current month.
+    fileprivate func checkAlerts(_ d: HomeData) async {
+        guard d.month == String(d.today.prefix(7)) else { return }
+        let over = d.budget.pockets.filter(\.over).map(\.name)
+        let salaryMissing = d.salary?.missing ?? false  // 2 days after the payday set in Profile
+        NotificationPrefs.checkAlerts(month: d.month, overPockets: over, salaryMissing: salaryMissing)
+    }
+}
+
+extension View {
+    /// Hide balances (More → Privacy): blur the amounts until the owner taps them.
+    func hiddenAmounts(_ hidden: Bool, reveal: @escaping () -> Void) -> some View {
+        self
+            .blur(radius: hidden ? 9 : 0)
+            .overlay {
+                if hidden {
+                    Color.clear.contentShape(Rectangle()).onTapGesture { withAnimation(.easeOut(duration: 0.25)) { reveal() } }
+                }
+            }
+            .accessibilityHidden(hidden)
     }
 }
 
@@ -232,7 +268,7 @@ struct BudgetCard: View {
         let used = pocket.available > 0 ? min(1, pocket.spent / pocket.available) : 1
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 7) {
-                GlowDot(color: color, size: 8)
+                PocketIcon(name: pocket.name)
                 Text(pocket.name).lineLimit(1)
             }
             .font(.system(size: 12.5, weight: .medium))
@@ -251,15 +287,21 @@ struct BudgetCard: View {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule().fill(Color.white.opacity(0.08))
-                    Capsule().fill(pocket.over ? Color(hex: 0xFF6B6B) : color).frame(width: geo.size.width * used)
+                    Capsule().fill(color).frame(width: geo.size.width * used)  // over: full width, same color
                 }
             }
             .frame(height: 4)
             .padding(.top, 10)
         }
         .padding(12)
-        .background(Theme.cardFill, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous).stroke(Theme.hairline, lineWidth: 1))
+        .background {
+            ZStack {  // over budget: a light red tint on the whole card, under the text
+                RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Theme.cardFill)
+                if pocket.over { RoundedRectangle(cornerRadius: 18, style: .continuous).fill(Theme.over.opacity(0.11)) }
+            }
+        }
+        .overlay(RoundedRectangle(cornerRadius: 18, style: .continuous)
+            .stroke(pocket.over ? Theme.over.opacity(0.25) : Theme.hairline, lineWidth: 1))
     }
 }
 
@@ -274,7 +316,7 @@ struct SavingsCard: View {
         let monthShort = month.isEmpty ? "This month" : String(DateParse.monthLabel(month).prefix(3))
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 7) {
-                GlowDot(color: color, size: 8)
+                PocketIcon(name: pocket.name)
                 Text(pocket.name).lineLimit(1)
                 if wide, let amount = pocket.monthlyAmount {
                     Spacer()

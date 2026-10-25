@@ -66,22 +66,30 @@ def auto_record(conn: sqlite3.Connection, month: str) -> dict:
     ).fetchall()
     recorded, left, linked = 0, 0, 0
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    from backend import prefs
+
+    enabled = prefs.is_on(conn, "auto_record")  # More → AI preferences → Auto-record confident matches
     for t in rows:
         # Something the owner already added by hand (card-paid expense, scanned receipt, income)?
         # Link it instead of counting the money twice.
         if entries.link_waiting(conn, t):
             linked += 1
             continue
-        rule = None if t["id"] in dupes else classify(t["description"], t["merchant_name"])
+        rule = None if t["id"] in dupes or not enabled else classify(t["description"], t["merchant_name"])
         if rule is None:
             left += 1
             continue
         pocket, direction, note = rule
+        pocket_id = pockets.get(pocket) if pocket else None
+        if direction == "income":  # deposits go to an income pocket (payroll → Salary, else Other income)
+            from backend.budget import income_pocket_for
+
+            pocket_id = income_pocket_for(conn, t["description"])
         conn.execute(
             "INSERT INTO ledger_entries (transaction_id, date, description, amount, currency, direction, pocket_id,"
             " account_id, status, recorded_by, note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
             (t["id"], t["date"], t["merchant_name"] or t["description"], t["amount"], t["currency"], direction,
-             pockets.get(pocket) if pocket else None, t["account_id"], "recorded", "rules", note, now),
+             pocket_id, t["account_id"], "recorded", "rules", note, now),
         )
         recorded += 1
     conn.commit()

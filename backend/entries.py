@@ -50,7 +50,7 @@ def check_common(conn: sqlite3.Connection, amount: float, on: str, paid_with: st
 
 def pocket_id(conn: sqlite3.Connection, name: str, allow_investing: bool = False) -> int:
     row = conn.execute("SELECT id, kind FROM pockets WHERE name = ? AND active = 1", (name,)).fetchone()
-    if not row or (row["kind"] == "investing" and not allow_investing):
+    if not row or row["kind"] == "income" or (row["kind"] == "investing" and not allow_investing):
         raise EntryError("Pick an active spending or savings pocket.")
     return row["id"]
 
@@ -98,7 +98,7 @@ def create_pocket(conn: sqlite3.Connection, *, name: str, kind: str, monthly_bud
     existing = conn.execute("SELECT id, active FROM pockets WHERE name = ? COLLATE NOCASE", (name,)).fetchone()
     if existing and existing["active"]:
         raise EntryError(f"There's already a pocket called {name}.")
-    start = analytics.today(conn).strftime("%Y-%m")  # its budget starts this month, not back at the budget start
+    start = analytics.current_budget_month(conn)  # its budget starts this month, not back at the budget start
     if existing:  # it's in the catalog: switch it on with the new settings
         conn.execute("UPDATE pockets SET active = 1, kind = ?, monthly_budget = ?, goal_amount = ?, goal_date = ?,"
                      " start_month = ? WHERE id = ?",
@@ -127,9 +127,9 @@ def add_income(conn: sqlite3.Connection, *, amount: float, currency: str, source
     waiting = account_id is not None
     cur = conn.execute(
         "INSERT INTO ledger_entries (date, description, amount, currency, direction, account_id, status, recorded_by,"
-        " note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+        " note, created_at, pocket_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
         (on, (note or source.capitalize()).strip()[:120], -round(amount, 2), currency, "income", account_id,
-         "waiting_deposit" if waiting else "recorded", "user", f"income:{source}", _now()))
+         "waiting_deposit" if waiting else "recorded", "user", f"income:{source}", _now(), _income_pocket(conn, source)))
     for a in assign:
         if a["amount"] <= 0:
             continue
@@ -140,6 +140,16 @@ def add_income(conn: sqlite3.Connection, *, amount: float, currency: str, source
              f"From new income ({source})", "user", _now()))
     conn.commit()
     return {"ok": True, "id": cur.lastrowid, "status": "waiting_deposit" if waiting else "recorded"}
+
+
+def _income_pocket(conn: sqlite3.Connection, source: str) -> int | None:
+    """The + button's income source → its income pocket (salary → Salary, freelance → Freelance, …)."""
+    from backend.budget import OTHER_INCOME
+
+    name = {"salary": "Salary", "freelance": "Freelance"}.get(source, OTHER_INCOME)
+    row = conn.execute("SELECT id FROM pockets WHERE name = ? AND kind = 'income' AND active = 1", (name,)).fetchone() or \
+        conn.execute("SELECT id FROM pockets WHERE name = ? AND kind = 'income'", (OTHER_INCOME,)).fetchone()
+    return row["id"] if row else None
 
 
 def link_waiting(conn: sqlite3.Connection, t: sqlite3.Row) -> bool:

@@ -62,6 +62,7 @@ struct WalletView: View {
             .padding(.bottom, 180)
         }
         .scrollIndicators(.hidden)
+        .scrollDisabled(scrubDate != nil)  // a finger on the chart scrubs; the page stays put
         .refreshable { await load() }
         .task { await load() }
         .task(id: range) { await loadHistory() }
@@ -140,7 +141,7 @@ struct WalletView: View {
             .chartYScale(domain: floor...(hi + (hi - lo) * 0.05 + 1))
             .chartXAxis(.hidden)
             .chartYAxis(.hidden)
-            .chartXSelection(value: $scrubDate)  // press and drag; letting go clears it
+            .chartScrubbing($scrubDate)  // touch and drag; letting go clears it
             .sensoryFeedback(.selection, trigger: scrubPoint?.date)
             .padding(.top, 22)  // room for the date label
             .frame(height: 142)
@@ -375,7 +376,7 @@ struct WalletView: View {
             VStack(alignment: .leading, spacing: 10) {
                 AILabel(title: "Review", note: review.isEmpty ? "all clear" : "\(review.count) to check")
                 if review.isEmpty {
-                    Text("Nothing flagged. Run the month-end check in Other to have the Accountant look.")
+                    Text("Nothing flagged. Run the month-end check in More to have the Accountant look.")
                         .font(.system(size: 12.5)).foregroundStyle(Theme.muted)
                 }
                 ForEach(review) { item in
@@ -624,7 +625,7 @@ struct PocketRow: View {
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
                         Capsule().fill(Color.white.opacity(0.08))
-                        Capsule().fill(over ? Color(hex: 0xFF6B6B) : color).frame(width: geo.size.width * min(1, max(0, progress)))
+                        Capsule().fill(color).frame(width: geo.size.width * min(1, max(0, progress)))  // over: full, same color
                     }
                 }
                 .frame(height: 4)
@@ -633,7 +634,16 @@ struct PocketRow: View {
             }
         }
         .padding(.vertical, 9)
-        .overlay(alignment: .bottom) { Rectangle().fill(Color.white.opacity(0.06)).frame(height: 1) }
+        .padding(.horizontal, over ? 10 : 0)
+        .background {
+            if over {  // over budget: the whole row gets a light red highlight; the amount stays red
+                RoundedRectangle(cornerRadius: 12).fill(Theme.over.opacity(0.11))
+                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Theme.over.opacity(0.25), lineWidth: 1))
+            }
+        }
+        .padding(.horizontal, over ? -10 : 0)  // the tint reaches a little past the text, not the card edges
+        .padding(.vertical, over ? 3 : 0)
+        .overlay(alignment: .bottom) { if !over { Rectangle().fill(Color.white.opacity(0.06)).frame(height: 1) } }
     }
 }
 

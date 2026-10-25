@@ -4,6 +4,7 @@ import Foundation
 
 struct HomeData: Decodable {
     let month: String
+    let salary: SalaryStatus?
     let today: String
     let balance: BalanceInfo
     let summary: Summary
@@ -426,6 +427,14 @@ enum DateParse {
         return f.string(from: day(s))
     }
 
+    /// "Friday"
+    static func weekday(_ s: String) -> String {
+        let f = DateFormatter()
+        f.dateFormat = "EEEE"
+        f.timeZone = TimeZone(identifier: "UTC")
+        return f.string(from: day(s))
+    }
+
     static func shortDay(_ s: String) -> String {
         let f = DateFormatter()
         f.dateFormat = "MMM d"
@@ -517,5 +526,106 @@ struct ScanResult: Decodable {
         let description: String
         let amount: Double
         let accountLast4: String?
+    }
+}
+
+// MARK: - Budget setup (GET /budget)
+
+struct BudgetPlan: Decodable {
+    let month: String
+    let nextMonth: String
+    let pockets: [SetupPocket]
+    let catalog: [SetupPocket]
+    let expectedIncome: Double
+    let notPlanned: Double
+    let unspent: Double
+    let spendingAvailable: Double
+    let accounts: [BudgetAccount]
+    let frequencies: [String]
+    let fx: FX
+    let firstTime: Bool
+    let historyMonths: Int
+    let aiDraftAvailable: Bool
+    let aiDraftReason: String?
+
+    struct FX: Decodable {
+        let idrPerUsd: Double?
+        let asOf: String?
+    }
+}
+
+struct SetupPocket: Decodable, Identifiable {
+    var id: String { name }
+    let name: String
+    let displayName: String
+    let kind: String          // income, spending, saving, investing
+    let custom: Bool
+    let description: String?
+    let monthly: Double
+    let nextMonth: Double
+    let goalAmount: Double?
+    let goalDate: String?
+    let startingAmount: Double?
+    let frequency: String?
+    let receivedIn: String?
+    let receivedInLabel: String?
+    let receivedThisMonth: Double?
+    let spent: Double?
+    let left: Double?
+    let available: Double?
+    let usual: Double?
+    let saved: Double?
+}
+
+struct BudgetAccount: Decodable, Identifiable {
+    let id: String
+    let label: String
+    let currency: String
+}
+
+/// 409 from POST /budget/save: the plan is over income; pick a pocket to cover the extra.
+struct OverIncomeReply: Decodable {
+    let detail: String
+    let over: Double
+    let extra: Double
+    let sources: [Source]
+    struct Source: Decodable, Identifiable {
+        var id: String { name }
+        let name: String
+        let displayName: String
+        let available: Double
+    }
+}
+
+struct BudgetHint: Decodable {
+    let hint: Hint?
+    struct Hint: Decodable {
+        let monthly: Double
+        let matches: Int
+        let months: Int
+    }
+}
+
+struct BudgetDraftResult: Decodable {
+    let runId: String
+    let draft: Draft?
+    struct Draft: Decodable {
+        let income: [Income]
+        let pockets: [Pocket]
+        let note: String
+    }
+    struct Income: Decodable {
+        let name: String
+        let expectedMonthly: Double
+        let frequency: String
+        let receivedIn: String?
+        let reason: String
+    }
+    struct Pocket: Decodable {
+        let name: String
+        let kind: String
+        let monthlyAmount: Double
+        let goalAmount: Double?
+        let reason: String
     }
 }

@@ -30,6 +30,29 @@ struct APIClient {
         return try decode(data, response)
     }
 
+    func patch<T: Decodable>(_ path: String, body: [String: Any], as type: T.Type = T.self) async throws -> T {
+        var request = URLRequest(url: Self.baseURL.appending(path: path), timeoutInterval: 60)
+        request.httpMethod = "PATCH"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        return try decode(data, response)
+    }
+
+    /// POST that hands back the status code and body as they are (for answers like 409 "over income").
+    func send(_ path: String, body: [String: Any]) async throws -> (status: Int, data: Data) {
+        var request = URLRequest(url: Self.baseURL.appending(path: path), timeoutInterval: 120)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONSerialization.data(withJSONObject: body)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        return ((response as? HTTPURLResponse)?.statusCode ?? 0, data)
+    }
+
+    func decodeBody<T: Decodable>(_ data: Data, as type: T.Type = T.self) throws -> T {
+        try decoder.decode(T.self, from: data)
+    }
+
     private func decode<T: Decodable>(_ data: Data, _ response: URLResponse) throws -> T {
         guard let http = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
         guard http.statusCode == 200 else {

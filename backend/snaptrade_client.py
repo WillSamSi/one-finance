@@ -284,6 +284,11 @@ def sync(conn: sqlite3.Connection | None = None) -> dict:
         return {"ok": False, "source": "sample", "message": "No SnapTrade keys; using the sample portfolio."}
     own = conn is None
     conn = conn or db.connect()
+    deleted = conn.execute("SELECT value FROM settings WHERE key = 'data_deleted'").fetchone()
+    if deleted and deleted["value"] == "1":  # "Delete all my data" disconnected it; Reset brings it back
+        if own:
+            conn.close()
+        return {"ok": False, "source": "none", "message": "Disconnected (all data was deleted)."}
     try:
         data = fetch(analytics.today(conn))
         if not data:

@@ -1,3 +1,4 @@
+import Charts
 import SwiftUI
 
 /// Colors and pieces from the dark "vibranium" render (mockups/home-dark.html).
@@ -57,10 +58,55 @@ enum Theme {
         case "General Savings": return Color(hex: 0x5EE6E0)
         case "Other Savings": return Color(hex: 0xFF7B7B)
         case "Investing", "Investment": return Color(hex: 0xA45CFF)
-        case "Income": return Color(hex: 0x2FD39B)
+        case "Income", "Salary": return Color(hex: 0x2FD39B)
+        case "Freelance": return Color(hex: 0x7AE582)
+        case "Dividends": return Color(hex: 0xC49BFF)
+        case "Other income": return Color(hex: 0x5EE6E0)
         case "Interest": return Color(hex: 0x5EE6E0)
         default: return Color(hex: 0x9AA6C2)
         }
+    }
+}
+
+extension Theme {
+    /// Each pocket's icon (SF Symbols), for the Home pocket cards.
+    static func icon(_ name: String) -> String {
+        switch name {
+        case "Home Rent": return "house.fill"
+        case "Utilities": return "bolt.fill"
+        case "Food": return "fork.knife"
+        case "Supplies": return "cart.fill"
+        case "Transportation": return "car.fill"
+        case "Healthcare": return "cross.case.fill"
+        case "Sports": return "figure.run"
+        case "Education": return "graduationcap.fill"
+        case "Entertainment": return "film.fill"
+        case "Shopping": return "bag.fill"
+        case "Electronics": return "desktopcomputer"
+        case "Travel": return "airplane"
+        case "Gifts": return "gift.fill"
+        case "Coffee": return "cup.and.saucer.fill"
+        case "Emergency Fund": return "lifepreserver.fill"
+        case "General Savings": return "banknote.fill"
+        case "Other Savings": return "star.fill"
+        case "Investment", "Ready to invest": return "chart.line.uptrend.xyaxis"
+        default: return "circle.grid.2x2.fill"
+        }
+    }
+}
+
+/// A pocket's icon in a small rounded rectangle filled with the pocket's color (Home cards).
+struct PocketIcon: View {
+    let name: String
+    var size: CGFloat = 22
+
+    var body: some View {
+        Image(systemName: Theme.icon(name))
+            .font(.system(size: size * 0.5, weight: .bold))
+            .foregroundStyle(.white)
+            .frame(width: size, height: size)
+            .background(Theme.category(name), in: RoundedRectangle(cornerRadius: size * 0.3, style: .continuous))
+            .shadow(color: Theme.category(name).opacity(0.45), radius: 4)
     }
 }
 
@@ -223,6 +269,11 @@ enum Money {
         value.formatted(.currency(code: "USD").precision(.fractionLength(cents ? 2 : 0)))
     }
 
+    /// "$4,300" for whole dollars, "$27.83" otherwise.
+    static func plain(_ value: Double) -> String {
+        abs(value - value.rounded()) < 0.005 ? whole(value) : usd(value)
+    }
+
     static func whole(_ value: Double) -> String {
         usd(value, cents: false)
     }
@@ -237,5 +288,37 @@ enum Money {
     /// "Rp 32.5M"
     static func shortIDR(_ value: Double) -> String {
         "Rp " + (value / 1_000_000).formatted(.number.precision(.fractionLength(1))) + "M"
+    }
+}
+
+// MARK: - Chart scrubbing
+
+extension View {
+    /// Touch the chart and drag: `date` follows the finger (a pointer hover does the same on iPad
+    /// and Mac); letting go clears it. Used instead of `chartXSelection`, which the page's scroll
+    /// cancels as soon as the finger moves. The page must also turn scrolling off while `date` is
+    /// set (`.scrollDisabled(date != nil)`), or the scroll still takes over the touch.
+    func chartScrubbing(_ date: Binding<Date?>) -> some View {
+        chartOverlay { proxy in
+            GeometryReader { geo in
+                let pick: (CGPoint) -> Date? = { point in
+                    guard let frame = proxy.plotFrame else { return nil }
+                    let x = min(max(point.x - geo[frame].minX, 0), geo[frame].width)
+                    return proxy.value(atX: x, as: Date.self)
+                }
+                Rectangle().fill(.clear).contentShape(Rectangle())
+                    .gesture(
+                        DragGesture(minimumDistance: 0)
+                            .onChanged { date.wrappedValue = pick($0.location) }
+                            .onEnded { _ in date.wrappedValue = nil }
+                    )
+                    .onContinuousHover { phase in
+                        switch phase {
+                        case .active(let point): date.wrappedValue = pick(point)
+                        case .ended: date.wrappedValue = nil
+                        }
+                    }
+            }
+        }
     }
 }

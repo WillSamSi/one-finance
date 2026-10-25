@@ -8,5 +8,8 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<!-- More → Privacy and security → Face ID lock. -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>One Finance uses Face ID to lock your finances when the app opens.</string>
 </dict>
 </plist>

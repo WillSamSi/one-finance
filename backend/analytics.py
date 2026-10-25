@@ -28,6 +28,32 @@ def month_range(month: str) -> tuple[date, date]:
     return date(y, m, 1), date(y, m, calendar.monthrange(y, m)[1])
 
 
+def budget_start_day(conn: sqlite3.Connection) -> int:
+    """The day a budget month starts (More → Profile → Budget month starts on): 1, or payday."""
+    from backend import prefs
+
+    return prefs.budget_start_day(conn)
+
+
+def budget_range(conn: sqlite3.Connection, month: str) -> tuple[date, date]:
+    """First and last day of budget month `month`. With a start day S (payday) the month 'YYYY-MM'
+    runs from the S-th of that month to the day before the S-th of the next one."""
+    s = budget_start_day(conn)
+    if s <= 1:
+        return month_range(month)
+    first, last = month_range(month)
+    nxt = last + timedelta(days=1)
+    return first.replace(day=s), nxt.replace(day=s) - timedelta(days=1)
+
+
+def current_budget_month(conn: sqlite3.Connection, on: date | None = None) -> str:
+    """The budget month a day falls in (before payday it still belongs to last month's budget)."""
+    on = on or today(conn)
+    if on.day >= budget_start_day(conn):
+        return on.strftime("%Y-%m")
+    return (on.replace(day=1) - timedelta(days=1)).strftime("%Y-%m")
+
+
 def today(conn: sqlite3.Connection) -> date:
     return date.fromisoformat(db.app_date(conn) or date.today().isoformat())
 
@@ -69,8 +95,8 @@ def months_through(conn: sqlite3.Connection, month: str) -> list[str]:
 
 # --- Pockets ---------------------------------------------------------------------------
 def _pocket_spent(conn: sqlite3.Connection, month: str) -> dict[int, float]:
-    """USD recorded as expenses per pocket in a month."""
-    first, last = month_range(month)
+    """USD recorded as expenses per pocket in a budget month."""
+    first, last = budget_range(conn, month)
     rates = fx(conn)
     out: dict[int, float] = {}
     for r in conn.execute(
@@ -101,6 +127,9 @@ def pocket_spending(conn: sqlite3.Connection, month: str) -> dict[str, float]:
 
 def spending_pockets(conn: sqlite3.Connection, month: str) -> list[dict]:
     """Each active spending pocket for a month: budget, rollover, moves, spent, left."""
+    from backend.budget import amounts
+
+    amount = amounts(conn)  # the monthly budget in effect each month
     pockets = conn.execute(
         "SELECT id, name, monthly_budget, start_month FROM pockets WHERE kind = 'spending' AND active = 1 ORDER BY sort"
     ).fetchall()
@@ -108,13 +137,13 @@ def spending_pockets(conn: sqlite3.Connection, month: str) -> list[dict]:
     result: dict[int, dict] = {p["id"]: {"budget": 0.0, "rollover": 0.0, "moved": 0.0,
                                          "spent": 0.0, "left": 0.0} for p in pockets}
     for m in months_through(conn, month):
-        first, last = (d.isoformat() for d in month_range(m))
+        first, last = (d.isoformat() for d in budget_range(conn, m))
         spent = _pocket_spent(conn, m)
         moves = _pocket_moves(conn, first, last)
         for p in pockets:
             if p["start_month"] and m < p["start_month"]:
                 continue  # added later: no budget (or rollover) for the months before it existed
-            budget = p["monthly_budget"] or 0.0
+            budget = amount(p["id"], m)
             s = spent.get(p["id"], 0.0)
             moved = moves.get(p["id"], 0.0)
             left = budget + carry[p["id"]] + moved - s
@@ -143,15 +172,16 @@ def spending_pockets(conn: sqlite3.Connection, month: str) -> list[dict]:
 
 
 def budget_status(conn: sqlite3.Connection, month: str) -> dict:
-    first, last = month_range(month)
+    first, last = budget_range(conn, month)
     now = today(conn)
-    days_in_month = last.day
+    days_in_month = (last - first).days + 1
     days_elapsed = days_in_month if now > last else max(0, (now - first).days + 1) if now >= first else 0
     pockets = spending_pockets(conn, month)
     total_available = round(sum(p["available"] for p in pockets), 2)
     total_spent = round(sum(p["spent"] for p in pockets), 2)
     return {
         "month": month,
+        "starts": first.isoformat(), "ends": last.isoformat(),
         "days_in_month": days_in_month,
         "days_elapsed": days_elapsed,
         "days_to_go": days_in_month - days_elapsed,
@@ -166,29 +196,35 @@ def budget_status(conn: sqlite3.Connection, month: str) -> dict:
 
 def savings_pockets(conn: sqlite3.Connection, month: str | None = None) -> list[dict]:
     """Each active saving/investing pocket: total now, this month's amount set aside, goal."""
-    month = month or today(conn).strftime("%Y-%m")
+    from backend.budget import amounts
+
+    amount = amounts(conn)
+    month = month or current_budget_month(conn)
     months = months_through(conn, month)
-    first_day, last_day = month_range(months[0])[0].isoformat(), month_range(month)[1].isoformat()
+    first_day, last_day = budget_range(conn, months[0])[0].isoformat(), budget_range(conn, month)[1].isoformat()
     moves = _pocket_moves(conn, first_day, last_day)
-    m_first, m_last = (d.isoformat() for d in month_range(month))
+    m_first, m_last = (d.isoformat() for d in budget_range(conn, month))
     month_moves = _pocket_moves(conn, m_first, m_last)
     rates = fx(conn)
     out = []
     for p in conn.execute(
             "SELECT * FROM pockets WHERE kind IN ('saving', 'investing') AND active = 1 ORDER BY sort"):
         counted = [m for m in months if not p["start_month"] or m >= p["start_month"]]
-        set_aside = (p["monthly_budget"] or 0.0) * len(counted)
+        set_aside = sum(amount(p["id"], m) for m in counted)
+        # A pocket added (or switched back on) later only counts what happened from then on.
+        p_first = max(first_day, f"{p['start_month']}-01") if p["start_month"] else first_day
+        p_moves = moves if p_first == first_day else _pocket_moves(conn, p_first, last_day)
         used = 0.0
         for r in conn.execute(
                 "SELECT amount, currency, direction FROM ledger_entries WHERE pocket_id = ? AND date BETWEEN ? AND ?",
-                (p["id"], first_day, last_day)):
+                (p["id"], p_first, last_day)):
             if r["direction"] == "expense" or (r["direction"] == "transfer" and r["amount"] > 0):
                 used += abs(r["amount"]) * rates.get(r["currency"], 1.0)
-        total = (p["starting_amount"] or 0.0) + set_aside + moves.get(p["id"], 0.0) - used
-        this_month = (p["monthly_budget"] or 0.0) + month_moves.get(p["id"], 0.0)
+        total = (p["starting_amount"] or 0.0) + set_aside + p_moves.get(p["id"], 0.0) - used
+        this_month = amount(p["id"], month) + month_moves.get(p["id"], 0.0)
         out.append({
             "name": p["name"], "kind": p["kind"], "custom": bool(p["custom"]),
-            "total": round(total, 2), "monthly_amount": p["monthly_budget"],
+            "total": round(total, 2), "monthly_amount": amount(p["id"], month),
             "this_month": round(this_month, 2),
             "goal": p["goal_amount"], "goal_date": p["goal_date"],
             "pct_of_goal": round(100 * total / p["goal_amount"], 1) if p["goal_amount"] else None,
@@ -216,7 +252,7 @@ def all_money(conn: sqlite3.Connection) -> dict:
 def cash_check(conn: sqlite3.Connection, month: str | None = None) -> dict:
     """Pockets + Unassigned = all my money. Unassigned below zero means the pockets promise
     more money than exists, which is flagged."""
-    month = month or today(conn).strftime("%Y-%m")
+    month = month or current_budget_month(conn)
     money = all_money(conn)
     spending_left = round(sum(max(0.0, p["left"]) for p in spending_pockets(conn, month)), 2)
     saved = round(sum(p["total"] for p in savings_pockets(conn, month)), 2)

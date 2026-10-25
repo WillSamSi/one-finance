@@ -19,7 +19,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 from pydantic_ai import RunContext
 
-from backend import analytics, db
+from backend import analytics, budget, db
 from backend.models import AgentDeps, Discrepancy
 
 MONEY_TOLERANCE = 0.01
@@ -161,10 +161,22 @@ def read_statement(ctx: RunContext[AgentDeps], account_id: str, period: str) -> 
 class EntryIn(BaseModel):
     transaction_id: str
     direction: Literal["expense", "income", "transfer"]
-    pocket: str | None = Field(None, description="Required for an expense. For transfers into savings or investing, that pocket.")
+    pocket: str | None = Field(None, description="Required for an expense. For transfers into savings or investing, that pocket. "
+                                     "For income: Salary, Freelance, Dividends or Other income (left empty, the code picks).")
     receipt_id: int | None = Field(None, description="Only if this receipt's total equals the charge.")
     amazon_order_id: str | None = Field(None, description="Only if this order's shipment total equals the charge.")
     note: str | None = None
+
+
+def _entry_pocket(conn, e, t, pockets: dict) -> int | None:
+    """The pocket id for an entry; income goes to an income pocket (the one named, if it is one)."""
+    if e.direction == "income":
+        if e.pocket and pockets[e.pocket][1] == "income":
+            return pockets[e.pocket][0]
+        from backend.budget import income_pocket_for
+
+        return income_pocket_for(conn, t["description"])
+    return pockets[e.pocket][0] if e.pocket else None
 
 
 def record_entries(ctx: RunContext[AgentDeps], entries: list[EntryIn]) -> dict:
@@ -191,8 +203,10 @@ def record_entries(ctx: RunContext[AgentDeps], entries: list[EntryIn]) -> dict:
                 refuse("an expense needs a pocket"); continue
             if e.pocket and e.pocket not in pockets:
                 refuse(f"unknown pocket '{e.pocket}'. Use one of: {', '.join(pockets)}"); continue
-            if e.direction == "expense" and pockets[e.pocket][1] == "investing":
-                refuse("an expense can't come from the Investment pocket"); continue
+            if e.direction == "expense" and pockets[e.pocket][1] in ("investing", "income"):
+                refuse(f"an expense can't come from {e.pocket}"); continue
+            if e.direction != "income" and e.pocket and pockets[e.pocket][1] == "income":
+                refuse(f"{e.pocket} is an income pocket: only deposits go there"); continue
             if e.receipt_id is not None:
                 r = conn.execute("SELECT * FROM receipts WHERE id = ?", (e.receipt_id,)).fetchone()
                 if not r or r["total"] is None:
@@ -221,7 +235,7 @@ def record_entries(ctx: RunContext[AgentDeps], entries: list[EntryIn]) -> dict:
                 " account_id, receipt_id, amazon_order_id, status, recorded_by, note, created_at)"
                 " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 (t["id"], t["date"], t["merchant_name"] or t["description"], t["amount"], t["currency"], e.direction,
-                 pockets[e.pocket][0] if e.pocket else None, t["account_id"], e.receipt_id, e.amazon_order_id,
+                 _entry_pocket(conn, e, t, pockets), t["account_id"], e.receipt_id, e.amazon_order_id,
                  "recorded", "accountant", e.note, _now()),
             )
             if e.receipt_id is not None:
@@ -307,8 +321,11 @@ def record_statement(ctx: RunContext[AgentDeps], account_id: str, period: str, l
         if s["status"] == "recorded":
             return {"ok": False, "refused": "this statement is already recorded"}
         pockets = {r["name"]: r["id"] for r in conn.execute("SELECT id, name FROM pockets WHERE active = 1")}
+        income_pockets = {r["name"] for r in conn.execute("SELECT name FROM pockets WHERE kind = 'income'")}
         problems = []
         for ln in lines:
+            if ln.direction != "income" and ln.pocket in income_pockets:
+                problems.append(f"'{ln.description}': {ln.pocket} is an income pocket, only for money in")
             printed = f"{ln.amount:,.2f}"
             if printed not in s["raw_text"]:
                 problems.append(f"{printed} ({ln.description}) is not in the statement")
@@ -330,7 +347,9 @@ def record_statement(ctx: RunContext[AgentDeps], account_id: str, period: str, l
                 "INSERT INTO ledger_entries (date, description, amount, currency, direction, pocket_id, account_id,"
                 " status, recorded_by, note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                 (ln.date, ln.description, -ln.amount if ln.money_in else ln.amount, s["currency"], ln.direction,
-                 pockets.get(ln.pocket) if ln.pocket else None, account_id, "recorded", "accountant",
+                 (pockets.get(ln.pocket) if ln.pocket in income_pockets else budget.income_pocket_for(conn, ln.description))
+                 if ln.direction == "income" else (pockets.get(ln.pocket) if ln.pocket else None),
+                 account_id, "recorded", "accountant",
                  f"from {period} statement", _now()),
             )
         conn.execute("UPDATE statements SET status = 'recorded' WHERE id = ?", (s["id"],))
@@ -596,6 +615,64 @@ def get_portfolio_overview(ctx: RunContext[AgentDeps]) -> dict:
 # =======================================================================================
 # Pockets (guidance only, not tied to accounts)
 # =======================================================================================
+def get_spending_history(ctx: RunContext[AgentDeps], months: int = 3) -> dict:
+    """Bank history for drafting a first budget, per month on average over the last full months:
+    deposits by source (with the account they land in), spending by category with the top
+    merchants, and money already moved to savings or the brokerage. Transfers between the
+    owner's own accounts and card payments are left out. Amounts in USD.
+
+    Args:
+        months: How many full months to look at (1-6).
+    """
+    import re
+
+    from backend import rules
+
+    months = max(1, min(int(months), 6))
+    with db.connect() as conn:
+        month_list = analytics.previous_months(budget.this_month(conn), months)
+        first = analytics.month_range(month_list[-1])[0].isoformat()
+        last = analytics.month_range(month_list[0])[1].isoformat()
+        rates = analytics.fx(conn)
+        accounts = {r["id"]: f"{r['institution']} {r['name']}" for r in conn.execute("SELECT id, institution, name FROM accounts")}
+        deposits: dict[str, dict] = {}
+        spending: dict[str, dict] = {}
+        moved = {"to_savings": 0.0, "to_brokerage": 0.0}
+        for t in conn.execute("SELECT * FROM transactions WHERE date BETWEEN ? AND ? AND pending = 0", (first, last)):
+            usd = t["amount"] * rates.get(t["currency"], 1.0)
+            rule = rules.classify(t["description"], t["merchant_name"])
+            if rule and rule[1] == "transfer":
+                if rule[2] in moved:
+                    moved[rule[2]] += usd
+                continue
+            if usd < 0:  # money in
+                source = re.sub(r"[^A-Z ]", " ", t["description"].upper())
+                source = " ".join(w for w in source.split() if len(w) > 1)[:40] or "DEPOSIT"
+                d = deposits.setdefault(source, {"source": source, "total": 0.0, "count": 0, "accounts": set()})
+                d["total"] += -usd
+                d["count"] += 1
+                d["accounts"].add(t["account_id"])
+            else:
+                cat = (t["category"] or "OTHER").replace("_", " ").title()
+                c = spending.setdefault(cat, {"category": cat, "total": 0.0, "merchants": {}})
+                c["total"] += usd
+                m = t["merchant_name"] or t["description"][:30]
+                c["merchants"][m] = c["merchants"].get(m, 0.0) + usd
+        catalog = [r["name"] for r in conn.execute("SELECT name FROM pockets WHERE kind IN ('spending', 'saving', 'investing') ORDER BY sort")]
+    return {
+        "months": sorted(month_list),
+        "deposits_per_month": [{"source": d["source"], "per_month": round(d["total"] / months, 2), "count": d["count"],
+                                "accounts": [{"id": a, "name": accounts.get(a, a)} for a in d["accounts"]]}
+                               for d in sorted(deposits.values(), key=lambda d: -d["total"])],
+        "spending_per_month": [{"category": c["category"], "per_month": round(c["total"] / months, 2),
+                                "top_merchants": [m for m, _ in sorted(c["merchants"].items(), key=lambda x: -x[1])[:4]]}
+                               for c in sorted(spending.values(), key=lambda c: -c["total"])],
+        "moved_per_month": {k: round(v / months, 2) for k, v in moved.items()},
+        "pocket_names_in_the_app": catalog,
+        "note": "Amounts are averages per month in USD. Deposits from the owner's own accounts and card payments are left out.",
+    }
+
+
 def get_pockets_overview(ctx: RunContext[AgentDeps], month: str) -> dict:
     """Every active pocket for a month: spending pockets (budget, rolled over, spent, left),
     savings and investing pockets (total, this month's set-aside, goal), and the cash check
@@ -626,7 +703,7 @@ def reassign_pocket(ctx: RunContext[AgentDeps], transaction_id: str, pocket: str
     with db.connect() as conn:
         p = conn.execute("SELECT id, kind FROM pockets WHERE name = ? AND active = 1", (pocket,)).fetchone()
         if not p or p["kind"] == "investing":
-            names = [r["name"] for r in conn.execute("SELECT name FROM pockets WHERE active = 1 AND kind != 'investing'")]
+            names = [r["name"] for r in conn.execute("SELECT name FROM pockets WHERE active = 1 AND kind IN ('spending', 'saving')")]
             return {"ok": False, "refused": f"'{pocket}' isn't an active pocket for expenses. Use one of: {', '.join(names)}"}
         cur = conn.execute(
             "UPDATE ledger_entries SET pocket_id = ?, note = COALESCE(note || ' | ', '') || ? "
@@ -651,7 +728,7 @@ def move_leftover(ctx: RunContext[AgentDeps], from_pocket: str, to_pocket: str, 
     if amount <= 0:
         return {"ok": False, "refused": "the amount must be more than 0"}
     with db.connect() as conn:
-        month = analytics.today(conn).strftime("%Y-%m")
+        month = analytics.current_budget_month(conn)
         src = conn.execute("SELECT id, kind FROM pockets WHERE name = ? AND active = 1", (from_pocket,)).fetchone()
         dst = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1", (to_pocket,)).fetchone()
         if not src or not dst or from_pocket == to_pocket:
@@ -683,7 +760,7 @@ def suggest_pocket(ctx: RunContext[AgentDeps], entry_id: int, pocket: str, reaso
     with db.connect() as conn:
         e = conn.execute("SELECT id FROM ledger_entries WHERE id = ? AND pocket_id IS NULL AND direction = 'expense'",
                          (entry_id,)).fetchone()
-        p = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1 AND kind != 'investing'", (pocket,)).fetchone()
+        p = conn.execute("SELECT id FROM pockets WHERE name = ? AND active = 1 AND kind IN ('spending', 'saving')", (pocket,)).fetchone()
         if not e:
             return {"ok": False, "refused": "no Unsorted expense with that id"}
         if not p:

@@ -121,7 +121,7 @@ CREATE INDEX IF NOT EXISTS idx_amazon_order ON amazon_order_items(order_id);
 CREATE TABLE IF NOT EXISTS pockets (
     id              INTEGER PRIMARY KEY,
     name            TEXT NOT NULL UNIQUE,
-    kind            TEXT NOT NULL,        -- 'spending', 'saving' or 'investing'
+    kind            TEXT NOT NULL,        -- 'income', 'spending', 'saving' or 'investing'
     monthly_budget  REAL,                 -- spending budget, or the amount set aside each month
     goal_amount     REAL,                 -- optional, saving pockets
     goal_date       TEXT,                 -- optional 'YYYY-MM'
@@ -131,7 +131,18 @@ CREATE TABLE IF NOT EXISTS pockets (
     custom          INTEGER NOT NULL DEFAULT 0,  -- 1 = the owner can rename it
     sort            INTEGER NOT NULL DEFAULT 0,
     description     TEXT,
-    start_month     TEXT                  -- 'YYYY-MM' it was added; budgets count from here (NULL = budget start)
+    start_month     TEXT,                 -- 'YYYY-MM' it was added; budgets count from here (NULL = budget start)
+    frequency       TEXT,                 -- income pockets: 'monthly', 'twice a month', 'every 2 weeks', 'weekly', 'irregular'
+    received_in     TEXT                  -- income pockets: the account it usually lands in
+);
+
+-- A pocket's monthly amount from a given month on ("Changes apply: this month / from next
+-- month"), so changing a budget never rewrites past months. No rows = pockets.monthly_budget.
+CREATE TABLE IF NOT EXISTS pocket_budgets (
+    pocket_id  INTEGER NOT NULL REFERENCES pockets(id),
+    from_month TEXT NOT NULL,             -- 'YYYY-MM'
+    amount     REAL NOT NULL,
+    PRIMARY KEY (pocket_id, from_month)
 );
 
 -- Money moved between pockets inside the app (a relabel, never a bank transfer).
@@ -285,6 +296,16 @@ def _migrate(conn: sqlite3.Connection) -> None:
     if cols and "start_month" not in cols:
         conn.execute("ALTER TABLE pockets ADD COLUMN start_month TEXT")
         conn.commit()
+    for col in ("frequency", "received_in"):
+        if cols and col not in cols:
+            conn.execute(f"ALTER TABLE pockets ADD COLUMN {col} TEXT")
+            conn.commit()
+    if cols and not conn.execute("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'pocket_budgets'").fetchone():
+        conn.executescript(SCHEMA[SCHEMA.index("CREATE TABLE IF NOT EXISTS pocket_budgets"):].split(";")[0] + ";")
+    if cols and not conn.execute("SELECT 1 FROM pockets WHERE kind = 'income' LIMIT 1").fetchone():
+        from backend import budget  # income pockets came later: add them to older databases
+
+        budget.add_income_pockets(conn)
 
 
 def create_schema(conn: sqlite3.Connection) -> None:

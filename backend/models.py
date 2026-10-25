@@ -125,6 +125,30 @@ class BudgetSuggestion(BaseModel):
     note: str
 
 
+class DraftIncome(BaseModel):
+    name: Literal["Salary", "Freelance", "Dividends", "Other income"]
+    expected_monthly: float = Field(ge=0, description="USD per month.")
+    frequency: Literal["monthly", "twice a month", "every 2 weeks", "weekly", "irregular"]
+    received_in: str | None = Field(None, description="The account id the deposits land in.")
+    reason: str = Field(description="One short sentence with the deposits it's based on.")
+
+
+class DraftPocket(BaseModel):
+    name: str = Field(max_length=40)
+    kind: Literal["spending", "saving", "investing"]
+    monthly_amount: float = Field(ge=0, description="USD per month, rounded to $10.")
+    goal_amount: float | None = Field(None, ge=0, description="Savings only, if there's an obvious goal.")
+    reason: str = Field(description="One short sentence with the numbers it's based on.")
+
+
+class BudgetDraft(BaseModel):
+    """A first budget drafted from bank history. Nothing is saved until the owner taps Save."""
+
+    income: list[DraftIncome]
+    pockets: list[DraftPocket]
+    note: str
+
+
 # --- Run state -------------------------------------------------------------------------
 @dataclass
 class RunBudget:

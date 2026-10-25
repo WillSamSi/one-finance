@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum AppTab: String, CaseIterable {
-    case home, wallet, invest, search, other
+    case home, wallet, invest, search, more
 
     var icon: String {
         switch self {
@@ -9,7 +9,7 @@ enum AppTab: String, CaseIterable {
         case .wallet: return "wallet.bifold"
         case .invest: return "chart.bar.xaxis.ascending"
         case .search: return "magnifyingglass"
-        case .other: return "line.3.horizontal"
+        case .more: return "line.3.horizontal"
         }
     }
 }
@@ -23,6 +23,9 @@ struct RootView: View {
     @State private var reloadToken = 0
     @State private var focusQuickType = false
     @ObservedObject private var router = QuickEntryRouter.shared
+    @AppStorage("faceIDLock") private var faceIDLock = false
+    @State private var locked = UserDefaults.standard.bool(forKey: "faceIDLock")
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -33,7 +36,7 @@ struct RootView: View {
                 case .wallet: WalletView()
                 case .invest: InvestView()
                 case .search: SearchView()
-                case .other: OtherView()
+                case .more: MoreView()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -73,7 +76,18 @@ struct RootView: View {
             focusQuickType = true
             showAdd = true
         }
-        .task { await LocalNotifications.requestPermission() }
+        .overlay {
+            if locked && faceIDLock { LockScreen { locked = false } }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .background && faceIDLock { locked = true }  // ask again when the app comes back
+        }
+        .task {
+            await LocalNotifications.requestPermission()
+            NotificationPrefs.applySchedule()
+            // Profile → Time zone is automatic: tell the backend which one the phone is in.
+            let _: AppSettings? = try? await APIClient().patch("settings", body: ["time_zone": TimeZone.current.identifier])
+        }
     }
 }
 

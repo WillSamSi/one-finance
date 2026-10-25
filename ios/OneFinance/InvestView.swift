@@ -66,6 +66,7 @@ struct InvestView: View {
             .padding(.bottom, 180)
         }
         .scrollIndicators(.hidden)
+        .scrollDisabled(scrubDate != nil)  // a finger on the chart scrubs; the page stays put
         .refreshable { await load(); await loadHistory() }
         .task { await load() }
         .task(id: range) { await loadHistory() }
@@ -172,7 +173,7 @@ struct InvestView: View {
                         }
                     }
                 }
-                .chartXSelection(value: $scrubDate)  // press and drag; letting go clears it
+                .chartScrubbing($scrubDate)  // touch and drag; letting go clears it
                 .sensoryFeedback(.selection, trigger: scrubPoint?.date)
                 .padding(.top, 24)  // room for the date pill
                 .frame(height: 210)
