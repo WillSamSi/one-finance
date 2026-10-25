@@ -503,8 +503,26 @@ def confirm_receipt(receipt_id: int, body: ReceiptConfirm) -> dict:
 def portfolio() -> dict:
     from backend.tools import portfolio_snapshot
 
+    from backend.tools import portfolio_overview
+
     with db.connect() as conn:
-        return {"snapshot": portfolio_snapshot(conn), "latest_brief": _setting(conn, "latest_portfolio_brief")}
+        return {"snapshot": portfolio_snapshot(conn), "overview": portfolio_overview(conn),
+                "latest_brief": _setting(conn, "latest_portfolio_brief"),
+                "source": _setting(conn, "investments_source") or "sample"}
+
+
+@app.get("/portfolio/history")
+def portfolio_history(days: int = 365) -> dict:
+    """Total brokerage value per day (all investment accounts) for the Invest chart."""
+    with db.connect() as conn:
+        end = analytics.today(conn)
+        rows = conn.execute(
+            """SELECT h.date, ROUND(SUM(h.balance * f.usd_per_unit), 2) AS total
+               FROM balance_history h JOIN accounts a ON a.id = h.account_id JOIN fx_rates f ON f.currency = a.currency
+               WHERE a.type = 'investment' AND h.date > date(?, ?) AND h.date <= ? GROUP BY h.date ORDER BY h.date""",
+            (end.isoformat(), f"-{max(1, min(days, 800))} day", end.isoformat())).fetchall()
+        synthetic_before = _setting(conn, "synthetic_history_before")
+    return {"points": [dict(r) for r in rows], "synthetic_before": synthetic_before}
 
 
 @app.get("/transactions")

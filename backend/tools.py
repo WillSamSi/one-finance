@@ -13,7 +13,7 @@ Text from receipts, bank descriptions, statements and filings is returned as dat
 
 import json
 import re
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -418,8 +418,9 @@ def portfolio_snapshot(conn) -> dict:
             "symbol": r["symbol"], "name": r["name"], "quantity": round(qty, 6), "price": r["price"],
             "value": round(value, 2), "weight_pct": round(100 * value / total, 1) if total else 0,
             "average_cost": avg,
+            "gain": round(value - qty * avg, 2) if avg else None,
             "gain_pct": round(100 * (r["price"] - avg) / avg, 1) if avg else None,
-            "sector": sector, "as_of": r["as_of"],
+            "sector": sector, "asset_class": asset_class(r["symbol"], r["kind"]), "as_of": r["as_of"],
         })
     holdings.sort(key=lambda h: -h["value"])
     s = _settings(conn)
@@ -431,6 +432,63 @@ def portfolio_snapshot(conn) -> dict:
         "holdings": holdings,
         "sector_shares_pct": {k: round(100 * v / total, 1) for k, v in sorted(sectors.items(), key=lambda x: -x[1])},
         "max_sector_share_pct": round(100 * float(s.get("max_sector_share", "0.5")), 1),
+    }
+
+
+def asset_class(symbol: str, kind: str | None) -> str:
+    if kind == "fund" or symbol == "VOO":
+        return "Funds"
+    if kind == "crypto":
+        return "Crypto"
+    return "US stocks"
+
+
+def portfolio_overview(conn) -> dict:
+    """The Invest tab's Overview: net asset value (invested + unrealized gain), realized gain and
+    dividends this year, and cash per brokerage account."""
+    today = date.fromisoformat(conn.execute("SELECT value FROM settings WHERE key = 'app_date'").fetchone()[0])
+    year_start = f"{today.year}-01-01"
+    holdings = conn.execute("SELECT symbol, kind, quantity, price, average_cost FROM holdings").fetchall()
+    invested, by_class = 0.0, {}
+    for h in holdings:
+        value = h["quantity"] * h["price"]
+        cost = h["quantity"] * h["average_cost"] if h["average_cost"] is not None else value
+        invested += cost
+        cls = asset_class(h["symbol"], h["kind"])
+        by_class[cls] = by_class.get(cls, 0.0) + value - cost
+    nav = sum(h["quantity"] * h["price"] for h in holdings)
+    avg_cost = {}
+    for h in holdings:  # same ticker in two accounts: one average
+        q, c = avg_cost.get(h["symbol"], (0.0, 0.0))
+        avg_cost[h["symbol"]] = (q + h["quantity"], c + h["quantity"] * (h["average_cost"] or h["price"]))
+    realized = 0.0
+    for a in conn.execute("SELECT symbol, units, price FROM investment_activities WHERE type = 'SELL' AND date >= ?",
+                          (year_start,)):
+        q, c = avg_cost.get(a["symbol"], (0.0, 0.0))
+        if q and a["units"] and a["price"]:  # estimated with today's average cost
+            realized += abs(a["units"]) * (a["price"] - c / q)
+    dividends = conn.execute("SELECT COALESCE(SUM(amount), 0) FROM investment_activities WHERE type = 'DIVIDEND'"
+                             " AND date >= ?", (year_start,)).fetchone()[0]
+    cash_accounts = []
+    for a in conn.execute("SELECT id, name, available_balance FROM accounts WHERE type = 'investment' ORDER BY name"):
+        last_buy = conn.execute("SELECT MAX(date) FROM investment_activities WHERE account_id = ? AND type = 'BUY'",
+                                (a["id"],)).fetchone()[0]
+        idle = last_buy is None or last_buy <= (today - timedelta(days=30)).isoformat()
+        cash = a["available_balance"] or 0.0
+        cash_accounts.append({"name": a["name"], "cash": round(cash, 2),
+                              "uninvested_30_days": round(cash, 2) if idle and cash > 0 else None})
+    order = ["US stocks", "Funds", "Crypto"]
+    return {
+        "net_asset_value": round(nav, 2),
+        "invested": round(invested, 2),
+        "unrealized": round(nav - invested, 2),
+        "unrealized_by_class": [{"name": k, "value": round(by_class[k], 2)}
+                                for k in sorted(by_class, key=lambda k: order.index(k) if k in order else 9)],
+        "realized_ytd": round(realized, 2),
+        "dividends_ytd": round(dividends, 2),
+        "cash": round(sum(a["cash"] for a in cash_accounts), 2),
+        "cash_accounts": cash_accounts,
+        "year": today.year,
     }
 
 

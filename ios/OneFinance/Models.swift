@@ -280,7 +280,33 @@ struct DigestResult: Decodable {
 
 struct PortfolioResponse: Decodable {
     let snapshot: Portfolio
+    let overview: PortfolioOverview?
     let latestBrief: PortfolioBrief?
+    let source: String?
+}
+
+/// Invest → Overview: net asset value and cash, broken down.
+struct PortfolioOverview: Decodable {
+    struct ClassGain: Decodable, Identifiable {
+        var id: String { name }
+        let name: String
+        let value: Double
+    }
+    struct CashAccount: Decodable, Identifiable {
+        var id: String { name }
+        let name: String
+        let cash: Double
+        let uninvested30Days: Double?
+    }
+    let netAssetValue: Double
+    let invested: Double
+    let unrealized: Double
+    let unrealizedByClass: [ClassGain]
+    let realizedYtd: Double
+    let dividendsYtd: Double
+    let cash: Double
+    let cashAccounts: [CashAccount]
+    let year: Int
 }
 
 struct Portfolio: Decodable {
@@ -301,8 +327,10 @@ struct Holding: Decodable, Identifiable {
     let price: Double
     let value: Double
     let weightPct: Double
+    let gain: Double?
     let gainPct: Double?
     let sector: String
+    let assetClass: String?
 }
 
 struct PortfolioBrief: Decodable {
@@ -388,6 +416,14 @@ enum DateParse {
         f.dateFormat = "MMM yyyy"
         f.timeZone = TimeZone(identifier: "UTC")
         return f.string(from: day(ym + "-01"))
+    }
+
+    /// "Oct 24, 2026"
+    static func mediumDay(_ s: String) -> String {
+        let f = DateFormatter()
+        f.dateFormat = "MMM d, yyyy"
+        f.timeZone = TimeZone(identifier: "UTC")
+        return f.string(from: day(s))
     }
 
     static func shortDay(_ s: String) -> String {
