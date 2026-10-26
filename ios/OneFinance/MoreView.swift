@@ -1011,10 +1011,10 @@ struct RunDetailView: View {
     var body: some View {
         ZStack {
             Theme.background
-            List(steps) { s in
+            List(Array(steps.enumerated()), id: \.element.id) { n, s in
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text("\(s.step). \(s.chain ?? s.agent)").font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.vib300)
+                        Text("\(n + 1). \(s.chain ?? s.agent)").font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.vib300)
                         Spacer()
                         if let i = s.inputTokens, let o = s.outputTokens {
                             Text("\(i) in · \(s.cachedTokens ?? 0) cached · \(o) out").font(.caption2).monospacedDigit().foregroundStyle(Theme.muted)

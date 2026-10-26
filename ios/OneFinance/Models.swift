@@ -260,7 +260,7 @@ struct RunSummary: Decodable, Identifiable {
 struct RunDetail: Decodable { let runId: String; let steps: [RunStep] }
 
 struct RunStep: Decodable, Identifiable {
-    var id: Int { step }
+    let id: Int  // the log row: a run with receipt reads has several step 1s
     let step: Int
     let agent: String
     let chain: String?

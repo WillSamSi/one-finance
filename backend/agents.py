@@ -180,8 +180,31 @@ async def month_end(month: str) -> dict:
     ledger: MonthLedger = await run_agent(
         accountant, f"Do the month-end check for {month}. Today is {app_date}.", deps)
     _save_setting(f"month_end:{month}", ledger.model_dump() if hasattr(ledger, "model_dump") else str(ledger))
+    missed = _flag_unhandled_charges(month)
+    if missed:
+        log_step(deps, "check", text=f"Code check: {len(missed)} charge(s) the Accountant neither recorded nor flagged "
+                                     "went to Review", data=missed)
     return {"run_id": run_id, "month": month, "receipts_read": len(receipts), "rules": pre.get(month),
             "ledger": ledger.model_dump() if hasattr(ledger, "model_dump") else str(ledger), **run_totals(run_id)}
+
+
+def _flag_unhandled_charges(month: str) -> list[dict]:
+    """Safety net after the Accountant: every posted charge of the month must be recorded or
+    explained in Review. Code puts any it skipped in Review, so nothing disappears silently."""
+    first = f"{month}-01"
+    with db.connect() as conn:
+        rows = [dict(r) for r in conn.execute(
+            """SELECT t.id, t.date, t.description, t.amount FROM transactions t
+               WHERE t.date BETWEEN ? AND date(?, '+1 month', '-1 day') AND t.pending = 0
+               AND NOT EXISTS (SELECT 1 FROM ledger_entries e WHERE e.transaction_id = t.id)
+               AND NOT EXISTS (SELECT 1 FROM review_items r WHERE r.transaction_id = t.id)""", (first, first))]
+        conn.executemany(
+            "INSERT INTO review_items (kind, month, transaction_id, amount, detail, created_by, created_at)"
+            " VALUES ('unrecorded_charge', ?, ?, ?, ?, 'code', ?)",
+            [(month, r["id"], r["amount"], f"{r['description']} for ${abs(r['amount']):,.2f} on {r['date']} wasn't "
+              "recorded or explained by the Accountant. Check what it was.", _now()) for r in rows])
+        conn.commit()
+    return rows
 
 
 async def portfolio_brief() -> dict:

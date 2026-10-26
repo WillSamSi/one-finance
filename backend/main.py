@@ -721,8 +721,8 @@ def run_steps(run_id: str) -> dict:
     """Every step of one agent run (the traced run for the report)."""
     with db.connect() as conn:
         rows = conn.execute(
-            """SELECT step, agent, chain, step_type, tool, text, data_json, input_tokens, cached_tokens, output_tokens,
-                      created_at FROM run_log WHERE run_id = ? ORDER BY step""", (run_id,)).fetchall()
+            """SELECT id, step, agent, chain, step_type, tool, text, data_json, input_tokens, cached_tokens, output_tokens,
+                      created_at FROM run_log WHERE run_id = ? ORDER BY id""", (run_id,)).fetchall()
     if not rows:
         raise HTTPException(404, "No such run.")
     return {"run_id": run_id, "steps": [dict(r) for r in rows]}

@@ -5,12 +5,12 @@
  "months": [
   {
    "month": "2026-07",
-   "seconds": 14,
+   "seconds": 12,
    "error": null,
    "tokens": {
-    "input": 22688,
-    "cached": 18305,
-    "output": 619
+    "input": 19083,
+    "cached": 15944,
+    "output": 632
    },
    "notes": [],
    "checks": [
@@ -55,7 +55,7 @@
   },
   {
    "month": "2026-08",
-   "seconds": 13,
+   "seconds": 3,
    "error": null,
    "tokens": {
     "input": 19093,
@@ -115,7 +115,7 @@
   },
   {
    "month": "2026-09",
-   "seconds": 12,
+   "seconds": 2,
    "error": null,
    "tokens": {
     "input": 19277,
@@ -164,5 +164,5 @@
    "total": 7
   }
  ],
- "started": "2026-10-26T00:49:11+00:00"
+ "started": "2026-10-26T14:37:08+00:00"
 }

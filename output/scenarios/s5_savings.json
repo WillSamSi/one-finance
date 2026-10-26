@@ -5,12 +5,12 @@
  "months": [
   {
    "month": "2026-07",
-   "seconds": 10,
+   "seconds": 8,
    "error": null,
    "tokens": {
-    "input": 14400,
-    "cached": 11827,
-    "output": 364
+    "input": 13744,
+    "cached": 11800,
+    "output": 412
    },
    "notes": [
     "move_leftover Food \u2192 Emergency Fund 100.0: {'ok': True, 'move_id': 1, 'moved': 100.0, 'from': 'Food', 'to': 'Emergency Fund', 'note': 'Shown in Wallet with an Undo button. No real money moved.'}"
@@ -57,12 +57,12 @@
   },
   {
    "month": "2026-08",
-   "seconds": 8,
+   "seconds": 7,
    "error": null,
    "tokens": {
-    "input": 14463,
-    "cached": 11846,
-    "output": 441
+    "input": 13797,
+    "cached": 11820,
+    "output": 383
    },
    "notes": [],
    "checks": [
@@ -107,12 +107,12 @@
   },
   {
    "month": "2026-09",
-   "seconds": 9,
+   "seconds": 12,
    "error": null,
    "tokens": {
-    "input": 14400,
-    "cached": 12195,
-    "output": 470
+    "input": 15070,
+    "cached": 12196,
+    "output": 506
    },
    "notes": [],
    "checks": [
@@ -166,5 +166,5 @@
    "total": 9
   }
  ],
- "started": "2026-10-26T00:49:11+00:00"
+ "started": "2026-10-26T14:33:58+00:00"
 }
