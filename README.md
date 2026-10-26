@@ -10,6 +10,18 @@ Pockets are labels on your money, not bank accounts: monthly budgets for spendin
 
 The agents can't move real money or trade. Anything they change is a pocket label, shown to you and undoable.
 
+## For graders: how to run it
+
+One Finance is an **iPhone app**, so seeing its screens needs a **Mac with Xcode** (free from the Mac App Store). Pick whichever fits your computer:
+
+| You have | What to do | Time |
+|---|---|---|
+| **A Mac with Xcode installed** | Follow the [Quick start](#quick-start-about-10-minutes) below: start the backend, open `ios/OneFinance.xcodeproj`, choose an iPhone simulator, press Run. The full app opens on the sample data. | ~10 min |
+| **A Mac with Claude Code** (desktop app or CLI) and Xcode | Open this folder in Claude Code and ask: *"Follow the README: start the backend, then build the iOS app and run it in the iPhone Simulator."* It can run the commands and open the Simulator for you. | ~10 min |
+| **No Mac, or no Xcode** | Run the agents without the app: [See the agents work without Xcode](#see-the-agents-work-without-xcode) (one command each), and click through every endpoint at http://localhost:8000/docs. Then watch the **demo video** submitted on Canvas, which shows the iPhone app on a real example. | ~5 min |
+
+Xcode is a large download (several GB). If it isn't installed already, the last row is the quickest way in.
+
 ## Quick start (about 10 minutes)
 
 You need a Mac with **Xcode** (built and tested with Xcode 27.1; the app needs iOS 18 or newer) and **Python 3.11+**. Run the commands from this folder (`one-finance/`).
