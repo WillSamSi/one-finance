@@ -9,7 +9,7 @@
 
 import json
 from collections.abc import Callable, Sequence
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Any
 from uuid import uuid4
 
@@ -57,12 +57,13 @@ def log_step(deps: AgentDeps, step_type: str, *, tool: str | None = None, text: 
 
 
 def tokens_used_today() -> int:
+    """Tokens used in the last 24 hours. run_log times are UTC, so the window is measured in UTC
+    too (comparing them with the local date let the budget reset early in the evening)."""
+    since = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat(timespec="milliseconds")
     with db.connect() as conn:
         row = conn.execute(
             "SELECT COALESCE(SUM(COALESCE(input_tokens,0) + COALESCE(output_tokens,0)), 0) FROM run_log"
-            " WHERE substr(created_at, 1, 10) = ?",
-            (date.today().isoformat(),),
-        ).fetchone()
+            " WHERE created_at >= ?", (since,)).fetchone()
     return int(row[0])
 
 

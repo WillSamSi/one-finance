@@ -196,11 +196,21 @@ struct WalletView: View {
                 Text("Debt Balance").font(.system(size: 14)).foregroundStyle(Theme.muted)
                 SplitAmount(value: debts.reduce(0) { $0 + $1.owed }, size: 32).padding(.top, 2)
                 let next = debts.compactMap(\.nextAutopay).sorted().first
-                Text("\(debts.count) cards\(next.map { " · next autopay \(DateParse.shortDay($0))" } ?? "")")
+                Text("\(Self.debtCounts(debts))\(next.map { " · next payment \(DateParse.shortDay($0))" } ?? "")")
                     .font(.system(size: 12)).foregroundStyle(Theme.muted).padding(.top, 4)
                 ForEach(debts) { DebtRow(debt: $0).padding(.top, 10) }
             }
         }
+    }
+
+    /// "2 cards · 1 mortgage · 1 installment plan"
+    static func debtCounts(_ debts: [Debt]) -> String {
+        let groups: [(String, String, String)] = [("card", "card", "cards"), ("mortgage", "mortgage", "mortgages"),
+                                                  ("loan", "loan", "loans"), ("installment", "installment plan", "installment plans")]
+        return groups.compactMap { kind, one, many in
+            let n = debts.filter { ($0.kind ?? "card") == kind }.count
+            return n == 0 ? nil : "\(n) \(n == 1 ? one : many)"
+        }.joined(separator: " · ")
     }
 
     // MARK: Pockets
@@ -559,14 +569,32 @@ struct InstitutionRow: View {
 struct DebtRow: View {
     let debt: Debt
 
+    private var kind: String { debt.kind ?? "card" }
+
+    private var title: String {
+        switch kind {
+        case "mortgage": "\(InstitutionLogo.shortName(debt.institution)) mortgage"
+        case "loan": "\(InstitutionLogo.shortName(debt.institution)) loan"
+        case "installment": debt.name
+        default: "\(InstitutionLogo.shortName(debt.institution)) credit card"
+        }
+    }
+
+    private var subtitle: String {
+        switch kind {
+        case "installment": "Installment plan on \(InstitutionLogo.shortName(debt.institution)) ••\(debt.mask ?? "")"
+        default: "\(debt.name) ••\(debt.mask ?? "")"
+        }
+    }
+
     var body: some View {
         let color = InstitutionLogo.color(debt.institution)
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 10) {
                 InstitutionLogo(institution: debt.institution)
                 VStack(alignment: .leading, spacing: 1) {
-                    Text("\(InstitutionLogo.shortName(debt.institution)) credit card").font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.text)
-                    Text("\(debt.name) ••\(debt.mask ?? "")").font(.system(size: 11)).foregroundStyle(Theme.muted).lineLimit(1)
+                    Text(title).font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.text)
+                    Text(subtitle).font(.system(size: 11)).foregroundStyle(Theme.muted).lineLimit(1)
                 }
                 Spacer()
                 Image(systemName: "chevron.right").font(.system(size: 11, weight: .semibold)).foregroundStyle(Color(hex: 0x6F6683))
@@ -574,23 +602,28 @@ struct DebtRow: View {
             SplitAmount(value: debt.owed, size: 21).padding(.top, 8)
             HStack {
                 if let next = debt.nextAutopay {
-                    Text("Autopay \(DateParse.shortDay(next))").foregroundStyle(Theme.warn).fontWeight(.semibold)
+                    Text("\(kind == "card" ? "Autopay" : "Next payment") \(DateParse.shortDay(next))")
+                        .foregroundStyle(Theme.warn).fontWeight(.semibold)
                 }
                 Spacer()
                 if let pct = debt.pctOfLimit, let limit = debt.limit {
                     Text("\(Int(pct.rounded()))% of \(Money.whole(limit)) limit").foregroundStyle(Theme.muted)
+                } else if let detail = debt.detail {
+                    Text(detail).foregroundStyle(Theme.muted).lineLimit(1)
                 }
             }
             .font(.system(size: 11))
             .padding(.top, 8)
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color.white.opacity(0.08))
-                    Capsule().fill(color).frame(width: geo.size.width * min(1, (debt.pctOfLimit ?? 0) / 100))
+            if let bar = kind == "installment" ? debt.progressPct : debt.pctOfLimit {
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(Color.white.opacity(0.08))
+                        Capsule().fill(color).frame(width: geo.size.width * min(1, bar / 100))
+                    }
                 }
+                .frame(height: 4)
+                .padding(.top, 6)
             }
-            .frame(height: 4)
-            .padding(.top, 6)
         }
         .padding(12)
         .background(Color.white.opacity(0.035), in: RoundedRectangle(cornerRadius: 18, style: .continuous))

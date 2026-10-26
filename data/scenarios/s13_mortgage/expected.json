@@ -1,0 +1,86 @@
+{
+ "2026-07": {
+  "left": {
+   "Mortgage": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "rollover": {
+   "Mortgage": 0.0,
+   "Utilities": 0.0,
+   "Food": 0.0,
+   "Supplies": 0.0,
+   "Transportation": 0.0,
+   "Healthcare": 0.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "debt",
+    "kind": "mortgage",
+    "owed": 311350.0
+   }
+  ]
+ },
+ "2026-08": {
+  "left": {
+   "Mortgage": 0.0,
+   "Utilities": 180.0,
+   "Food": 770.8,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 120.0
+  },
+  "rollover": {
+   "Mortgage": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "debt",
+    "kind": "mortgage",
+    "owed": 310700.0
+   }
+  ]
+ },
+ "2026-09": {
+  "left": {
+   "Mortgage": 0.0,
+   "Utilities": 270.0,
+   "Food": 1156.2,
+   "Supplies": 496.32,
+   "Transportation": 271.8,
+   "Healthcare": 180.0
+  },
+  "rollover": {
+   "Mortgage": 0.0,
+   "Utilities": 180.0,
+   "Food": 770.8,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 120.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "debt",
+    "kind": "mortgage",
+    "owed": 310050.0
+   }
+  ]
+ }
+}

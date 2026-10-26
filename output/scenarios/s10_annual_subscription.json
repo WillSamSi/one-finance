@@ -1,0 +1,148 @@
+{
+ "name": "s10_annual_subscription",
+ "title": "Yearly subscription",
+ "tests": "A subscription that renews once a year, paid from a small Subscriptions pocket so no month blows up",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 13791,
+    "cached": 11847,
+    "output": 394
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 11,690.00"
+    },
+    {
+     "check": "Subscriptions total",
+     "passed": true,
+     "detail": "100.0 (expected 100)"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  },
+  {
+   "month": "2026-08",
+   "seconds": 10,
+   "error": null,
+   "tokens": {
+    "input": 14764,
+    "cached": 12015,
+    "output": 445
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 18,663.88, unassigned 12,470.00"
+    },
+    {
+     "check": "s10-nyt recorded as expense in Subscriptions",
+     "passed": true,
+     "detail": "{'direction': 'expense', 'pocket': 'Subscriptions'}"
+    },
+    {
+     "check": "Subscriptions total",
+     "passed": true,
+     "detail": "11.0 (expected 11)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-09",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 14500,
+    "cached": 11862,
+    "output": 428
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 21,045.32, unassigned 13,250.00"
+    },
+    {
+     "check": "Subscriptions total",
+     "passed": true,
+     "detail": "21.0 (expected 21)"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  }
+ ],
+ "started": "2026-10-26T00:49:11+00:00"
+}

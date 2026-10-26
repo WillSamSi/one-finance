@@ -531,7 +531,7 @@ def paid_with_options() -> dict:
     """Cash plus every bank account and card, for the Paid with / Received in pickers."""
     with db.connect() as conn:
         accounts = [dict(r) for r in conn.execute(
-            "SELECT id, institution, name, type, mask, currency FROM accounts WHERE type != 'investment'")]
+            "SELECT id, institution, name, type, mask, currency FROM accounts WHERE type IN ('depository', 'credit')")]
     order = analytics.INSTITUTION_ORDER
     accounts.sort(key=lambda a: (order.index(a["institution"]) if a["institution"] in order else 99, a["type"]))
     return {"options": [{"id": "cash_usd", "label": "Cash (USD)", "currency": "USD"},
@@ -734,7 +734,7 @@ def balance_history(days: int = 30) -> dict:
         rows = conn.execute(
             """SELECT h.date, ROUND(SUM(h.balance * f.usd_per_unit), 2) AS total
                FROM balance_history h JOIN accounts a ON a.id = h.account_id JOIN fx_rates f ON f.currency = a.currency
-               WHERE a.type != 'credit' AND h.date > date(?, ?) AND h.date <= ? GROUP BY h.date ORDER BY h.date""",
+               WHERE a.type IN ('depository', 'investment') AND h.date > date(?, ?) AND h.date <= ? GROUP BY h.date ORDER BY h.date""",
             (end.isoformat(), f"-{max(1, min(days, 800))} day", end.isoformat())).fetchall()
         synthetic_before = _setting(conn, "synthetic_history_before")
     return {"points": [dict(r) for r in rows], "synthetic_before": synthetic_before}

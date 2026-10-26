@@ -151,6 +151,9 @@ struct Debt: Decodable, Identifiable {
     let limit: Double?
     let pctOfLimit: Double?
     let nextAutopay: String?
+    let kind: String?          // card, mortgage / loan, installment
+    let detail: String?        // e.g. "3 of 12 paid · $100/mo in Electronics"
+    let progressPct: Double?   // installment plans: share already paid
 }
 
 struct PocketMove: Decodable, Identifiable {

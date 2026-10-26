@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS accounts (
     institution       TEXT NOT NULL,      -- e.g. 'Chase', 'BCA'
     name              TEXT NOT NULL,
     official_name     TEXT,
-    type              TEXT NOT NULL,      -- 'depository', 'credit' or 'investment'
+    type              TEXT NOT NULL,      -- 'depository', 'credit', 'loan' (subtype 'mortgage') or 'investment'
     subtype           TEXT,
     mask              TEXT,               -- last digits
     currency          TEXT NOT NULL,

@@ -1,6 +1,6 @@
 # Phase 4: safety and cost results
 
-Updated 2026-10-25 13:34. Each test ran on a fresh copy of the sample data (`scripts/safety_tests.py`). Model: gpt-6-luna.
+Updated 2026-10-25 20:52. Each test ran on a fresh copy of the sample data (`scripts/safety_tests.py`). Model: gpt-6-luna.
 
 **21 of 21 passed.**
 

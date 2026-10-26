@@ -1,0 +1,168 @@
+{
+ "name": "s11_wise_transfer",
+ "title": "US \u2192 Indonesia transfer",
+ "tests": "Sending money to the owner's own BCA account with Wise: a transfer on both sides, in two currencies",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 14,
+   "error": null,
+   "tokens": {
+    "input": 22688,
+    "cached": 18305,
+    "output": 619
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 17,433.33, unassigned 12,851.54"
+    },
+    {
+     "check": "BCA statement recorded",
+     "passed": true,
+     "detail": "recorded"
+    },
+    {
+     "check": "Rupiah income recorded",
+     "passed": true,
+     "detail": "IDR 0 (expected 0)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-08",
+   "seconds": 13,
+   "error": null,
+   "tokens": {
+    "input": 19093,
+    "cached": 16410,
+    "output": 742
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 19,800.51, unassigned 13,636.93"
+    },
+    {
+     "check": "s11-wise recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': None}"
+    },
+    {
+     "check": "Statement line with WISE recorded as transfer",
+     "passed": true,
+     "detail": "[{'direction': 'transfer', 'description': 'TRSF E-BANKING CR WISE PAYMENTS LTD DEMO USER'}]"
+    },
+    {
+     "check": "BCA statement recorded",
+     "passed": true,
+     "detail": "recorded"
+    },
+    {
+     "check": "Rupiah income recorded",
+     "passed": true,
+     "detail": "IDR 0 (expected 0)"
+    }
+   ],
+   "passed": 9,
+   "total": 9
+  },
+  {
+   "month": "2026-09",
+   "seconds": 12,
+   "error": null,
+   "tokens": {
+    "input": 19277,
+    "cached": 16070,
+    "output": 661
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 22,172.30, unassigned 14,426.93"
+    },
+    {
+     "check": "BCA statement recorded",
+     "passed": true,
+     "detail": "recorded"
+    },
+    {
+     "check": "Rupiah income recorded",
+     "passed": true,
+     "detail": "IDR 0 (expected 0)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  }
+ ],
+ "started": "2026-10-26T00:49:11+00:00"
+}

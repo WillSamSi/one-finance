@@ -56,7 +56,8 @@ def setup(b: S.Builder) -> Path:
     for a in b.accounts.values():
         conn.execute("INSERT INTO accounts VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                      (a["id"], "statement" if a["currency"] == "IDR" else "plaid", a["institution"], a["name"], None, a["type"],
-                      a["subtype"], a["mask"], a["currency"], a["opening"], a["opening"], S.MONTHS[0] + "-01"))
+                      a["subtype"], a["mask"], a["currency"], a["opening"], None if a["type"] == "loan" else a["opening"],
+                      S.MONTHS[0] + "-01"))
     for i, p in enumerate(p for p in b.pockets if not p.get("created_in_run")):
         conn.execute("INSERT INTO pockets (name, kind, monthly_budget, goal_amount, goal_date, starting_amount, currency, active,"
                      " custom, sort, description) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -100,6 +101,11 @@ def load_month(b: S.Builder, month: str, conn) -> None:
                      (st["closing"], st["closing"], S.last_day(month), acct["id"]))
     # balances as the bank would show them at the end of the month
     for key, a in b.accounts.items():
+        if a.get("balance_by_month"):  # a loan: the lender reports the balance
+            bal = a["balance_by_month"][month]
+            conn.execute("UPDATE accounts SET current_balance = ?, available_balance = NULL, as_of = ? WHERE id = ?",
+                         (bal, S.last_day(month), a["id"]))
+            continue
         if a["currency"] == "IDR":
             continue
         flow = conn.execute("SELECT COALESCE(SUM(amount), 0) FROM transactions WHERE account_id = ? AND pending = 0",
@@ -259,6 +265,17 @@ def check_month(b: S.Builder, month: str, exp: dict, digest: dict | None) -> lis
                                    " FROM ledger_entries e WHERE e.transaction_id = ?", (c["txn"],)).fetchone()
                 add("Unplaceable charge → Unsorted + Review", row is not None and row["pocket_id"] is None and row["n"] > 0,
                     f"{dict(row) if row else 'not recorded'}")
+            elif t == "statement_line":
+                rows = conn.execute("SELECT direction, description FROM ledger_entries WHERE currency = 'IDR'"
+                                    " AND UPPER(description) LIKE ?", (f"%{c['contains']}%",)).fetchall()
+                add(f"Statement line with {c['contains']} recorded as {c['direction']}",
+                    rows and all(r["direction"] == c["direction"] for r in rows), str([dict(r) for r in rows])[:160])
+            elif t == "debt":
+                debts = [d for d in analytics.debts(conn) if d["kind"] == c["kind"]]
+                d = debts[0] if debts else None
+                ok = d is not None and abs(d["owed"] - c["owed"]) < 0.02 and (not c.get("detail") or c["detail"] in (d.get("detail") or ""))
+                add(f"Debt Balance shows the {c['kind']}", ok,
+                    f"{d['owed']:,.2f} owed, {d.get('detail')}" if d else "not shown" + f" (expected {c['owed']:,.2f})")
             elif t == "digest_mentions":
                 text = (digest or {}).get("text", "")
                 add(f"Digest warns about {', '.join(c['words'])}", all(w.lower() in text.lower() for w in c["words"]), text[:160])
@@ -314,7 +331,9 @@ def run(b: S.Builder) -> dict:
 
 
 def report() -> None:
-    rows = [json.loads(p.read_text()) for p in sorted(RESULTS_DIR.glob("s*.json"))]
+    order = [m.__name__ for m in S.SCENARIOS]
+    rows = sorted((json.loads(p.read_text()) for p in RESULTS_DIR.glob("s*.json")),
+                  key=lambda r: order.index(r["name"]) if r["name"] in order else 99)
     by = {r["name"]: r for r in rows}
     lines = ["# Phase 4b: 3-month scenario results", "",
              f"Updated {datetime.now().strftime('%Y-%m-%d %H:%M')}. Each scenario ran July → September 2026 on its own fresh database "
@@ -348,7 +367,8 @@ def report() -> None:
             for c in m["checks"]:
                 lines.append(f"- {'✅' if c['passed'] else '❌'} {c['check']}: {c['detail'].replace('|', '/')}")
             lines.append("")
-    (OUT / "scenario_results.md").write_text("\n".join(lines) + "\n")
+    notes = S.OUT / "NOTES.md"  # what earlier runs caught and what isn't covered
+    (OUT / "scenario_results.md").write_text("\n".join(lines) + "\n" + (notes.read_text() if notes.exists() else ""))
     print(f"wrote output/scenario_results.md: {tp}/{tt} checks, {tok:,} tokens")
 
 

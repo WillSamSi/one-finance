@@ -1,0 +1,143 @@
+{
+ "name": "s12_installments",
+ "title": "Laptop on installments",
+ "tests": "A $1,200 laptop on a 12-month card plan: $100 counts each month; what's left shows under debt",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 11,
+   "error": null,
+   "tokens": {
+    "input": 14819,
+    "cached": 12036,
+    "output": 407
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,281.44, unassigned 11,640.00"
+    },
+    {
+     "check": "Debt Balance shows the installment",
+     "passed": true,
+     "detail": "1,100.00 owed, 1 of 12 paid \u00b7 $100/mo in Electronics"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  },
+  {
+   "month": "2026-08",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 14138,
+    "cached": 12048,
+    "output": 452
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 18,562.88, unassigned 12,280.00"
+    },
+    {
+     "check": "Debt Balance shows the installment",
+     "passed": true,
+     "detail": "1,000.00 owed, 2 of 12 paid \u00b7 $100/mo in Electronics"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  },
+  {
+   "month": "2026-09",
+   "seconds": 8,
+   "error": null,
+   "tokens": {
+    "input": 18631,
+    "cached": 16283,
+    "output": 454
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 20,844.32, unassigned 12,920.00"
+    },
+    {
+     "check": "Debt Balance shows the installment",
+     "passed": true,
+     "detail": "900.00 owed, 3 of 12 paid \u00b7 $100/mo in Electronics"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  }
+ ],
+ "started": "2026-10-26T00:49:12+00:00"
+}

@@ -74,13 +74,14 @@ class Builder:
         self.months[month]["txns"].append(t)
         return t
 
-    def base_month(self, month):
+    def base_month(self, month, rent=True):
         """Pay, rent, bills, groceries, rides: mostly merchants the free rules know, plus two the
         Accountant has to place (Home Depot → Supplies, a pizza place → Food)."""
         T = self.txn
         T(month, 1, "checking", "YALE UNIV PAYROLL PPD ID: 1066313421", -2150.00, {"direction": "income"})
         T(month, 15, "checking", "YALE UNIV PAYROLL PPD ID: 1066313421", -2150.00, {"direction": "income"})
-        T(month, 2, "checking", "ELM CITY APTS ACH RENT WEB ID: 7781045", 1450.00, {"pocket": "Home Rent"})
+        if rent:
+            T(month, 2, "checking", "ELM CITY APTS ACH RENT WEB ID: 7781045", 1450.00, {"pocket": "Home Rent"})
         T(month, 5, "checking", "EVERSOURCE ENERGY PPD", 95.00, {"pocket": "Utilities"})
         T(month, 8, "card", "T-MOBILE *AUTOPAY", 65.00, {"pocket": "Utilities"})
         T(month, 4, "card", "TRADER JOE'S #523", 62.40, {"pocket": "Food"})
@@ -346,7 +347,89 @@ def s8_edge():
     return b
 
 
-SCENARIOS = [s1_normal, s2_overspending, s3_messy, s4_transfers, s5_savings, s6_attacks, s7_currencies, s8_edge]
+# --- Added 2026-10-25 from William's own situations -----------------------------------------
+def s9_split_bill():
+    b = Builder("s9_split_bill", "Split bill",
+                "Dinner for four on the card; two friends pay back by Zelle, two never do; a gift from Mom is income")
+    for mo in MONTHS:
+        b.base_month(mo)
+    aug, sep = "2026-08", "2026-09"
+    b.txn(aug, 13, "card", "OLMO NEW HAVEN", 168.00, {"pocket": "Food"}, tid="s9-dinner")
+    b.txn(aug, 14, "checking", "ZELLE PAYMENT FROM ALEX KIM CONF# 7HQ2LZ", -42.00, {"pocket": "Food"}, tid="s9-alex")
+    b.txn(aug, 16, "checking", "ZELLE PAYMENT FROM SAM LEE CONF# 2PL9XW", -42.00, {"pocket": "Food"}, tid="s9-sam")
+    b.check(aug, type="recorded_as", txn="s9-alex", direction="expense", pocket="Food")
+    b.check(aug, type="recorded_as", txn="s9-sam", direction="expense", pocket="Food")
+    b.txn(sep, 6, "checking", "ZELLE PAYMENT FROM DEMO MOM CONF# 9KD3QA", -200.00, {"direction": "income"}, tid="s9-mom")
+    b.check(sep, type="recorded_as", txn="s9-mom", direction="income")
+    return b
+
+
+def s10_annual_subscription():
+    b = Builder("s10_annual_subscription", "Yearly subscription",
+                "A subscription that renews once a year, paid from a small Subscriptions pocket so no month blows up")
+    b.pockets.append({"name": "Subscriptions", "kind": "saving", "monthly_budget": 10, "starting_amount": 90, "custom": True,
+                      "description": "Yearly subscriptions: The New York Times renews every August ($99)"})
+    for mo in MONTHS:
+        b.base_month(mo)
+    b.txn("2026-08", 9, "card", "NYTIMES*NYTIMES ALL ACCESS ANNUAL", 99.00, {"pocket": "Subscriptions"}, tid="s10-nyt")
+    b.check("2026-08", type="recorded_as", txn="s10-nyt", direction="expense", pocket="Subscriptions")
+    for mo, total in zip(MONTHS, (100, 11, 21)):
+        b.check(mo, type="savings", pocket="Subscriptions", total=total)
+    return b
+
+
+def s11_wise_transfer():
+    b = Builder("s11_wise_transfer", "US → Indonesia transfer",
+                "Sending money to the owner's own BCA account with Wise: a transfer on both sides, in two currencies")
+    b.accounts["bca"] = BCA
+    opening = BCA["opening"]
+    for mo in MONTHS:
+        b.base_month(mo)
+        lines = [{"day": 15, "desc": "KARTU DEBIT INDOMARET MEDAN", "amount": -156_800.00, "pocket": "Food"}]
+        if mo == "2026-08":
+            b.txn(mo, 10, "checking", "WISE INC*TRANSFER WISE.COM", 300.00, {"direction": "transfer"}, tid="s11-wise")
+            lines.insert(0, {"day": 11, "desc": "TRSF E-BANKING CR WISE PAYMENTS LTD DEMO USER", "amount": 4_800_000.00,
+                             "direction": "transfer"})
+            b.check(mo, type="recorded_as", txn="s11-wise", direction="transfer")
+            b.check(mo, type="statement_line", contains="WISE", direction="transfer")
+        st = statement(mo, opening, lines)
+        opening = st["closing"]
+        b.months[mo]["statements"].append(st)
+        b.check(mo, type="statement_recorded", period=mo)
+        b.check(mo, type="income_idr", amount=0.0)
+    b.accounts["bca"] = dict(BCA, closing=opening)
+    return b
+
+
+def s12_installments():
+    b = Builder("s12_installments", "Laptop on installments",
+                "A $1,200 laptop on a 12-month card plan: $100 counts each month; what's left shows under debt")
+    b.pockets.insert(6, {"name": "Electronics", "kind": "spending", "monthly_budget": 150, "description": "Phones, laptops, gadgets"})
+    for i, mo in enumerate(MONTHS, 1):
+        b.base_month(mo)
+        b.txn(mo, 7, "card", f"APPLE STORE R102 INSTALLMENT {i:02d}/12", 100.00, {"pocket": "Electronics"}, tid=f"s12-{mo}")
+        b.check(mo, type="debt", kind="installment", owed=1200 - 100 * i, detail=f"{i} of 12 paid")
+    return b
+
+
+def s13_mortgage():
+    b = Builder("s13_mortgage", "Mortgage",
+                "A monthly mortgage payment counts in full in a Mortgage pocket; the loan balance shows under debt")
+    b.pockets = [p for p in b.pockets if p["name"] != "Home Rent"]
+    b.pockets.insert(0, {"name": "Mortgage", "kind": "spending", "monthly_budget": 1850, "description": "Monthly mortgage payment"})
+    balances = {mo: 312_000.00 - 650.00 * (i + 1) for i, mo in enumerate(MONTHS)}
+    b.accounts["mortgage"] = {"id": "rocket-mortgage", "institution": "Rocket Mortgage", "name": "30-year fixed mortgage",
+                              "type": "loan", "subtype": "mortgage", "mask": "8812", "currency": "USD", "opening": 312_000.00,
+                              "balance_by_month": balances}
+    for mo in MONTHS:
+        b.base_month(mo, rent=False)
+        b.txn(mo, 1, "checking", "ROCKET MORTGAGE PMT PPD ID: 3300041120", 1850.00, {"pocket": "Mortgage"}, tid=f"s13-{mo}")
+        b.check(mo, type="debt", kind="mortgage", owed=balances[mo])
+    return b
+
+
+SCENARIOS = [s1_normal, s2_overspending, s3_messy, s4_transfers, s5_savings, s6_attacks, s7_currencies, s8_edge,
+             s9_split_bill, s10_annual_subscription, s11_wise_transfer, s12_installments, s13_mortgage]
 
 
 if __name__ == "__main__":

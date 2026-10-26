@@ -14,6 +14,7 @@ Pockets are guidance only: labels on the money, not tied to any account.
 """
 
 import calendar
+import re
 import sqlite3
 from datetime import date, timedelta
 
@@ -262,8 +263,48 @@ def cash_check(conn: sqlite3.Connection, month: str | None = None) -> dict:
             "balanced": unassigned >= -0.01}
 
 
+def _next_month_same_day(d: date) -> date:
+    y, m = (d.year + (d.month == 12), d.month % 12 + 1)
+    return date(y, m, min(d.day, calendar.monthrange(y, m)[1]))
+
+
+# "APPLE STORE R102 INSTALLMENT 03/12", "CICILAN 03/12 TOKO X", "MONTHLY INSTALLMENTS 3 OF 12"
+INSTALLMENT = re.compile(r"(INSTAL+MENTS?|CICILAN)\D{0,20}?(\d{1,2})\s*(?:/|OF)\s*(\d{1,2})", re.I)
+
+
+def installment_plans(conn: sqlite3.Connection) -> list[dict]:
+    """Things bought on a payment plan, from the monthly installment lines the card shows: each
+    installment counts in its pocket the month it's billed; what's left is still owed."""
+    plans: dict[str, dict] = {}
+    rates = fx(conn)
+    for r in conn.execute(
+            """SELECT e.date, e.description, e.amount, e.currency, p.name AS pocket, a.institution, a.mask
+               FROM ledger_entries e LEFT JOIN pockets p ON p.id = e.pocket_id LEFT JOIN accounts a ON a.id = e.account_id
+               WHERE e.direction = 'expense' ORDER BY e.date"""):
+        m = INSTALLMENT.search(r["description"] or "")
+        if not m:
+            continue
+        k, n = int(m.group(2)), int(m.group(3))
+        if not 1 <= k <= n:
+            continue
+        merchant = INSTALLMENT.sub("", r["description"]).strip(" -*#") or r["description"]
+        merchant = re.sub(r"\s+", " ", merchant)
+        usd = r["amount"] * rates.get(r["currency"], 1.0)
+        plan = plans.setdefault(merchant, {"merchant": merchant, "months": n, "paid": 0, "amount": round(usd, 2),
+                                           "pocket": r["pocket"], "institution": r["institution"], "mask": r["mask"]})
+        if k >= plan["paid"]:
+            plan.update(paid=k, amount=round(usd, 2), last=r["date"])
+    out = []
+    for p in plans.values():
+        left = round((p["months"] - p["paid"]) * p["amount"], 2)
+        nxt = _next_month_same_day(date.fromisoformat(p["last"])).isoformat() if p["paid"] < p["months"] else None
+        out.append({**p, "left": left, "total": round(p["months"] * p["amount"], 2), "next": nxt})
+    return out
+
+
 def debts(conn: sqlite3.Connection) -> list[dict]:
-    """Each credit card: owed, limit used, and the next autopay (same day as the last one)."""
+    """What I owe: each credit card (owed, limit used, next autopay), each loan such as a
+    mortgage (balance, next payment), and each installment plan (what's left of it)."""
     out = []
     for a in conn.execute("SELECT * FROM accounts WHERE type = 'credit' ORDER BY institution"):
         last_pay = conn.execute(
@@ -272,19 +313,50 @@ def debts(conn: sqlite3.Connection) -> list[dict]:
         limit = (a["current_balance"] or 0) + (a["available_balance"] or 0) if a["available_balance"] is not None else None
         next_date = None
         if last_pay:
-            d = date.fromisoformat(last_pay["date"])
-            y, m = (d.year + (d.month == 12), d.month % 12 + 1)
-            next_date = date(y, m, min(d.day, calendar.monthrange(y, m)[1])).isoformat()
-            if next_date and date.fromisoformat(next_date) < today(conn):
+            next_date = _next_month_same_day(date.fromisoformat(last_pay["date"])).isoformat()
+            if date.fromisoformat(next_date) < today(conn):
                 next_date = None
         out.append({
-            "id": a["id"], "institution": a["institution"], "name": a["name"], "official_name": a["official_name"],
+            "id": a["id"], "kind": "card", "institution": a["institution"], "name": a["name"], "official_name": a["official_name"],
             "mask": a["mask"], "owed": a["current_balance"], "limit": round(limit, 2) if limit else None,
             "pct_of_limit": round(100 * a["current_balance"] / limit, 1) if limit else None,
             "last_payment": {"date": last_pay["date"], "amount": -last_pay["amount"]} if last_pay else None,
-            "next_autopay": next_date,
+            "next_autopay": next_date, "detail": None, "progress_pct": None,
         })
-    return sorted(out, key=lambda d: INSTITUTION_ORDER.index(d["institution"]) if d["institution"] in INSTITUTION_ORDER else 99)
+    rates = fx(conn)
+    for a in conn.execute("SELECT * FROM accounts WHERE type = 'loan' ORDER BY institution"):
+        word = (a["institution"] or "").split()[0].upper() if a["institution"] else ""
+        last_pay = conn.execute(
+            "SELECT date, amount FROM ledger_entries WHERE direction = 'expense' AND UPPER(description) LIKE ? ORDER BY date DESC LIMIT 1",
+            (f"%{word}%",)).fetchone() if word else None
+        nxt = _next_month_same_day(date.fromisoformat(last_pay["date"])).isoformat() if last_pay else None
+        out.append({
+            "id": a["id"], "kind": a["subtype"] or "loan", "institution": a["institution"], "name": a["name"],
+            "official_name": a["official_name"], "mask": a["mask"],
+            "owed": round((a["current_balance"] or 0) * rates.get(a["currency"], 1.0), 2), "limit": None, "pct_of_limit": None,
+            "last_payment": {"date": last_pay["date"], "amount": last_pay["amount"]} if last_pay else None,
+            "next_autopay": nxt,
+            "detail": f"{Money(last_pay['amount'])}/mo payment, counted in your {a['subtype'] or 'loan'} pocket" if last_pay else None,
+            "progress_pct": None,
+        })
+    for p in installment_plans(conn):
+        if p["left"] <= 0:
+            continue
+        out.append({
+            "id": f"plan-{p['merchant']}", "kind": "installment", "institution": p["institution"] or "Card",
+            "name": p["merchant"].title(), "official_name": None, "mask": p["mask"], "owed": p["left"],
+            "limit": p["total"], "pct_of_limit": None,
+            "last_payment": None, "next_autopay": p["next"],
+            "detail": f"{p['paid']} of {p['months']} paid · {Money(p['amount'])}/mo in {p['pocket'] or 'Unsorted'}",
+            "progress_pct": round(100 * p["paid"] / p["months"], 1),
+        })
+    order = {"card": 0, "mortgage": 1, "loan": 1, "installment": 2}
+    return sorted(out, key=lambda d: (order.get(d["kind"], 1),
+                                      INSTITUTION_ORDER.index(d["institution"]) if d["institution"] in INSTITUTION_ORDER else 99))
+
+
+def Money(v: float) -> str:
+    return f"${v:,.0f}" if abs(v - round(v)) < 0.005 else f"${v:,.2f}"
 
 
 INSTITUTION_ORDER = ["Chase", "Bank of America", "BCA", "Mandiri", "Jago"]  # US banks, then Indonesian
@@ -370,7 +442,7 @@ def spend_per_day(conn: sqlite3.Connection, days: int = 7) -> float:
 # --- What I own over time ---------------------------------------------------------------
 ASSETS_SQL = """SELECT SUM(h.balance * f.usd_per_unit) FROM balance_history h
                 JOIN accounts a ON a.id = h.account_id JOIN fx_rates f ON f.currency = a.currency
-                WHERE a.type != 'credit' AND h.date = ?"""
+                WHERE a.type IN ('depository', 'investment') AND h.date = ?"""
 
 
 def total_balance(conn: sqlite3.Connection, on: date | None = None) -> float:
@@ -388,6 +460,6 @@ def balance_change_this_month(conn: sqlite3.Connection) -> dict:
         "total": current,
         "change": round(current - then, 2),
         "change_pct": round(100 * (current - then) / then, 1) if then else 0,
-        "accounts": conn.execute("SELECT COUNT(*) FROM accounts WHERE type != 'credit'").fetchone()[0],
-        "institutions": conn.execute("SELECT COUNT(DISTINCT institution) FROM accounts WHERE type != 'credit'").fetchone()[0],
+        "accounts": conn.execute("SELECT COUNT(*) FROM accounts WHERE type IN ('depository', 'investment')").fetchone()[0],
+        "institutions": conn.execute("SELECT COUNT(DISTINCT institution) FROM accounts WHERE type IN ('depository', 'investment')").fetchone()[0],
     }

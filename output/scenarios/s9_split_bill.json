@@ -1,0 +1,143 @@
+{
+ "name": "s9_split_bill",
+ "title": "Split bill",
+ "tests": "Dinner for four on the card; two friends pay back by Zelle, two never do; a gift from Mom is income",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 10,
+   "error": null,
+   "tokens": {
+    "input": 13621,
+    "cached": 9140,
+    "output": 346
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 11,790.00"
+    }
+   ],
+   "passed": 5,
+   "total": 5
+  },
+  {
+   "month": "2026-08",
+   "seconds": 11,
+   "error": null,
+   "tokens": {
+    "input": 14898,
+    "cached": 12515,
+    "output": 658
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "17/17 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 18,678.88, unassigned 12,580.00"
+    },
+    {
+     "check": "s9-alex recorded as expense in Food",
+     "passed": true,
+     "detail": "{'direction': 'expense', 'pocket': 'Food'}"
+    },
+    {
+     "check": "s9-sam recorded as expense in Food",
+     "passed": true,
+     "detail": "{'direction': 'expense', 'pocket': 'Food'}"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-09",
+   "seconds": 20,
+   "error": null,
+   "tokens": {
+    "input": 21712,
+    "cached": 18075,
+    "output": 697
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 21,260.32, unassigned 13,570.00"
+    },
+    {
+     "check": "s9-mom recorded as income",
+     "passed": true,
+     "detail": "{'direction': 'income', 'pocket': 'Other income'}"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  }
+ ],
+ "started": "2026-10-26T00:49:11+00:00"
+}

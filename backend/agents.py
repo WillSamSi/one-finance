@@ -263,7 +263,7 @@ def _pocket_and_account_lists() -> tuple[list[str], list[dict]]:
         pockets = [r["name"] for r in conn.execute(
             "SELECT name FROM pockets WHERE active = 1 AND kind IN ('spending', 'saving') ORDER BY sort")]
         accounts = [dict(r) for r in conn.execute(
-            "SELECT id, institution, name, type, mask, currency FROM accounts WHERE type != 'investment'")]
+            "SELECT id, institution, name, type, mask, currency FROM accounts WHERE type IN ('depository', 'credit')")]
     return pockets, accounts
 
 

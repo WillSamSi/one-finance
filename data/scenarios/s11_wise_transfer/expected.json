@@ -1,0 +1,105 @@
+{
+ "2026-07": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 375.75,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 0.0,
+   "Food": 0.0,
+   "Supplies": 0.0,
+   "Transportation": 0.0,
+   "Healthcare": 0.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "statement_recorded",
+    "period": "2026-07"
+   },
+   {
+    "type": "income_idr",
+    "amount": 0.0
+   }
+  ]
+ },
+ "2026-08": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 180.0,
+   "Food": 751.5,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 120.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 375.75,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "recorded_as",
+    "txn": "s11-wise",
+    "direction": "transfer"
+   },
+   {
+    "type": "statement_line",
+    "contains": "WISE",
+    "direction": "transfer"
+   },
+   {
+    "type": "statement_recorded",
+    "period": "2026-08"
+   },
+   {
+    "type": "income_idr",
+    "amount": 0.0
+   }
+  ]
+ },
+ "2026-09": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 270.0,
+   "Food": 1127.25,
+   "Supplies": 496.32,
+   "Transportation": 271.8,
+   "Healthcare": 180.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 180.0,
+   "Food": 751.5,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 120.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "statement_recorded",
+    "period": "2026-09"
+   },
+   {
+    "type": "income_idr",
+    "amount": 0.0
+   }
+  ]
+ }
+}

@@ -13,10 +13,11 @@ from backend import analytics, entries
 # (words to look for, pocket or None, direction, note)
 # Pockets aren't tied to accounts, so moving money between my own accounts is a transfer
 # with no pocket. Money sent to the brokerage leaves the Investment pocket ("ready to invest").
+# Money from a person (Zelle) isn't here: it may be a payback for a shared expense, which the
+# Accountant records against that expense's pocket instead of as income.
 RULES: list[tuple[tuple[str, ...], str | None, str, str | None]] = [
     (("PAYROLL",), None, "income", None),
     (("INTEREST EARNED",), None, "income", None),
-    (("ZELLE PAYMENT FROM",), None, "income", None),
     (("ONLINE TRANSFER TO BOFA",), None, "transfer", "to_savings"),
     (("TRANSFER FROM CHASE",), None, "transfer", "from_own_account"),
     (("FIDELITY INVESTMENTS",), "Investment", "transfer", "to_brokerage"),

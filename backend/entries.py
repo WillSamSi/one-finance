@@ -42,7 +42,7 @@ def check_common(conn: sqlite3.Connection, amount: float, on: str, paid_with: st
         raise EntryError("The date can't be in the future.")
     if paid_with in CASH:
         return CASH[paid_with], None
-    acct = conn.execute("SELECT id, currency FROM accounts WHERE id = ? AND type != 'investment'", (paid_with,)).fetchone()
+    acct = conn.execute("SELECT id, currency FROM accounts WHERE id = ? AND type IN ('depository', 'credit')", (paid_with,)).fetchone()
     if not acct:
         raise EntryError("Pick cash or one of your bank accounts or cards.")
     return acct["currency"], acct["id"]

@@ -1,0 +1,2 @@
+- Plans where the bank posts the full purchase first and splits it later (e.g. My Chase Plan) aren't handled: the full purchase would count in that month.
+- A mortgage payment isn't split into interest and principal (by the owner's choice).

@@ -44,7 +44,7 @@ RUN_TOOL_CALLS_LIMIT = 60
 RUN_TOTAL_TOKENS_LIMIT = 250_000
 # Per-response cap so no single answer runs long (no temperature: reasoning model).
 MAX_OUTPUT_TOKENS = 4_000
-# Daily budget across all runs; a new run is refused once today's total passes it.
+# Budget across all runs in any 24 hours; a new run is refused once the total passes it.
 DAILY_TOKEN_LIMIT = int(os.environ.get("DAILY_TOKEN_LIMIT", "1500000"))
 
 

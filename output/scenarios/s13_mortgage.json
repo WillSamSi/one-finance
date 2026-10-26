@@ -1,0 +1,143 @@
+{
+ "name": "s13_mortgage",
+ "title": "Mortgage",
+ "tests": "A monthly mortgage payment counts in full in a Mortgage pocket; the loan balance shows under debt",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 11,
+   "error": null,
+   "tokens": {
+    "input": 14653,
+    "cached": 12009,
+    "output": 491
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 15,981.44, unassigned 11,390.00"
+    },
+    {
+     "check": "Debt Balance shows the mortgage",
+     "passed": true,
+     "detail": "311,350.00 owed, $1,850/mo payment, counted in your mortgage pocket"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  },
+  {
+   "month": "2026-08",
+   "seconds": 11,
+   "error": null,
+   "tokens": {
+    "input": 14735,
+    "cached": 12031,
+    "output": 481
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 17,962.88, unassigned 11,780.00"
+    },
+    {
+     "check": "Debt Balance shows the mortgage",
+     "passed": true,
+     "detail": "310,700.00 owed, $1,850/mo payment, counted in your mortgage pocket"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  },
+  {
+   "month": "2026-09",
+   "seconds": 8,
+   "error": null,
+   "tokens": {
+    "input": 14733,
+    "cached": 12013,
+    "output": 537
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 19,944.32, unassigned 12,170.00"
+    },
+    {
+     "check": "Debt Balance shows the mortgage",
+     "passed": true,
+     "detail": "310,050.00 owed, $1,850/mo payment, counted in your mortgage pocket"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  }
+ ],
+ "started": "2026-10-26T00:49:12+00:00"
+}

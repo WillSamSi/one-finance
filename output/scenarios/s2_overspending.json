@@ -5,12 +5,12 @@
  "months": [
   {
    "month": "2026-07",
-   "seconds": 10,
+   "seconds": 11,
    "error": null,
    "tokens": {
-    "input": 13171,
-    "cached": 10667,
-    "output": 393
+    "input": 13633,
+    "cached": 11783,
+    "output": 387
    },
    "notes": [],
    "checks": [
@@ -45,12 +45,12 @@
   },
   {
    "month": "2026-08",
-   "seconds": 23,
+   "seconds": 17,
    "error": null,
    "tokens": {
-    "input": 23461,
-    "cached": 15056,
-    "output": 2215
+    "input": 24820,
+    "cached": 16462,
+    "output": 1994
    },
    "notes": [],
    "checks": [
@@ -82,7 +82,7 @@
     {
      "check": "Digest warns about Food",
      "passed": true,
-     "detail": "{\"spending_title\": \"August spending \\u2014 $2,818.56 of $3,501.44\", \"spending_body\": \"You spent 80.5% of the monthly budget with 100% of the month elapsed, leav"
+     "detail": "{\"spending_title\": \"Spending \\u2014 August 2026\", \"spending_body\": \"Spent $2,818.56 of $3,501.44 (80.5%) by Aug 31, against 100% of the month elapsed. Food was "
     }
    ],
    "passed": 6,
@@ -90,12 +90,12 @@
   },
   {
    "month": "2026-09",
-   "seconds": 25,
+   "seconds": 19,
    "error": null,
    "tokens": {
-    "input": 22683,
-    "cached": 14715,
-    "output": 2447
+    "input": 25585,
+    "cached": 16852,
+    "output": 2328
    },
    "notes": [],
    "checks": [
@@ -127,12 +127,12 @@
     {
      "check": "Digest warns about Supplies",
      "passed": true,
-     "detail": "{\"spending_title\": \"September spending \\u2014 below budget overall\", \"spending_body\": \"In 2026-09, you spent $2,438.56 of your $3,522.08 budget (69.2%), leaving"
+     "detail": "{\"spending_title\": \"Spending \\u2014 September 2026\", \"spending_body\": \"$2,438.56 spent of $3,522.08 budget; $1,083.52 remains. You used 69.2% of the budget with"
     }
    ],
    "passed": 6,
    "total": 6
   }
  ],
- "started": "2026-10-25T17:32:56+00:00"
+ "started": "2026-10-26T00:49:11+00:00"
 }
