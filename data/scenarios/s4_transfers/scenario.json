@@ -1,0 +1,797 @@
+{
+ "name": "s4_transfers",
+ "title": "Transfers",
+ "tests": "Card bill payment, checking \u2192 savings, money moved to the brokerage",
+ "months": [
+  "2026-07",
+  "2026-08",
+  "2026-09"
+ ],
+ "accounts": {
+  "checking": {
+   "id": "chase-checking",
+   "institution": "Chase",
+   "name": "Chase Total Checking",
+   "type": "depository",
+   "subtype": "checking",
+   "mask": "0918",
+   "currency": "USD",
+   "opening": 6000.0
+  },
+  "card": {
+   "id": "chase-card",
+   "institution": "Chase",
+   "name": "Chase Freedom Unlimited",
+   "type": "credit",
+   "subtype": "credit card",
+   "mask": "7313",
+   "currency": "USD",
+   "opening": 0.0
+  },
+  "savings": {
+   "id": "bofa-savings",
+   "institution": "Bank of America",
+   "name": "BofA Advantage Savings",
+   "type": "depository",
+   "subtype": "savings",
+   "mask": "5560",
+   "currency": "USD",
+   "opening": 8000.0
+  }
+ },
+ "pockets": [
+  {
+   "name": "Home Rent",
+   "kind": "spending",
+   "monthly_budget": 1450,
+   "description": "Monthly rent"
+  },
+  {
+   "name": "Utilities",
+   "kind": "spending",
+   "monthly_budget": 250,
+   "description": "Electricity, phone, internet"
+  },
+  {
+   "name": "Food",
+   "kind": "spending",
+   "monthly_budget": 600,
+   "description": "Groceries, restaurants, coffee"
+  },
+  {
+   "name": "Supplies",
+   "kind": "spending",
+   "monthly_budget": 200,
+   "description": "Household goods and everyday items"
+  },
+  {
+   "name": "Transportation",
+   "kind": "spending",
+   "monthly_budget": 150,
+   "description": "Rides, gas, transit"
+  },
+  {
+   "name": "Healthcare",
+   "kind": "spending",
+   "monthly_budget": 60,
+   "description": "Pharmacy, doctor"
+  },
+  {
+   "name": "Emergency Fund",
+   "kind": "saving",
+   "monthly_budget": 300,
+   "starting_amount": 2000,
+   "goal_amount": 15000,
+   "description": "Six months of costs"
+  },
+  {
+   "name": "Investment",
+   "kind": "investing",
+   "monthly_budget": 500,
+   "starting_amount": 1000,
+   "description": "Ready to invest: set aside to move to the brokerage"
+  }
+ ],
+ "idr_per_usd": 16250.0,
+ "data": {
+  "2026-07": {
+   "txns": [
+    {
+     "id": "s4_transfers-2026-07-001",
+     "account": "checking",
+     "date": "2026-07-01",
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "amount": -2150.0,
+     "pending": false,
+     "expect": {
+      "direction": "income"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-002",
+     "account": "checking",
+     "date": "2026-07-15",
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "amount": -2150.0,
+     "pending": false,
+     "expect": {
+      "direction": "income"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-003",
+     "account": "checking",
+     "date": "2026-07-02",
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "amount": 1450.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Home Rent"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-004",
+     "account": "checking",
+     "date": "2026-07-05",
+     "description": "EVERSOURCE ENERGY PPD",
+     "amount": 95.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Utilities"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-005",
+     "account": "card",
+     "date": "2026-07-08",
+     "description": "T-MOBILE *AUTOPAY",
+     "amount": 65.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Utilities"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-006",
+     "account": "card",
+     "date": "2026-07-04",
+     "description": "TRADER JOE'S #523",
+     "amount": 62.4,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-007",
+     "account": "card",
+     "date": "2026-07-09",
+     "description": "STARBUCKS STORE 08812",
+     "amount": 6.25,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-008",
+     "account": "card",
+     "date": "2026-07-12",
+     "description": "SWEETGREEN NEW HAVEN",
+     "amount": 14.75,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-009",
+     "account": "card",
+     "date": "2026-07-18",
+     "description": "ALDI 66019",
+     "amount": 48.3,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-010",
+     "account": "card",
+     "date": "2026-07-25",
+     "description": "TRADER JOE'S #523",
+     "amount": 55.1,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-011",
+     "account": "card",
+     "date": "2026-07-11",
+     "description": "UBER *TRIP HELP.UBER.COM",
+     "amount": 18.4,
+     "pending": false,
+     "expect": {
+      "pocket": "Transportation"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-012",
+     "account": "card",
+     "date": "2026-07-20",
+     "description": "SHELL OIL 57444",
+     "amount": 41.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Transportation"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-013",
+     "account": "card",
+     "date": "2026-07-14",
+     "description": "THE HOME DEPOT #6207",
+     "amount": 34.56,
+     "pending": false,
+     "expect": {
+      "pocket": "Supplies"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-07-014",
+     "account": "card",
+     "date": "2026-07-22",
+     "description": "PEPE'S PIZZERIA NEW HAVEN",
+     "amount": 27.8,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4-2026-07-tosav",
+     "account": "checking",
+     "date": "2026-07-03",
+     "description": "ONLINE TRANSFER TO BOFA SAV XXXXXX5560",
+     "amount": 300.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-07-fromchk",
+     "account": "savings",
+     "date": "2026-07-03",
+     "description": "ONLINE TRANSFER FROM CHK XXXXXX0918 TRANSFER FROM CHASE",
+     "amount": -300.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-07-fid",
+     "account": "checking",
+     "date": "2026-07-06",
+     "description": "FIDELITY INVESTMENTS MONEYLINE",
+     "amount": 500.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer",
+      "pocket": "Investment"
+     }
+    }
+   ],
+   "receipts": [],
+   "amazon": [],
+   "statements": [],
+   "before": [],
+   "after": [],
+   "digest": false,
+   "checks": [
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-07-tosav",
+     "direction": "transfer"
+    },
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-07-fid",
+     "direction": "transfer"
+    },
+    {
+     "type": "savings",
+     "pocket": "Investment",
+     "total": 1000.0
+    }
+   ]
+  },
+  "2026-08": {
+   "txns": [
+    {
+     "id": "s4_transfers-2026-08-018",
+     "account": "checking",
+     "date": "2026-08-01",
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "amount": -2150.0,
+     "pending": false,
+     "expect": {
+      "direction": "income"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-019",
+     "account": "checking",
+     "date": "2026-08-15",
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "amount": -2150.0,
+     "pending": false,
+     "expect": {
+      "direction": "income"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-020",
+     "account": "checking",
+     "date": "2026-08-02",
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "amount": 1450.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Home Rent"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-021",
+     "account": "checking",
+     "date": "2026-08-05",
+     "description": "EVERSOURCE ENERGY PPD",
+     "amount": 95.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Utilities"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-022",
+     "account": "card",
+     "date": "2026-08-08",
+     "description": "T-MOBILE *AUTOPAY",
+     "amount": 65.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Utilities"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-023",
+     "account": "card",
+     "date": "2026-08-04",
+     "description": "TRADER JOE'S #523",
+     "amount": 62.4,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-024",
+     "account": "card",
+     "date": "2026-08-09",
+     "description": "STARBUCKS STORE 08812",
+     "amount": 6.25,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-025",
+     "account": "card",
+     "date": "2026-08-12",
+     "description": "SWEETGREEN NEW HAVEN",
+     "amount": 14.75,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-026",
+     "account": "card",
+     "date": "2026-08-18",
+     "description": "ALDI 66019",
+     "amount": 48.3,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-027",
+     "account": "card",
+     "date": "2026-08-25",
+     "description": "TRADER JOE'S #523",
+     "amount": 55.1,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-028",
+     "account": "card",
+     "date": "2026-08-11",
+     "description": "UBER *TRIP HELP.UBER.COM",
+     "amount": 18.4,
+     "pending": false,
+     "expect": {
+      "pocket": "Transportation"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-029",
+     "account": "card",
+     "date": "2026-08-20",
+     "description": "SHELL OIL 57444",
+     "amount": 41.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Transportation"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-030",
+     "account": "card",
+     "date": "2026-08-14",
+     "description": "THE HOME DEPOT #6207",
+     "amount": 34.56,
+     "pending": false,
+     "expect": {
+      "pocket": "Supplies"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-08-031",
+     "account": "card",
+     "date": "2026-08-22",
+     "description": "PEPE'S PIZZERIA NEW HAVEN",
+     "amount": 27.8,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4-2026-08-tosav",
+     "account": "checking",
+     "date": "2026-08-03",
+     "description": "ONLINE TRANSFER TO BOFA SAV XXXXXX5560",
+     "amount": 300.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-08-fromchk",
+     "account": "savings",
+     "date": "2026-08-03",
+     "description": "ONLINE TRANSFER FROM CHK XXXXXX0918 TRANSFER FROM CHASE",
+     "amount": -300.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-08-fid",
+     "account": "checking",
+     "date": "2026-08-06",
+     "description": "FIDELITY INVESTMENTS MONEYLINE",
+     "amount": 500.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer",
+      "pocket": "Investment"
+     }
+    },
+    {
+     "id": "s4-2026-08-autopay",
+     "account": "checking",
+     "date": "2026-08-26",
+     "description": "CHASE CREDIT CRD AUTOPAY PPD",
+     "amount": 373.56,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-08-cardpay",
+     "account": "card",
+     "date": "2026-08-26",
+     "description": "AUTOMATIC PAYMENT - THANK YOU",
+     "amount": -373.56,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    }
+   ],
+   "receipts": [],
+   "amazon": [],
+   "statements": [],
+   "before": [],
+   "after": [],
+   "digest": false,
+   "checks": [
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-08-tosav",
+     "direction": "transfer"
+    },
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-08-fid",
+     "direction": "transfer"
+    },
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-08-autopay",
+     "direction": "transfer"
+    },
+    {
+     "type": "savings",
+     "pocket": "Investment",
+     "total": 1000.0
+    }
+   ]
+  },
+  "2026-09": {
+   "txns": [
+    {
+     "id": "s4_transfers-2026-09-037",
+     "account": "checking",
+     "date": "2026-09-01",
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "amount": -2150.0,
+     "pending": false,
+     "expect": {
+      "direction": "income"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-038",
+     "account": "checking",
+     "date": "2026-09-15",
+     "description": "YALE UNIV PAYROLL PPD ID: 1066313421",
+     "amount": -2150.0,
+     "pending": false,
+     "expect": {
+      "direction": "income"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-039",
+     "account": "checking",
+     "date": "2026-09-02",
+     "description": "ELM CITY APTS ACH RENT WEB ID: 7781045",
+     "amount": 1450.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Home Rent"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-040",
+     "account": "checking",
+     "date": "2026-09-05",
+     "description": "EVERSOURCE ENERGY PPD",
+     "amount": 95.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Utilities"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-041",
+     "account": "card",
+     "date": "2026-09-08",
+     "description": "T-MOBILE *AUTOPAY",
+     "amount": 65.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Utilities"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-042",
+     "account": "card",
+     "date": "2026-09-04",
+     "description": "TRADER JOE'S #523",
+     "amount": 62.4,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-043",
+     "account": "card",
+     "date": "2026-09-09",
+     "description": "STARBUCKS STORE 08812",
+     "amount": 6.25,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-044",
+     "account": "card",
+     "date": "2026-09-12",
+     "description": "SWEETGREEN NEW HAVEN",
+     "amount": 14.75,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-045",
+     "account": "card",
+     "date": "2026-09-18",
+     "description": "ALDI 66019",
+     "amount": 48.3,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-046",
+     "account": "card",
+     "date": "2026-09-25",
+     "description": "TRADER JOE'S #523",
+     "amount": 55.1,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-047",
+     "account": "card",
+     "date": "2026-09-11",
+     "description": "UBER *TRIP HELP.UBER.COM",
+     "amount": 18.4,
+     "pending": false,
+     "expect": {
+      "pocket": "Transportation"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-048",
+     "account": "card",
+     "date": "2026-09-20",
+     "description": "SHELL OIL 57444",
+     "amount": 41.0,
+     "pending": false,
+     "expect": {
+      "pocket": "Transportation"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-049",
+     "account": "card",
+     "date": "2026-09-14",
+     "description": "THE HOME DEPOT #6207",
+     "amount": 34.56,
+     "pending": false,
+     "expect": {
+      "pocket": "Supplies"
+     }
+    },
+    {
+     "id": "s4_transfers-2026-09-050",
+     "account": "card",
+     "date": "2026-09-22",
+     "description": "PEPE'S PIZZERIA NEW HAVEN",
+     "amount": 27.8,
+     "pending": false,
+     "expect": {
+      "pocket": "Food"
+     }
+    },
+    {
+     "id": "s4-2026-09-tosav",
+     "account": "checking",
+     "date": "2026-09-03",
+     "description": "ONLINE TRANSFER TO BOFA SAV XXXXXX5560",
+     "amount": 300.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-09-fromchk",
+     "account": "savings",
+     "date": "2026-09-03",
+     "description": "ONLINE TRANSFER FROM CHK XXXXXX0918 TRANSFER FROM CHASE",
+     "amount": -300.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-09-fid",
+     "account": "checking",
+     "date": "2026-09-06",
+     "description": "FIDELITY INVESTMENTS MONEYLINE",
+     "amount": 500.0,
+     "pending": false,
+     "expect": {
+      "direction": "transfer",
+      "pocket": "Investment"
+     }
+    },
+    {
+     "id": "s4-2026-09-autopay",
+     "account": "checking",
+     "date": "2026-09-26",
+     "description": "CHASE CREDIT CRD AUTOPAY PPD",
+     "amount": 373.56,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    },
+    {
+     "id": "s4-2026-09-cardpay",
+     "account": "card",
+     "date": "2026-09-26",
+     "description": "AUTOMATIC PAYMENT - THANK YOU",
+     "amount": -373.56,
+     "pending": false,
+     "expect": {
+      "direction": "transfer"
+     }
+    }
+   ],
+   "receipts": [],
+   "amazon": [],
+   "statements": [],
+   "before": [],
+   "after": [],
+   "digest": false,
+   "checks": [
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-09-tosav",
+     "direction": "transfer"
+    },
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-09-fid",
+     "direction": "transfer"
+    },
+    {
+     "type": "recorded_as",
+     "txn": "s4-2026-09-autopay",
+     "direction": "transfer"
+    },
+    {
+     "type": "savings",
+     "pocket": "Investment",
+     "total": 1000.0
+    }
+   ]
+  }
+ }
+}

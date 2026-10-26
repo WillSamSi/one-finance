@@ -1,0 +1,133 @@
+{
+ "name": "s8_edge",
+ "title": "Edge cases",
+ "tests": "An almost empty month, a pocket added mid-month, a charge no pocket fits",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 12487,
+    "cached": 8293,
+    "output": 487
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 11,790.00"
+    }
+   ],
+   "passed": 5,
+   "total": 5
+  },
+  {
+   "month": "2026-08",
+   "seconds": 7,
+   "error": null,
+   "tokens": {
+    "input": 8993,
+    "cached": 7461,
+    "output": 375
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "3/3 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 19,231.44, unassigned 12,540.00"
+    }
+   ],
+   "passed": 5,
+   "total": 5
+  },
+  {
+   "month": "2026-09",
+   "seconds": 13,
+   "error": null,
+   "tokens": {
+    "input": 12954,
+    "cached": 10870,
+    "output": 433
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected ['unsorted']; found ['unsorted']"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 21,539.88, unassigned 13,217.00"
+    },
+    {
+     "check": "Unplaceable charge \u2192 Unsorted + Review",
+     "passed": true,
+     "detail": "{'pocket_id': None, 'n': 1}"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}

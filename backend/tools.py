@@ -161,7 +161,7 @@ def read_statement(ctx: RunContext[AgentDeps], account_id: str, period: str) -> 
 class EntryIn(BaseModel):
     transaction_id: str
     direction: Literal["expense", "income", "transfer"]
-    pocket: str | None = Field(None, description="Required for an expense. For transfers into savings or investing, that pocket. "
+    pocket: str | None = Field(None, description="Required for an expense ('Unsorted' if no pocket fits). For transfers into savings or investing, that pocket. "
                                      "For income: Salary, Freelance, Dividends or Other income (left empty, the code picks).")
     receipt_id: int | None = Field(None, description="Only if this receipt's total equals the charge.")
     amazon_order_id: str | None = Field(None, description="Only if this order's shipment total equals the charge.")
@@ -169,7 +169,10 @@ class EntryIn(BaseModel):
 
 
 def _entry_pocket(conn, e, t, pockets: dict) -> int | None:
-    """The pocket id for an entry; income goes to an income pocket (the one named, if it is one)."""
+    """The pocket id for an entry; income goes to an income pocket (the one named, if it is one);
+    'Unsorted' means no pocket (the owner picks one in Review)."""
+    if e.pocket == "Unsorted":
+        return None
     if e.direction == "income":
         if e.pocket and pockets[e.pocket][1] == "income":
             return pockets[e.pocket][0]
@@ -200,12 +203,13 @@ def record_entries(ctx: RunContext[AgentDeps], entries: list[EntryIn]) -> dict:
             if conn.execute("SELECT 1 FROM ledger_entries WHERE transaction_id = ?", (t["id"],)).fetchone():
                 refuse("already recorded"); continue
             if e.direction == "expense" and not e.pocket:
-                refuse("an expense needs a pocket"); continue
-            if e.pocket and e.pocket not in pockets:
+                refuse("an expense needs a pocket (use 'Unsorted' if none fits)"); continue
+            unsorted = e.direction == "expense" and e.pocket == "Unsorted"
+            if e.pocket and not unsorted and e.pocket not in pockets:
                 refuse(f"unknown pocket '{e.pocket}'. Use one of: {', '.join(pockets)}"); continue
-            if e.direction == "expense" and pockets[e.pocket][1] in ("investing", "income"):
+            if not unsorted and e.direction == "expense" and pockets[e.pocket][1] in ("investing", "income"):
                 refuse(f"an expense can't come from {e.pocket}"); continue
-            if e.direction != "income" and e.pocket and pockets[e.pocket][1] == "income":
+            if not unsorted and e.direction != "income" and e.pocket and pockets[e.pocket][1] == "income":
                 refuse(f"{e.pocket} is an income pocket: only deposits go there"); continue
             if e.receipt_id is not None:
                 r = conn.execute("SELECT * FROM receipts WHERE id = ?", (e.receipt_id,)).fetchone()
@@ -240,6 +244,13 @@ def record_entries(ctx: RunContext[AgentDeps], entries: list[EntryIn]) -> dict:
             )
             if e.receipt_id is not None:
                 conn.execute("UPDATE receipts SET status = 'matched' WHERE id = ?", (e.receipt_id,))
+            if unsorted:  # no pocket fits: the owner picks one in the Review tray
+                entry_id = conn.execute("SELECT id FROM ledger_entries WHERE transaction_id = ?", (t["id"],)).fetchone()["id"]
+                conn.execute("INSERT INTO review_items (kind, month, entry_id, transaction_id, amount, detail, created_by, created_at)"
+                             " VALUES (?,?,?,?,?,?,?,?)",
+                             ("unsorted", t["date"][:7], entry_id, t["id"], t["amount"],
+                              f"No pocket fits {t['merchant_name'] or t['description']} ({t['amount']:.2f} on {t['date']}). "
+                              + (e.note or "Pick a pocket."), "accountant", _now()))
             results.append({"transaction_id": e.transaction_id, "ok": True, "amount": t["amount"]})
         conn.commit()
     return {"recorded": sum(r["ok"] for r in results), "results": results}
@@ -595,9 +606,6 @@ def get_open_review_items(ctx: RunContext[AgentDeps]) -> dict:
     with db.connect() as conn:
         items = [dict(r) for r in conn.execute(
             "SELECT id, kind, month, amount, detail FROM review_items WHERE status = 'open' ORDER BY month, id")]
-        unsorted = [dict(r) for r in conn.execute(
-            """SELECT e.id AS entry_id, e.date, e.description, e.amount, e.currency FROM ledger_entries e
-               WHERE e.direction = 'expense' AND e.pocket_id IS NULL AND e.date BETWEEN ? AND ?""", (first, last))]
         manual = [dict(r) for r in conn.execute(
             """SELECT date, description, amount FROM ledger_entries
                WHERE recorded_by = 'user' AND transaction_id IS NULL AND receipt_id IS NULL ORDER BY date""")]

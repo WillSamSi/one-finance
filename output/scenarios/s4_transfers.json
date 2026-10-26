@@ -1,0 +1,183 @@
+{
+ "name": "s4_transfers",
+ "title": "Transfers",
+ "tests": "Card bill payment, checking \u2192 savings, money moved to the brokerage",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 12483,
+    "cached": 10649,
+    "output": 340
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "17/17 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 15,881.44, unassigned 11,790.00"
+    },
+    {
+     "check": "s4-2026-07-tosav recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': None}"
+    },
+    {
+     "check": "s4-2026-07-fid recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': 'Investment'}"
+    },
+    {
+     "check": "Investment total",
+     "passed": true,
+     "detail": "1000.0 (expected 1000.0)"
+    }
+   ],
+   "passed": 8,
+   "total": 8
+  },
+  {
+   "month": "2026-08",
+   "seconds": 8,
+   "error": null,
+   "tokens": {
+    "input": 12503,
+    "cached": 10627,
+    "output": 364
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "19/19 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 17,762.88, unassigned 12,580.00"
+    },
+    {
+     "check": "s4-2026-08-tosav recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': None}"
+    },
+    {
+     "check": "s4-2026-08-fid recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': 'Investment'}"
+    },
+    {
+     "check": "s4-2026-08-autopay recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': None}"
+    },
+    {
+     "check": "Investment total",
+     "passed": true,
+     "detail": "1000.0 (expected 1000.0)"
+    }
+   ],
+   "passed": 9,
+   "total": 9
+  },
+  {
+   "month": "2026-09",
+   "seconds": 12,
+   "error": null,
+   "tokens": {
+    "input": 12501,
+    "cached": 10651,
+    "output": 345
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "19/19 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 19,644.32, unassigned 13,370.00"
+    },
+    {
+     "check": "s4-2026-09-tosav recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': None}"
+    },
+    {
+     "check": "s4-2026-09-fid recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': 'Investment'}"
+    },
+    {
+     "check": "s4-2026-09-autopay recorded as transfer",
+     "passed": true,
+     "detail": "{'direction': 'transfer', 'pocket': None}"
+    },
+    {
+     "check": "Investment total",
+     "passed": true,
+     "detail": "1000.0 (expected 1000.0)"
+    }
+   ],
+   "passed": 9,
+   "total": 9
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}

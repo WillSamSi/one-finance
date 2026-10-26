@@ -1,95 +1,5 @@
 [
  {
-  "group": "Read-only",
-  "test": "No agent has a tool that moves money or trades",
-  "passed": true,
-  "detail": "tools per agent: accountant: attach_proof, flag_discrepancies, get_month_summary, get_month_work, get_pockets_overview, read_statement, reassign_pocket, record_entries, record_statement, suggest_pocket; accountant_helper: get_month_summary, get_month_work, get_pockets_overview, read_statement; receipt_reader: -; investor: get_company_data, get_investment_pocket, get_portfolio; investor_helper: get_company_data, get_investment_pocket, get_portfolio; advisor_digest: delegate, get_cashflow, get_month_summary, get_open_review_items, get_pockets_overview, get_portfolio_overview; advisor_chat: delegate, get_cashflow, get_month_summary, get_open_review_items, get_pockets_overview, get_portfolio_overview, move_leftover; budget_advisor: get_month_summary, get_pockets_overview; budget_drafter: get_spending_history; quick_entry_agent: -"
- },
- {
-  "group": "Read-only",
-  "test": "Only the Accountant records; the Advisor's one writer is move_leftover (chat only)",
-  "passed": true,
-  "detail": "{\"accountant\": [\"attach_proof\", \"flag_discrepancies\", \"reassign_pocket\", \"record_entries\", \"record_statement\", \"suggest_pocket\"], \"advisor_chat\": [\"move_leftover\"]}"
- },
- {
-  "group": "Read-only",
-  "test": "Plaid: only read endpoints are called",
-  "passed": true,
-  "detail": "endpoints: accounts/get, item/public_token/exchange, item/remove, sandbox/public_token/create, transactions/sync"
- },
- {
-  "group": "Read-only",
-  "test": "SnapTrade: connected read-only, no trading calls",
-  "passed": true,
-  "detail": "login link uses connection_type=\"read\"; no trading API is called"
- },
- {
-  "group": "Read-only",
-  "test": "move_leftover is an in-app relabel only",
-  "passed": true,
-  "detail": "Move money between pockets inside the app, e.g. Food's leftover $50 \u2192 Other Savings.\nThis is only a relabel: no bank transfer happens, and the owner can undo it. Refused if\nthe amount is more than what's left in the source pocket this month."
- },
- {
-  "group": "Arithmetic",
-  "test": "Receipt whose items don't add up is sent back",
-  "passed": true,
-  "detail": "Your numbers don't add up: the items add up to 13.49, not the subtotal 20.00. Re-read the receipt. If the printed receipt itself doesn't add up, say so in probl"
- },
- {
-  "group": "Arithmetic",
-  "test": "Statement lines that don't match the printed totals are refused",
-  "passed": true,
-  "detail": "money in adds up to 1,000,000.00, but the statement says MUTASI CR 5,004,312.00; money out adds up to 0.00, but the statement says MUTASI DB 1,821,800.00"
- },
- {
-  "group": "Arithmetic",
-  "test": "Receipt $47.82 can't be matched to the $52.82 charge",
-  "passed": true,
-  "detail": "receipt total 47.82 differs from the charge 52.82. Record the charge without the receipt and flag an amount_mismatch."
- },
- {
-  "group": "Arithmetic",
-  "test": "Recorded amounts always come from the bank charge",
-  "passed": true,
-  "detail": "recorded 52.82 (the tool has no amount field)"
- },
- {
-  "group": "Arithmetic",
-  "test": "A budget over income needs a source",
-  "passed": true,
-  "detail": "Your plan is $98,090.00 over your income. sources offered: 4"
- },
- {
-  "group": "Arithmetic",
-  "test": "Cash check balances (pockets + Unassigned = all money)",
-  "passed": true,
-  "detail": "all money 16,388.67 = pockets 15,856.11 + unassigned 532.56"
- },
- {
-  "group": "Caps",
-  "test": "Limits in force",
-  "passed": true,
-  "detail": "12 model turns per agent, 30 requests / 60 tool calls / 250,000 tokens per run, 4,000 output tokens per answer, 1,500,000 tokens per day, 2 hand-offs per run, 1 level deep"
- },
- {
-  "group": "Caps",
-  "test": "Daily token budget used up \u2192 new runs refused (HTTP 429), no AI call",
-  "passed": true,
-  "detail": "Today's token budget is used up (1,500,000 of 1,500,000)."
- },
- {
-  "group": "Caps",
-  "test": "A third hand-off in one run is refused",
-  "passed": true,
-  "detail": "Hand-off refused: this run already used all 2 hand-offs. Answer with what you have."
- },
- {
-  "group": "Caps",
-  "test": "A specialist can't hand work further (depth 1)",
-  "passed": true,
-  "detail": "Hand-off refused: specialists can't hand work further. Answer with what you have."
- },
- {
   "group": "Caps",
   "test": "Run token cap stops a month-end run mid-way and logs it",
   "passed": true,
@@ -193,5 +103,95 @@
    }
   },
   "pocket_agreement": "58/58"
+ },
+ {
+  "group": "Read-only",
+  "test": "No agent has a tool that moves money or trades",
+  "passed": true,
+  "detail": "tools per agent: accountant: attach_proof, flag_discrepancies, get_month_summary, get_month_work, get_pockets_overview, read_statement, reassign_pocket, record_entries, record_statement, suggest_pocket; accountant_helper: get_month_summary, get_month_work, get_pockets_overview, read_statement; receipt_reader: -; investor: get_company_data, get_investment_pocket, get_portfolio; investor_helper: get_company_data, get_investment_pocket, get_portfolio; advisor_digest: delegate, get_cashflow, get_month_summary, get_open_review_items, get_pockets_overview, get_portfolio_overview; advisor_chat: delegate, get_cashflow, get_month_summary, get_open_review_items, get_pockets_overview, get_portfolio_overview, move_leftover; budget_advisor: get_month_summary, get_pockets_overview; budget_drafter: get_spending_history; quick_entry_agent: -"
+ },
+ {
+  "group": "Read-only",
+  "test": "Only the Accountant records; the Advisor's one writer is move_leftover (chat only)",
+  "passed": true,
+  "detail": "{\"accountant\": [\"attach_proof\", \"flag_discrepancies\", \"reassign_pocket\", \"record_entries\", \"record_statement\", \"suggest_pocket\"], \"advisor_chat\": [\"move_leftover\"]}"
+ },
+ {
+  "group": "Read-only",
+  "test": "Plaid: only read endpoints are called",
+  "passed": true,
+  "detail": "endpoints: accounts/get, item/public_token/exchange, item/remove, sandbox/public_token/create, transactions/sync"
+ },
+ {
+  "group": "Read-only",
+  "test": "SnapTrade: connected read-only, no trading calls",
+  "passed": true,
+  "detail": "login link uses connection_type=\"read\"; no trading API is called"
+ },
+ {
+  "group": "Read-only",
+  "test": "move_leftover is an in-app relabel only",
+  "passed": true,
+  "detail": "Move money between pockets inside the app, e.g. Food's leftover $50 \u2192 Other Savings.\nThis is only a relabel: no bank transfer happens, and the owner can undo it. Refused if\nthe amount is more than what's left in the source pocket this month."
+ },
+ {
+  "group": "Arithmetic",
+  "test": "Receipt whose items don't add up is sent back",
+  "passed": true,
+  "detail": "Your numbers don't add up: the items add up to 13.49, not the subtotal 20.00. Re-read the receipt. If the printed receipt itself doesn't add up, say so in probl"
+ },
+ {
+  "group": "Arithmetic",
+  "test": "Statement lines that don't match the printed totals are refused",
+  "passed": true,
+  "detail": "money in adds up to 1,000,000.00, but the statement says MUTASI CR 5,004,312.00; money out adds up to 0.00, but the statement says MUTASI DB 1,821,800.00"
+ },
+ {
+  "group": "Arithmetic",
+  "test": "Receipt $47.82 can't be matched to the $52.82 charge",
+  "passed": true,
+  "detail": "receipt total 47.82 differs from the charge 52.82. Record the charge without the receipt and flag an amount_mismatch."
+ },
+ {
+  "group": "Arithmetic",
+  "test": "Recorded amounts always come from the bank charge",
+  "passed": true,
+  "detail": "recorded 52.82 (the tool has no amount field)"
+ },
+ {
+  "group": "Arithmetic",
+  "test": "A budget over income needs a source",
+  "passed": true,
+  "detail": "Your plan is $98,090.00 over your income. sources offered: 4"
+ },
+ {
+  "group": "Arithmetic",
+  "test": "Cash check balances (pockets + Unassigned = all money)",
+  "passed": true,
+  "detail": "all money 16,388.67 = pockets 15,856.11 + unassigned 532.56"
+ },
+ {
+  "group": "Caps",
+  "test": "Limits in force",
+  "passed": true,
+  "detail": "12 model turns per agent, 30 requests / 60 tool calls / 250,000 tokens per run, 4,000 output tokens per answer, 1,500,000 tokens per day, 2 hand-offs per run, 1 level deep"
+ },
+ {
+  "group": "Caps",
+  "test": "Daily token budget used up \u2192 new runs refused (HTTP 429), no AI call",
+  "passed": true,
+  "detail": "Today's token budget is used up (1,500,000 of 1,500,000)."
+ },
+ {
+  "group": "Caps",
+  "test": "A third hand-off in one run is refused",
+  "passed": true,
+  "detail": "Hand-off refused: this run already used all 2 hand-offs. Answer with what you have."
+ },
+ {
+  "group": "Caps",
+  "test": "A specialist can't hand work further (depth 1)",
+  "passed": true,
+  "detail": "Hand-off refused: specialists can't hand work further. Answer with what you have."
  }
 ]

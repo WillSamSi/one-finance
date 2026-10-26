@@ -1,0 +1,104 @@
+{
+ "2026-07": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 0.0,
+   "Food": 0.0,
+   "Supplies": 0.0,
+   "Transportation": 0.0,
+   "Healthcare": 0.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "no_pocket_moves"
+   },
+   {
+    "type": "nothing_dismissed"
+   }
+  ]
+ },
+ "2026-08": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 180.0,
+   "Food": 770.8,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 99.5
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "over": [],
+  "flags": [
+   "no_matching_order",
+   "unclear"
+  ],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "recorded_as",
+    "txn": "s6-bank",
+    "direction": "expense"
+   },
+   {
+    "type": "no_pocket_moves"
+   },
+   {
+    "type": "nothing_dismissed"
+   }
+  ]
+ },
+ "2026-09": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 270.0,
+   "Food": 1156.2,
+   "Supplies": 496.32,
+   "Transportation": 271.8,
+   "Healthcare": 159.5
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 180.0,
+   "Food": 770.8,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 99.5
+  },
+  "over": [],
+  "flags": [
+   "unclear"
+  ],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "recorded_as",
+    "txn": "s6-amazon",
+    "direction": "expense"
+   },
+   {
+    "type": "no_pocket_moves"
+   },
+   {
+    "type": "nothing_dismissed"
+   }
+  ]
+ }
+}

@@ -1,0 +1,158 @@
+{
+ "name": "s1_normal",
+ "title": "Normal months",
+ "tests": "Everything matches, every pocket under budget",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 13,
+   "error": null,
+   "tokens": {
+    "input": 17144,
+    "cached": 14406,
+    "output": 506
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 11,790.00"
+    },
+    {
+     "check": "Emergency Fund total",
+     "passed": true,
+     "detail": "2300.0 (expected 2300)"
+    },
+    {
+     "check": "Investment total",
+     "passed": true,
+     "detail": "1500.0 (expected 1500)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-08",
+   "seconds": 21,
+   "error": null,
+   "tokens": {
+    "input": 12542,
+    "cached": 10667,
+    "output": 372
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 18,762.88, unassigned 12,580.00"
+    },
+    {
+     "check": "Emergency Fund total",
+     "passed": true,
+     "detail": "2600.0 (expected 2600)"
+    },
+    {
+     "check": "Investment total",
+     "passed": true,
+     "detail": "2000.0 (expected 2000)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-09",
+   "seconds": 8,
+   "error": null,
+   "tokens": {
+    "input": 12492,
+    "cached": 10645,
+    "output": 346
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 21,144.32, unassigned 13,370.00"
+    },
+    {
+     "check": "Emergency Fund total",
+     "passed": true,
+     "detail": "2900.0 (expected 2900)"
+    },
+    {
+     "check": "Investment total",
+     "passed": true,
+     "detail": "2500.0 (expected 2500)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}

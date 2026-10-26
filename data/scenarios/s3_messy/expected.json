@@ -1,0 +1,91 @@
+{
+ "2026-07": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0,
+   "Sports": 60.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 0.0,
+   "Food": 0.0,
+   "Supplies": 0.0,
+   "Transportation": 0.0,
+   "Healthcare": 0.0,
+   "Sports": 0.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": []
+ },
+ "2026-08": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 180.0,
+   "Food": 747.37,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 120.0,
+   "Sports": 95.01
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0,
+   "Sports": 60.0
+  },
+  "over": [],
+  "flags": [
+   "amount_mismatch",
+   "duplicate_charge",
+   "no_matching_order"
+  ],
+  "optional_spend": {
+   "Sports": 24.99
+  },
+  "checks": []
+ },
+ "2026-09": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 270.0,
+   "Food": 1101.57,
+   "Supplies": 521.32,
+   "Transportation": 271.8,
+   "Healthcare": 180.0,
+   "Sports": 155.01
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 180.0,
+   "Food": 747.37,
+   "Supplies": 330.88,
+   "Transportation": 181.2,
+   "Healthcare": 120.0,
+   "Sports": 95.01
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "not_recorded",
+    "txn": "s3-pending-pizza"
+   },
+   {
+    "type": "recorded_as",
+    "txn": "s3-refund",
+    "direction": "expense",
+    "pocket": "Supplies"
+   }
+  ]
+ }
+}

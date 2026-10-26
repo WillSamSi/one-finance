@@ -137,6 +137,13 @@ async def read_receipt(receipt_id: int, run_id: str | None = None, pockets: list
         )
         conn.executemany("INSERT INTO receipt_items (receipt_id, name, quantity, price) VALUES (?,?,?,?)",
                          [(receipt_id, i.name, i.quantity, i.price) for i in r.items])
+        from backend import entries
+
+        sus = next((c for c in entries.receipt_checks(conn, receipt_id, r) if c["name"] == "No suspicious text" and not c["ok"]), None)
+        if sus and not conn.execute("SELECT 1 FROM review_items WHERE receipt_id = ? AND kind = 'unclear'", (receipt_id,)).fetchone():
+            conn.execute("INSERT INTO review_items (kind, month, receipt_id, detail, created_by, created_at) VALUES (?,?,?,?,?,?)",
+                         ("unclear", (r.date or "")[:7] or None, receipt_id,
+                          f"Receipt from {r.store}: {sus['detail']}", "code", _now()))
         conn.commit()
     return {"run_id": deps.run_id, "receipt_id": receipt_id, "receipt": r.model_dump(), **run_totals(deps.run_id)}
 

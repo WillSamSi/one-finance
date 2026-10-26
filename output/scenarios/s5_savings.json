@@ -1,0 +1,170 @@
+{
+ "name": "s5_savings",
+ "title": "Savings pockets",
+ "tests": "Monthly set-asides, moving leftover to savings, a goal reached, and a trip paid from the Holiday pocket",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 13296,
+    "cached": 10717,
+    "output": 378
+   },
+   "notes": [
+    "move_leftover Food \u2192 Emergency Fund 100.0: {'ok': True, 'move_id': 1, 'moved': 100.0, 'from': 'Food', 'to': 'Emergency Fund', 'note': 'Shown in Wallet with an Undo button. No real money moved.'}"
+   ],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 10,990.00"
+    },
+    {
+     "check": "Emergency Fund total",
+     "passed": true,
+     "detail": "2400.0 (expected 2400)"
+    },
+    {
+     "check": "Holiday total",
+     "passed": true,
+     "detail": "800.0 (expected 800)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-08",
+   "seconds": 9,
+   "error": null,
+   "tokens": {
+    "input": 12661,
+    "cached": 10714,
+    "output": 406
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 18,762.88, unassigned 11,580.00"
+    },
+    {
+     "check": "Holiday total",
+     "passed": true,
+     "detail": "1000.0 (expected 1000)"
+    },
+    {
+     "check": "Holiday goal reached",
+     "passed": true,
+     "detail": "100.0% of goal"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-09",
+   "seconds": 11,
+   "error": null,
+   "tokens": {
+    "input": 13962,
+    "cached": 11084,
+    "output": 456
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "16/16 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 20,194.32, unassigned 12,170.00"
+    },
+    {
+     "check": "s5-flight recorded as expense in Holiday",
+     "passed": true,
+     "detail": "{'direction': 'expense', 'pocket': 'Holiday'}"
+    },
+    {
+     "check": "s5-hotel recorded as expense in Holiday",
+     "passed": true,
+     "detail": "{'direction': 'expense', 'pocket': 'Holiday'}"
+    },
+    {
+     "check": "Holiday total",
+     "passed": true,
+     "detail": "250.0 (expected 250)"
+    },
+    {
+     "check": "Emergency Fund total",
+     "passed": true,
+     "detail": "3000.0 (expected 3000)"
+    }
+   ],
+   "passed": 9,
+   "total": 9
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}

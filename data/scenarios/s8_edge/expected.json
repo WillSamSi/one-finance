@@ -1,0 +1,79 @@
+{
+ "2026-07": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 0.0,
+   "Food": 0.0,
+   "Supplies": 0.0,
+   "Transportation": 0.0,
+   "Healthcare": 0.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": []
+ },
+ "2026-08": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 340.0,
+   "Food": 985.4,
+   "Supplies": 365.44,
+   "Transportation": 240.6,
+   "Healthcare": 120.0,
+   "Coffee": 40.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 90.0,
+   "Food": 385.4,
+   "Supplies": 165.44,
+   "Transportation": 90.6,
+   "Healthcare": 60.0,
+   "Coffee": 0.0
+  },
+  "over": [],
+  "flags": [],
+  "optional_spend": {},
+  "checks": []
+ },
+ "2026-09": {
+  "left": {
+   "Home Rent": 0.0,
+   "Utilities": 430.0,
+   "Food": 1370.8,
+   "Supplies": 530.88,
+   "Transportation": 331.2,
+   "Healthcare": 180.0,
+   "Coffee": 80.0
+  },
+  "rollover": {
+   "Home Rent": 0.0,
+   "Utilities": 340.0,
+   "Food": 985.4,
+   "Supplies": 365.44,
+   "Transportation": 240.6,
+   "Healthcare": 120.0,
+   "Coffee": 40.0
+  },
+  "over": [],
+  "flags": [
+   "unsorted"
+  ],
+  "optional_spend": {},
+  "checks": [
+   {
+    "type": "unsorted",
+    "txn": "s8-mystery"
+   }
+  ]
+ }
+}

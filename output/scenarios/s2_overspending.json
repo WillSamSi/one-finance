@@ -1,0 +1,138 @@
+{
+ "name": "s2_overspending",
+ "title": "Overspending",
+ "tests": "Food goes over in month 2, Supplies in month 3; the digest warns",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 10,
+   "error": null,
+   "tokens": {
+    "input": 13171,
+    "cached": 10667,
+    "output": 393
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 11,790.00"
+    }
+   ],
+   "passed": 5,
+   "total": 5
+  },
+  {
+   "month": "2026-08",
+   "seconds": 23,
+   "error": null,
+   "tokens": {
+    "input": 23461,
+    "cached": 15056,
+    "output": 2215
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "17/17 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: ['Food'] (expected ['Food'])"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected ['over_budget']; found ['over_budget']"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 17,862.88, unassigned 12,450.80"
+    },
+    {
+     "check": "Digest warns about Food",
+     "passed": true,
+     "detail": "{\"spending_title\": \"August spending \\u2014 $2,818.56 of $3,501.44\", \"spending_body\": \"You spent 80.5% of the monthly budget with 100% of the month elapsed, leav"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  },
+  {
+   "month": "2026-09",
+   "seconds": 25,
+   "error": null,
+   "tokens": {
+    "input": 22683,
+    "cached": 14715,
+    "output": 2447
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "15/15 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: ['Supplies'] (expected ['Supplies'])"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected ['over_budget']; found ['over_budget']"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 19,724.32, unassigned 13,217.12"
+    },
+    {
+     "check": "Digest warns about Supplies",
+     "passed": true,
+     "detail": "{\"spending_title\": \"September spending \\u2014 below budget overall\", \"spending_body\": \"In 2026-09, you spent $2,438.56 of your $3,522.08 budget (69.2%), leaving"
+    }
+   ],
+   "passed": 6,
+   "total": 6
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}

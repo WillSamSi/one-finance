@@ -1,0 +1,158 @@
+{
+ "name": "s7_currencies",
+ "title": "Two currencies",
+ "tests": "USD banks plus a BCA account in rupiah read from monthly statements",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 12,
+   "error": null,
+   "tokens": {
+    "input": 14698,
+    "cached": 11563,
+    "output": 671
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 17,729.82, unassigned 13,159.23"
+    },
+    {
+     "check": "BCA statement recorded",
+     "passed": true,
+     "detail": "recorded"
+    },
+    {
+     "check": "Rupiah income recorded",
+     "passed": true,
+     "detail": "IDR 5,000,000 (expected 5,000,000)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-08",
+   "seconds": 13,
+   "error": null,
+   "tokens": {
+    "input": 17458,
+    "cached": 14811,
+    "output": 657
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 20,398.11, unassigned 14,256.93"
+    },
+    {
+     "check": "BCA statement recorded",
+     "passed": true,
+     "detail": "recorded"
+    },
+    {
+     "check": "Rupiah income recorded",
+     "passed": true,
+     "detail": "IDR 5,000,000 (expected 5,000,000)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  },
+  {
+   "month": "2026-09",
+   "seconds": 14,
+   "error": null,
+   "tokens": {
+    "input": 17388,
+    "cached": 14736,
+    "output": 752
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 23,066.39, unassigned 15,354.62"
+    },
+    {
+     "check": "BCA statement recorded",
+     "passed": true,
+     "detail": "recorded"
+    },
+    {
+     "check": "Rupiah income recorded",
+     "passed": true,
+     "detail": "IDR 5,000,000 (expected 5,000,000)"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}

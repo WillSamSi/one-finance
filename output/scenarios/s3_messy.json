@@ -1,0 +1,138 @@
+{
+ "name": "s3_messy",
+ "title": "Messy reconciliation",
+ "tests": "Duplicate charge, receipt \u2260 charge, Amazon charge with no order, a clean receipt match, a refund, pending \u2192 posted",
+ "months": [
+  {
+   "month": "2026-07",
+   "seconds": 11,
+   "error": null,
+   "tokens": {
+    "input": 13363,
+    "cached": 10712,
+    "output": 458
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "14/14 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 16,381.44, unassigned 11,730.00"
+    }
+   ],
+   "passed": 5,
+   "total": 5
+  },
+  {
+   "month": "2026-08",
+   "seconds": 16,
+   "error": null,
+   "tokens": {
+    "input": 24291,
+    "cached": 18392,
+    "output": 2799
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "19/19 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected ['amount_mismatch', 'duplicate_charge', 'no_matching_order']; found ['amount_mismatch', 'duplicate_charge', 'no_matching_order']"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 18,606.66, unassigned 12,405.02"
+    }
+   ],
+   "passed": 5,
+   "total": 5
+  },
+  {
+   "month": "2026-09",
+   "seconds": 8,
+   "error": null,
+   "tokens": {
+    "input": 13280,
+    "cached": 11095,
+    "output": 396
+   },
+   "notes": [],
+   "checks": [
+    {
+     "check": "Every charge recorded right",
+     "passed": true,
+     "detail": "16/16 right"
+    },
+    {
+     "check": "Left to spend and rollover per pocket",
+     "passed": true,
+     "detail": "all match"
+    },
+    {
+     "check": "Over-budget pockets",
+     "passed": true,
+     "detail": "over: none (expected none)"
+    },
+    {
+     "check": "Flags: none missed, no false alarms",
+     "passed": true,
+     "detail": "expected none; found none"
+    },
+    {
+     "check": "Cash check balances",
+     "passed": true,
+     "detail": "all money 20,981.90, unassigned 13,135.02"
+    },
+    {
+     "check": "Pending charge not counted (posted one is)",
+     "passed": true,
+     "detail": "entries for the pending id: 0"
+    },
+    {
+     "check": "s3-refund recorded as expense in Supplies",
+     "passed": true,
+     "detail": "{'direction': 'expense', 'pocket': 'Supplies'}"
+    }
+   ],
+   "passed": 7,
+   "total": 7
+  }
+ ],
+ "started": "2026-10-25T17:32:56+00:00"
+}
