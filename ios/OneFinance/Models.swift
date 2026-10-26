@@ -439,6 +439,14 @@ enum DateParse {
 
     static func day(_ s: String) -> Date { formatter.date(from: String(s.prefix(10))) ?? .distantPast }
 
+    /// "2026-10-02" for a date picker's day (the phone's own time zone).
+    static func isoDay(_ d: Date) -> String {
+        let f = DateFormatter()
+        f.dateFormat = "yyyy-MM-dd"
+        f.locale = Locale(identifier: "en_US_POSIX")
+        return f.string(from: d)
+    }
+
     /// A calendar day in the phone's own time zone, for date pickers (UTC would show the day before).
     static func localDay(_ s: String) -> Date {
         let f = DateFormatter()

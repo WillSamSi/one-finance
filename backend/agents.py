@@ -44,7 +44,24 @@ def _receipt_adds_up(ctx: RunContext[AgentDeps], r: ReceiptRead) -> ReceiptRead:
     if issues and not r.problems:
         raise ModelRetry("Your numbers don't add up: " + "; ".join(issues) +
                          ". Re-read the receipt. If the printed receipt itself doesn't add up, say so in problems.")
+    day = _iso_date(r.date)
+    if day is None:
+        r.problems.append("The date is unreadable; pick it before confirming.")
+    r.date = day or ""
     return r
+
+
+def _iso_date(text: str | None) -> str | None:
+    """A receipt date as YYYY-MM-DD: the AI sometimes copies it as printed ("10/02/2026"). US
+    receipts print month first. None if it can't be read."""
+    text = (text or "").strip()
+    for candidate in (text, text.split(" ")[0]):  # "10/02/2026 10:12" → "10/02/2026"
+        for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%m/%d/%y", "%m-%d-%Y", "%m-%d-%y", "%b %d, %Y", "%d %b %Y"):
+            try:
+                return datetime.strptime(candidate, fmt).date().isoformat()
+            except ValueError:
+                continue
+    return None
 
 
 # --- Investor --------------------------------------------------------------------------

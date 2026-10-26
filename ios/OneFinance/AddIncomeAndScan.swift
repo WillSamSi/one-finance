@@ -121,6 +121,8 @@ struct ScanReceiptView: View {
     @State private var photo: PhotosPickerItem?
     @State private var showCamera = false
     @State private var result: ScanResult?
+    @State private var receiptDate = Date()  // from the photo; editable, and required when unreadable
+    @State private var maxDate = Date()      // the app's "today"
     @State private var pockets: [String] = []        // one per item
     @State private var useMatch = true
     @State private var paidWith = "cash_usd"
@@ -155,9 +157,12 @@ struct ScanReceiptView: View {
                 Section {
                     VStack(alignment: .leading, spacing: 4) {
                         Text(r.receipt.store).font(.headline)
-                        Text("\(DateParse.shortDay(r.receipt.date)), \(r.receipt.date.prefix(4)) · \(Money.usd(r.receipt.total))\(r.receipt.cardLast4.map { " · card ••\($0)" } ?? "")")
+                        Text("\(Money.usd(r.receipt.total))\(r.receipt.cardLast4.map { " · card ••\($0)" } ?? "")")
                             .font(.subheadline).foregroundStyle(Theme.muted)
                     }
+                    DatePicker("Date", selection: $receiptDate, in: ...maxDate, displayedComponents: .date)
+                } footer: {
+                    if r.receipt.date.isEmpty { Text("The date on the photo couldn't be read. Check it before you confirm.") }
                 }
                 Section("Checks") {
                     ForEach(r.checks) { c in
@@ -264,6 +269,8 @@ struct ScanReceiptView: View {
             let r: ScanResult = try await api.post("receipts/scan", body: [
                 "image_base64": image.base64EncodedString(), "media_type": "image/jpeg",
             ])
+            if let h: Health = try? await api.get("health") { maxDate = DateParse.localDay(h.appDate) }
+            receiptDate = r.receipt.date.isEmpty ? maxDate : min(DateParse.localDay(r.receipt.date), maxDate)
             pockets = r.receipt.items.map { $0.suggestedPocket.flatMap { r.pockets.contains($0) ? $0 : nil } ?? r.pockets.first ?? "" }
             result = r
         } catch {
@@ -279,6 +286,7 @@ struct ScanReceiptView: View {
         var body: [String: Any] = [
             "items": zip(r.receipt.items, pockets).map { ["name": $0.name, "price": $0.price, "pocket": $1] },
             "paid_with": paidWith,
+            "date": DateParse.isoDay(receiptDate),
         ]
         if let m = r.bankMatch, useMatch {
             body["transaction_id"] = m.transactionId

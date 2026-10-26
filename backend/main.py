@@ -631,6 +631,7 @@ class ReceiptConfirm(BaseModel):
     items: list[ReceiptLine]
     paid_with: str
     transaction_id: str | None = None  # the bank charge it matches, if any
+    date: str | None = None  # the owner's pick (YYYY-MM-DD) when the photo's date was unreadable or wrong
 
 
 @app.post("/receipts/{receipt_id}/confirm")
@@ -645,8 +646,9 @@ def confirm_receipt(receipt_id: int, body: ReceiptConfirm) -> dict:
             raise HTTPException(404, "Read the receipt first.")
         if r["status"] == "matched" or conn.execute("SELECT 1 FROM ledger_entries WHERE receipt_id = ?", (receipt_id,)).fetchone():
             raise HTTPException(409, "This receipt is already recorded.")
+        day = body.date or r["date"] or ""
         try:
-            pay_currency, account_id = entries.check_common(conn, r["total"], r["date"], body.paid_with)
+            pay_currency, account_id = entries.check_common(conn, r["total"], day, body.paid_with)
             for i in body.items:
                 entries.pocket_id(conn, i.pocket)
         except entries.EntryError as exc:
@@ -663,10 +665,10 @@ def confirm_receipt(receipt_id: int, body: ReceiptConfirm) -> dict:
             conn.execute(
                 "INSERT INTO ledger_entries (transaction_id, date, description, amount, currency, direction, pocket_id,"
                 " account_id, receipt_id, status, recorded_by, note, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,datetime('now'))",
-                (tx, r["date"], r["store"], amount, pay_currency, "expense", entries.pocket_id(conn, pocket), account_id,
+                (tx, day, r["store"], amount, pay_currency, "expense", entries.pocket_id(conn, pocket), account_id,
                  receipt_id, status, "user", "Scanned receipt" + (" (split)" if len(split) > 1 else "")))
         conn.execute("UPDATE receipt_items SET name = name WHERE receipt_id = ?", (receipt_id,))
-        conn.execute("UPDATE receipts SET status = ? WHERE id = ?", ("matched" if tx else "read", receipt_id))
+        conn.execute("UPDATE receipts SET status = ?, date = ? WHERE id = ?", ("matched" if tx else "read", day, receipt_id))
         conn.commit()
     return {"ok": True, "split": split, "status": status}
 
