@@ -62,7 +62,6 @@ struct WalletView: View {
             .padding(.bottom, 180)
         }
         .scrollIndicators(.hidden)
-        .scrollDisabled(scrubDate != nil)  // a finger on the chart scrubs; the page stays put
         .refreshable { await load() }
         .task { await load() }
         .task(id: range) { await loadHistory() }
@@ -84,7 +83,7 @@ struct WalletView: View {
                 HStack(spacing: 8) {
                     if let first = history?.points.first, let end = selected ?? history?.points.last, first.total > 0 {
                         let change = end.total - first.total
-                        Chip(text: "\(change >= 0 ? "▲" : "▼") \(Money.whole(abs(change))) · \((100 * change / first.total).formatted(.number.precision(.fractionLength(1))))%")
+                        Chip(text: "\(change >= 0 ? "▲" : "▼") \(Money.whole(abs(change))) · \((100 * change / first.total).formatted(.number.precision(.fractionLength(1)).locale(Money.locale)))%")
                     }
                     Text(selected == nil ? "\(range.phrase) · \(d.balance.institutions) institutions"
                                          : "since \(DateParse.shortDay(history?.points.first?.date ?? ""))")
@@ -103,37 +102,44 @@ struct WalletView: View {
         }
     }
 
+    /// The points the chart draws (two years of days thinned to ~160).
+    private var chartPoints: [BalancePoint] { history?.points.thinned() ?? [] }
+
     @ViewBuilder private var areaChart: some View {
-        if let points = history?.points, !points.isEmpty {
+        let points = chartPoints
+        if !points.isEmpty {
             let lo = points.map(\.total).min() ?? 0
             let hi = points.map(\.total).max() ?? 1
             let floor = lo - (hi - lo) * 0.15 - 1
-            Chart(points) { p in
-                AreaMark(x: .value("Day", p.day), yStart: .value("Low", floor), yEnd: .value("Total", p.total))
-                    .foregroundStyle(LinearGradient(colors: [Theme.vib400.opacity(0.45), Theme.vib400.opacity(0)],
-                                                    startPoint: .top, endPoint: .bottom))
-                    .interpolationMethod(.catmullRom)
-                LineMark(x: .value("Day", p.day), y: .value("Total", p.total))
-                    .foregroundStyle(Color(hex: 0xB98CFF))
-                    .lineStyle(StrokeStyle(lineWidth: 2.2, lineCap: .round))
-                    .interpolationMethod(.catmullRom)
-                if let s = scrubPoint, s.id == p.id {
-                    RuleMark(x: .value("Day", p.day))
+            let selected = points.nearest(to: scrubDate)
+            Chart {
+                ForEach(points) { p in
+                    AreaMark(x: .value("Day", p.day), yStart: .value("Low", floor), yEnd: .value("Total", p.total))
+                        .foregroundStyle(LinearGradient(colors: [Theme.vib400.opacity(0.45), Theme.vib400.opacity(0)],
+                                                        startPoint: .top, endPoint: .bottom))
+                        .interpolationMethod(.monotone)
+                    LineMark(x: .value("Day", p.day), y: .value("Total", p.total))
+                        .foregroundStyle(Color(hex: 0xB98CFF))
+                        .lineStyle(StrokeStyle(lineWidth: 2.2, lineCap: .round))
+                        .interpolationMethod(.monotone)
+                }
+                if let s = selected {
+                    RuleMark(x: .value("Day", s.day))
                         .foregroundStyle(.white.opacity(0.5))
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 3]))
                         .annotation(position: .top, spacing: 2, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                            Text("\(DateParse.shortDay(p.date)) · \(Money.whole(p.total))")
+                            Text("\(DateParse.shortDay(s.date)) · \(Money.whole(s.total))")
                                 .font(.system(size: 11, weight: .semibold)).monospacedDigit()
                                 .foregroundStyle(Theme.vib100)
                                 .padding(.horizontal, 8).padding(.vertical, 4)
                                 .background(Theme.onyx700, in: Capsule())
                                 .overlay(Capsule().stroke(Theme.vib400.opacity(0.35), lineWidth: 1))
                         }
-                    PointMark(x: .value("Day", p.day), y: .value("Total", p.total))
+                    PointMark(x: .value("Day", s.day), y: .value("Total", s.total))
                         .symbolSize(70)
                         .foregroundStyle(.white)
-                } else if scrubPoint == nil, p.id == points.last?.id {
-                    PointMark(x: .value("Day", p.day), y: .value("Total", p.total))
+                } else if let last = points.last {
+                    PointMark(x: .value("Day", last.day), y: .value("Total", last.total))
                         .symbolSize(60)
                         .foregroundStyle(.white)
                 }
@@ -141,8 +147,8 @@ struct WalletView: View {
             .chartYScale(domain: floor...(hi + (hi - lo) * 0.05 + 1))
             .chartXAxis(.hidden)
             .chartYAxis(.hidden)
-            .chartScrubbing($scrubDate)  // touch and drag; letting go clears it
-            .sensoryFeedback(.selection, trigger: scrubPoint?.date)
+            .chartScrubbing($scrubDate, points: points)  // touch and drag; letting go clears it
+            .sensoryFeedback(.selection, trigger: scrubDate)
             .padding(.top, 22)  // room for the date label
             .frame(height: 142)
         } else {
@@ -151,10 +157,7 @@ struct WalletView: View {
     }
 
     /// The day closest to the finger, while scrubbing.
-    private var scrubPoint: BalancePoint? {
-        guard let scrubDate, let points = history?.points, !points.isEmpty else { return nil }
-        return points.min { abs($0.day.timeIntervalSince(scrubDate)) < abs($1.day.timeIntervalSince(scrubDate)) }
-    }
+    private var scrubPoint: BalancePoint? { chartPoints.nearest(to: scrubDate) }
 
     private var rangeButtons: some View {
         HStack {

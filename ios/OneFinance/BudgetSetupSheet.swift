@@ -121,7 +121,7 @@ struct BudgetSetupSheet: View {
 
     private func pct(_ part: Double, of whole: Double) -> String {
         guard whole > 0 else { return "–" }
-        return "\((100 * part / whole).formatted(.number.precision(.fractionLength(0))))%"
+        return "\((100 * part / whole).formatted(.number.precision(.fractionLength(0)).locale(Money.locale)))%"
     }
 
     // MARK: Top card
@@ -211,7 +211,7 @@ struct BudgetSetupSheet: View {
     private func footer(_ plan: BudgetPlan) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             if let rate = plan.fx.idrPerUsd, let asOf = plan.fx.asOf {
-                Text("Pockets are in US dollars. Money in rupiah (BCA, Mandiri, Jago, cash in IDR) is converted at Rp \(Int(rate).formatted()) = $1, the rate of \(DateParse.mediumDay(asOf)).")
+                Text("Pockets are in US dollars. Money in rupiah (BCA, Mandiri, Jago, cash in IDR) is converted at Rp \(Int(rate).formatted(.number.locale(Money.locale))) = $1, the rate of \(DateParse.mediumDay(asOf)).")
                     .font(.system(size: 11.5)).foregroundStyle(Theme.muted)
             }
             Button("Start over…") { confirmStartOver = true }
@@ -485,7 +485,7 @@ struct PocketEditRow: View {
     static func sentence(_ s: String) -> String { s.prefix(1).uppercased() + s.dropFirst() }
 
     private var subline: String {
-        let pct = income > 0 ? "\((100 * pocket.monthly / income).formatted(.number.precision(.fractionLength(0))))% of income" : "–"
+        let pct = income > 0 ? "\((100 * pocket.monthly / income).formatted(.number.precision(.fractionLength(0)).locale(Money.locale)))% of income" : "–"
         var parts: [String] = []
         switch pocket.kind {
         case "income":
@@ -582,12 +582,12 @@ struct LinkedAmountFields: View {
         .onAppear(perform: sync)
         .onChange(of: dollars) { _, new in
             guard focus == .dollars else { return }
-            monthly = max(0, Double(new) ?? 0)
+            monthly = max(0, Money.parse(new) ?? 0)
             percent = income > 0 ? Self.fmt(100 * monthly / income) : ""
         }
         .onChange(of: percent) { _, new in
             guard focus == .percent, income > 0 else { return }
-            monthly = max(0, ((Double(new) ?? 0) * income / 100 * 100).rounded() / 100)
+            monthly = max(0, ((Money.parse(new) ?? 0) * income / 100 * 100).rounded() / 100)
             dollars = Self.fmt(monthly)
         }
         .onChange(of: monthly) { _, _ in if focus == nil { sync() } }
@@ -614,7 +614,7 @@ struct MoneyField: View {
         }
         .monospacedDigit()
         .onAppear { text = value == 0 ? "" : LinkedAmountFields.fmt(value) }
-        .onChange(of: text) { _, new in value = max(0, Double(new) ?? 0) }
+        .onChange(of: text) { _, new in value = max(0, Money.parse(new) ?? 0) }
     }
 }
 
@@ -632,7 +632,7 @@ struct GoalFields: View {
                 }
                 DatePicker("Reach it by", selection: $pocket.goalMonth, in: Date.now..., displayedComponents: .date)
                 if let needed = neededPerMonth {
-                    Text("Needed to reach the goal on time: \(Money.usd(needed))/mo (\(income > 0 ? (100 * needed / income).formatted(.number.precision(.fractionLength(0))) : "–")% of income)")
+                    Text("Needed to reach the goal on time: \(Money.usd(needed))/mo (\(income > 0 ? (100 * needed / income).formatted(.number.precision(.fractionLength(0)).locale(Money.locale)) : "–")% of income)")
                         .font(.system(size: 12)).foregroundStyle(needed > pocket.monthly + 0.5 ? Theme.warn : Theme.positive)
                 }
             }
@@ -697,7 +697,7 @@ struct PlanBar: View {
                 ForEach(parts, id: \.0) { name, value, color in
                     HStack(spacing: 4) {
                         Circle().fill(color).frame(width: 6, height: 6)
-                        Text("\(name) \(income > 0 ? (100 * value / income).formatted(.number.precision(.fractionLength(0))) : "–")%")
+                        Text("\(name) \(income > 0 ? (100 * value / income).formatted(.number.precision(.fractionLength(0)).locale(Money.locale)) : "–")%")
                     }
                 }
                 HStack(spacing: 4) {
@@ -858,7 +858,7 @@ struct AddPocketSheet: View {
                     Section {
                         LinkedAmountFields(monthly: $monthly, income: income)
                         if kind == "saving", hasGoal, let needed {
-                            Text("Needed to reach the goal on time: \(Money.usd(needed))/mo (\(income > 0 ? (100 * needed / income).formatted(.number.precision(.fractionLength(0))) : "–")% of income)")
+                            Text("Needed to reach the goal on time: \(Money.usd(needed))/mo (\(income > 0 ? (100 * needed / income).formatted(.number.precision(.fractionLength(0)).locale(Money.locale)) : "–")% of income)")
                                 .font(.footnote).foregroundStyle(Theme.vib300)
                             Button("Use \(Money.usd(needed))/mo") { monthly = (needed * 100).rounded() / 100 }.font(.footnote.weight(.semibold))
                         }

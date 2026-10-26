@@ -173,7 +173,7 @@ struct MoreView: View {
             MoreRow(icon: "arrow.left.arrow.right", color: 0x64748B, title: "Exchange rate IDR → USD",
                     subtitle: settings?.fxAsOf.map { "Updated \(DateParse.shortDay($0))" }) {
                 if let r = settings?.idrPerUsd {
-                    Text("Rp \(Int(r).formatted()) = $1").font(.system(size: 13.5)).monospacedDigit().foregroundStyle(Theme.muted)
+                    Text("Rp \(Int(r).formatted(.number.locale(Money.locale))) = $1").font(.system(size: 13.5)).monospacedDigit().foregroundStyle(Theme.muted)
                 }
             }
         }
@@ -215,7 +215,7 @@ struct MoreView: View {
             MoreRow(icon: "faceid", color: 0x2FD39B, title: "Face ID lock") {
                 RowSwitch(isOn: Binding(get: { faceIDLock }, set: { on in Task { await setFaceID(on) } }))
             }
-            MoreRow(icon: "eye.slash.fill", color: 0x64748B, title: "Hide balances", subtitle: "Blur amounts on Home until tapped") {
+            MoreRow(icon: "eye.slash.fill", color: 0x64748B, title: "Hide balances", subtitle: "Mask the total on Home until tapped") {
                 RowSwitch(isOn: $hideBalances)
             }
             NavigationLink(value: MoreRoute.whatAISees) {
@@ -290,7 +290,7 @@ struct MoreView: View {
         do {
             if kind == "month-end" {
                 let r: AgentRunResult = try await api.post("agents/month-end", body: ["month": month])
-                message = "Month-end check done (\((r.inputTokens + r.outputTokens).formatted()) tokens). See Review in Wallet."
+                message = "Month-end check done (\((r.inputTokens + r.outputTokens).formatted(.number.locale(Money.locale))) tokens). See Review in Wallet."
             } else {
                 let r: DigestResult = try await api.post("agents/weekly-digest")
                 if let d = r.digest {
@@ -299,7 +299,7 @@ struct MoreView: View {
                         LocalNotifications.post(title: d.investmentTitle, body: d.investmentBody, after: 3)
                     }
                 }
-                message = "Digest sent (\((r.inputTokens + r.outputTokens).formatted()) tokens). It's in Notifications."
+                message = "Digest sent (\((r.inputTokens + r.outputTokens).formatted(.number.locale(Money.locale))) tokens). It's in Notifications."
             }
         } catch {
             message = error.localizedDescription
@@ -956,7 +956,7 @@ struct InboxView: View {
                             GlowDot(color: n.kind == "investment_digest" ? Theme.positive : Theme.vib400)
                             Text(n.title).font(.system(size: 14, weight: .semibold)).foregroundStyle(.white)
                         }
-                        Text(n.body).font(.system(size: 13)).foregroundStyle(Theme.cardText).fixedSize(horizontal: false, vertical: true)
+                        Text(AIMarkdown.attributed(n.body)).font(.system(size: 13)).foregroundStyle(Theme.cardText).fixedSize(horizontal: false, vertical: true)
                         Text(n.createdAt.prefix(16).replacingOccurrences(of: "T", with: " ")).font(.caption2).foregroundStyle(Theme.muted)
                     }
                 }
@@ -973,7 +973,7 @@ struct RunsView: View {
         PageScroll(title: "Agent runs and tokens") {
             let total = runs.reduce(0) { $0 + $1.inputTokens + $1.outputTokens }
             let cached = runs.reduce(0) { $0 + $1.cachedTokens }
-            Text("\(runs.count) runs · \(total.formatted()) tokens · \(cached.formatted()) cached. Tap a run to trace it.")
+            Text("\(runs.count) runs · \(total.formatted(.number.locale(Money.locale))) tokens · \(cached.formatted(.number.locale(Money.locale))) cached. Tap a run to trace it.")
                 .font(.system(size: 13)).foregroundStyle(Theme.muted)
             MoreGroup(title: "Runs") {
                 if runs.isEmpty { Text("No runs yet.").font(.footnote).foregroundStyle(Theme.muted).padding(12) }
@@ -988,8 +988,8 @@ struct RunsView: View {
                             }
                             Spacer()
                             VStack(alignment: .trailing, spacing: 2) {
-                                Text("\((r.inputTokens + r.outputTokens).formatted()) tok").font(.system(size: 13, weight: .semibold)).monospacedDigit().foregroundStyle(Theme.vib300)
-                                Text("\(r.cachedTokens.formatted()) cached").font(.caption2).monospacedDigit().foregroundStyle(Theme.muted)
+                                Text("\((r.inputTokens + r.outputTokens).formatted(.number.locale(Money.locale))) tok").font(.system(size: 13, weight: .semibold)).monospacedDigit().foregroundStyle(Theme.vib300)
+                                Text("\(r.cachedTokens.formatted(.number.locale(Money.locale))) cached").font(.caption2).monospacedDigit().foregroundStyle(Theme.muted)
                             }
                             Chevron()
                         }
@@ -1162,7 +1162,8 @@ struct BackTapGuideView: View {
         PageScroll(title: "Set up Back Tap") {
             Text("Log an expense by tapping the back of your iPhone.").font(.system(size: 14)).foregroundStyle(Theme.muted)
             MoreGroup(title: "Steps") {
-                ForEach(Array(["Open the Settings app.", "Accessibility → Touch → Back Tap.", "Choose Double Tap (or Triple Tap).",
+                ForEach(Array(["Open the Shortcuts app, tap +, search \"One Finance\" and add \"Log expense\". Name the shortcut Log expense.",
+                               "Open the Settings app → Accessibility → Touch → Back Tap.", "Choose Double Tap (or Triple Tap).",
                                "Under Shortcuts, pick \"Log expense\".",
                                "Double-tap the back of your iPhone: One Finance opens with the + menu ready to type."].enumerated()), id: \.offset) { i, step in
                     HStack(alignment: .top, spacing: 12) {

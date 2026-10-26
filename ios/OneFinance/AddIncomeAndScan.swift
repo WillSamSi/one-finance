@@ -74,7 +74,7 @@ struct AddIncomeView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save") { Task { await save() } }.disabled(saving || (Double(amount) ?? 0) <= 0)
+                Button("Save") { Task { await save() } }.disabled(saving || (Money.parse(amount) ?? 0) <= 0)
             }
         }
         .task {
@@ -90,12 +90,12 @@ struct AddIncomeView: View {
     }
 
     private func save() async {
-        guard let value = Double(amount) else { return }
+        guard let value = Money.parse(amount) else { return }
         saving = true
         let f = DateFormatter()
         f.dateFormat = "yyyy-MM-dd"
         let lines = assign.compactMap { name, v -> [String: Any]? in
-            guard let a = Double(v), a > 0 else { return nil }
+            guard let a = Money.parse(v), a > 0 else { return nil }
             return ["pocket": name, "amount": a]
         }
         do {
@@ -119,6 +119,7 @@ struct ScanReceiptView: View {
 
     @Environment(\.dismiss) private var dismiss
     @State private var photo: PhotosPickerItem?
+    @State private var showCamera = false
     @State private var result: ScanResult?
     @State private var pockets: [String] = []        // one per item
     @State private var useMatch = true
@@ -135,10 +136,16 @@ struct ScanReceiptView: View {
         Form {
             if result == nil {
                 Section {
-                    PhotosPicker(selection: $photo, matching: .images) {
-                        Label(reading ? "Reading the receipt…" : "Choose a receipt photo", systemImage: "photo.on.rectangle")
+                    if reading {
+                        Label("Reading the receipt…", systemImage: "doc.text.viewfinder")
+                    } else {
+                        if CameraPicker.isAvailable {
+                            Button { showCamera = true } label: { Label("Take a photo", systemImage: "camera") }
+                        }
+                        PhotosPicker(selection: $photo, matching: .images) {
+                            Label("Choose a receipt photo", systemImage: "photo.on.rectangle")
+                        }
                     }
-                    .disabled(reading)
                     if reading { AgentActivity(steps: steps).listRowBackground(Color.clear) }
                 } footer: {
                     Text("The Accountant reads the store, date, items, tax and total, and suggests a pocket for each item. Nothing is saved until you confirm.")
@@ -230,18 +237,30 @@ struct ScanReceiptView: View {
             }
         }
         .task { options = (try? await api.get("paid-with") as PaidWithResponse)?.options ?? [] }
-        .onChange(of: photo) { Task { await read() } }
+        .onChange(of: photo) {
+            guard let photo else { return }
+            Task {
+                guard let data = try? await photo.loadTransferable(type: Data.self), let image = UIImage(data: data) else {
+                    error = "Couldn't load that photo."
+                    return
+                }
+                await read(image)
+            }
+        }
+        .fullScreenCover(isPresented: $showCamera) {
+            CameraPicker { image in Task { await read(image) } }.ignoresSafeArea()
+        }
     }
 
-    private func read() async {
-        guard let photo else { return }
+    private func read(_ picture: UIImage) async {
         reading = true
         error = nil
         steps = []
         let watcher = Task { await AgentWatcher.watch(api: api) { steps.append(contentsOf: $0) } }
         do {
-            guard let data = try await photo.loadTransferable(type: Data.self) else { throw APIError(message: "Couldn't load that photo.") }
-            let image = UIImage(data: data)?.jpegData(compressionQuality: 0.8) ?? data
+            guard let image = picture.scaled(maxSide: 2000).jpegData(compressionQuality: 0.8) else {
+                throw APIError(message: "Couldn't read that photo.")
+            }
             let r: ScanResult = try await api.post("receipts/scan", body: [
                 "image_base64": image.base64EncodedString(), "media_type": "image/jpeg",
             ])
@@ -278,4 +297,51 @@ struct ScanReceiptView: View {
 
 extension Array {
     subscript(safe i: Int) -> Element? { indices.contains(i) ? self[i] : nil }
+}
+
+// MARK: - Camera
+
+/// The camera for "Take a photo" (PhotosPicker only reads the library).
+struct CameraPicker: UIViewControllerRepresentable {
+    static var isAvailable: Bool { UIImagePickerController.isSourceTypeAvailable(.camera) }
+
+    let onPicked: (UIImage) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ picker: UIImagePickerController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: CameraPicker
+        init(_ parent: CameraPicker) { self.parent = parent }
+
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let image = info[.originalImage] as? UIImage { parent.onPicked(image) }
+            parent.dismiss()
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { parent.dismiss() }
+    }
+}
+
+extension UIImage {
+    /// A 12-megapixel camera photo is ~4000 px; 2000 px still reads every line of a receipt
+    /// and sends a quarter of the pixels to the model.
+    func scaled(maxSide: CGFloat) -> UIImage {
+        let longest = max(size.width, size.height)
+        guard longest > maxSide else { return self }
+        let scale = maxSide / longest
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        return UIGraphicsImageRenderer(size: CGSize(width: size.width * scale, height: size.height * scale), format: format)
+            .image { _ in draw(in: CGRect(origin: .zero, size: CGSize(width: size.width * scale, height: size.height * scale))) }
+    }
 }

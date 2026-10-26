@@ -2,20 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- Lets the app call the local backend at http://localhost:8000 during development. -->
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-	<!-- On an iPhone the app talks to the backend on the owner's Mac over the local network. -->
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>One Finance connects to the One Finance backend running on your Mac.</string>
-	<!-- More → Privacy and security → Face ID lock. -->
-	<key>NSFaceIDUsageDescription</key>
-	<string>One Finance uses Face ID to lock your finances when the app opens.</string>
-	<!-- Static launch screen: the "One Finance" wordmark on Onyx. It's the same image pair the
-	     splash animation starts from (scripts/make_brand_assets.swift), so the hand-off is seamless. -->
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

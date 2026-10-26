@@ -265,8 +265,22 @@ struct GlowDot: View {
 }
 
 enum Money {
+    /// Always US style ("$1,234.56"), whatever region the phone is set to: an Indonesian region
+    /// would otherwise show "US$1.234,56".
+    static let locale = Locale(identifier: "en_US")
+
     static func usd(_ value: Double, cents: Bool = true) -> String {
-        value.formatted(.currency(code: "USD").precision(.fractionLength(cents ? 2 : 0)))
+        value.formatted(.currency(code: "USD").precision(.fractionLength(cents ? 2 : 0)).locale(locale))
+    }
+
+    /// "$123,632.26" → "$***,***.**" when `hidden` (More → Privacy → Hide balances).
+    static func masked(_ text: String, _ hidden: Bool) -> String {
+        hidden ? String(text.map { $0.isNumber ? "*" : $0 }) : text
+    }
+
+    /// A typed amount: "12.50", or "12,50" from a decimal pad set to a comma region.
+    static func parse(_ text: String) -> Double? {
+        Double(text.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: ",", with: "."))
     }
 
     /// "$4,300" for whole dollars, "$27.83" otherwise.
@@ -280,45 +294,91 @@ enum Money {
 
     static func format(_ value: Double, currency: String) -> String {
         if currency == "IDR" {
-            return "Rp " + value.formatted(.number.precision(.fractionLength(0)))
+            return "Rp " + value.formatted(.number.precision(.fractionLength(0)).locale(Money.locale))
         }
-        return value.formatted(.currency(code: currency))
+        return value.formatted(.currency(code: currency).locale(locale))
     }
 
     /// "Rp 32.5M"
     static func shortIDR(_ value: Double) -> String {
-        "Rp " + (value / 1_000_000).formatted(.number.precision(.fractionLength(1))) + "M"
+        "Rp " + (value / 1_000_000).formatted(.number.precision(.fractionLength(1)).locale(Money.locale)) + "M"
+    }
+}
+
+// MARK: - AI text
+
+/// The agents write light markdown (**bold**, *italic*, "- " lists, the odd "## heading").
+/// Show it as formatting instead of raw symbols.
+enum AIMarkdown {
+    static func attributed(_ text: String) -> AttributedString {
+        let source = text.components(separatedBy: "\n").map { line -> String in
+            let t = line.trimmingCharacters(in: .whitespaces)
+            if t.hasPrefix("#") {
+                let heading = t.drop(while: { $0 == "#" }).trimmingCharacters(in: .whitespaces)
+                return heading.isEmpty ? "" : "**\(heading)**"
+            }
+            if t.hasPrefix("- ") || t.hasPrefix("* ") || t.hasPrefix("• ") { return "•  " + t.dropFirst(2) }
+            return line
+        }.joined(separator: "\n")
+        if let parsed = try? AttributedString(markdown: source, options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)),
+           !String(parsed.characters).contains("**") {
+            return parsed
+        }
+        return AttributedString(plain(text))  // unbalanced markers: drop them rather than show them
+    }
+
+    /// For places that can't show formatting (system notifications).
+    static func plain(_ text: String) -> String {
+        text.replacingOccurrences(of: "**", with: "").replacingOccurrences(of: "__", with: "")
+            .replacingOccurrences(of: "\\$", with: "$")
     }
 }
 
 // MARK: - Chart scrubbing
 
 extension View {
-    /// Touch the chart and drag: `date` follows the finger (a pointer hover does the same on iPad
-    /// and Mac); letting go clears it. Used instead of `chartXSelection`, which the page's scroll
-    /// cancels as soon as the finger moves. The page must also turn scrolling off while `date` is
-    /// set (`.scrollDisabled(date != nil)`), or the scroll still takes over the touch.
-    func chartScrubbing(_ date: Binding<Date?>) -> some View {
-        chartOverlay { proxy in
-            GeometryReader { geo in
-                let pick: (CGPoint) -> Date? = { point in
-                    guard let frame = proxy.plotFrame else { return nil }
-                    let x = min(max(point.x - geo[frame].minX, 0), geo[frame].width)
-                    return proxy.value(atX: x, as: Date.self)
-                }
-                Rectangle().fill(.clear).contentShape(Rectangle())
-                    .gesture(
-                        DragGesture(minimumDistance: 0)
-                            .onChanged { date.wrappedValue = pick($0.location) }
-                            .onEnded { _ in date.wrappedValue = nil }
-                    )
-                    .onContinuousHover { phase in
-                        switch phase {
-                        case .active(let point): date.wrappedValue = pick(point)
-                        case .ended: date.wrappedValue = nil
-                        }
+    /// Touch the chart and drag: `date` follows the finger, snapped to the nearest of `points`
+    /// (a pointer hover does the same on iPad and Mac); letting go clears it. The drag has priority
+    /// over the page's scroll, so a finger on the chart always scrubs. Its position lives in a
+    /// `@GestureState`, which resets even when the system cancels the touch, so the chart can't
+    /// get stuck on a date. `date` only changes when the nearest point does, so the page isn't
+    /// redrawn on every pixel of movement.
+    func chartScrubbing(_ date: Binding<Date?>, points: [BalancePoint]) -> some View {
+        modifier(ChartScrubbing(date: date, points: points))
+    }
+}
+
+private struct ChartScrubbing: ViewModifier {
+    @Binding var date: Date?
+    let points: [BalancePoint]
+    @GestureState private var finger: Date?
+    @State private var hover: Date?
+
+    func body(content: Content) -> some View {
+        content
+            .chartOverlay { proxy in
+                GeometryReader { geo in
+                    let pick: (CGPoint) -> Date? = { point in
+                        guard let frame = proxy.plotFrame else { return nil }
+                        let x = min(max(point.x - geo[frame].minX, 0), geo[frame].width)
+                        return proxy.value(atX: x, as: Date.self)
                     }
+                    Rectangle().fill(.clear).contentShape(Rectangle())
+                        .highPriorityGesture(
+                            DragGesture(minimumDistance: 0)
+                                .updating($finger) { value, state, _ in state = pick(value.location) }
+                        )
+                        .onContinuousHover { phase in
+                            switch phase {
+                            case .active(let point): hover = pick(point)
+                            case .ended: hover = nil
+                            }
+                        }
+                }
             }
-        }
+            .onChange(of: finger ?? hover) { _, new in
+                let snapped = points.nearest(to: new)?.day
+                if snapped != date { date = snapped }
+            }
     }
 }

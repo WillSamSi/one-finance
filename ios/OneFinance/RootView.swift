@@ -41,16 +41,17 @@ struct RootView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(alignment: .bottom) {
-                // Content scrolling under the dock fades out, all the way to the screen's edge.
-                LinearGradient(stops: [.init(color: Theme.onyx950, location: 0),
-                                       .init(color: Theme.onyx950.opacity(0.96), location: 0.5),
-                                       .init(color: .clear, location: 1)],
-                               startPoint: .bottom, endPoint: .top)
-                    .frame(height: 170)
-                    .ignoresSafeArea(edges: .bottom)
-                    .allowsHitTesting(false)
+
+            // Content scrolling under the dock is covered down to the screen's edge (home
+            // indicator included), then fades out above the dock.
+            VStack(spacing: 0) {
+                Spacer(minLength: 0)
+                LinearGradient(colors: [Theme.onyx950.opacity(0), Theme.onyx950], startPoint: .top, endPoint: .bottom)
+                    .frame(height: 70)
+                Theme.onyx950.frame(height: 92)  // solid behind the dock and the home indicator
             }
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
 
             if tab == .home {
                 HStack {
@@ -69,14 +70,9 @@ struct RootView: View {
         .sheet(isPresented: $showAdd, onDismiss: { focusQuickType = false }) {
             AddMenuSheet(focusQuickType: focusQuickType) { reloadToken += 1; showAdd = false }
         }
-        .onChange(of: router.openQuickType) {
-            // "Log expense" Shortcut (Back Tap): open the + menu with "Or type it" ready.
-            guard router.openQuickType else { return }
-            router.openQuickType = false
-            tab = .home
-            focusQuickType = true
-            showAdd = true
-        }
+        .onChange(of: router.openQuickType) { openQuickEntryIfAsked() }
+        .onChange(of: showSplash) { openQuickEntryIfAsked() }
+        .onChange(of: locked) { openQuickEntryIfAsked() }
         .overlay {
             if locked && faceIDLock && !showSplash { LockScreen { locked = false } }
         }
@@ -88,14 +84,29 @@ struct RootView: View {
             }
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .background && faceIDLock { locked = true }  // ask again when the app comes back
+            if phase == .background {
+                if faceIDLock { locked = true }  // ask again when the app comes back
+                showAdd = false  // come back to Home, not to a half-typed entry behind the lock
+            }
         }
         .task {
+            openQuickEntryIfAsked()
             await LocalNotifications.requestPermission()
             NotificationPrefs.applySchedule()
             // Profile → Time zone is automatic: tell the backend which one the phone is in.
             let _: AppSettings? = try? await APIClient().patch("settings", body: ["time_zone": TimeZone.current.identifier])
         }
+    }
+
+    /// "Log expense" Shortcut (Back Tap): open the + menu with "Or type it" ready, but only once
+    /// the welcome animation and Face ID are done, so the sheet never covers them.
+    private func openQuickEntryIfAsked() {
+        guard router.openQuickType, !showSplash, !(locked && faceIDLock) else { return }
+        router.openQuickType = false
+        showChat = false
+        tab = .home
+        focusQuickType = true
+        showAdd = true
     }
 }
 

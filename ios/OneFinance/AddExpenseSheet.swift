@@ -197,7 +197,7 @@ struct AddExpenseView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save") { Task { await save() } }.disabled(saving || (Double(amount) ?? 0) <= 0 || pocket == nil)
+                Button("Save") { Task { await save() } }.disabled(saving || (Money.parse(amount) ?? 0) <= 0 || pocket == nil)
             }
         }
         .sheet(isPresented: $showMore, onDismiss: { Task { await loadChips() } }) {
@@ -258,7 +258,7 @@ struct AddExpenseView: View {
     }
 
     private func save() async {
-        guard let value = Double(amount), let pocket else { return }
+        guard let value = Money.parse(amount), let pocket else { return }
         saving = true
         let f = DateFormatter()
         f.dateFormat = "yyyy-MM-dd"
@@ -443,8 +443,8 @@ struct NewPocketSheet: View {
         saving = true
         let f = DateFormatter()
         f.dateFormat = "yyyy-MM"
-        var body: [String: Any] = ["name": name, "kind": kind, "monthly_budget": Double(amount) ?? 0]
-        if kind == "saving", hasGoal, let g = Double(goal) {
+        var body: [String: Any] = ["name": name, "kind": kind, "monthly_budget": Money.parse(amount) ?? 0]
+        if kind == "saving", hasGoal, let g = Money.parse(goal) {
             body["goal_amount"] = g
             body["goal_date"] = f.string(from: goalDate)
         }

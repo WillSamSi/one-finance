@@ -61,7 +61,7 @@ struct ChatSheet: View {
 
     private func bubble(_ m: Message) -> some View {
         VStack(alignment: m.fromUser ? .trailing : .leading, spacing: 4) {
-            Text(m.text)
+            Text(m.fromUser ? AttributedString(m.text) : AIMarkdown.attributed(m.text))
                 .font(.system(size: 15))
                 .foregroundStyle(Theme.text)
                 .padding(12)

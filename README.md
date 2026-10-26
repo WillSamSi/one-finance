@@ -115,7 +115,7 @@ The Accountant reads the receipt photos, records September (most charges are rec
    ```
 
 4. In the app, enter the Mac's address (e.g. `http://Your-Mac.local:8000`) on the "Can't reach the backend" card, or later in **More → Help and about → Backend address**.
-5. Back Tap: **Settings → Accessibility → Touch → Back Tap → Double Tap → Log expense** opens the + menu ready to type.
+5. Back Tap: in the **Shortcuts** app, tap **+**, add One Finance's **Log expense** action and save it as "Log expense"; then **Settings → Accessibility → Touch → Back Tap → Double Tap → Log expense**. A double tap on the back of the phone opens the + menu ready to type.
 
 ## How it's built
 

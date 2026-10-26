@@ -66,7 +66,6 @@ struct InvestView: View {
             .padding(.bottom, 180)
         }
         .scrollIndicators(.hidden)
-        .scrollDisabled(scrubDate != nil)  // a finger on the chart scrubs; the page stays put
         .refreshable { await load(); await loadHistory() }
         .task { await load() }
         .task(id: range) { await loadHistory() }
@@ -100,7 +99,7 @@ struct InvestView: View {
             .contentTransition(.numericText())
         if let first = points.first, let end = selected ?? points.last, first.total > 0 {
             let diff = end.total - first.total
-            (Text("\(diff < 0 ? "−" : "+")\(Money.usd(abs(diff))) (\((100 * abs(diff) / first.total).formatted(.number.precision(.fractionLength(1))))%) ")
+            (Text("\(diff < 0 ? "−" : "+")\(Money.usd(abs(diff))) (\((100 * abs(diff) / first.total).formatted(.number.precision(.fractionLength(1)).locale(Money.locale)))%) ")
                 .foregroundColor(diff < 0 ? Theme.over : Self.gain)
              + Text(selected.map { "on \(DateParse.mediumDay($0.date))" } ?? range.phrase).foregroundColor(Theme.muted).fontWeight(.medium))
                 .font(.system(size: 13.5, weight: .semibold)).monospacedDigit()
@@ -118,15 +117,11 @@ struct InvestView: View {
     /// The chosen range's points (YTD is cut at Jan 1 of the latest year).
     private var rangePoints: [BalancePoint] {
         let points = history?.points ?? []
-        guard range == .ytd, let last = points.last else { return points }
-        return points.filter { $0.date >= "\(last.date.prefix(4))-01-01" }
+        guard range == .ytd, let last = points.last else { return points.thinned() }
+        return points.filter { $0.date >= "\(last.date.prefix(4))-01-01" }.thinned()
     }
 
-    private var scrubPoint: BalancePoint? {
-        let points = rangePoints
-        guard let scrubDate, !points.isEmpty else { return nil }
-        return points.min { abs($0.day.timeIntervalSince(scrubDate)) < abs($1.day.timeIntervalSince(scrubDate)) }
-    }
+    private var scrubPoint: BalancePoint? { rangePoints.nearest(to: scrubDate) }
 
     @ViewBuilder private func chart(_ points: [BalancePoint]) -> some View {
         if points.count > 1 {
@@ -135,19 +130,22 @@ struct InvestView: View {
             let pad = max((hi - lo) * 0.08, 50)
             let ticks = [lo, (lo + hi) / 2, hi]
             VStack(spacing: 6) {
-                Chart(points) { p in
-                    AreaMark(x: .value("Day", p.day), yStart: .value("Low", lo - pad), yEnd: .value("Value", p.total))
-                        .foregroundStyle(LinearGradient(colors: [Theme.vib400.opacity(0.35), Theme.vib400.opacity(0)],
-                                                        startPoint: .top, endPoint: .bottom))
-                    LineMark(x: .value("Day", p.day), y: .value("Value", p.total))
-                        .foregroundStyle(Color(hex: 0xB98CFF))
-                        .lineStyle(StrokeStyle(lineWidth: 2, lineJoin: .round))
-                    if let s = scrubPoint, s.id == p.id {
-                        RuleMark(x: .value("Day", p.day))
+                let selected = points.nearest(to: scrubDate)
+                Chart {
+                    ForEach(points) { p in
+                        AreaMark(x: .value("Day", p.day), yStart: .value("Low", lo - pad), yEnd: .value("Value", p.total))
+                            .foregroundStyle(LinearGradient(colors: [Theme.vib400.opacity(0.35), Theme.vib400.opacity(0)],
+                                                            startPoint: .top, endPoint: .bottom))
+                        LineMark(x: .value("Day", p.day), y: .value("Value", p.total))
+                            .foregroundStyle(Color(hex: 0xB98CFF))
+                            .lineStyle(StrokeStyle(lineWidth: 2, lineJoin: .round))
+                    }
+                    if let s = selected {
+                        RuleMark(x: .value("Day", s.day))
                             .foregroundStyle(Color(hex: 0xE3D2FF))
                             .lineStyle(StrokeStyle(lineWidth: 1.2, dash: [3, 4]))
                             .annotation(position: .top, spacing: 4, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)) {
-                                Text(DateParse.mediumDay(p.date))
+                                Text(DateParse.mediumDay(s.date))
                                     .font(.system(size: 11.5, weight: .semibold))
                                     .foregroundStyle(Theme.vib100)
                                     .padding(.horizontal, 8).padding(.vertical, 4)
@@ -155,8 +153,8 @@ struct InvestView: View {
                                     .overlay(Capsule().stroke(Theme.vib300.opacity(0.5), lineWidth: 1))
                             }
                     }
-                    if p.id == (scrubPoint ?? points.last)?.id {
-                        PointMark(x: .value("Day", p.day), y: .value("Value", p.total))
+                    if let dot = selected ?? points.last {
+                        PointMark(x: .value("Day", dot.day), y: .value("Value", dot.total))
                             .symbol {
                                 Circle().fill(.white).frame(width: 9, height: 9)
                                     .overlay(Circle().stroke(Theme.vib400, lineWidth: 2.5))
@@ -173,8 +171,8 @@ struct InvestView: View {
                         }
                     }
                 }
-                .chartScrubbing($scrubDate)  // touch and drag; letting go clears it
-                .sensoryFeedback(.selection, trigger: scrubPoint?.date)
+                .chartScrubbing($scrubDate, points: points)  // touch and drag; letting go clears it
+                .sensoryFeedback(.selection, trigger: scrubDate)
                 .padding(.top, 24)  // room for the date pill
                 .frame(height: 210)
                 HStack {
@@ -326,7 +324,7 @@ struct InvestView: View {
                             Text(name).font(.system(size: 13)).foregroundStyle(Theme.text)
                             Spacer()
                             if over { Tag(text: "Over limit", over: true) }
-                            Text("\(share.formatted(.number.precision(.fractionLength(1))))%")
+                            Text("\(share.formatted(.number.precision(.fractionLength(1)).locale(Money.locale)))%")
                                 .font(.system(size: 13, weight: .semibold)).monospacedDigit()
                                 .foregroundStyle(over ? Theme.over : Theme.text)
                         }
@@ -353,13 +351,13 @@ struct InvestView: View {
                     ForEach(b.concentration + b.risks, id: \.self) { line in
                         HStack(alignment: .firstTextBaseline, spacing: 8) {
                             GlowDot(color: Color(hex: 0xFF8A4C))
-                            Text(line).font(.system(size: 13)).foregroundStyle(Theme.cardText)
+                            Text(AIMarkdown.attributed(line)).font(.system(size: 13)).foregroundStyle(Theme.cardText)
                         }
                     }
                     ForEach(b.holdings) { h in
                         VStack(alignment: .leading, spacing: 2) {
                             Text(h.symbol).font(.system(size: 13, weight: .semibold)).foregroundStyle(.white)
-                            Text(h.keyNumbers).font(.system(size: 12)).foregroundStyle(Theme.muted)
+                            Text(AIMarkdown.attributed(h.keyNumbers)).font(.system(size: 12)).foregroundStyle(Theme.muted)
                         }
                     }
                     Text("From SEC filings. Suggestions only; the app can't trade.").font(.caption2).foregroundStyle(Theme.muted)
@@ -510,7 +508,7 @@ struct AssetCashCard: View {
                     Text("Unrealized P&L").font(.system(size: 14)).foregroundStyle(Color(hex: 0xD8CDEB))
                     Spacer()
                     Image(systemName: split ? "chevron.up" : "chevron.down").font(.system(size: 11, weight: .bold)).foregroundStyle(Theme.muted)
-                    Text("\(o.unrealized < 0 ? "−" : "+")\(Money.usd(abs(o.unrealized))) (\(abs(pct).formatted(.number.precision(.fractionLength(2))))%)")
+                    Text("\(o.unrealized < 0 ? "−" : "+")\(Money.usd(abs(o.unrealized))) (\(abs(pct).formatted(.number.precision(.fractionLength(2)).locale(Money.locale)))%)")
                         .font(.system(size: 14, weight: .bold)).monospacedDigit()
                         .foregroundStyle(o.unrealized < 0 ? Theme.over : Self.gain)
                 }
@@ -559,7 +557,7 @@ struct HoldingRow: View {
                 if let g = h.gain {
                     let cost = h.value - g
                     let pct = cost > 0 ? 100 * g / cost : 0
-                    Text("\(g < 0 ? "−" : "+")\(Money.usd(abs(g))) (\(abs(pct).formatted(.number.precision(.fractionLength(2))))%)")
+                    Text("\(g < 0 ? "−" : "+")\(Money.usd(abs(g))) (\(abs(pct).formatted(.number.precision(.fractionLength(2)).locale(Money.locale)))%)")
                         .font(.system(size: 12, weight: .semibold)).monospacedDigit()
                         .foregroundStyle(g < 0 ? Theme.over : g > 0 ? Self.gain : Theme.muted)
                 }
@@ -596,7 +594,7 @@ struct HoldingRow: View {
     }
 
     private static func amount(_ h: Holding) -> String {
-        let q = h.quantity.formatted(.number.precision(.fractionLength(0...4)))
+        let q = h.quantity.formatted(.number.precision(.fractionLength(0...4)).locale(Money.locale))
         return h.assetClass == "Crypto" ? "\(q) \(h.symbol)" : "\(q) \(h.quantity == 1 ? "share" : "shares")"
     }
 }

@@ -20,18 +20,12 @@ struct HomeView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 if let data {
-                    Group {
-                        balanceHeader(data.balance)
-                        aiSummary(data)
-                        cashflowCard(data)
-                    }
-                    .hiddenAmounts(hidden, reveal: { revealed = true })
+                    balanceHeader(data.balance)
+                    aiSummary(data)
+                    cashflowCard(data)
                     divider
-                    Group {
-                        remainingBudget(data)
-                        savings(data.savings)
-                    }
-                    .hiddenAmounts(hidden, reveal: { revealed = true })
+                    remainingBudget(data)
+                    savings(data.savings)
                     nextSteps(data)
                 } else if let error {
                     BackendErrorCard(message: error)
@@ -53,20 +47,32 @@ struct HomeView: View {
 
     private func balanceHeader(_ b: BalanceInfo) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Total Balance").font(.system(size: 15)).foregroundStyle(Theme.muted).padding(.bottom, 4)
-            let parts = Money.usd(b.total).split(separator: ".")
+            HStack(spacing: 6) {
+                Text("Total Balance")
+                if hideBalances { Image(systemName: hidden ? "eye.slash" : "eye").font(.system(size: 13)) }
+            }
+            .font(.system(size: 15)).foregroundStyle(Theme.muted).padding(.bottom, 4)
+            // Hide balances (More → Privacy): "$***,***.**" until tapped; tap again to hide.
+            let parts = Money.masked(Money.usd(b.total), hidden).split(separator: ".")
             (Text(parts.first.map(String.init) ?? "")
                 + Text(parts.count > 1 ? "." + parts[1] : "").foregroundColor(Theme.muted).fontWeight(.semibold))
                 .font(.system(size: 40, weight: .bold))
                 .tracking(-0.8)
                 .monospacedDigit()
                 .foregroundStyle(Theme.text)
+                .contentTransition(.numericText())
             HStack(spacing: 10) {
-                Chip(text: "\(b.change >= 0 ? "▲" : "▼") \(Money.usd(abs(b.change))) · \(abs(b.changePct).formatted(.number.precision(.fractionLength(1))))%")
+                Chip(text: "\(b.change >= 0 ? "▲" : "▼") \(Money.masked(Money.usd(abs(b.change)), hidden)) · \(abs(b.changePct).formatted(.number.precision(.fractionLength(1)).locale(Money.locale)))%")
                 Text("this month · \(b.accounts) accounts").font(.system(size: 13)).foregroundStyle(Theme.muted)
             }
             .padding(.top, 10)
         }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard hideBalances else { return }
+            withAnimation(.easeOut(duration: 0.25)) { revealed.toggle() }
+        }
+        .accessibilityLabel(hidden ? "Total balance hidden. Double-tap to show." : "Total balance \(Money.usd(b.total))")
     }
 
     private func aiSummary(_ d: HomeData) -> some View {
@@ -246,20 +252,6 @@ extension HomeView {
     }
 }
 
-extension View {
-    /// Hide balances (More → Privacy): blur the amounts until the owner taps them.
-    func hiddenAmounts(_ hidden: Bool, reveal: @escaping () -> Void) -> some View {
-        self
-            .blur(radius: hidden ? 9 : 0)
-            .overlay {
-                if hidden {
-                    Color.clear.contentShape(Rectangle()).onTapGesture { withAnimation(.easeOut(duration: 0.25)) { reveal() } }
-                }
-            }
-            .accessibilityHidden(hidden)
-    }
-}
-
 struct BudgetCard: View {
     let pocket: BudgetPocket
 
@@ -381,7 +373,7 @@ struct NextStepRow: View {
                 .background(color.opacity(0.16), in: RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading, spacing: 2) {
                 Text(step.title).font(.system(size: 13.5, weight: .semibold)).foregroundStyle(.white)
-                Text(step.detail).font(.system(size: 12)).foregroundStyle(Theme.muted).fixedSize(horizontal: false, vertical: true)
+                Text(AIMarkdown.attributed(step.detail)).font(.system(size: 12)).foregroundStyle(Theme.muted).fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
             Button(action: onTap) { Chip(text: step.action.capitalized) }

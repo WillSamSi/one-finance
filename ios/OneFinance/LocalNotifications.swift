@@ -11,7 +11,7 @@ enum LocalNotifications {
     static func post(title: String, body: String, after seconds: TimeInterval = 1, id: String = UUID().uuidString) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = body
+        content.body = AIMarkdown.plain(body)  // the lock screen can't show **bold**
         content.sound = .default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, seconds), repeats: false)
         UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
@@ -20,7 +20,7 @@ enum LocalNotifications {
     static func scheduleWeekly(id: String, weekday: Int, hour: Int, title: String, body: String) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = body
+        content.body = AIMarkdown.plain(body)  // the lock screen can't show **bold**
         content.sound = .default
         let trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: hour, weekday: weekday), repeats: true)
         UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))

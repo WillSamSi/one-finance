@@ -185,8 +185,40 @@ struct BalancePoint: Decodable, Identifiable {
     var id: String { date }
     let date: String
     let total: Double
+    let day: Date  // parsed once: the charts look it up on every frame while scrubbing
 
-    var day: Date { DateParse.day(date) }
+    private enum CodingKeys: String, CodingKey { case date, total }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        date = try c.decode(String.self, forKey: .date)
+        total = try c.decode(Double.self, forKey: .total)
+        day = DateParse.day(date)
+    }
+}
+
+extension Array where Element == BalancePoint {
+    /// At most `limit` points for drawing (every n-th day, always keeping the last one).
+    /// Two years of days is 730 points, far more than the chart has pixels for.
+    func thinned(to limit: Int = 160) -> [BalancePoint] {
+        guard count > limit else { return self }
+        let step = Int((Double(count) / Double(limit)).rounded(.up))
+        var out = Swift.stride(from: 0, to: count, by: step).map { self[$0] }
+        if out.last?.date != last?.date, let last { out.append(last) }
+        return out
+    }
+
+    /// The point closest to `date` (the points are in date order), by binary search.
+    func nearest(to date: Date?) -> BalancePoint? {
+        guard let date, !isEmpty else { return nil }
+        var lo = 0, hi = count - 1
+        while lo < hi {
+            let mid = (lo + hi) / 2
+            if self[mid].day < date { lo = mid + 1 } else { hi = mid }
+        }
+        if lo > 0, abs(self[lo - 1].day.timeIntervalSince(date)) < abs(self[lo].day.timeIntervalSince(date)) { return self[lo - 1] }
+        return self[lo]
+    }
 }
 
 struct ReviewList: Decodable { let items: [ReviewItem] }
