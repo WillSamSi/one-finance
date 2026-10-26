@@ -2,8 +2,27 @@ import Foundation
 
 /// Talks to the One Finance backend. The app never holds Plaid, SnapTrade or Portkey keys.
 struct APIClient {
-    /// The Simulator reaches the Mac's localhost directly.
-    static var baseURL = URL(string: "http://localhost:8000")!
+    /// Where the backend runs. The Simulator reaches the Mac's localhost directly; on an iPhone,
+    /// enter the Mac's address once (e.g. http://My-Mac.local:8000) on the "Can't reach the
+    /// backend" card or in More → Help and about → Backend address. Saved on the phone.
+    static let addressKey = "backendURL"
+    static var baseURL: URL {
+        if let saved = UserDefaults.standard.string(forKey: addressKey), let url = URL(string: saved), url.host != nil {
+            return url
+        }
+        return URL(string: "http://localhost:8000")!
+    }
+
+    /// "my-mac.local:8000", "http://192.168.1.20:8000" → a URL with http:// and the port.
+    static func normalized(_ text: String) -> URL? {
+        var t = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if t.isEmpty { return nil }
+        if !t.contains("://") { t = "http://" + t }
+        guard var c = URLComponents(string: t), c.host != nil else { return nil }
+        if c.port == nil { c.port = 8000 }
+        c.path = ""
+        return c.url
+    }
 
     private let decoder: JSONDecoder = {
         let d = JSONDecoder()

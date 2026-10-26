@@ -392,14 +392,31 @@ struct NextStepRow: View {
 
 struct BackendErrorCard: View {
     let message: String
+    @State private var address = UserDefaults.standard.string(forKey: APIClient.addressKey) ?? ""
+    @State private var saved = false
 
     var body: some View {
         Card {
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text("Can't reach the backend").font(.headline).foregroundStyle(Theme.text)
-                Text("Start it with: .venv/bin/uvicorn backend.main:app --port 8000")
-                    .font(.caption.monospaced()).foregroundStyle(Theme.muted)
-                Text(message).font(.caption2).foregroundStyle(Theme.muted)
+                Text("On the Mac, start it (see the README). On an iPhone, enter the Mac's address:")
+                    .font(.caption).foregroundStyle(Theme.muted)
+                HStack {
+                    TextField("http://Your-Mac.local:8000", text: $address)
+                        .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                        .font(.system(size: 14, design: .monospaced))
+                        .padding(8).background(Color.white.opacity(0.06), in: RoundedRectangle(cornerRadius: 8))
+                    Button(saved ? "Saved" : "Save") {
+                        if let url = APIClient.normalized(address) {
+                            UserDefaults.standard.set(url.absoluteString, forKey: APIClient.addressKey)
+                            address = url.absoluteString
+                            saved = true
+                        }
+                    }
+                    .buttonStyle(.borderedProminent).tint(Theme.vib500)
+                }
+                if saved { Text("Saved. Pull down to reload.").font(.caption).foregroundStyle(Theme.positive) }
+                Text("Now trying \(APIClient.baseURL.absoluteString) · \(message)").font(.caption2).foregroundStyle(Theme.muted)
             }
         }
         .padding(.top, 40)

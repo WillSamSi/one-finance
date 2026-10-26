@@ -64,6 +64,7 @@ struct MoreView: View {
                 switch route {
                 case .profile: ProfileView(settings: $settings)
                 case .payday: PaydayView(settings: $settings)
+                case .backend: BackendAddressView()
                 case .aiPreferences: AIPreferencesView(settings: $settings)
                 case .inbox: InboxView(notifications: notifications)
                 case .runs: RunsView(runs: runs)
@@ -242,6 +243,12 @@ struct MoreView: View {
             NavigationLink(value: MoreRoute.report) {
                 MoreRow(icon: "ladybug.fill", color: 0xE5484D, title: "Report a problem") { Chevron() }
             }
+            NavigationLink(value: MoreRoute.backend) {
+                MoreRow(icon: "server.rack", color: 0x14B8A6, title: "Backend address") {
+                    Text(APIClient.baseURL.host() ?? "").font(.system(size: 13)).foregroundStyle(Theme.muted).lineLimit(1)
+                    Chevron()
+                }
+            }
             MoreRow(icon: "info.circle.fill", color: 0x64748B, title: "Version") {
                 Text(AppInfo.version).font(.system(size: 13.5)).foregroundStyle(Theme.muted)
             }
@@ -347,7 +354,7 @@ struct MoreView: View {
 }
 
 enum MoreRoute: Hashable {
-    case profile, aiPreferences, inbox, runs, digestTime, whatAISees, howItWorks, backTap, report, legal, payday
+    case profile, aiPreferences, inbox, runs, digestTime, whatAISees, howItWorks, backTap, report, legal, payday, backend
     case run(String)
     case connection(Connection)
 }
@@ -1339,5 +1346,43 @@ struct LabeledPicker<P: View>: View {
         .padding(.horizontal, 12)
         .frame(minHeight: 50)
         .overlay(alignment: .top) { Rectangle().fill(Color.white.opacity(0.07)).frame(height: 1).padding(.leading, 12) }
+    }
+}
+
+/// Where the app finds the backend (the Mac running it). The Simulator uses localhost.
+struct BackendAddressView: View {
+    @State private var address = APIClient.baseURL.absoluteString
+    @State private var status: String?
+
+    var body: some View {
+        PageScroll(title: "Backend address") {
+            Text("The app talks only to the One Finance backend running on your Mac. On an iPhone, use the Mac's name or IP address on the same Wi-Fi, e.g. http://My-Mac.local:8000.")
+                .font(.system(size: 13.5)).foregroundStyle(Theme.muted)
+            MoreGroup(title: "Address") {
+                TextField("http://My-Mac.local:8000", text: $address)
+                    .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.URL)
+                    .font(.system(size: 15, design: .monospaced)).foregroundStyle(Theme.text)
+                    .padding(12)
+            }
+            HStack {
+                Button("Save and test") { Task { await save() } }.buttonStyle(.borderedProminent).tint(Theme.vib500)
+                Button("Use localhost") {
+                    UserDefaults.standard.removeObject(forKey: APIClient.addressKey)
+                    address = APIClient.baseURL.absoluteString
+                    status = "Using localhost (Simulator)."
+                }
+                .buttonStyle(.bordered)
+            }
+            .padding(.top, 12)
+            if let status { Text(status).font(.footnote).foregroundStyle(Theme.vib300).padding(.top, 8) }
+        }
+    }
+
+    private func save() async {
+        guard let url = APIClient.normalized(address) else { status = "That doesn't look like an address."; return }
+        UserDefaults.standard.set(url.absoluteString, forKey: APIClient.addressKey)
+        address = url.absoluteString
+        let ok = (try? await APIClient().get("health", as: Health.self))?.ok == true
+        status = ok ? "Connected to \(url.host() ?? "")." : "Saved, but the backend didn't answer. Is it running with --host 0.0.0.0, on the same Wi-Fi?"
     }
 }
